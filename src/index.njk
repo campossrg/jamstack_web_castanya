@@ -1,0 +1,153 @@
+---
+layout: layouts/base.njk
+title: Inicio
+description: Descubre nuestra increíble colección de productos de calidad. Envío gratuito en pedidos superiores a €50. ¡Compra ahora!
+bodyClass: page-home
+schema:
+  "@context": "https://schema.org"
+  "@type": "WebSite"
+  "name": "{{ site.title }}"
+  "url": "{{ site.url }}"
+  "potentialAction":
+    "@type": "SearchAction"
+    "target": "{{ site.url }}/search?q={search_term_string}"
+    "query-input": "required name=search_term_string"
+---
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero__background">
+    <picture>
+      <source media="(min-width: 768px)" srcset="/assets/images/hero-desktop.jpg">
+      <img src="/assets/images/hero-mobile.jpg" alt="Productos destacados" class="hero__image">
+    </picture>
+  </div>
+  
+  <div class="hero__content">
+    <div class="container">
+      <div class="hero__text">
+        <h1 class="hero__title">
+          Descubre productos <span class="highlight">excepcionales</span>
+        </h1>
+        <p class="hero__subtitle">
+          Calidad premium, precios increíbles y envío gratuito en pedidos superiores a €{{ site.ecommerce.freeShippingThreshold }}
+        </p>
+        <div class="hero__actions">
+          <a href="/shop/" class="btn btn-primary btn-large">
+            Explorar tienda
+          </a>
+          <a href="#featured-products" class="btn btn-secondary btn-large">
+            Ver destacados
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Scroll indicator -->
+  <div class="hero__scroll">
+    <button class="scroll-indicator" aria-label="Scroll to content">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path d="M7 13l3 3 7-7"></path>
+        <path d="M7 6l3 3 7-7"></path>
+      </svg>
+    </button>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="features">
+  <div class="container">
+    <div class="features__grid">
+      <div class="feature">
+        <div class="feature__icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+            <polyline points="3.27,6.96 12,12.01 20.73,6.96"></polyline>
+            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+          </svg>
+        </div>
+        <h3 class="feature__title">Envío gratuito</h3>
+        <p class="feature__description">En pedidos superiores a €{{ site.ecommerce.freeShippingThreshold }}</p>
+      </div>
+      
+      <div class="feature">
+        <div class="feature__icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M9 12l2 2 4-4"></path>
+            <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3"></path>
+            <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3"></path>
+            <path d="M12 3c0 1-1 3-3 3s-3-2-3-3 1-3 3-3 3 2 3 3"></path>
+            <path d="M12 21c0-1 1-3 3-3s3 2 3 3-1 3-3 3-3-2-3-3"></path>
+          </svg>
+        </div>
+        <h3 class="feature__title">Calidad garantizada</h3>
+        <p class="feature__description">Productos seleccionados cuidadosamente</p>
+      </div>
+      
+      <div class="feature">
+        <div class="feature__icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9,22 9,12 15,12 15,22"></polyline>
+          </svg>
+        </div>
+        <h3 class="feature__title">Devolución fácil</h3>
+        <p class="feature__description">{{ site.ecommerce.returnPeriod }} días para devoluciones</p>
+      </div>
+      
+      <div class="feature">
+        <div class="feature__icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+        </div>
+        <h3 class="feature__title">Pago seguro</h3>
+        <p class="feature__description">Transacciones protegidas con RedSys</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Products Section -->
+<section class="featured-products" id="featured-products">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Productos destacados</h2>
+      <p class="section-subtitle">Descubre nuestros productos más populares</p>
+    </div>
+    
+    <div class="products-grid">
+      {% for product in collections.featuredProducts %}
+      <article class="product-card">
+        <div class="product-card__image">
+          <a href="{{ product.url }}">
+            {% if product.data.images and product.data.images.length > 0 %}
+            <img src="{{ product.data.images[0] }}" 
+                 alt="{{ product.data.title }}" 
+                 loading="lazy"
+                 width="300" 
+                 height="300">
+            {% else %}
+            <img src="/assets/images/placeholder-product.jpg" 
+                 alt="{{ product.data.title }}" 
+                 loading="lazy"
+                 width="300" 
+                 height="300">
+            {% endif %}
+          </a>
+          
+          {% if product.data.originalPrice and product.data.originalPrice > product.data.price %}
+          <div class="product-card__badge">
+            <span class="badge badge--sale">
+              -{{ (((product.data.originalPrice - product.data.price) / product.data.originalPrice) * 100) | round }}%
+            </span>
+          </div>
+          {% endif %}
+          
+          <div class="product-card__actions">
+            <button class="btn-icon wishlist-btn" 
+                    aria
+
+# Pending to continue generating in Claude

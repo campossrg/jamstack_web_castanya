@@ -1,0 +1,58 @@
+{
+  "name": "jamstack-ecommerce-blog",
+  "version": "1.0.0",
+  "description": "JAMStack website with Eleventy, TinaCMS, and e-commerce functionality",
+  "main": ".eleventy.js",
+  "scripts": {
+    "dev": "eleventy --serve",
+    "build": "eleventy",
+    "tina:dev": "tinacms dev -c \"npm run dev\"",
+    "tina:build": "tinacms build",
+    "css:build": "sass src/assets/css:src/assets/css --no-source-map",
+    "css:watch": "sass src/assets/css:src/assets/css --no-source-map --watch",
+    "lint": "eslint src/assets/js --fix",
+    "format": "prettier --write .",
+    "deploy": "npm run build && netlify deploy --prod --dir=_site",
+    "clean": "rm -rf _site"
+  },
+  "keywords": [
+    "jamstack",
+    "eleventy",
+    "tinacms",
+    "ecommerce",
+    "blog",
+    "netlify"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1",
+    "@11ty/eleventy-navigation": "^0.3.5",
+    "@11ty/eleventy-plugin-rss": "^1.2.0",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^4.2.0",
+    "@tinacms/cli": "^1.5.30",
+    "eslint": "^8.50.0",
+    "eslint-config-prettier": "^9.0.0",
+    "html-minifier": "^4.0.0",
+    "luxon": "^3.4.3",
+    "markdown-it": "^13.0.2",
+    "markdown-it-anchor": "^8.6.7",
+    "netlify-cli": "^16.6.0",
+    "prettier": "^3.0.3",
+    "sass": "^1.67.0"
+  },
+  "dependencies": {
+    "@sendgrid/mail": "^7.7.0",
+    "@tinacms/auth": "^1.0.2",
+    "crypto-js": "^4.1.1",
+    "dotenv": "^16.3.1",
+    "node-fetch": "^3.3.2"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/jamstack-ecommerce-blog.git"
+  }
+}
