@@ -1,0 +1,100 @@
+---
+layout: layouts/base.njk
+---
+
+<article class="blog-post">
+  <header class="blog-post__header">
+    <div class="container">
+      <nav aria-label="Breadcrumb" class="breadcrumb">
+        <ol>
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li aria-current="page">{{ title }}</li>
+        </ol>
+      </nav>
+      
+      <div class="blog-post__meta">
+        <time datetime="{{ date | htmlDateString }}">
+          {{ date | readableDate }}
+        </time>
+        {% if tags %}
+        <div class="blog-post__tags">
+          {% for tag in tags %}
+          <a href="/blog/tags/{{ tag | slug }}/" class="tag">{{ tag }}</a>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+      
+      <h1 class="blog-post__title">{{ title }}</h1>
+      
+      {% if description %}
+      <p class="blog-post__description">{{ description }}</p>
+      {% endif %}
+      
+      {% if image %}
+      <div class="blog-post__image">
+        <img src="{{ image }}" 
+             alt="{{ imageAlt or title }}" 
+             width="1200" 
+             height="630">
+      </div>
+      {% endif %}
+    </div>
+  </header>
+  
+  <div class="blog-post__content">
+    <div class="container">
+      <div class="prose">
+        {{ content | safe }}
+      </div>
+    </div>
+  </div>
+  
+  <footer class="blog-post__footer">
+    <div class="container">
+      <div class="blog-post__share">
+        <h3>Compartir este artículo</h3>
+        <div class="share-buttons">
+          <a href="https://twitter.com/intent/tweet?text={{ title | urlencode }}&url={{ site.url }}{{ page.url }}" 
+             target="_blank" 
+             rel="noopener"
+             class="share-btn share-btn--twitter">
+            Twitter
+          </a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u={{ site.url }}{{ page.url }}" 
+             target="_blank" 
+             rel="noopener"
+             class="share-btn share-btn--facebook">
+            Facebook
+          </a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ site.url }}{{ page.url }}" 
+             target="_blank" 
+             rel="noopener"
+             class="share-btn share-btn--linkedin">
+            LinkedIn
+          </a>
+        </div>
+      </div>
+      
+      <div class="blog-post__navigation">
+        {% set previousPost = collections.blog | getPreviousCollectionItem(page) %}
+        {% set nextPost = collections.blog | getNextCollectionItem(page) %}
+        
+        {% if previousPost %}
+        <a href="{{ previousPost.url }}" class="post-nav post-nav--previous">
+          <span class="post-nav__label">← Anterior</span>
+          <span class="post-nav__title">{{ previousPost.data.title }}</span>
+        </a>
+        {% endif %}
+        
+        {% if nextPost %}
+        <a href="{{ nextPost.url }}" class="post-nav post-nav--next">
+          <span class="post-nav__label">Siguiente →</span>
+          <span class="post-nav__title">{{ nextPost.data.title }}</span>
+        </a>
+        {% endif %}
+      </div>
+    </div>
+  </footer>
+</article>

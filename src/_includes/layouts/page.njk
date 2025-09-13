@@ -1,0 +1,29 @@
+---
+layout: layouts/base.njk
+---
+
+<div class="page-header">
+  <div class="container">
+    <nav aria-label="Breadcrumb" class="breadcrumb">
+      <ol>
+        <li><a href="/">Inicio</a></li>
+        <li aria-current="page">{{ title }}</li>
+      </ol>
+    </nav>
+    
+    <div class="page-header__content">
+      <h1 class="page-title">{{ title }}</h1>
+      {% if description %}
+      <p class="page-description">{{ description }}</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<main class="page-content">
+  <div class="container">
+    <div class="prose">
+      {{ content | safe }}
+    </div>
+  </div>
+</main>

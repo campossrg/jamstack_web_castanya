@@ -148,6 +148,317 @@ schema:
           
           <div class="product-card__actions">
             <button class="btn-icon wishlist-btn" 
-                    aria
+                    aria-label="Add to wishlist"
+                    data-product-id="{{ product.data.sku }}">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+              </svg>
+            </button>
+            <button class="btn-icon quick-view-btn" 
+                    aria-label="Quick view"
+                    data-product-url="{{ product.url }}">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+        </div>
+        
+        <div class="product-card__content">
+          <div class="product-card__category">
+            {{ product.data.category | title }}
+          </div>
+          
+          <h3 class="product-card__title">
+            <a href="{{ product.url }}">{{ product.data.title }}</a>
+          </h3>
+          
+          <p class="product-card__description">
+            {{ product.data.description }}
+          </p>
+          
+          <div class="product-card__rating">
+            <div class="stars">
+              <span class="stars-fill" style="width: 85%"></span>
+            </div>
+            <span class="rating-count">(24)</span>
+          </div>
+          
+          <div class="product-card__price">
+            {% if product.data.originalPrice and product.data.originalPrice > product.data.price %}
+            <span class="price-original">{{ product.data.originalPrice | formatPrice }}</span>
+            {% endif %}
+            <span class="price-current">{{ product.data.price | formatPrice }}</span>
+          </div>
+          
+          <div class="product-card__footer">
+            {% if product.data.stock > 0 %}
+            <button class="btn btn-primary btn-full" 
+                    data-add-to-cart
+                    data-product='{{ {
+                      id: product.data.sku,
+                      name: product.data.title,
+                      price: product.data.price,
+                      image: product.data.images[0] or "/assets/images/placeholder-product.jpg"
+                    } | dump }}'>
+              Añadir al carrito
+            </button>
+            {% else %}
+            <button class="btn btn-secondary btn-full" disabled>
+              Agotado
+            </button>
+            {% endif %}
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+    
+    <div class="section-footer">
+      <a href="/shop/" class="btn btn-outline">Ver todos los productos</a>
+    </div>
+  </div>
+</section>
 
-# Pending to continue generating in Claude
+<!-- Categories Section -->
+<section class="categories">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Explora por categorías</h2>
+      <p class="section-subtitle">Encuentra exactamente lo que buscas</p>
+    </div>
+    
+    <div class="categories-grid">
+      <a href="/shop/electronics/" class="category-card">
+        <div class="category-card__image">
+          <img src="/assets/images/categories/electronics.jpg" 
+               alt="Electrónicos" 
+               loading="lazy"
+               width="400" 
+               height="300">
+        </div>
+        <div class="category-card__content">
+          <h3 class="category-card__title">Electrónicos</h3>
+          <p class="category-card__description">Últimas tecnologías</p>
+          <span class="category-card__count">45 productos</span>
+        </div>
+      </a>
+      
+      <a href="/shop/clothing/" class="category-card">
+        <div class="category-card__image">
+          <img src="/assets/images/categories/clothing.jpg" 
+               alt="Ropa" 
+               loading="lazy"
+               width="400" 
+               height="300">
+        </div>
+        <div class="category-card__content">
+          <h3 class="category-card__title">Ropa</h3>
+          <p class="category-card__description">Moda y estilo</p>
+          <span class="category-card__count">128 productos</span>
+        </div>
+      </a>
+      
+      <a href="/shop/home-garden/" class="category-card">
+        <div class="category-card__image">
+          <img src="/assets/images/categories/home-garden.jpg" 
+               alt="Hogar y Jardín" 
+               loading="lazy"
+               width="400" 
+               height="300">
+        </div>
+        <div class="category-card__content">
+          <h3 class="category-card__title">Hogar y Jardín</h3>
+          <p class="category-card__description">Para tu hogar</p>
+          <span class="category-card__count">67 productos</span>
+        </div>
+      </a>
+      
+      <a href="/shop/sports/" class="category-card">
+        <div class="category-card__image">
+          <img src="/assets/images/categories/sports.jpg" 
+               alt="Deportes" 
+               loading="lazy"
+               width="400" 
+               height="300">
+        </div>
+        <div class="category-card__content">
+          <h3 class="category-card__title">Deportes</h3>
+          <p class="category-card__description">Vida activa</p>
+          <span class="category-card__count">89 productos</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Latest Blog Posts Section -->
+<section class="latest-blog">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Últimas del blog</h2>
+      <p class="section-subtitle">Consejos, noticias y tendencias</p>
+    </div>
+    
+    <div class="blog-grid">
+      {% for post in collections.blog | limit(3) %}
+      <article class="blog-card">
+        <div class="blog-card__image">
+          <a href="{{ post.url }}">
+            {% if post.data.image %}
+            <img src="{{ post.data.image }}" 
+                 alt="{{ post.data.imageAlt or post.data.title }}" 
+                 loading="lazy"
+                 width="400" 
+                 height="250">
+            {% else %}
+            <img src="/assets/images/blog-placeholder.jpg" 
+                 alt="{{ post.data.title }}" 
+                 loading="lazy"
+                 width="400" 
+                 height="250">
+            {% endif %}
+          </a>
+        </div>
+        
+        <div class="blog-card__content">
+          <div class="blog-card__meta">
+            <time datetime="{{ post.date | htmlDateString }}">
+              {{ post.date | readableDate }}
+            </time>
+            {% if post.data.tags %}
+            <span class="blog-card__category">
+              {{ post.data.tags[0] | title }}
+            </span>
+            {% endif %}
+          </div>
+          
+          <h3 class="blog-card__title">
+            <a href="{{ post.url }}">{{ post.data.title }}</a>
+          </h3>
+          
+          <p class="blog-card__excerpt">
+            {{ post.data.description }}
+          </p>
+          
+          <a href="{{ post.url }}" class="blog-card__link">
+            Leer más →
+          </a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+    
+    <div class="section-footer">
+      <a href="/blog/" class="btn btn-outline">Ver todos los artículos</a>
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="newsletter">
+  <div class="container">
+    <div class="newsletter__content">
+      <div class="newsletter__text">
+        <h2 class="newsletter__title">¡No te pierdas nada!</h2>
+        <p class="newsletter__description">
+          Suscríbete a nuestro newsletter y recibe ofertas exclusivas, 
+          nuevos productos y consejos directamente en tu email.
+        </p>
+      </div>
+      
+      <form class="newsletter__form" data-newsletter>
+        <div class="newsletter__input-group">
+          <label for="newsletter-email" class="sr-only">Tu email</label>
+          <input type="email" 
+                 id="newsletter-email"
+                 name="email" 
+                 placeholder="Tu dirección de email" 
+                 required
+                 class="newsletter__input">
+          <button type="submit" class="btn btn-primary newsletter__button">
+            Suscribirse
+          </button>
+        </div>
+        <p class="newsletter__privacy">
+          Al suscribirte, aceptas recibir emails promocionales. 
+          Puedes darte de baja en cualquier momento.
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Trust Signals Section -->
+<section class="trust-signals">
+  <div class="container">
+    <div class="trust-signals__grid">
+      <div class="trust-signal">
+        <div class="trust-signal__icon">
+          <img src="/assets/images/icons/ssl-secure.svg" alt="SSL Secure" width="48" height="48">
+        </div>
+        <div class="trust-signal__content">
+          <h3>100% Seguro</h3>
+          <p>Certificado SSL y pagos protegidos</p>
+        </div>
+      </div>
+      
+      <div class="trust-signal">
+        <div class="trust-signal__icon">
+          <img src="/assets/images/icons/satisfaction.svg" alt="Satisfaction" width="48" height="48">
+        </div>
+        <div class="trust-signal__content">
+          <h3>Satisfacción garantizada</h3>
+          <p>Miles de clientes satisfechos</p>
+        </div>
+      </div>
+      
+      <div class="trust-signal">
+        <div class="trust-signal__icon">
+          <img src="/assets/images/icons/support.svg" alt="Support" width="48" height="48">
+        </div>
+        <div class="trust-signal__content">
+          <h3>Soporte 24/7</h3>
+          <p>Estamos aquí para ayudarte</p>
+        </div>
+      </div>
+      
+      <div class="trust-signal">
+        <div class="trust-signal__icon">
+          <img src="/assets/images/icons/eco-friendly.svg" alt="Eco Friendly" width="48" height="48">
+        </div>
+        <div class="trust-signal__content">
+          <h3>Eco-responsable</h3>
+          <p>Comprometidos con el medio ambiente</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "{{ site.title }}",
+  "url": "{{ site.url }}",
+  "logo": "{{ site.url }}{{ site.logo }}",
+  "sameAs": [
+    {% for social in site.social %}
+    "{{ social.url }}"{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "{{ site.contact.phone }}",
+    "contactType": "customer service",
+    "email": "{{ site.contact.email }}",
+    "availableLanguage": ["Spanish"]
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "{{ site.contact.address }}"
+  }
+}
+</script>

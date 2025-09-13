@@ -1,0 +1,135 @@
+{
+  "featured": [
+    {
+      "id": "TECH001",
+      "name": "Auriculares Bluetooth Premium",
+      "slug": "auriculares-bluetooth-premium",
+      "description": "Auriculares inalámbricos con cancelación de ruido activa y 30 horas de batería.",
+      "price": 149.99,
+      "originalPrice": 199.99,
+      "category": "electronics",
+      "image": "/assets/images/products/headphones-premium.jpg",
+      "images": [
+        "/assets/images/products/headphones-premium.jpg",
+        "/assets/images/products/headphones-premium-2.jpg"
+      ],
+      "inStock": true,
+      "stock": 25,
+      "featured": true,
+      "rating": 4.8,
+      "reviews": 156,
+      "specifications": {
+        "battery": "30 horas",
+        "connectivity": "Bluetooth 5.0",
+        "weight": "250g",
+        "colors": ["Negro", "Blanco", "Azul"]
+      }
+    },
+    {
+      "id": "CLOTH001",
+      "name": "Camiseta Orgánica Unisex",
+      "slug": "camiseta-organica-unisex",
+      "description": "Camiseta 100% algodón orgánico, cómoda y sostenible para uso diario.",
+      "price": 29.99,
+      "category": "clothing",
+      "image": "/assets/images/products/organic-tshirt.jpg",
+      "images": [
+        "/assets/images/products/organic-tshirt.jpg",
+        "/assets/images/products/organic-tshirt-colors.jpg"
+      ],
+      "inStock": true,
+      "stock": 50,
+      "featured": true,
+      "rating": 4.5,
+      "reviews": 89,
+      "specifications": {
+        "material": "100% Algodón Orgánico",
+        "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
+        "care": "Lavado en máquina 30°C",
+        "colors": ["Blanco", "Negro", "Gris", "Azul Marino"]
+      }
+    },
+    {
+      "id": "HOME001",
+      "name": "Lámpara LED Inteligente",
+      "slug": "lampara-led-inteligente",
+      "description": "Lámpara LED con control por app, 16 millones de colores y compatibilidad con asistentes de voz.",
+      "price": 79.99,
+      "category": "home-garden",
+      "image": "/assets/images/products/smart-lamp.jpg",
+      "images": [
+        "/assets/images/products/smart-lamp.jpg",
+        "/assets/images/products/smart-lamp-colors.jpg"
+      ],
+      "inStock": true,
+      "stock": 15,
+      "featured": true,
+      "rating": 4.7,
+      "reviews": 203,
+      "specifications": {
+        "power": "9W LED",
+        "compatibility": "Alexa, Google Assistant",
+        "connectivity": "WiFi 2.4GHz",
+        "colors": "16 millones"
+      }
+    },
+    {
+      "id": "SPORT001",
+      "name": "Botella de Agua Térmica",
+      "slug": "botella-agua-termica",
+      "description": "Botella de acero inoxidable que mantiene las bebidas frías 24h y calientes 12h.",
+      "price": 34.99,
+      "category": "sports",
+      "image": "/assets/images/products/thermal-bottle.jpg",
+      "images": [
+        "/assets/images/products/thermal-bottle.jpg",
+        "/assets/images/products/thermal-bottle-sizes.jpg"
+      ],
+      "inStock": true,
+      "stock": 40,
+      "featured": true,
+      "rating": 4.6,
+      "reviews": 127,
+      "specifications": {
+        "capacity": "500ml / 750ml / 1L",
+        "material": "Acero inoxidable 18/8",
+        "insulation": "Doble pared al vacío",
+        "colors": ["Negro", "Blanco", "Azul", "Rosa"]
+      }
+    }
+  ],
+  "categories": [
+    {
+      "id": "electronics",
+      "name": "Electrónicos",
+      "slug": "electronics",
+      "description": "Tecnología y gadgets de última generación",
+      "image": "/assets/images/categories/electronics.jpg",
+      "productCount": 45
+    },
+    {
+      "id": "clothing",
+      "name": "Ropa",
+      "slug": "clothing", 
+      "description": "Moda sostenible y de calidad",
+      "image": "/assets/images/categories/clothing.jpg",
+      "productCount": 128
+    },
+    {
+      "id": "home-garden",
+      "name": "Hogar y Jardín",
+      "slug": "home-garden",
+      "description": "Todo para tu hogar y jardín",
+      "image": "/assets/images/categories/home-garden.jpg",
+      "productCount": 67
+    },
+    {
+      "id": "sports",
+      "name": "Deportes",
+      "slug": "sports",
+      "description": "Equipamiento para vida activa",
+      "image": "/assets/images/categories/sports.jpg",
+      "productCount": 89
+    }
+  ]
+}

@@ -1,0 +1,218 @@
+---
+layout: layouts/base.njk
+title: Tienda
+description: Descubre nuestra amplia selección de productos de calidad. Envío gratuito en pedidos superiores a €50.
+pagination:
+  data: collections.products
+  size: 12
+  alias: products
+---
+
+<div class="shop-header">
+  <div class="container">
+    <nav aria-label="Breadcrumb" class="breadcrumb">
+      <ol>
+        <li><a href="/">Inicio</a></li>
+        <li aria-current="page">Tienda</li>
+      </ol>
+    </nav>
+    
+    <h1 class="page-title">Nuestra Tienda</h1>
+    <p class="page-description">{{ description }}</p>
+  </div>
+</div>
+
+<main class="shop-page">
+  <div class="container">
+    <div class="shop-content">
+      <!-- Filters Sidebar -->
+      <aside class="shop-filters">
+        <div class="filters-header">
+          <h2>Filtros</h2>
+          <button class="filters-toggle" aria-label="Toggle filters">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <line x1="4" y1="21" x2="4" y2="14"></line>
+              <line x1="4" y1="10" x2="4" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12" y2="3"></line>
+              <line x1="20" y1="21" x2="20" y2="16"></line>
+              <line x1="20" y1="12" x2="20" y2="3"></line>
+              <line x1="1" y1="14" x2="7" y2="14"></line>
+              <line x1="9" y1="8" x2="15" y2="8"></line>
+              <line x1="17" y1="16" x2="23" y2="16"></line>
+            </svg>
+          </button>
+        </div>
+
+        <div class="filters-content">
+          <!-- Categories Filter -->
+          <div class="filter-group">
+            <h3 class="filter-title">Categorías</h3>
+            <ul class="filter-list">
+              <li>
+                <label class="filter-option">
+                  <input type="checkbox" name="category" value="" checked>
+                  <span class="checkmark"></span>
+                  Todas las categorías
+                </label>
+              </li>
+              {% for category in products.categories %}
+              <li>
+                <label class="filter-option">
+                  <input type="checkbox" name="category" value="{{ category.id }}">
+                  <span class="checkmark"></span>
+                  {{ category.name }}
+                  <span class="count">({{ category.productCount }})</span>
+                </label>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+
+          <!-- Price Filter -->
+          <div class="filter-group">
+            <h3 class="filter-title">Precio</h3>
+            <div class="price-range">
+              <input type="range" id="price-min" min="0" max="500" value="0" class="price-slider">
+              <input type="range" id="price-max" min="0" max="500" value="500" class="price-slider">
+              <div class="price-inputs">
+                <input type="number" id="price-min-input" placeholder="Mín" min="0">
+                <span>-</span>
+                <input type="number" id="price-max-input" placeholder="Máx" min="0">
+              </div>
+            </div>
+          </div>
+
+          <!-- Rating Filter -->
+          <div class="filter-group">
+            <h3 class="filter-title">Valoración</h3>
+            <ul class="filter-list">
+              {% for rating in [5, 4, 3, 2, 1] %}
+              <li>
+                <label class="filter-option">
+                  <input type="checkbox" name="rating" value="{{ rating }}">
+                  <span class="checkmark"></span>
+                  <div class="stars" data-rating="{{ rating }}">
+                    <span class="stars-fill" style="width: {{ rating * 20 }}%"></span>
+                  </div>
+                  y más
+                </label>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+
+          <!-- Clear Filters -->
+          <button class="btn btn-secondary btn-full clear-filters">
+            Limpiar filtros
+          </button>
+        </div>
+      </aside>
+
+      <!-- Products Section -->
+      <div class="shop-products">
+        <!-- Toolbar -->
+        <div class="shop-toolbar">
+          <div class="results-info">
+            <span id="results-count">Mostrando {{ products.length }} productos</span>
+          </div>
+          
+          <div class="shop-controls">
+            <div class="sort-controls">
+              <label for="sort-select">Ordenar por:</label>
+              <select id="sort-select" name="sort">
+                <option value="default">Más relevantes</option>
+                <option value="price-low">Precio: menor a mayor</option>
+                <option value="price-high">Precio: mayor a menor</option>
+                <option value="name">Nombre A-Z</option>
+                <option value="newest">Más nuevos</option>
+                <option value="rating">Mejor valorados</option>
+              </select>
+            </div>
+            
+            <div class="view-controls">
+              <button class="view-btn view-btn--grid active" data-view="grid" aria-label="Vista en cuadrícula">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <rect x="3" y="3" width="7" height="7"></rect>
+                  <rect x="14" y="3" width="7" height="7"></rect>
+                  <rect x="14" y="14" width="7" height="7"></rect>
+                  <rect x="3" y="14" width="7" height="7"></rect>
+                </svg>
+              </button>
+              <button class="view-btn view-btn--list" data-view="list" aria-label="Vista en lista">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <line x1="8" y1="6" x2="21" y2="6"></line>
+                  <line x1="8" y1="12" x2="21" y2="12"></line>
+                  <line x1="8" y1="18" x2="21" y2="18"></line>
+                  <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                  <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                  <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="products-container">
+          <div class="products-grid" id="products-grid">
+            {% for product in products %}
+            {% include "components/product-card.njk" %}
+            {% endfor %}
+          </div>
+          
+          <!-- Loading State -->
+          <div class="loading-state" style="display: none;">
+            <div class="loading-spinner"></div>
+            <p>Cargando productos...</p>
+          </div>
+          
+          <!-- Empty State -->
+          <div class="empty-state" style="display: none;">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="m9 9 6 6"></path>
+              <path d="m15 9-6 6"></path>
+            </svg>
+            <h3>No se encontraron productos</h3>
+            <p>Prueba a ajustar tus filtros o realizar una nueva búsqueda.</p>
+            <button class="btn btn-primary clear-filters">Limpiar filtros</button>
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        {% if pagination.pages.length > 1 %}
+        <nav class="pagination" aria-label="Navegación de páginas">
+          <ul class="pagination__list">
+            {% if pagination.previousPageLink %}
+            <li>
+              <a href="{{ pagination.previousPageLink }}" class="pagination__link pagination__link--prev">
+                ← Anterior
+              </a>
+            </li>
+            {% endif %}
+            
+            {% for pageEntry in pagination.pages %}
+            <li>
+              <a href="{{ pagination.hrefs[loop.index0] }}" 
+                 class="pagination__link {% if page.url == pagination.hrefs[loop.index0] %}pagination__link--current{% endif %}"
+                 {% if page.url == pagination.hrefs[loop.index0] %}aria-current="page"{% endif %}>
+                {{ loop.index }}
+              </a>
+            </li>
+            {% endfor %}
+            
+            {% if pagination.nextPageLink %}
+            <li>
+              <a href="{{ pagination.nextPageLink }}" class="pagination__link pagination__link--next">
+                Siguiente →
+              </a>
+            </li>
+            {% endif %}
+          </ul>
+        </nav>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</main>

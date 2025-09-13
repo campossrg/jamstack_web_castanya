@@ -1,0 +1,202 @@
+---
+layout: layouts/base.njk
+title: Blog
+description: Descubre nuestros últimos artículos sobre tendencias, consejos y novedades. Mantente al día con nuestro blog.
+pagination:
+  data: collections.blog
+  size: 12
+  alias: posts
+---
+
+<div class="blog-header">
+  <div class="container">
+    <nav aria-label="Breadcrumb" class="breadcrumb">
+      <ol>
+        <li><a href="/">Inicio</a></li>
+        <li aria-current="page">Blog</li>
+      </ol>
+    </nav>
+    
+    <h1 class="page-title">Blog</h1>
+    <p class="page-description">{{ description }}</p>
+  </div>
+</div>
+
+<main class="blog-page">
+  <div class="container">
+    <div class="blog-content">
+      <!-- Featured Post -->
+      {% if pagination.pageNumber == 0 and collections.blog.length > 0 %}
+      {% set featuredPost = collections.blog[0] %}
+      <article class="featured-post">
+        <div class="featured-post__image">
+          {% if featuredPost.data.image %}
+          <img src="{{ featuredPost.data.image }}" 
+               alt="{{ featuredPost.data.imageAlt or featuredPost.data.title }}" 
+               width="800" 
+               height="400">
+          {% endif %}
+        </div>
+        <div class="featured-post__content">
+          <div class="featured-post__meta">
+            <time datetime="{{ featuredPost.date | htmlDateString }}">
+              {{ featuredPost.date | readableDate }}
+            </time>
+            {% if featuredPost.data.tags %}
+            <span class="featured-post__category">
+              {{ featuredPost.data.tags[0] | title }}
+            </span>
+            {% endif %}
+          </div>
+          <h2 class="featured-post__title">
+            <a href="{{ featuredPost.url }}">{{ featuredPost.data.title }}</a>
+          </h2>
+          <p class="featured-post__excerpt">{{ featuredPost.data.description }}</p>
+          <a href="{{ featuredPost.url }}" class="btn btn-primary">Leer más</a>
+        </div>
+      </article>
+      {% endif %}
+
+      <!-- Blog Posts Grid -->
+      <div class="blog-posts">
+        <div class="blog-posts__header">
+          <h2>Todos los artículos</h2>
+          <div class="blog-filters">
+            <select id="category-filter" aria-label="Filtrar por categoría">
+              <option value="">Todas las categorías</option>
+              {% for tag in collections.tagList %}
+              <option value="{{ tag }}">{{ tag | title }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+
+        <div class="blog-grid">
+          {% for post in posts %}
+          {% if not loop.first or pagination.pageNumber > 0 %}
+          <article class="blog-card" data-category="{{ post.data.tags | join(',') }}">
+            <div class="blog-card__image">
+              <a href="{{ post.url }}">
+                {% if post.data.image %}
+                <img src="{{ post.data.image }}" 
+                     alt="{{ post.data.imageAlt or post.data.title }}" 
+                     loading="lazy"
+                     width="400" 
+                     height="250">
+                {% else %}
+                <img src="/assets/images/blog-placeholder.jpg" 
+                     alt="{{ post.data.title }}" 
+                     loading="lazy"
+                     width="400" 
+                     height="250">
+                {% endif %}
+              </a>
+            </div>
+            
+            <div class="blog-card__content">
+              <div class="blog-card__meta">
+                <time datetime="{{ post.date | htmlDateString }}">
+                  {{ post.date | readableDate }}
+                </time>
+                {% if post.data.tags %}
+                <span class="blog-card__category">
+                  {{ post.data.tags[0] | title }}
+                </span>
+                {% endif %}
+              </div>
+              
+              <h3 class="blog-card__title">
+                <a href="{{ post.url }}">{{ post.data.title }}</a>
+              </h3>
+              
+              <p class="blog-card__excerpt">{{ post.data.description }}</p>
+              
+              <a href="{{ post.url }}" class="blog-card__link">
+                Leer más →
+              </a>
+            </div>
+          </article>
+          {% endif %}
+          {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        {% if pagination.pages.length > 1 %}
+        <nav class="pagination" aria-label="Navegación de páginas">
+          <ul class="pagination__list">
+            {% if pagination.previousPageLink %}
+            <li>
+              <a href="{{ pagination.previousPageLink }}" class="pagination__link pagination__link--prev">
+                ← Anterior
+              </a>
+            </li>
+            {% endif %}
+            
+            {% for pageEntry in pagination.pages %}
+            <li>
+              <a href="{{ pagination.hrefs[loop.index0] }}" 
+                 class="pagination__link {% if page.url == pagination.hrefs[loop.index0] %}pagination__link--current{% endif %}"
+                 {% if page.url == pagination.hrefs[loop.index0] %}aria-current="page"{% endif %}>
+                {{ loop.index }}
+              </a>
+            </li>
+            {% endfor %}
+            
+            {% if pagination.nextPageLink %}
+            <li>
+              <a href="{{ pagination.nextPageLink }}" class="pagination__link pagination__link--next">
+                Siguiente →
+              </a>
+            </li>
+            {% endif %}
+          </ul>
+        </nav>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="blog-sidebar">
+      <div class="widget">
+        <h3 class="widget__title">Buscar</h3>
+        <form class="search-form" role="search">
+          <input type="search" placeholder="Buscar artículos..." aria-label="Buscar artículos">
+          <button type="submit" aria-label="Buscar">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+          </button>
+        </form>
+      </div>
+
+      <div class="widget">
+        <h3 class="widget__title">Categorías</h3>
+        <ul class="category-list">
+          {% for tag in collections.tagList %}
+          <li>
+            <a href="/blog/tags/{{ tag | slug }}/">
+              {{ tag | title }}
+              <span class="post-count">({{ collections[tag].length }})</span>
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="widget">
+        <h3 class="widget__title">Artículos recientes</h3>
+        <ul class="recent-posts">
+          {% for post in collections.blog | limit(5) %}
+          <li class="recent-post">
+            <a href="{{ post.url }}" class="recent-post__link">
+              {{ post.data.title }}
+            </a>
+            <time class="recent-post__date">{{ post.date | readableDate }}</time>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </aside>
+  </div>
+</main>

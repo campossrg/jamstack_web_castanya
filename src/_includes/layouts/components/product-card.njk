@@ -1,0 +1,100 @@
+<article class="product-card">
+  <div class="product-card__image">
+    <a href="/shop/{{ slug }}/" aria-label="Ver {{ name }}">
+      {% if image %}
+      <img src="{{ image }}" 
+           alt="{{ name }}" 
+           loading="lazy"
+           width="300" 
+           height="300">
+      {% else %}
+      <img src="/assets/images/placeholder-product.jpg" 
+           alt="{{ name }}" 
+           loading="lazy"
+           width="300" 
+           height="300">
+      {% endif %}
+    </a>
+    
+    {% if originalPrice and originalPrice > price %}
+    <div class="product-card__badge">
+      <span class="badge badge--sale">
+        -{{ (((originalPrice - price) / originalPrice) * 100) | round }}%
+      </span>
+    </div>
+    {% endif %}
+    
+    {% if not inStock %}
+    <div class="product-card__badge">
+      <span class="badge badge--out-of-stock">Agotado</span>
+    </div>
+    {% endif %}
+    
+    <div class="product-card__actions">
+      <button class="btn-icon wishlist-btn" 
+              aria-label="Añadir a favoritos"
+              data-product-id="{{ id }}">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+        </svg>
+      </button>
+      <button class="btn-icon quick-view-btn" 
+              aria-label="Vista rápida"
+              data-product-id="{{ id }}">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+          <circle cx="12" cy="12" r="3"></circle>
+        </svg>
+      </button>
+    </div>
+  </div>
+  
+  <div class="product-card__content">
+    <div class="product-card__category">
+      {{ category | title }}
+    </div>
+    
+    <h3 class="product-card__title">
+      <a href="/shop/{{ slug }}/">{{ name }}</a>
+    </h3>
+    
+    <p class="product-card__description">
+      {{ description }}
+    </p>
+    
+    {% if rating %}
+    <div class="product-card__rating">
+      <div class="stars" data-rating="{{ rating }}">
+        <span class="stars-fill" style="width: {{ (rating / 5 * 100) }}%"></span>
+      </div>
+      <span class="rating-count">({{ reviews or 0 }})</span>
+    </div>
+    {% endif %}
+    
+    <div class="product-card__price">
+      {% if originalPrice and originalPrice > price %}
+      <span class="price-original">{{ originalPrice | formatPrice }}</span>
+      {% endif %}
+      <span class="price-current">{{ price | formatPrice }}</span>
+    </div>
+    
+    <div class="product-card__footer">
+      {% if inStock and stock > 0 %}
+      <button class="btn btn-primary btn-full" 
+              data-add-to-cart
+              data-product='{{ {
+                id: id,
+                name: name,
+                price: price,
+                image: image or "/assets/images/placeholder-product.jpg"
+              } | dump }}'>
+        Añadir al carrito
+      </button>
+      {% else %}
+      <button class="btn btn-secondary btn-full" disabled>
+        Agotado
+      </button>
+      {% endif %}
+    </div>
+  </div>
+</article>
