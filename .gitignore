@@ -419,3 +419,7 @@ FodyWeavers.xsd
 
 # TinaCMS
 tina/__generated__
+
+_site/
+.sass-cache/
+.jekyll-metadata
