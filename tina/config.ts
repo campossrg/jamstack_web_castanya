@@ -14,7 +14,7 @@ export default defineConfig({
   },
   media: {
     tina: {
-      mediaRoot: "assets/images",
+      mediaRoot: "assets/assets/images",
       publicFolder: "src",
     },
   },
@@ -92,7 +92,7 @@ export default defineConfig({
       {
         name: "products",
         label: "Products",
-        path: "src/shop/products",
+        path: "src/shop/shop/products",
         format: "md",
         fields: [
           {

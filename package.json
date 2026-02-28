@@ -8,9 +8,6 @@
     "build": "eleventy",
     "tina:dev": "tinacms dev -c \"npm run dev\"",
     "tina:build": "tinacms build",
-    "css:build": "sass src/assets/css:src/assets/css --no-source-map",
-    "css:watch": "sass src/assets/css:src/assets/css --no-source-map --watch",
-    "lint": "eslint src/assets/js --fix",
     "format": "prettier --write .",
     "deploy": "npm run build && netlify deploy --prod --dir=_site",
     "clean": "rm -rf _site"

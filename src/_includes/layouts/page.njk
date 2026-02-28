@@ -1,29 +1,23 @@
 ---
-layout: layouts/base.njk
+layout: layouts/base
 ---
 
-<div class="page-header">
-  <div class="container">
-    <nav aria-label="Breadcrumb" class="breadcrumb">
-      <ol>
-        <li><a href="/">Inicio</a></li>
-        <li aria-current="page">{{ title }}</li>
-      </ol>
-    </nav>
-    
-    <div class="page-header__content">
-      <h1 class="page-title">{{ title }}</h1>
-      {% if description %}
-      <p class="page-description">{{ description }}</p>
-      {% endif %}
+<div class="post">
+  {% if page.hero_img %}
+  <section class="hero" style="background-image:url('{{ page.hero_img }}')">
+    <div class="hero__content">
+      <h1>{{ page.title }}</h1>
+      <button class="btn  btn--white  btn--big" onclick="triggerBuy()">Buy now</button>
     </div>
-  </div>
-</div>
+  </section>
+  {% endif %}
 
-<main class="page-content">
-  <div class="container">
-    <div class="prose">
-      {{ content | safe }}
-    </div>
-  </div>
-</main>
+  <header class="post-header  row">
+    <h1 class="post-title">{{ page.title }}</h1>
+  </header>
+
+  <article class="post-content  row">
+    {{ content | safe }}
+  </article>
+
+</div>

@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>
+    
+  </title>
+  <meta name="description" content="Making earth a better place" />
+
+  <link rel="stylesheet" href="/assets/css/style.css"> <link
+  rel="alternate" type="application/rss+xml" title="" href="/feed.xml" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prakriti</title>
+
+  <style>
+    /* cyrillic-ext */
+    @font-face {
+      font-family: "Montserrat";
+      font-style: normal;
+      font-weight: 400;
+      src: local("Montserrat Regular"), local("Montserrat-Regular"),
+        url(https://fonts.gstatic.com/s/montserrat/v14/JTUSjIg1_i6t8kCHKm459WRhyyTh89ZNpQ.woff2)
+          format("woff2");
+      unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F,
+        U+FE2E-FE2F;
+    }
+    /* cyrillic */
+    @font-face {
+      font-family: "Montserrat";
+      font-style: normal;
+      font-weight: 400;
+      src: local("Montserrat Regular"), local("Montserrat-Regular"),
+        url(https://fonts.gstatic.com/s/montserrat/v14/JTUSjIg1_i6t8kCHKm459W1hyyTh89ZNpQ.woff2)
+          format("woff2");
+      unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+    }
+    /* vietnamese */
+    @font-face {
+      font-family: "Montserrat";
+      font-style: normal;
+      font-weight: 400;
+      src: local("Montserrat Regular"), local("Montserrat-Regular"),
+        url(https://fonts.gstatic.com/s/montserrat/v14/JTUSjIg1_i6t8kCHKm459WZhyyTh89ZNpQ.woff2)
+          format("woff2");
+      unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169,
+        U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+    }
+    /* latin-ext */
+    @font-face {
+      font-family: "Montserrat";
+      font-style: normal;
+      font-weight: 400;
+      src: local("Montserrat Regular"), local("Montserrat-Regular"),
+        url(https://fonts.gstatic.com/s/montserrat/v14/JTUSjIg1_i6t8kCHKm459WdhyyTh89ZNpQ.woff2)
+          format("woff2");
+      unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+        U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    /* latin */
+    @font-face {
+      font-family: "Montserrat";
+      font-style: normal;
+      font-weight: 400;
+      src: local("Montserrat Regular"), local("Montserrat-Regular"),
+        url(https://fonts.gstatic.com/s/montserrat/v14/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2)
+          format("woff2");
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+        U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+        U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    /* cyrillic-ext */
+    @font-face {
+      font-family: "Montserrat";
+      font-style: normal;
+      font-weight: 700;
+      src: local("Montserrat Bold"), local("Montserrat-Bold"),
+        url(https://fonts.gstatic.com/s/montserrat/v14/JTURjIg1_i6t8kCHKm45_dJE3gTD_vx3rCubqg.woff2)
+          format("woff2");
+      unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F,
+        U+FE2E-FE2F;
+    }
+    /* cyrillic */
+    @font-face {
+      font-family: "Montserrat";
+      font-style: normal;
+      font-weight: 700;
+      src: local("Montserrat Bold"), local("Montserrat-Bold"),
+        url(https://fonts.gstatic.com/s/montserrat/v14/JTURjIg1_i6t8kCHKm45_dJE3g3D_vx3rCubqg.woff2)
+          format("woff2");
+      unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+    }
+    /* vietnamese */
+    @font-face {
+      font-family: "Montserrat";
+      font-style: normal;
+      font-weight: 700;
+      src: local("Montserrat Bold"), local("Montserrat-Bold"),
+        url(https://fonts.gstatic.com/s/montserrat/v14/JTURjIg1_i6t8kCHKm45_dJE3gbD_vx3rCubqg.woff2)
+          format("woff2");
+      unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169,
+        U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+    }
+    /* latin-ext */
+    @font-face {
+      font-family: "Montserrat";
+      font-style: normal;
+      font-weight: 700;
+      src: local("Montserrat Bold"), local("Montserrat-Bold"),
+        url(https://fonts.gstatic.com/s/montserrat/v14/JTURjIg1_i6t8kCHKm45_dJE3gfD_vx3rCubqg.woff2)
+          format("woff2");
+      unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+        U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    /* latin */
+    @font-face {
+      font-family: "Montserrat";
+      font-style: normal;
+      font-weight: 700;
+      src: local("Montserrat Bold"), local("Montserrat-Bold"),
+        url(https://fonts.gstatic.com/s/montserrat/v14/JTURjIg1_i6t8kCHKm45_dJE3gnD_vx3rCs.woff2)
+          format("woff2");
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+        U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+        U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+  </style>
+</head>
+
+
+  <body>
+
+
+    <header class="main-header row">
+  <a href="/" style="color: inherit; font-size: 1.6em;"
+    ><img
+      class="header-logo"
+      src="https://ik.imagekit.io/prakriti/logo.png"
+      alt=""
+    />Prakriti</a
+  >
+
+  <div class="page-nav">
+    <a class="page-nav__link" href="/">Home</a>
+    <span class="page-nav__separator"></span>
+    <a class="page-nav__link" href="/shop/products">Products</a>
+    <span class="page-nav__separator"></span>
+    <a class="page-nav__link" href="/testimonials">Testimonials</a>
+    <span class="page-nav__separator"></span>
+    <a class="page-nav__link" href="/gallery">Gallery</a>
+    <span class="page-nav__separator"></span>
+    <a class="page-nav__link" href="/blog">Blog</a>
+  </div>
+</header>
+
+    <div class="outer-wrap">
+
+      <div class="content-wrap">
+      
+<div class="post">
+  
+
+  <header class="post-header  row">
+    <h1 class="post-title"></h1>
+  </header>
+
+  <article class="post-content  row">
+    
+<style>
+      .thumbnails {
+          list-style: none;
+          display: flex;
+          flex-wrap: wrap;
+      }
+      .gallery-full-image {
+          display:none;
+      }
+      
+      #thumb-1:checked ~ * #full-image-1 {
+          display: block;
+      }
+      
+      #thumb-2:checked ~ * #full-image-2 {
+          display: block;
+      }
+      
+      #thumb-3:checked ~ * #full-image-3 {
+          display: block;
+      }
+      
+      #thumb-4:checked ~ * #full-image-4 {
+          display: block;
+      }
+      
+      #thumb-5:checked ~ * #full-image-5 {
+          display: block;
+      }
+      
+      #thumb-6:checked ~ * #full-image-6 {
+          display: block;
+      }
+      
+      #thumb-7:checked ~ * #full-image-7 {
+          display: block;
+      }
+      
+      #thumb-8:checked ~ * #full-image-8 {
+          display: block;
+      }
+      
+      #thumb-9:checked ~ * #full-image-9 {
+          display: block;
+      }
+      
+      #thumb-10:checked ~ * #full-image-10 {
+          display: block;
+      }
+      
+      #thumb-11:checked ~ * #full-image-11 {
+          display: block;
+      }
+      
+      #thumb-12:checked ~ * #full-image-12 {
+          display: block;
+      }
+      
+      #thumb-13:checked ~ * #full-image-13 {
+          display: block;
+      }
+      
+      #thumb-14:checked ~ * #full-image-14 {
+          display: block;
+      }
+      
+      #thumb-15:checked ~ * #full-image-15 {
+          display: block;
+      }
+      
+      #thumb-16:checked ~ * #full-image-16 {
+          display: block;
+      }
+      
+      #thumb-17:checked ~ * #full-image-17 {
+          display: block;
+      }
+      
+      #thumb-18:checked ~ * #full-image-18 {
+          display: block;
+      }
+      
+      #thumb-19:checked ~ * #full-image-19 {
+          display: block;
+      }
+      
+      #thumb-20:checked ~ * #full-image-20 {
+          display: block;
+      }
+      
+      #thumb-21:checked ~ * #full-image-21 {
+          display: block;
+      }
+      
+      #thumb-22:checked ~ * #full-image-22 {
+          display: block;
+      }
+      
+      #thumb-23:checked ~ * #full-image-23 {
+          display: block;
+      }
+      
+      #thumb-24:checked ~ * #full-image-24 {
+          display: block;
+      }
+      
+      #thumb-25:checked ~ * #full-image-25 {
+          display: block;
+      }
+      
+      .gallery-radio {
+          display: none;
+      }
+      .thumbnail {
+          margin-bottom: 0!important;
+      }
+      .thumbnail img {
+          padding: 0;
+      }
+      .mobile-gallery {
+          max-width: 100%;
+          overflow-x: scroll;
+          display: none;
+      }
+      .mobile-gallery {
+          white-space: nowrap;
+      }
+      .mobile-gallery-image {
+          height: 90vh;
+          max-width: initial;
+      }
+  @media screen and (max-width: 800px) {
+      .mobile-gallery {
+          display: block;
+      }
+      .thumbnails, .gallery-full-image {
+          display: none!important;
+      }
+  }
+</style>
+
+<div style="display: flex; flex-direction: column-reverse;">
+   <input checked
+  type="radio" name="thumbnails" class="gallery-radio"
+  id="thumb-1">  <input 
+  type="radio" name="thumbnails" class="gallery-radio"
+  id="thumb-2">  <input 
+  type="radio" name="thumbnails" class="gallery-radio"
+  id="thumb-3">  <input 
+  type="radio" name="thumbnails" class="gallery-radio"
+  id="thumb-4">  <input 
+  type="radio" name="thumbnails" class="gallery-radio"
+  id="thumb-5">  <input 
+  type="radio" name="thumbnails" class="gallery-radio"
+  id="thumb-6">  <input 
+  type="radio" name="thumbnails" class="gallery-radio"
+  id="thumb-7">  <input 
+  type="radio" name="thumbnails" class="gallery-radio"
+  id="thumb-8">  <input 
+  type="radio" name="thumbnails" class="gallery-radio"
+  id="thumb-9">  <input 
+  type="radio" name="thumbnails" class="gallery-radio"
+  id="thumb-10">  <input 
+  type="radio" name="thumbnails" class="gallery-radio"
+  id="thumb-11">  <input 
+  type="radio" name="thumbnails" class="gallery-radio"
+  id="thumb-12">  <input 
+  type="radio" name="thumbnails" class="gallery-radio"
+  id="thumb-13">  <input 
+  type="radio" name="thumbnails" class="gallery-radio"
+  id="thumb-14">  <input 
+  type="radio" name="thumbnails" class="gallery-radio"
+  id="thumb-15">  <input 
+  type="radio" name="thumbnails" class="gallery-radio"
+  id="thumb-16">  <input 
+  type="radio" name="thumbnails" class="gallery-radio"
+  id="thumb-17">  <input 
+  type="radio" name="thumbnails" class="gallery-radio"
+  id="thumb-18">  <input 
+  type="radio" name="thumbnails" class="gallery-radio"
+  id="thumb-19">  <input 
+  type="radio" name="thumbnails" class="gallery-radio"
+  id="thumb-20">  <input 
+  type="radio" name="thumbnails" class="gallery-radio"
+  id="thumb-21">  <input 
+  type="radio" name="thumbnails" class="gallery-radio"
+  id="thumb-22">  <input 
+  type="radio" name="thumbnails" class="gallery-radio"
+  id="thumb-23">  <input 
+  type="radio" name="thumbnails" class="gallery-radio"
+  id="thumb-24">  <input 
+  type="radio" name="thumbnails" class="gallery-radio"
+  id="thumb-25"> 
+
+  <ul class="thumbnails">
+    <li class="thumbnail">
+      <label tabindex="0" role="button" for="thumb-1">
+        <div>
+          <img
+            src="https://ik.imagekit.io/prakriti/tr:h-100/gallery/1.jpg"
+          />
+        </div>
+      </label>
+    </li><li class="thumbnail">
+      <label tabindex="0" role="button" for="thumb-2">
+        <div>
+          <img
+            src="https://ik.imagekit.io/prakriti/tr:h-100/gallery/2.jpg"
+          />
+        </div>
+      </label>
+    </li><li class="thumbnail">
+      <label tabindex="0" role="button" for="thumb-3">
+        <div>
+          <img
+            src="https://ik.imagekit.io/prakriti/tr:h-100/gallery/3.jpg"
+          />
+        </div>
+      </label>
+    </li><li class="thumbnail">
+      <label tabindex="0" role="button" for="thumb-4">
+        <div>
+          <img
+            src="https://ik.imagekit.io/prakriti/tr:h-100/gallery/4.jpg"
+          />
+        </div>
+      </label>
+    </li><li class="thumbnail">
+      <label tabindex="0" role="button" for="thumb-5">
+        <div>
+          <img
+            src="https://ik.imagekit.io/prakriti/tr:h-100/gallery/5.jpg"
+          />
+        </div>
+      </label>
+    </li><li class="thumbnail">
+      <label tabindex="0" role="button" for="thumb-6">
+        <div>
+          <img
+            src="https://ik.imagekit.io/prakriti/tr:h-100/gallery/6.jpg"
+          />
+        </div>
+      </label>
+    </li><li class="thumbnail">
+      <label tabindex="0" role="button" for="thumb-7">
+        <div>
+          <img
+            src="https://ik.imagekit.io/prakriti/tr:h-100/gallery/7.jpg"
+          />
+        </div>
+      </label>
+    </li><li class="thumbnail">
+      <label tabindex="0" role="button" for="thumb-8">
+        <div>
+          <img
+            src="https://ik.imagekit.io/prakriti/tr:h-100/gallery/8.jpg"
+          />
+        </div>
+      </label>
+    </li><li class="thumbnail">
+      <label tabindex="0" role="button" for="thumb-9">
+        <div>
+          <img
+            src="https://ik.imagekit.io/prakriti/tr:h-100/gallery/9.jpg"
+          />
+        </div>
+      </label>
+    </li><li class="thumbnail">
+      <label tabindex="0" role="button" for="thumb-10">
+        <div>
+          <img
+            src="https://ik.imagekit.io/prakriti/tr:h-100/gallery/10.jpg"
+          />
+        </div>
+      </label>
+    </li><li class="thumbnail">
+      <label tabindex="0" role="button" for="thumb-11">
+        <div>
+          <img
+            src="https://ik.imagekit.io/prakriti/tr:h-100/gallery/11.jpg"
+          />
+        </div>
+      </label>
+    </li><li class="thumbnail">
+      <label tabindex="0" role="button" for="thumb-12">
+        <div>
+          <img
+            src="https://ik.imagekit.io/prakriti/tr:h-100/gallery/12.jpg"
+          />
+        </div>
+      </label>
+    </li><li class="thumbnail">
+      <label tabindex="0" role="button" for="thumb-13">
+        <div>
+          <img
+            src="https://ik.imagekit.io/prakriti/tr:h-100/gallery/13.jpg"
+          />
+        </div>
+      </label>
+    </li><li class="thumbnail">
+      <label tabindex="0" role="button" for="thumb-14">
+        <div>
+          <img
+            src="https://ik.imagekit.io/prakriti/tr:h-100/gallery/14.jpg"
+          />
+        </div>
+      </label>
+    </li><li class="thumbnail">
+      <label tabindex="0" role="button" for="thumb-15">
+        <div>
+          <img
+            src="https://ik.imagekit.io/prakriti/tr:h-100/gallery/15.jpg"
+          />
+        </div>
+      </label>
+    </li><li class="thumbnail">
+      <label tabindex="0" role="button" for="thumb-16">
+        <div>
+          <img
+            src="https://ik.imagekit.io/prakriti/tr:h-100/gallery/16.jpg"
+          />
+        </div>
+      </label>
+    </li><li class="thumbnail">
+      <label tabindex="0" role="button" for="thumb-17">
+        <div>
+          <img
+            src="https://ik.imagekit.io/prakriti/tr:h-100/gallery/17.jpg"
+          />
+        </div>
+      </label>
+    </li><li class="thumbnail">
+      <label tabindex="0" role="button" for="thumb-18">
+        <div>
+          <img
+            src="https://ik.imagekit.io/prakriti/tr:h-100/gallery/18.jpg"
+          />
+        </div>
+      </label>
+    </li><li class="thumbnail">
+      <label tabindex="0" role="button" for="thumb-19">
+        <div>
+          <img
+            src="https://ik.imagekit.io/prakriti/tr:h-100/gallery/19.jpg"
+          />
+        </div>
+      </label>
+    </li><li class="thumbnail">
+      <label tabindex="0" role="button" for="thumb-20">
+        <div>
+          <img
+            src="https://ik.imagekit.io/prakriti/tr:h-100/gallery/20.jpg"
+          />
+        </div>
+      </label>
+    </li><li class="thumbnail">
+      <label tabindex="0" role="button" for="thumb-21">
+        <div>
+          <img
+            src="https://ik.imagekit.io/prakriti/tr:h-100/gallery/21.jpg"
+          />
+        </div>
+      </label>
+    </li><li class="thumbnail">
+      <label tabindex="0" role="button" for="thumb-22">
+        <div>
+          <img
+            src="https://ik.imagekit.io/prakriti/tr:h-100/gallery/22.jpg"
+          />
+        </div>
+      </label>
+    </li><li class="thumbnail">
+      <label tabindex="0" role="button" for="thumb-23">
+        <div>
+          <img
+            src="https://ik.imagekit.io/prakriti/tr:h-100/gallery/23.jpg"
+          />
+        </div>
+      </label>
+    </li><li class="thumbnail">
+      <label tabindex="0" role="button" for="thumb-24">
+        <div>
+          <img
+            src="https://ik.imagekit.io/prakriti/tr:h-100/gallery/24.jpg"
+          />
+        </div>
+      </label>
+    </li><li class="thumbnail">
+      <label tabindex="0" role="button" for="thumb-25">
+        <div>
+          <img
+            src="https://ik.imagekit.io/prakriti/tr:h-100/gallery/25.jpg"
+          />
+        </div>
+      </label>
+    </li>
+  </ul>
+
+  <div>
+    <img
+      id="full-image-1"
+      class="gallery-full-image"
+      src="https://ik.imagekit.io/prakriti/gallery/1.jpg"
+    /><img
+      id="full-image-2"
+      class="gallery-full-image"
+      src="https://ik.imagekit.io/prakriti/gallery/2.jpg"
+    /><img
+      id="full-image-3"
+      class="gallery-full-image"
+      src="https://ik.imagekit.io/prakriti/gallery/3.jpg"
+    /><img
+      id="full-image-4"
+      class="gallery-full-image"
+      src="https://ik.imagekit.io/prakriti/gallery/4.jpg"
+    /><img
+      id="full-image-5"
+      class="gallery-full-image"
+      src="https://ik.imagekit.io/prakriti/gallery/5.jpg"
+    /><img
+      id="full-image-6"
+      class="gallery-full-image"
+      src="https://ik.imagekit.io/prakriti/gallery/6.jpg"
+    /><img
+      id="full-image-7"
+      class="gallery-full-image"
+      src="https://ik.imagekit.io/prakriti/gallery/7.jpg"
+    /><img
+      id="full-image-8"
+      class="gallery-full-image"
+      src="https://ik.imagekit.io/prakriti/gallery/8.jpg"
+    /><img
+      id="full-image-9"
+      class="gallery-full-image"
+      src="https://ik.imagekit.io/prakriti/gallery/9.jpg"
+    /><img
+      id="full-image-10"
+      class="gallery-full-image"
+      src="https://ik.imagekit.io/prakriti/gallery/10.jpg"
+    /><img
+      id="full-image-11"
+      class="gallery-full-image"
+      src="https://ik.imagekit.io/prakriti/gallery/11.jpg"
+    /><img
+      id="full-image-12"
+      class="gallery-full-image"
+      src="https://ik.imagekit.io/prakriti/gallery/12.jpg"
+    /><img
+      id="full-image-13"
+      class="gallery-full-image"
+      src="https://ik.imagekit.io/prakriti/gallery/13.jpg"
+    /><img
+      id="full-image-14"
+      class="gallery-full-image"
+      src="https://ik.imagekit.io/prakriti/gallery/14.jpg"
+    /><img
+      id="full-image-15"
+      class="gallery-full-image"
+      src="https://ik.imagekit.io/prakriti/gallery/15.jpg"
+    /><img
+      id="full-image-16"
+      class="gallery-full-image"
+      src="https://ik.imagekit.io/prakriti/gallery/16.jpg"
+    /><img
+      id="full-image-17"
+      class="gallery-full-image"
+      src="https://ik.imagekit.io/prakriti/gallery/17.jpg"
+    /><img
+      id="full-image-18"
+      class="gallery-full-image"
+      src="https://ik.imagekit.io/prakriti/gallery/18.jpg"
+    /><img
+      id="full-image-19"
+      class="gallery-full-image"
+      src="https://ik.imagekit.io/prakriti/gallery/19.jpg"
+    /><img
+      id="full-image-20"
+      class="gallery-full-image"
+      src="https://ik.imagekit.io/prakriti/gallery/20.jpg"
+    /><img
+      id="full-image-21"
+      class="gallery-full-image"
+      src="https://ik.imagekit.io/prakriti/gallery/21.jpg"
+    /><img
+      id="full-image-22"
+      class="gallery-full-image"
+      src="https://ik.imagekit.io/prakriti/gallery/22.jpg"
+    /><img
+      id="full-image-23"
+      class="gallery-full-image"
+      src="https://ik.imagekit.io/prakriti/gallery/23.jpg"
+    /><img
+      id="full-image-24"
+      class="gallery-full-image"
+      src="https://ik.imagekit.io/prakriti/gallery/24.jpg"
+    /><img
+      id="full-image-25"
+      class="gallery-full-image"
+      src="https://ik.imagekit.io/prakriti/gallery/25.jpg"
+    />
+  </div>
+
+  <div class="mobile-gallery">
+    <div class="mobile-gallery-wrap">
+      <img
+        class="mobile-gallery-image"
+        src="https://ik.imagekit.io/prakriti/gallery/1.jpg"
+      /><img
+        class="mobile-gallery-image"
+        src="https://ik.imagekit.io/prakriti/gallery/2.jpg"
+      /><img
+        class="mobile-gallery-image"
+        src="https://ik.imagekit.io/prakriti/gallery/3.jpg"
+      /><img
+        class="mobile-gallery-image"
+        src="https://ik.imagekit.io/prakriti/gallery/4.jpg"
+      /><img
+        class="mobile-gallery-image"
+        src="https://ik.imagekit.io/prakriti/gallery/5.jpg"
+      /><img
+        class="mobile-gallery-image"
+        src="https://ik.imagekit.io/prakriti/gallery/6.jpg"
+      /><img
+        class="mobile-gallery-image"
+        src="https://ik.imagekit.io/prakriti/gallery/7.jpg"
+      /><img
+        class="mobile-gallery-image"
+        src="https://ik.imagekit.io/prakriti/gallery/8.jpg"
+      /><img
+        class="mobile-gallery-image"
+        src="https://ik.imagekit.io/prakriti/gallery/9.jpg"
+      /><img
+        class="mobile-gallery-image"
+        src="https://ik.imagekit.io/prakriti/gallery/10.jpg"
+      /><img
+        class="mobile-gallery-image"
+        src="https://ik.imagekit.io/prakriti/gallery/11.jpg"
+      /><img
+        class="mobile-gallery-image"
+        src="https://ik.imagekit.io/prakriti/gallery/12.jpg"
+      /><img
+        class="mobile-gallery-image"
+        src="https://ik.imagekit.io/prakriti/gallery/13.jpg"
+      /><img
+        class="mobile-gallery-image"
+        src="https://ik.imagekit.io/prakriti/gallery/14.jpg"
+      /><img
+        class="mobile-gallery-image"
+        src="https://ik.imagekit.io/prakriti/gallery/15.jpg"
+      /><img
+        class="mobile-gallery-image"
+        src="https://ik.imagekit.io/prakriti/gallery/16.jpg"
+      /><img
+        class="mobile-gallery-image"
+        src="https://ik.imagekit.io/prakriti/gallery/17.jpg"
+      /><img
+        class="mobile-gallery-image"
+        src="https://ik.imagekit.io/prakriti/gallery/18.jpg"
+      /><img
+        class="mobile-gallery-image"
+        src="https://ik.imagekit.io/prakriti/gallery/19.jpg"
+      /><img
+        class="mobile-gallery-image"
+        src="https://ik.imagekit.io/prakriti/gallery/20.jpg"
+      /><img
+        class="mobile-gallery-image"
+        src="https://ik.imagekit.io/prakriti/gallery/21.jpg"
+      /><img
+        class="mobile-gallery-image"
+        src="https://ik.imagekit.io/prakriti/gallery/22.jpg"
+      /><img
+        class="mobile-gallery-image"
+        src="https://ik.imagekit.io/prakriti/gallery/23.jpg"
+      /><img
+        class="mobile-gallery-image"
+        src="https://ik.imagekit.io/prakriti/gallery/24.jpg"
+      /><img
+        class="mobile-gallery-image"
+        src="https://ik.imagekit.io/prakriti/gallery/25.jpg"
+      />
+    </div>
+  </div>
+</div>
+
+  </article>
+
+</div>
+      </div>
+
+      <footer>
+  <div style="margin-bottom: 10px;">
+    <!-- <a href="mailto:paraggour92 [at] gmail [doot] com?subject=Query about Prakriti">Contact Us</a> -->
+    <a href="/contact">Contact Us</a>
+    | <a href="/about">About</a>
+  </div>
+  An initiative by
+  <a href="https://www.facebook.com/parag.gour.7">Parag Gour</a> • Website
+  designed by <a href="https://twitter.com/chinchang457">Kushagra Gour</a>
+</footer>
+
+
+    </div>
+
+    
+
+    <!-- <script async=true src="/js/simplezoom.js"></script> -->
+  </body>
+
+</html>
