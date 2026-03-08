@@ -392,15 +392,31 @@ html, body {
 }
 
 @media screen and (max-width: 1024px) {
-  .menu { padding: 10px 15px; }
-  .header-main-row { flex-direction: column; gap: 10px; }
-  .frame { gap: 15px; }
-  .text-wrapper, .div, [class*="text-wrapper-"] { font-size: 15px; }
-  .logo { height: 50px; }
-  .label .visites-guiades { font-size: 24px; line-height: 1.2; }
-  .newsletter-section .footer-container { flex-direction: column; text-align: center; }
-  .newsletter-input { width: 100%; }
-  .footer-grid { gap: 40px; }
+  .alt-grid-container {
+    max-width: 100%; /* Allows it to fill the mobile screen width */
+    padding: 0 15px;
+  }
+
+  .alt-row, .alt-row.reverse {
+    flex-direction: column; /* Stacks image on top of text for mobile */
+    gap: 30px;
+    margin-bottom: 60px;
+  }
+
+  .alt-image-placeholder {
+    flex: 0 0 100%; /* Image takes full width on mobile */
+    width: 100%;
+    aspect-ratio: 1 / 1;
+  }
+
+  .section-intro, .alt-text {
+    text-align: center; /* Centers everything for better mobile readability */
+  }
+
+  .news-grid {
+    grid-template-columns: 1fr;
+    max-width: 450px; /* Constrains card width on mobile */
+  }
 }
 
 button:focus-visible {
@@ -537,3 +553,266 @@ button:focus-visible {
 .nav-arrow svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; }
 .nav-arrow.left { left: -22px; }
 .nav-arrow.right { right: -22px; }
+
+.info-boxes-section {
+  display: flex;
+  flex-wrap: wrap; /* Allows items to drop to a new line */
+  width: 100%;
+  max-width: 1512px;
+  margin: 0 auto;
+  border-top: 2px solid #ffffff;
+}
+
+.info-box {
+  flex: 1 1 50%; 
+  background-color: #d9d9d9;
+  padding: 60px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centers content vertically */
+  align-items: center;     /* Centers content horizontally */
+  text-align: center;      /* Centers the text lines */
+  min-height: 350px;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+}
+
+.info-box.full-width {
+  flex: 1 1 100%;
+  border-right: none;
+}
+
+.info-box:last-child {
+  border-right: none;
+}
+
+.info-title {
+  font-family: var(--font-secondary);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.3;
+  color: #1e1e1e;
+  margin-bottom: 20px;
+  width: 100%; /* Ensures title respects centering */
+}
+
+.info-text {
+  font-family: var(--font-secondary);
+  font-size: 16px;
+  font-style: italic;
+  margin: 0 auto 30px auto; /* Centers the text block itself */
+  max-width: 600px;         /* Prevents text lines from getting too long/ugly */
+}
+
+/* Lead paragraph: Bold and Italic */
+.info-text-lead {
+  font-family: var(--font-secondary);
+  font-size: 18px;
+  font-weight: 800; /* Extra bold */
+  font-style: italic;
+  line-height: 1.4;
+  color: #1e1e1e;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Body paragraph: Regular weight and Italic */
+.info-text-body {
+  font-family: var(--font-secondary);
+  font-size: 16px;
+  font-weight: 400; /* Regular weight */
+  font-style: italic;
+  line-height: 1.6;
+  color: #1e1e1e;
+  max-width: 600px;
+  margin: 0 auto 30px auto;
+  text-align: center;
+}
+
+.info-btn {
+  display: inline-block;
+  background-color: #000000;
+  color: #ffffff;
+  padding: 12px 28px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.info-btn:hover {
+  background-color: var(--color-primary);
+  transform: scale(1.05);
+}
+
+/* --- 10. ALTERNATING SECTION (Unified Alignment) --- */
+.alternating-section {
+  width: 100%;
+  padding: 80px 20px;
+}
+
+.alt-grid-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
+.section-intro {
+  text-align: center;
+  margin-bottom: 80px;
+  max-width: 800px;
+}
+
+.intro-title {
+  font-family: var(--font-secondary);
+  font-weight: 800;
+  font-size: 24px;
+  margin-bottom: 5px;
+  color: #1e1e1e;
+}
+
+.intro-subtitle {
+  font-family: var(--font-main);
+  font-style: italic;
+  font-size: 16px;
+  color: #444;
+}
+
+.alt-row {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  margin-bottom: 80px;
+}
+
+.alt-row.reverse {
+  flex-direction: row-reverse;
+}
+
+.alt-image-placeholder {
+  flex: 0 0 450px; 
+  width: 450px;
+  aspect-ratio: 1 / 1;
+  background-color: #d9d9d9;
+  overflow: hidden;
+  position: relative;
+}
+
+.fit-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.alt-text {
+  flex: 1;
+  max-width: 400px;
+  text-align: left;
+}
+
+.alt-text h3 {
+  font-family: var(--font-secondary);
+  font-weight: 800;
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #1e1e1e;
+}
+
+.alt-text p {
+  font-family: var(--font-main);
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #444;
+}
+
+/* --- 11. LATEST NEWS SECTION --- */
+.latest-news-section {
+  max-width: 1200px;
+  margin: 100px auto;
+  padding: 0 40px;
+  text-align: center;
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin: 60px auto;
+  max-width: 1000px; /* Aligned with alternating section */
+}
+
+.news-card {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  background: #ffffff;
+}
+
+.card-img-placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: #d9d9d9;
+  margin-bottom: 15px;
+}
+
+.card-btn {
+  display: inline-flex;
+  align-items: center;
+  background-color: #a5a5a5;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 14px;
+  width: fit-content;
+  margin-top: auto;
+}
+
+/* --- SHARED COMPONENTS (Buttons) --- */
+.btn-dark-wide {
+  display: inline-block;
+  background-color: #000000;
+  color: #ffffff;
+  padding: 15px 40px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-family: var(--font-secondary);
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  transition: transform 0.2s ease, background 0.2s ease;
+  margin-top: 40px;
+}
+
+.btn-dark-wide:hover, .card-btn:hover {
+  background-color: var(--color-primary);
+  transform: scale(1.03);
+}
+
+/* Update these for the "L'últim a la Castanya" section */
+.section-title {
+  font-family: var(--font-secondary);
+  font-weight: 800; /* Force bold */
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.section-subtitle {
+  font-family: var(--font-main);
+  font-size: 16px;
+  color: #444;
+  margin-bottom: 40px;
+}
+
+/* Update for the card titles within the grid */
+.card-title {
+  font-family: var(--font-secondary);
+  font-weight: 800; /* Bold headers in cards */
+  font-size: 18px;
+  margin-bottom: 10px;
+}
