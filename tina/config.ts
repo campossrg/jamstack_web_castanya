@@ -92,7 +92,7 @@ export default defineConfig({
       {
         name: "products",
         label: "Products",
-        path: "src/shop/shop/products",
+        path: "src/shop/products",
         format: "md",
         fields: [
           {
@@ -200,45 +200,6 @@ export default defineConfig({
             },
           },
         },
-      },
-      {
-        name: "pages",
-        label: "Pages",
-        path: "src/pages",
-        format: "md",
-        fields: [
-          {
-            type: "string",
-            name: "title",
-            label: "Title",
-            isTitle: true,
-            required: true,
-          },
-          {
-            type: "string",
-            name: "description",
-            label: "Meta Description",
-            required: true,
-          },
-          {
-            type: "string",
-            name: "layout",
-            label: "Layout",
-            options: ["page", "landing"],
-            required: true,
-          },
-          {
-            type: "image",
-            name: "image",
-            label: "Featured Image",
-          },
-          {
-            type: "rich-text",
-            name: "body",
-            label: "Content",
-            isBody: true,
-          },
-        ],
       },
       {
         name: "site",
