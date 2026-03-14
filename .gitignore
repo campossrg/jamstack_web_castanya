@@ -423,3 +423,6 @@ tina/__generated__
 _site/
 .sass-cache/
 .jekyll-metadata
+
+# Agents
+AGENT.md

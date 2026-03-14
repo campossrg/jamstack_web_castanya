@@ -816,3 +816,187 @@ button:focus-visible {
   font-size: 18px;
   margin-bottom: 10px;
 }
+
+/* --- BLOG PAGE SPECIFIC --- */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.blog-header-section {
+  text-align: center;
+  padding: 80px 20px 60px;
+  background-color: var(--color-bg);
+}
+
+.blog-filters {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 10px 24px;
+  border-radius: 50px;
+  background-color: #f0f0f0;
+  color: #1e1e1e;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.filter-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.filter-btn.active {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.news-card-content {
+  padding: 15px 0;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.post-meta {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 12px;
+}
+
+.card-excerpt {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* --- Global Post Container --- */
+.post-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: serif; /* Matches screenshot font style */
+  color: #333;
+}
+
+/* --- Section 1: Header/Meta --- */
+.post-header-visual {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.post-meta__date {
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.post-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1.2;
+  max-width: 800px;
+  margin: 0 auto 1rem;
+}
+
+.post-subtitle {
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+/* The Grid for 'Reading Time' and 'Tags' */
+.header-details-grid {
+  display: flex;
+  justify-content: center;
+  gap: 4rem; /* Spacing between the two columns */
+  margin-top: 2rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.meta-label {
+  font-weight: 700;
+  text-transform: capitalize;
+  margin-bottom: 0.25rem;
+}
+
+.meta-value {
+  color: #555;
+}
+
+/* --- Section 2: Hero Image --- */
+.post-hero-visual {
+  margin-bottom: 4rem;
+}
+
+.hero-placeholder {
+  width: 100%;
+  height: 400px; /* Placeholder height */
+  background-color: #e0e0e0; /* Match screenshot grey box */
+}
+
+.hero-image {
+  width: 100%;
+  object-fit: cover;
+}
+
+/* --- Section 3: Article Content Flow (Multi-Column) --- */
+.post-article-flow {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* 2 parts text, 1 part quote/meta */
+  gap: 3rem;
+  align-items: start;
+}
+
+.post-content p {
+  line-height: 1.7;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* The special blockquote on the right, as seen in screenshot */
+.post-content blockquote {
+  grid-column: 2 / 3; /* Forces into the right column */
+  margin: 0;
+  padding: 0;
+  border: none;
+  font-style: italic;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  font-weight: 700;
+  text-align: center; /* Design preference match */
+}
+
+.post-content blockquote p {
+  margin-bottom: 0.5rem;
+}
+
+.post-content blockquote + p {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1rem;
+  text-align: center;
+}

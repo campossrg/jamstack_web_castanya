@@ -4,17 +4,36 @@ title: Blog
 name: blog
 ---
 
-<div class="text--center">
-  {% for post in collections.posts %}
-  <article class="list-item">
-    <h3 class="post-title">
-      <a href="{{ post.url }}">{{ post.data.title }}</a>
-    </h3>
-    <div class="post-meta">
-      <time class="post-meta__date" datetime="{{ post.date | htmlDateString }}"
-        >{{ post.date | readableDate }}</time
-      >
+<section class="blog-header-section">
+  <div class="container">
+    <h1 class="section-title">Actualitat i Notícies de la Castanya de Viladrau</h1>
+    <p class="section-subtitle">Descobreix el dia a dia de la Castanya de Viladrau, des de la cura dels nostres boscos fins a la cultura que ens defineix.</p>
+    
+    <div class="blog-filters">
+      <a href="/blog/" class="filter-btn active">Totes les entrades</a>
+      <a href="#" class="filter-btn">Històries</a>
+      <a href="#" class="filter-btn">Actualitat</a>
+      <a href="#" class="filter-btn">Consells</a>
     </div>
-  </article>
-  {% endfor %}
+  </div>
+</section>
+
+<div class="container">
+  <div class="news-grid">
+    {% for post in collections.posts | reverse %}
+    <article class="news-card">
+      <div class="card-img-placeholder">
+        {% if post.data.image %}
+          <img src="{{ post.data.image }}" alt="{{ post.data.imageAlt }}" class="fit-img">
+        {% endif %}
+      </div>
+      <div class="news-card-content">
+        <h3 class="card-title">{{ post.data.title }}</h3>
+        <p class="post-meta">{{ post.date | readableDate }}</p>
+        <p class="card-excerpt">{{ post.data.description | truncate(120) }}</p>
+        <a href="{{ post.url }}" class="card-btn">Llegir més</a>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
 </div>

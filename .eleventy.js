@@ -53,6 +53,13 @@ module.exports = function (eleventyConfig) {
     ghostMode: false,
   });
 
+  eleventyConfig.addFilter("readingTime", (content) => {
+    const wordsPerMinute = 200;
+    const noHtml = content.replace(/<[^>]*>/g, "");
+    const words = noHtml.split(/\s+/g).length;
+    return Math.ceil(words / wordsPerMinute);
+  });
+
   return {
     templateFormats: ["md", "njk", "html", "liquid"],
 
