@@ -1,77 +1,59 @@
-window.onscroll = function() {
-  const header = document.querySelector("header");
-  const logo = document.querySelector(".logo");
-  if (window.pageYOffset > 50) {
-    header.style.padding = "5px 35px";
-    if(logo) logo.style.height = "50px";
-  } else {
-    header.style.padding = "20px 35px";
-    if(logo) logo.style.height = "70px";
-  }
-};
-
 document.addEventListener("DOMContentLoaded", () => {
-  const dots = document.querySelectorAll('.dot');
-  const hero = document.querySelector('.rectangle');
-  const title = hero.querySelector('.hero-title');
-  const subtitle = hero.querySelector('.hero-subtitle');
-  const btnText = hero.querySelector('.COMPRAR-ONLINE-hero');
+  // --- 1. Header Scroll & Docking Logic ---
+  const header = document.querySelector(".site-header");
+  const heroImg = document.querySelector(".hero-img");
+  const branding = document.querySelector(".hero-center-branding");
 
-  const slides = [
-    {
-      title: '<strong>L’única castanya 100% catalana i artesana:</strong> Protegim el llegat del Parc Natural del Montseny',
-      subtitle: 'Som productors locals i artesans. Amb cada compra col·labores directament en la gestió forestal.',
-      btn: 'COMPRAR ONLINE'
-    },
-    {
-      title: '<strong>Visites Guiades:</strong> Viu la castanya des de dins',
-      subtitle: 'Reserva la teva plaça per conèixer els nostres boscos i la nostra manera de treballar.',
-      btn: 'RESERVAR ARA'
-    },
-    {
-      title: '<strong>Productes Locals:</strong> Qualitat i Tradició',
-      subtitle: 'Descobreix la nostra varietat de productes elaborats artesanalment a Viladrau.',
-      btn: 'VEURE BOTIGA'
-    },
-    {
-      title: '<strong>El Nostre Projecte:</strong> Sostenibilitat Real',
-      subtitle: 'Treballem per la recuperació dels castanyers i la preservació del medi ambient.',
-      btn: 'SABER-NE MÉS'
+  // This function handles the transformation from bottom-transparent to top-brown
+  const handleScroll = () => {
+    const scrollPos = window.scrollY;
+    const vh = window.innerHeight;
+
+    // 1. THE DOCKING TRIGGER
+    // We trigger the "is-scrolled" state when the user has scrolled 
+    // past the hero image. This snaps the menu from bottom to top.
+    if (scrollPos > (vh * 0.1)) { 
+      // We start the fade-in effect early for a smoother transition
+      header.classList.add('is-scrolled');
+    } else {
+      header.classList.remove('is-scrolled');
     }
-  ];
 
-  dots.forEach((dot, i) => {
-    dot.addEventListener('click', () => {
-      // 1. Update Active Dot
-      document.querySelector('.dot.active').classList.remove('active');
-      dot.classList.add('active');
+    // 2. FADE THE BACKGROUND IMAGE
+    // As you scroll down, the forest image fades out to allow the 
+    // cream-colored content of the page to take over.
+    if (heroImg) {
+      let opacityValue = 1 - (scrollPos / vh);
+      heroImg.style.opacity = Math.max(opacityValue, 0);
+    }
 
-      // 2. Animate out (optional effect)
-      hero.style.opacity = '0';
+    // 3. FADE THE CENTRAL BRANDING
+    // The large central logo and text fade out faster than the image
+    // so they don't clash with the scrolling menu.
+    if (branding) {
+      let textOpacity = 1 - (scrollPos / (vh * 0.4));
+      branding.style.opacity = Math.max(textOpacity, 0);
+      // Optional: slight parallax effect (moves text up slowly)
+      branding.style.transform = `translateY(-${scrollPos * 0.2}px)`;
+    }
+  };
 
-      setTimeout(() => {
-        // 3. Swap Content
-        const data = slides[i];
-        title.innerHTML = data.title;
-        subtitle.innerText = data.subtitle;
-        btnText.innerText = data.btn;
+  window.addEventListener('scroll', handleScroll);
+  // Run once on load to catch the position if the user refreshes mid-page
+  handleScroll();
 
-        // 4. Animate back in
-        hero.style.opacity = '1';
-      }, 200);
-    });
+  // --- 2. Gallery Scrolling Logic ---
+  const scrollContainer = document.getElementById('galleryScroll');
+  const nextBtn = document.getElementById('nextBtn');
+  const prevBtn = document.getElementById('prevBtn');
 
-    // Gallery Scrolling Logic
-    const scrollContainer = document.getElementById('galleryScroll');
-    const nextBtn = document.getElementById('nextBtn');
-    const prevBtn = document.getElementById('prevBtn');
-
+  if (scrollContainer && nextBtn && prevBtn) {
     nextBtn.addEventListener('click', () => {
-      scrollContainer.scrollLeft += 310;
+      scrollContainer.scrollBy({ left: 310, behavior: 'smooth' });
     });
-
+    
     prevBtn.addEventListener('click', () => {
-      scrollContainer.scrollLeft -= 310;
+      scrollContainer.scrollBy({ left: -310, behavior: 'smooth' });
     });
-  });
+  }
 });

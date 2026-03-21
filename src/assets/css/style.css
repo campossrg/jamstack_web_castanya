@@ -1000,3 +1000,190 @@ button:focus-visible {
   font-size: 1rem;
   text-align: center;
 }
+
+.hero-wrapper {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center; /* Centers branding vertically */
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-center-branding {
+  text-align: center;
+  color: white;
+  z-index: 10;
+  transition: all 0.5s ease;
+}
+
+.hero-central-logo {
+  height: 140px;
+  margin-bottom: 20px;
+}
+
+.hero-title { 
+  font-size: 4rem; 
+  font-weight: 800; 
+  line-height: 1; 
+  margin-bottom: 10px; 
+}
+
+.hero-subtitle { 
+  font-size: 2.5rem; 
+  font-weight: 400; 
+}
+
+.hero-tagline {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.hero-img {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+  filter: brightness(0.7);
+}
+
+.site-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2000;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: transparent; /* Force transparency at start */
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  /* Very light tint so it's readable over the image, but still transparent */
+  background-color: rgba(0, 0, 0, 0.1); 
+  transition: all 0.4s ease;
+}
+
+.header-logo img {
+  height: 50px;
+  opacity: 0; /* Hidden on the transparent hero */
+  transition: all 0.4s ease;
+  transform: translateY(10px);
+}
+
+.header-nav {
+  width: 100%;
+  height: 65px;
+  /* Semi-transparent brown while at the bottom */
+  background-color: rgba(123, 107, 67, 0.7); 
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position: fixed;
+  bottom: 0; 
+}
+
+/* SCROLLED / DOCKED STATE */
+.site-header.is-scrolled {
+  background-color: #7b6b43 !important; /* Solid Brown */
+}
+
+.site-header.is-scrolled .header-top {
+  background-color: transparent; /* Merges into the solid header */
+  padding: 10px 40px;
+}
+
+.site-header.is-scrolled .header-nav {
+  position: relative; 
+  bottom: auto;
+  background-color: transparent; /* Becomes part of the solid brown header */
+}
+
+.site-header.is-scrolled .header-logo img,
+body:not(.home) .header-logo img {
+  opacity: 1;
+  transform: translateY(0);
+}
+.nav-flex-container {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+}
+
+.nav-list {
+  display: flex;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  flex: 1;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-item a {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 25px;
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.nav-item.active {
+  background-color: #f5f2e8;
+}
+
+.nav-item.active a {
+  color: #7b6b43 !important;
+}
+
+main {
+  position: relative;
+  z-index: 100;
+  background-color: var(--brand-cream);
+}
+
+/* Fix for all internal pages */
+body:not(.home) .site-header {
+  position: fixed;
+  top: 0;
+  background-color: #7b6b43; /* Always solid on other pages */
+}
+
+body:not(.home) .header-nav {
+  position: relative;
+  bottom: auto;
+}
+body:not(.home) .header-logo img { opacity: 1; transform: translateY(0); }
+body:not(.home) main { padding-top: 140px; }
+
+/* Utility Icons */
+.utility-left, .utility-right { display: flex; align-items: center; gap: 20px; }
+.icon { width: 22px; height: 22px; stroke: white; fill: none; stroke-width: 2; }
+
+body.home .site-header {
+  position: absolute; /* Relative to hero-wrapper */
+  bottom: 0;
+  top: auto; /* Override the default top: 0 */
+  background-color: transparent;
+}
+
+body.home .header-nav {
+  background-color: rgba(123, 107, 67, 0.7); /* Semi-transparent olive */
+}
+
+body.home .site-header.is-scrolled {
+  position: fixed;
+  top: 0;
+  bottom: auto;
+  background-color: #7b6b43; /* Solid brown style */
+}
