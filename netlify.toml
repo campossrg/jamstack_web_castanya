@@ -5,6 +5,7 @@
 [build.environment]
   NODE_VERSION = "18"
   NPM_VERSION = "9"
+  NPM_CONFIG_PRODUCTION = "false"
 
 # Build plugins
 [[plugins]]
