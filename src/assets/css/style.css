@@ -110,6 +110,19 @@ html, body {
   object-fit: contain;
 }
 
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  text-decoration: none; /* Removes underline */
+  color: inherit; /* Keeps the white color you already set */
+  transition: opacity var(--transition-fast);
+}
+
+.logo-link:hover {
+  opacity: 0.8; /* Subtle feedback when hovering */
+}
+
 .COMPRAR-ONLINE-wrapper {
   background-color: var(--color-muted);
   border-radius: 16px;
@@ -1103,11 +1116,11 @@ button:focus-visible {
 }
 
 .logo-text {
-  font-family: "Frutiger LT Std", serif; /* Or similar serif font */
+  font-family: "Frutiger LT Std", serif;
   font-size: 28px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: white;
+  color: white; /* Explicitly set to stay white */
 }
 
 .site-header {
