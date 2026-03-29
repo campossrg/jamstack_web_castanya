@@ -23,14 +23,10 @@
   --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-html,
-body {
-  margin: 0;
-  height: 100%;
-  color: var(--color-body);
-  font-family: var(--font-main), Helvetica, Arial, sans-serif;
-  line-height: 1.6;
-  background-color: var(--color-bg);
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden; /* Prevents horizontal scroll jumping */
 }
 
 /* --- 1. HOVER & ACTIVE STATES --- */
@@ -1037,13 +1033,9 @@ button:focus-visible {
 }
 
 .hero-wrapper {
-  position: relative;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
   height: 100vh;
-  width: 100%;
-  display: flex;
-  align-items: center; /* Centers branding vertically */
-  justify-content: center;
-  overflow: hidden;
 }
 
 .hero-center-branding {
@@ -1079,11 +1071,10 @@ button:focus-visible {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   object-fit: cover;
   z-index: -1;
-  filter: brightness(0.7);
 }
 
 .site-header {
@@ -1224,10 +1215,21 @@ body:not(.home) main {
 }
 
 body.home .site-header {
-  position: absolute; /* Relative to hero-wrapper */
-  bottom: 0;
-  top: auto; /* Override the default top: 0 */
+  position: fixed;
+  width: 100%;
+  z-index: 2000;
+  left: 0;
+  
+  /* ADDED: A fallback of 0 for --climb-progress so it doesn't break on first load */
+  --climb-progress: 0; 
+
+  /* This calculation moves the header from bottom to top based on scroll */
+  top: calc(
+    (1 - var(--climb-progress)) * (100vh - 65px)
+  );
+  
   background-color: transparent;
+  transition: background-color 0.3s ease;
 }
 
 body.home .header-nav {
@@ -1235,8 +1237,11 @@ body.home .header-nav {
 }
 
 body.home .site-header.is-scrolled {
-  position: fixed;
   top: 0;
-  bottom: auto;
-  background-color: #7b6b43; /* Solid brown style */
+  background-color: #7b6b43;
+}
+
+.outer-wrap, .content-wrap {
+  margin: 0 !important;
+  padding: 0 !important;
 }
