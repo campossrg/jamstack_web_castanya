@@ -1180,6 +1180,18 @@ body:not(.home) main {
   stroke-width: 2;
 }
 
+body.internal .site-header {
+  position: sticky; /* Or fixed, if you want it to follow the scroll */
+  top: 0;
+  background-color: #7b6b43 !important; /* Solid brown */
+  transform: none !important; /* Reset the climb effect */
+}
+
+body.internal .header-top {
+  opacity: 1 !important; /* Always show the logo/search on internal pages */
+  pointer-events: auto !important;
+}
+
 body.home .site-header {
   position: fixed;
   left: 0;
