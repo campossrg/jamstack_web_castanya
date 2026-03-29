@@ -5,31 +5,28 @@ document.addEventListener("DOMContentLoaded", () => {
   const handleScroll = () => {
     const scrollPos = window.scrollY;
     const vh = window.innerHeight;
-
-    // The nav height is 65px as per your CSS
-    const dockingDistance = vh - 65; 
+    const navHeight = 65; // Height of your menu bar
     
-    // Ensure we don't divide by zero if vh isn't ready
-    let progress = dockingDistance > 0 ? Math.min(Math.max(scrollPos / dockingDistance, 0), 1) : 0;
+    // Calculate 0 to 1 progress based on scroll
+    const dockingDistance = vh - navHeight;
+    let progress = Math.min(scrollPos / dockingDistance, 1);
     
+    // Send progress to CSS
     document.documentElement.style.setProperty('--climb-progress', progress);
 
-    if (progress === 1) { 
+    // Toggle solid color when it reaches the very top
+    if (progress >= 1) {
       header.classList.add('is-scrolled');
     } else {
       header.classList.remove('is-scrolled');
     }
 
+    // Optional: Fade out the background image slightly
     if (heroImg) {
       heroImg.style.opacity = Math.max(1 - (scrollPos / vh), 0);
     }
   };
 
-  window.addEventListener('scroll', handleScroll);
-  
-  // Call once immediately to set the header at the bottom
-  handleScroll(); 
-  
-  // Call again after a tiny delay to catch any layout shifts
-  setTimeout(handleScroll, 50); 
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  handleScroll(); // Run immediately on load
 });
