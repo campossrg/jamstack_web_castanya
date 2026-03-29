@@ -23,10 +23,6 @@
   "author": "Sergio Campos",
   "license": "Apache 2.0",
   "devDependencies": {
-    "@11ty/eleventy": "^3.1.2",
-    "@11ty/eleventy-navigation": "^0.3.5",
-    "@11ty/eleventy-plugin-rss": "^1.2.0",
-    "@11ty/eleventy-plugin-syntaxhighlight": "^4.2.0",
     "@netlify/plugin-lighthouse": "^6.0.4",
     "@tinacms/cli": "^1.6.3",
     "@types/node": "^24.0.0",
@@ -41,6 +37,10 @@
     "sass": "^1.67.0"
   },
   "dependencies": {
+    "@11ty/eleventy": "^3.1.2",
+    "@11ty/eleventy-navigation": "^0.3.5",
+    "@11ty/eleventy-plugin-rss": "^1.2.0",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^4.2.0",
     "@sendgrid/mail": "^8.1.6",
     "@tinacms/auth": "^1.0.2",
     "crypto-js": "^4.1.1",
