@@ -512,19 +512,18 @@ button:focus-visible {
   font-size: 14px;
 }
 
-/* Scroll Logic */
 .gallery-container {
-  position: relative;
-  display: flex;
-  align-items: center;
+  padding: 0 40px;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .gallery-scroll {
   display: flex;
-  gap: 30px;
+  gap: 20px;
   overflow-x: auto;
-  padding: 20px 0;
-  scrollbar-width: none;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Hide scrollbar for clean look */
 }
 
 .gallery-scroll::-webkit-scrollbar {
@@ -532,10 +531,8 @@ button:focus-visible {
 }
 
 .gallery-item {
-  flex: 0 0 280px; /* Force items to have width */
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  min-width: 280px;
+  flex: 0 0 auto;
 }
 
 .item-img {
@@ -1459,4 +1456,534 @@ body.home .nav-item.highlight-shop {
 }
 body.home .nav-item.highlight-shop a {
   color: var(--header-bg) !important;
+}
+
+.unified-bg {
+  background-color: #f4f1e6; /* The light brown/sand color from your info-boxes */
+  padding-bottom: 80px;
+}
+
+.botiga-header-centered {
+  text-align: center;
+  padding: 60px 20px 40px;
+}
+
+.title-nav-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px; /* Space between arrows and title */
+  margin: 10px 0;
+}
+
+.label-small {
+  display: block;
+  text-align: center;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.section-title-main {
+  font-family: var(--font-secondary);
+  font-size: 34px;
+  font-weight: 800;
+  color: #7b6b43;
+  margin: 0;
+  letter-spacing: 2px;
+}
+
+.nav-arrow-inline {
+  background: #ffffff;
+  border: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.nav-arrow-inline svg {
+  width: 24px;
+  height: 24px;
+  stroke: #7b6b43;
+  stroke-width: 2;
+  fill: none;
+}
+
+.nav-arrow-inline:hover {
+  background-color: #7b6b43;
+}
+
+.nav-arrow-inline:hover svg {
+  stroke: #ffffff;
+}
+
+.section-subtitle-italic {
+  font-style: italic;
+  font-size: 18px;
+  color: #7b6b43;
+}
+
+/* Project Highlight Styling */
+.project-highlight-section {
+  border-top: 1px solid rgba(123, 107, 67, 0.1); /* Subtle divider */
+}
+
+.project-content-centered {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero-title-elegant {
+  font-family: "Frutiger LT Std", serif; /* Or your chosen serif font */
+  font-size: clamp(28px, 4vw, 48px);
+  line-height: 1.1;
+  color: #7b6b43;
+  text-transform: uppercase;
+  margin: 25px 0;
+  font-weight: 400; /* Matches the clean serif look */
+}
+
+.info-text-body-centered {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #7b6b43;
+  max-width: 750px;
+  margin: 0 auto 40px auto;
+}
+
+.btn-olive {
+  display: inline-flex; /* Changed to inline-flex for better internal alignment */
+  align-items: center;
+  justify-content: center;
+  background-color: #7b6b43;
+  color: #ffffff;
+  padding: 16px 45px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  margin-top: 20px; /* Space above the button */
+}
+
+.btn-olive:hover {
+  background-color: #5e5233;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+/* Gallery Item Text centering */
+.gallery-item .item-name {
+  width: 100%;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 15px;
+  margin-top: 20px;
+  color: #7b6b43;
+}
+
+.project-highlight-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 100px 20px;
+  background-color: #f4f1e6; /* The unified sand color */
+}
+
+.project-content-centered {
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* This centers the label, title, text, and button */
+  text-align: center;  /* This centers the lines of text inside the paragraphs */
+}
+
+.botiga-section-updated, 
+.project-highlight-section {
+  color: #7b6b43; /* This replaces black with the earthy brown */
+}
+
+.label-small,
+.section-title-main,
+.section-subtitle-italic,
+.hero-title-elegant,
+.info-text-body-centered p,
+.item-name {
+  color: #7b6b43 !important; /* Forces the brown color */
+}
+
+.visites-guiades-hero {
+  position: relative;
+  width: 100%;
+  min-height: 600px; /* Adjust height as needed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Keeps the image inside the section bounds */
+  padding: 100px 20px;
+}
+
+.hero-bg-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* This is the "magic" property */
+  z-index: 1;
+}
+
+.hero-dark-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3); /* Adjust 0.3 to make it darker or lighter */
+  z-index: 2;
+}
+
+.hero-overlay-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  max-width: 900px;
+}
+
+.light {
+  color: #ffffff !important;
+}
+
+.label-small.light, 
+.hero-title-elegant.light, 
+.hero-text-body.light {
+  color: #ffffff !important;
+}
+
+.hero-text-body {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.gastronomic-split {
+  display: flex;
+  flex-wrap: wrap; /* Stacks on mobile */
+  align-items: stretch;
+}
+
+.split-image, .split-text-content {
+  flex: 1;
+  min-width: 350px; /* Minimum width before stacking */
+}
+
+.split-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.split-text-content {
+  padding: 80px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-title-elegant {
+  font-family: serif; 
+  font-size: clamp(24px, 3.5vw, 40px);
+  line-height: 1.2;
+  margin: 15px 0 25px;
+  text-transform: uppercase;
+}
+
+/* Container Spacing */
+.actualitat-section-updated {
+  padding: 80px 20px 100px;
+  text-align: center;
+}
+
+.actualitat-content-centered {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* The Grey Placeholder Box */
+.actualitat-placeholder {
+  width: 100%;
+  background-color: #d9d9d9; /* The light grey from your screenshot */
+  height: 400px;             /* Adjust based on visual preference */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 40px 0;
+  border-radius: 4px;        /* Subtle rounding */
+}
+
+.actualitat-placeholder p {
+  color: #333333;
+  font-family: var(--font-main);
+  font-size: 16px;
+  max-width: 400px;
+  line-height: 1.4;
+}
+
+/* Reusing your brand-brown for the title */
+.actualitat-section-updated .section-title-main {
+  color: #7b6b43;
+  margin: 10px 0;
+  text-transform: uppercase;
+}
+
+.actualitat-section-updated .section-subtitle-italic {
+  color: #7b6b43;
+  font-style: italic;
+  font-size: 18px;
+}
+
+/* Review Card Styling */
+.review-card {
+  background: #ffffff;
+  padding: 40px 30px;
+  border-radius: 8px;
+  min-width: 320px;
+  flex: 0 0 auto;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #7b6b43;
+}
+
+.google-logo { width: 30px; margin-bottom: 10px; }
+
+.stars { color: #fbbc05; font-size: 20px; margin-bottom: 15px; }
+
+.review-text {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+.reviewer-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.reviewer-name { font-weight: 800; font-size: 15px; }
+.review-date { font-size: 12px; opacity: 0.7; margin-bottom: 10px; }
+.reviewer-avatar { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; }
+
+/* Partner Card Styling */
+.partner-card {
+  background: #ffffff;
+  width: 180px;
+  height: 140px;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border-radius: 4px;
+}
+
+.partner-logo { max-width: 100%; max-height: 100%; filter: grayscale(1); opacity: 0.8; }
+.partner-card:hover .partner-logo { filter: grayscale(0); opacity: 1; }
+
+.footer-cta-section {
+  position: relative;
+  height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.cta-bg-img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.cta-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.3);
+  z-index: 2;
+}
+
+.cta-content {
+  position: relative;
+  z-index: 3;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.cta-title {
+  color: white;
+  font-family: var(--font-secondary);
+  font-size: 32px;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+}
+
+.btn-olive-transparent {
+  display: inline-block;
+  background: rgba(123, 107, 67, 0.7);
+  color: white;
+  padding: 15px 40px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+/* 2. Newsletter Bar (Lighter Brown) */
+.newsletter-bar {
+  background-color: #9a8453; /* Medium brown */
+  padding: 40px 0;
+  color: white;
+}
+
+.flex-newsletter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+
+.newsletter-text {
+  max-width: 450px;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 15px;
+  flex: 1;
+  max-width: 600px;
+}
+
+.newsletter-input-field {
+  flex: 1;
+  padding: 12px 25px;
+  border-radius: 50px;
+  border: none;
+  background: #f4f1e6;
+}
+
+.btn-newsletter-submit {
+  background: #7b6b43;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.footer-links-area {
+  background-color: #7b6b43; 
+  padding: 60px 0 40px;
+  color: #ffffff; /* Text general en blanc */
+}
+
+.footer-grid h3 {
+  color: #ffffff;
+  font-size: 18px;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.footer-grid ul li a {
+  color: #ffffff !important; /* Força el color blanc */
+  text-decoration: none;
+  font-size: 15px;
+  opacity: 1; /* Eliminem l'opacitat perquè es vegi nítid */
+  transition: opacity 0.3s;
+}
+
+.footer-grid ul li a:hover {
+  opacity: 0.8;
+}
+
+.footer-legal-links, 
+.footer-legal-links a, 
+.footer-legal-links span {
+  color: #ffffff !important;
+  opacity: 1;
+}
+
+.footer-grid ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-grid li { margin-bottom: 10px; }
+
+.footer-grid a {
+  color: white;
+  text-decoration: none;
+  font-size: 15px;
+  opacity: 0.9;
+}
+
+/* 4. Bottom Row (Socials + Legal + Logos) */
+.footer-bottom-row {
+  margin-top: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 30px;
+}
+
+.footer-icon {
+  width: 32px;
+  height: 32px;
+  margin-right: 15px;
+}
+
+.footer-legal-links {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.footer-legal-links a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-logos {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.footer-logos img {
+  height: 60px; /* Adjust height based on logos */
+  background: white;
+  padding: 5px;
+  border-radius: 2px;
 }
