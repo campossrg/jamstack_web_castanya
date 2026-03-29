@@ -1076,22 +1076,30 @@ button:focus-visible {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 60px;
+  padding: 10px 40px;
   position: relative;
+  min-height: 90px;
 }
 
 .header-logo {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 15px; /* Space between icon and text */
+  flex: 0 0 auto; /* Don't let the logo shrink or grow */
 }
 
 .header-logo img {
-  height: 60px;
+  height: 55px;
   width: auto;
+}
+
+.logo-title {
+  font-family: serif; /* Matches the elegant serif in screenshot */
+  font-size: 24px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #ffffff;
+  white-space: nowrap;
 }
 
 .logo-text {
@@ -1200,7 +1208,7 @@ main {
 }
 
 .header-nav {
-  border-top: 1px solid var(--header-border);
+  border-top: none !important; /* Removes the line crossing the logo */
 }
 
 /* Fix for all internal pages */
@@ -1222,11 +1230,19 @@ body:not(.home) main {
   padding-top: 140px;
 }
 
-/* Utility Icons */
-.utility-left, .utility-right {
+.utility-left, 
+.utility-right {
+  flex: 1; 
   display: flex;
   align-items: center;
-  gap: 15px;
+}
+
+.utility-right {
+  justify-content: flex-end; /* Pushes cart to the far right */
+}
+
+.utility-left {
+  gap: 20px;
 }
 
 .idioma-selector {
@@ -1266,20 +1282,23 @@ body.home .site-header {
   bottom: 0;
   top: auto !important; 
   
-  /* The Climb Effect */
+  /* Use the JS variable for the climb */
   transform: translateY(calc(var(--climb-progress, 0) * -100vh + var(--climb-progress, 0) * 65px));
   
-  /* Start Transparent */
-  background-color: transparent !important; 
+  background-color: transparent !important;
   transition: background-color var(--transition-smooth);
 }
 
+.header-nav, 
 body.home .header-nav {
-  background-color: rgba(0, 0, 0, 0.25) !important; 
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-  transition: background-color var(--transition-smooth);
+  border-top: none !important;
+}
+
+body.home .header-nav {
+  background-color: rgba(0, 0, 0, 0.2) !important; 
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: none !important; /* Final check to ensure no line exists */
 }
 
 body.home .header-nav a, 
@@ -1297,11 +1316,11 @@ body.home .header-nav li:not(:last-child) {
 }
 
 body.home .site-header.is-scrolled {
-  background-color: var(--header-bg) !important; /* Solid #7b6b43 */
-  bottom: auto !important;
+  background-color: var(--header-bg) !important;
   top: 0 !important;
+  bottom: auto !important;
   transform: translateY(0) !important;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  border-bottom: none;
 }
 
 body.home .site-header.is-scrolled .header-nav {

@@ -1,25 +1,23 @@
 <header class="site-header">
   <div class="header-top">
-    <div class="header-container">
-      <div class="utility-left">
-        <div class="idioma-selector">
-          <span>CAT</span>
-          <svg class="icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </div>
-        <button class="search-btn">
-          <svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        </button>
+    <!-- Left Side: Language and Search -->
+    <div class="utility-left">
+      <div class="idioma-selector">
+        <span>CAT</span>
+        <svg class="icon chevron"><use xlink:href="#chevron-down"></use></svg>
       </div>
+      <svg class="icon search"><use xlink:href="#search-icon"></use></svg>
+    </div>
 
-      <a href="/" class="header-logo">
-        <img src="/assets/images/logo.png" alt="Castanya de Viladrau">
-      </a>
+    <!-- Center: Logo + Text Title -->
+    <div class="header-logo">
+      <img src="/assets/images/logo.png" alt="Castanya de Viladrau">
+      <span class="logo-title">Castanya de Viladrau</span>
+    </div>
 
-      <div class="utility-right">
-        <a href="/shop/cart" class="cart-icon">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 20a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-7-3h7a2 2 0 0 0 2-1.72L19.88 9H6.41l-.83-2H2v2h2l3.6 9.17A2 2 0 0 0 9 17z"></path></svg>
-        </a>
-      </div>
+    <!-- Right Side: Shopping Cart -->
+    <div class="utility-right">
+      <svg class="icon cart"><use xlink:href="#cart-icon"></use></svg>
     </div>
   </div>
 
