@@ -1,6 +1,6 @@
 [build]
   publish = "_site"
-  command = "NPM_CONFIG_PRODUCTION=false npm ci && npm run build"
+  command = "NPM_CONFIG_PRODUCTION=false npm ci --include=dev && npm run build"
   
 [build.environment]
   NODE_VERSION = "18"
