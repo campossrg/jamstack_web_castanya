@@ -3,6 +3,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const heroImg = document.querySelector(".hero-img");
 
   const handleScroll = () => {
+    const isHome = document.body.classList.contains('home');
+    
+    if (!isHome) {
+      header.classList.add('is-scrolled'); // Ensure solid color is always on
+      return;
+    }
+
     const scrollPos = window.scrollY;
     const vh = window.innerHeight;
     const navHeight = 65; // Height of your menu bar

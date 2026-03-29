@@ -1211,23 +1211,38 @@ main {
   border-top: none !important; /* Removes the line crossing the logo */
 }
 
-/* Fix for all internal pages */
 body:not(.home) .site-header {
-  position: fixed;
-  top: 0;
-  background-color: #7b6b43; /* Always solid on other pages */
+  position: fixed !important; /* Fixed ensures it stays at the top of the screen */
+  top: 0 !important;
+  left: 0;
+  right: 0;
+  bottom: auto !important; /* Overrides the 'bottom: 0' from the home page logic */
+  transform: none !important; /* Disables the JS 'climb' translation */
+  background-color: var(--header-bg) !important; /* Solid Brown #7b6b43 */
+  z-index: 2000;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+body:not(.home) .header-top {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  transform: translateY(0) !important;
+  display: flex !important;
 }
 
 body:not(.home) .header-nav {
-  position: relative;
-  bottom: auto;
+  background-color: transparent !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
+
 body:not(.home) .header-logo img {
   opacity: 1;
   transform: translateY(0);
 }
+
 body:not(.home) main {
-  padding-top: 140px;
+  /* This should be the combined height of Row 1 + Row 2 (~170px) */
+  margin-top: 170px !important; 
 }
 
 .utility-left, 
