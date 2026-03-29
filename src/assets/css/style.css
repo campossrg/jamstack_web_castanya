@@ -1263,27 +1263,23 @@ body.home .site-header {
   left: 0;
   right: 0;
   z-index: 2000;
-  
-  /* Start pinned to the bottom */
   bottom: 0;
   top: auto !important; 
   
-  /* This moves the bar up 100% of the screen as you scroll */
+  /* The Climb Effect */
   transform: translateY(calc(var(--climb-progress, 0) * -100vh + var(--climb-progress, 0) * 65px));
   
-  background-color: transparent;
-  transition: background-color 0.4s ease;
+  /* Start Transparent */
+  background-color: transparent !important; 
+  transition: background-color var(--transition-smooth);
 }
 
 body.home .header-nav {
-  background-color: rgba(0, 0, 0, 0.2) !important; /* Subtle dark tint */
-  backdrop-filter: blur(10px); /* Creates the glass effect from your screenshot */
-  -webkit-backdrop-filter: blur(10px);
-  height: auto; 
-  min-height: 65px;
-  display: flex;
-  align-items: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.2); /* Thin line above menu */
+  background-color: rgba(0, 0, 0, 0.25) !important; 
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  transition: background-color var(--transition-smooth);
 }
 
 body.home .header-nav a, 
@@ -1316,7 +1312,8 @@ body.home .site-header.is-scrolled .header-nav {
 body.home .header-top {
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s ease;
+  transition: opacity var(--transition-smooth), transform var(--transition-smooth);
+  transform: translateY(-10px);
 }
 
 body.home .site-header.is-scrolled .header-top {
