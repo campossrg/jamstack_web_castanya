@@ -37,7 +37,6 @@
     "markdown-it": "^14.1.1",
     "markdown-it-anchor": "^8.6.7",
     "netlify-cli": "^17.37.2",
-    "netlify-plugin-cache": "^1.0.3",
     "prettier": "^3.0.3",
     "sass": "^1.67.0"
   },
@@ -46,6 +45,7 @@
     "@tinacms/auth": "^1.0.2",
     "crypto-js": "^4.1.1",
     "dotenv": "^16.3.1",
+    "netlify-plugin-cache": "^1.0.3",
     "node-fetch": "^3.3.2",
     "tinacms": "^3.6.1"
   },
