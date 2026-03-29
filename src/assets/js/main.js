@@ -3,10 +3,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const heroImg = document.querySelector(".hero-img");
 
   const handleScroll = () => {
+    // Only apply the "climb" effect if we are on the home page
     const isHome = document.body.classList.contains('home');
     
     if (!isHome) {
-      header.classList.add('is-scrolled'); // Ensure solid color is always on
+      // On internal pages, we just ensure the scrolled class is present for styling
+      header.classList.add('is-scrolled');
+      document.documentElement.style.setProperty('--climb-progress', '1');
       return;
     }
 

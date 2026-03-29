@@ -1211,16 +1211,19 @@ main {
   border-top: none !important; /* Removes the line crossing the logo */
 }
 
+body:not(.home) {
+  /* Adjust 170px to the exact height of your Row 1 + Row 2 */
+  padding-top: 170px !important; 
+}
+
 body:not(.home) .site-header {
-  position: fixed !important; /* Fixed ensures it stays at the top of the screen */
+  position: fixed !important;
   top: 0 !important;
   left: 0;
-  right: 0;
-  bottom: auto !important; /* Overrides the 'bottom: 0' from the home page logic */
-  transform: none !important; /* Disables the JS 'climb' translation */
-  background-color: var(--header-bg) !important; /* Solid Brown #7b6b43 */
+  width: 100%;
   z-index: 2000;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  /* Crucial: stop the "climb" transform from JS */
+  transform: none !important; 
 }
 
 body:not(.home) .header-top {
@@ -1241,8 +1244,8 @@ body:not(.home) .header-logo img {
 }
 
 body:not(.home) main {
-  /* This should be the combined height of Row 1 + Row 2 (~170px) */
-  margin-top: 170px !important; 
+  margin-top: 0 !important;
+  position: relative;
 }
 
 .utility-left, 
