@@ -2149,10 +2149,26 @@ body.home .nav-item.highlight-shop a {
 }
 
 .professionals-profile__chart {
+  position: relative;
   display: block;
   width: 100%;
-  max-width: 700px;
+  max-width: 866px;
   margin: 34px auto 84px;
+}
+
+.professionals-profile__chart-base {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.professionals-profile__chart-overlay {
+  position: absolute;
+  top: 49%;
+  left: 50%;
+  width: min(52%, 450px);
+  height: auto;
+  transform: translate(-50%, -50%);
 }
 
 .professionals-attributes {
@@ -2445,6 +2461,10 @@ body.home .nav-item.highlight-shop a {
 
   .professionals-profile__chart {
     margin: 28px auto 56px;
+  }
+
+  .professionals-profile__chart-overlay {
+    width: 58%;
   }
 
   .professionals-attributes__title br,
