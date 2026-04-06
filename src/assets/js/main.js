@@ -106,10 +106,116 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  const setupProfessionalsRecipeCarousel = (scrollId, prevId, nextId) => {
+    const container = document.getElementById(scrollId);
+    const prev = document.getElementById(prevId);
+    const next = document.getElementById(nextId);
+
+    if (!container || !prev || !next) {
+      return;
+    }
+
+    const getStep = () => {
+      const firstCard = container.querySelector(
+        ".professionals-inspiration-card",
+      );
+
+      if (!firstCard) {
+        return container.clientWidth;
+      }
+
+      const styles = window.getComputedStyle(
+        container.querySelector(".professionals-inspiration-recipes__grid"),
+      );
+      const gap = Number.parseFloat(styles.columnGap || styles.gap || "0");
+      return firstCard.getBoundingClientRect().width + gap;
+    };
+
+    const toggleButtons = () => {
+      const maxScroll = container.scrollWidth - container.clientWidth;
+      const atStart = container.scrollLeft <= 5;
+      const atEnd = container.scrollLeft >= maxScroll - 5;
+
+      prev.style.opacity = atStart ? "0.45" : "1";
+      prev.disabled = atStart;
+      next.style.opacity = atEnd ? "0.45" : "1";
+      next.disabled = atEnd;
+    };
+
+    prev.addEventListener("click", () => {
+      container.scrollBy({ left: -getStep(), behavior: "smooth" });
+    });
+
+    next.addEventListener("click", () => {
+      container.scrollBy({ left: getStep(), behavior: "smooth" });
+    });
+
+    container.addEventListener("scroll", toggleButtons, { passive: true });
+    window.addEventListener("resize", toggleButtons);
+    toggleButtons();
+  };
+
   // Initialize all three carousels
   setupCarousel("galleryScroll", "prevBtn", "nextBtn");
   setupCarousel("testimonialScroll", "prevTestimonial", "nextTestimonial");
   setupCarousel("partnerScroll", "prevPartner", "nextPartner");
+  setupProfessionalsRecipeCarousel(
+    "professionalsFoundationsCarousel",
+    "professionalsFoundationsPrev",
+    "professionalsFoundationsNext",
+  );
+  setupProfessionalsRecipeCarousel(
+    "professionalsRecipesCarousel",
+    "professionalsRecipesPrev",
+    "professionalsRecipesNext",
+  );
+  setupProfessionalsRecipeCarousel(
+    "professionalsAuthorCarousel",
+    "professionalsAuthorPrev",
+    "professionalsAuthorNext",
+  );
+
+  const setupHeaderDropdown = () => {
+    const dropdownItem = document.querySelector(".nav-item--dropdown");
+    const trigger = dropdownItem?.querySelector(".nav-link-button");
+
+    if (!dropdownItem || !trigger) {
+      return;
+    }
+
+    const closeDropdown = () => {
+      dropdownItem.classList.remove("is-open");
+      trigger.setAttribute("aria-expanded", "false");
+    };
+
+    const openDropdown = () => {
+      dropdownItem.classList.add("is-open");
+      trigger.setAttribute("aria-expanded", "true");
+    };
+
+    trigger.addEventListener("click", (event) => {
+      event.stopPropagation();
+      const isOpen = dropdownItem.classList.contains("is-open");
+
+      if (isOpen) {
+        closeDropdown();
+      } else {
+        openDropdown();
+      }
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!dropdownItem.contains(event.target)) {
+        closeDropdown();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeDropdown();
+      }
+    });
+  };
 
   const setupProfessionalsValueFeature = () => {
     const prev = document.getElementById("professionalsValuePrev");
@@ -203,4 +309,5 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   setupProfessionalsValueFeature();
+  setupHeaderDropdown();
 });

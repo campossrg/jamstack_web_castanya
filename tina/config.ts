@@ -25,9 +25,25 @@ export default defineConfig({
         path: "src/blog/posts",
         format: "md",
         fields: [
-          { type: "string", name: "title", label: "Title", isTitle: true, required: true },
-          { type: "string", name: "description", label: "Description", required: true },
-          { type: "datetime", name: "date", label: "Publication Date", required: true },
+          {
+            type: "string",
+            name: "title",
+            label: "Title",
+            isTitle: true,
+            required: true,
+          },
+          {
+            type: "string",
+            name: "description",
+            label: "Description",
+            required: true,
+          },
+          {
+            type: "datetime",
+            name: "date",
+            label: "Publication Date",
+            required: true,
+          },
           { type: "image", name: "image", label: "Featured Image" },
           { type: "string", name: "imageAlt", label: "Image Alt Text" },
           { type: "string", name: "tags", label: "Tags", list: true },
@@ -45,12 +61,32 @@ export default defineConfig({
         path: "src/shop/products",
         format: "md",
         fields: [
-          { type: "string", name: "title", label: "Product Name", isTitle: true, required: true },
-          { type: "string", name: "description", label: "Short Description", required: true },
+          {
+            type: "string",
+            name: "title",
+            label: "Product Name",
+            isTitle: true,
+            required: true,
+          },
+          {
+            type: "string",
+            name: "description",
+            label: "Short Description",
+            required: true,
+          },
           { type: "number", name: "price", label: "Price (€)", required: true },
-          { type: "number", name: "originalPrice", label: "Original Price (€)" },
+          {
+            type: "number",
+            name: "originalPrice",
+            label: "Original Price (€)",
+          },
           { type: "string", name: "sku", label: "SKU", required: true },
-          { type: "number", name: "stock", label: "Stock Quantity", required: true },
+          {
+            type: "number",
+            name: "stock",
+            label: "Stock Quantity",
+            required: true,
+          },
           {
             type: "string",
             name: "category",
@@ -64,9 +100,19 @@ export default defineConfig({
             ],
             required: true,
           },
-          { type: "image", name: "images", label: "Product Images", list: true },
+          {
+            type: "image",
+            name: "images",
+            label: "Product Images",
+            list: true,
+          },
           { type: "boolean", name: "featured", label: "Featured Product" },
-          { type: "boolean", name: "available", label: "Available for Purchase", required: true },
+          {
+            type: "boolean",
+            name: "available",
+            label: "Available for Purchase",
+            required: true,
+          },
           {
             type: "object",
             name: "specifications",
@@ -77,7 +123,12 @@ export default defineConfig({
               { type: "string", name: "value", label: "Value" },
             ],
           },
-          { type: "rich-text", name: "body", label: "Detailed Description", isBody: true },
+          {
+            type: "rich-text",
+            name: "body",
+            label: "Detailed Description",
+            isBody: true,
+          },
         ],
         ui: {
           router: ({ document }) => `/shop/product/${document._sys.filename}`,
@@ -97,20 +148,30 @@ export default defineConfig({
           },
         },
         fields: [
-          { type: "string", name: "title", label: "Site Title", required: true },
-          { type: "string", name: "description", label: "Site Description", required: true },
+          {
+            type: "string",
+            name: "title",
+            label: "Site Title",
+            required: true,
+          },
+          {
+            type: "string",
+            name: "description",
+            label: "Site Description",
+            required: true,
+          },
           { type: "string", name: "url", label: "Site URL", required: true },
-          { 
-            type: "string", 
-            name: "lang", 
-            label: "Language", 
+          {
+            type: "string",
+            name: "lang",
+            label: "Language",
             options: [
-                { label: "English", value: "en" },
-                { label: "Spanish", value: "es" },
-                { label: "French", value: "fr" },
-                { label: "German", value: "de" }
-            ], 
-            required: true 
+              { label: "English", value: "en" },
+              { label: "Spanish", value: "es" },
+              { label: "French", value: "fr" },
+              { label: "German", value: "de" },
+            ],
+            required: true,
           },
           { type: "string", name: "author", label: "Author", required: true },
           { type: "image", name: "logo", label: "Site Logo" },
@@ -120,7 +181,12 @@ export default defineConfig({
             label: "Social Media Links",
             list: true,
             fields: [
-              { type: "string", name: "name", label: "Platform Name", options: ["Facebook", "Twitter", "Instagram", "LinkedIn"] },
+              {
+                type: "string",
+                name: "name",
+                label: "Platform Name",
+                options: ["Facebook", "Twitter", "Instagram", "LinkedIn"],
+              },
               { type: "string", name: "url", label: "URL" },
             ],
           },
@@ -139,9 +205,321 @@ export default defineConfig({
             name: "ecommerce",
             label: "E-commerce Settings",
             fields: [
-              { type: "string", name: "currency", label: "Currency", options: ["EUR", "USD", "GBP"] },
-              { type: "number", name: "freeShippingThreshold", label: "Free Shipping Threshold" },
-              { type: "number", name: "shippingCost", label: "Standard Shipping Cost" },
+              {
+                type: "string",
+                name: "currency",
+                label: "Currency",
+                options: ["EUR", "USD", "GBP"],
+              },
+              {
+                type: "number",
+                name: "freeShippingThreshold",
+                label: "Free Shipping Threshold",
+              },
+              {
+                type: "number",
+                name: "shippingCost",
+                label: "Standard Shipping Cost",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: "professionalsInspiration",
+        label: "Professionals Inspiration",
+        path: "src/_data/professionalsInspiration",
+        format: "json",
+        ui: {
+          allowedActions: {
+            create: false,
+            delete: false,
+          },
+        },
+        fields: [
+          {
+            type: "object",
+            name: "hero",
+            label: "Hero",
+            fields: [
+              { type: "string", name: "title", label: "Title", required: true },
+              {
+                type: "string",
+                name: "text",
+                label: "Text",
+                ui: { component: "textarea" },
+                required: true,
+              },
+              {
+                type: "string",
+                name: "ctaLabel",
+                label: "CTA Label",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "ctaHref",
+                label: "CTA Link",
+                required: true,
+              },
+              {
+                type: "image",
+                name: "backgroundImage",
+                label: "Background Image",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "backgroundAlt",
+                label: "Background Alt Text",
+                required: true,
+              },
+            ],
+          },
+          {
+            type: "object",
+            name: "foundationsSection",
+            label: "Foundations Section",
+            fields: [
+              {
+                type: "string",
+                name: "title",
+                label: "Section Title",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "intro",
+                label: "Section Intro",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "ctaLabel",
+                label: "CTA Label",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "ctaHref",
+                label: "CTA Link",
+                required: true,
+              },
+              {
+                type: "object",
+                name: "slides",
+                label: "Recipe Cards",
+                list: true,
+                fields: [
+                  {
+                    type: "string",
+                    name: "title",
+                    label: "Recipe Title",
+                    required: true,
+                  },
+                  {
+                    type: "image",
+                    name: "image",
+                    label: "Image",
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "imageAlt",
+                    label: "Image Alt Text",
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "time",
+                    label: "Timing",
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "difficulty",
+                    label: "Difficulty",
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "ingredientsLabel",
+                    label: "Ingredients Label",
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "ingredients",
+                    label: "Ingredients",
+                    list: true,
+                    required: true,
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            type: "object",
+            name: "recipesSection",
+            label: "Recipes Section",
+            fields: [
+              {
+                type: "string",
+                name: "title",
+                label: "Section Title",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "intro",
+                label: "Section Intro",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "ctaLabel",
+                label: "CTA Label",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "ctaHref",
+                label: "CTA Link",
+                required: true,
+              },
+              {
+                type: "object",
+                name: "slides",
+                label: "Recipe Cards",
+                list: true,
+                fields: [
+                  {
+                    type: "string",
+                    name: "title",
+                    label: "Recipe Title",
+                    required: true,
+                  },
+                  {
+                    type: "image",
+                    name: "image",
+                    label: "Image",
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "imageAlt",
+                    label: "Image Alt Text",
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "time",
+                    label: "Timing",
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "difficulty",
+                    label: "Difficulty",
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "ingredientsLabel",
+                    label: "Ingredients Label",
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "ingredients",
+                    label: "Ingredients",
+                    list: true,
+                    required: true,
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            type: "object",
+            name: "authorRecipesSection",
+            label: "Author Recipes Section",
+            fields: [
+              {
+                type: "string",
+                name: "title",
+                label: "Section Title",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "intro",
+                label: "Section Intro",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "ctaLabel",
+                label: "CTA Label",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "ctaHref",
+                label: "CTA Link",
+                required: true,
+              },
+              {
+                type: "object",
+                name: "slides",
+                label: "Recipe Cards",
+                list: true,
+                fields: [
+                  {
+                    type: "string",
+                    name: "title",
+                    label: "Recipe Title",
+                    required: true,
+                  },
+                  {
+                    type: "image",
+                    name: "image",
+                    label: "Image",
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "imageAlt",
+                    label: "Image Alt Text",
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "time",
+                    label: "Timing",
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "difficulty",
+                    label: "Difficulty",
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "ingredientsLabel",
+                    label: "Ingredients Label",
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "ingredients",
+                    label: "Ingredients",
+                    list: true,
+                    required: true,
+                  },
+                ],
+              },
             ],
           },
         ],
@@ -151,9 +529,9 @@ export default defineConfig({
   search: {
     tina: {
       indexerToken: process.env.TINA_SEARCH_TOKEN,
-      stopwordLanguages: ['eng', 'spa']
+      stopwordLanguages: ["eng", "spa"],
     },
     indexBatchSize: 100,
-    maxSearchIndexFieldLength: 100
-  }
+    maxSearchIndexFieldLength: 100,
+  },
 });

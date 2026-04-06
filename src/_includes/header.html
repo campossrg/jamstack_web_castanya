@@ -13,7 +13,7 @@
     <div class="header-logo">
       <div class="header-logo">
         <a href="/" class="logo-link">
-          <img src="/assets/images/logo.png" alt="Castanya de Viladrau">
+          <img src="/assets/images/logo.png" alt="Castanya de Viladrau" />
           <span class="logo-title">Castanya de Viladrau</span>
         </a>
       </div>
@@ -28,22 +28,51 @@
   <nav class="header-nav">
     <div class="nav-flex-container">
       <ul class="nav-list">
-        <li class="nav-item {% if '/visits' in page.url %}active{% endif %} has-dropdown">
+        <li
+          class="nav-item {% if '/visits' in page.url %}active{% endif %} has-dropdown"
+        >
           <a href="/visits">VISITES GUIADES</a>
         </li>
         <li class="nav-item {% if '/fusta' in page.url %}active{% endif %}">
           <a href="/fusta">FUSTA</a>
         </li>
-        <li class="nav-item {% if '/professionals' in page.url %}active{% endif %} has-dropdown">
-          <a href="/professionals">ESPAI PROFESSIONALS</a>
+        <li
+          class="nav-item {% if '/professionals' in page.url %}active{% endif %} has-dropdown nav-item--dropdown"
+        >
+          <button
+            type="button"
+            class="nav-link-button"
+            aria-expanded="{% if '/professionals' in page.url %}true{% else %}false{% endif %}"
+            aria-controls="professionals-submenu"
+          >
+            ESPAI PROFESSIONALS
+          </button>
+          <div class="nav-dropdown" id="professionals-submenu">
+            <a
+              href="/professionals"
+              class="nav-dropdown__link {% if page.url == '/professionals/' %}is-active{% endif %}"
+              >Perfil sensorial per xefs</a
+            >
+            <a
+              href="/professionals/inspiracio"
+              class="nav-dropdown__link {% if '/professionals/inspiracio' in page.url %}is-active{% endif %}"
+              >Inspiracio: de xefs per a xefs</a
+            >
+          </div>
         </li>
-        <li class="nav-item {% if '/gastronomic' in page.url %}active{% endif %} has-dropdown">
+        <li
+          class="nav-item {% if '/gastronomic' in page.url %}active{% endif %} has-dropdown"
+        >
           <a href="/gastronomic">ESPAI GASTRONÒMIC</a>
         </li>
-        <li class="nav-item {% if '/projecte' in page.url %}active{% endif %} has-dropdown">
+        <li
+          class="nav-item {% if '/projecte' in page.url %}active{% endif %} has-dropdown"
+        >
           <a href="/projecte">SOBRE EL PROJECTE</a>
         </li>
-        <li class="nav-item {% if '/trobar-nos' in page.url %}active{% endif %}">
+        <li
+          class="nav-item {% if '/trobar-nos' in page.url %}active{% endif %}"
+        >
           <a href="/trobar-nos">ON TROBAR-NOS</a>
         </li>
         <li class="nav-item {% if '/blog' in page.url %}active{% endif %}">
