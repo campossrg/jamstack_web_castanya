@@ -4,4 +4,4 @@ permalink: /shop/products/haldi-ghanvati/
 product_key: haldighanvati
 ---
 
-Prakriti Haldi Gomutra Ghanvati is highly useful in Joint Pain, Cancer and overall well being. Haldi Ghanvati is made from Ghan made from Desi Cow's Urine. Suitable for those who cannot take Gomutra in liquid form. Just take two tablets in morning and evening after meals.
+Haldi Gomutra Ghanvati is presented as a wellness supplement traditionally used in routines related to joint comfort and general wellbeing. It is made from ghan prepared from Desi Cow's Urine and can be used by those who prefer not to take Gomutra in liquid form. Suggested use is two tablets in the morning and evening after meals.

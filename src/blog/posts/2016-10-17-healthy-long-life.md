@@ -22,4 +22,4 @@ A few changes in your life (eating, sitting and thinking habits) can make you he
 - Adapt these : honey, _Desi_ Cow _ghee_/milk/curd/_gomutra_, _gud_, _shakkar_, _khand_, rock/black salt, raw/filtered oil for cooking and as hair oil, naturally grown food, sleeping around 10pm, washing your eyes and mouth regularly.
 - **Use natural remedies for illness and fever**. The most common can be found in your kitchen and your surroundings example - _haldi_, _ginger_, _garlic_ ,_onion_, cloves, lemon, honey, _tulsi_, black pepper, fenugreek, _mishri_, _neem_, _giloy_, alovera etc.
 
-So try to incorporate these rules in your daily life and see the difference in you and your environment. And if you have any question or doubt regarding these rules, I am available for a [chat on facebook](https://www.facebook.com/parag.gour.7) or just [mail me](mailto:paraggour92@gmail.com).
+So try to incorporate these rules in your daily life and see the difference in you and your environment. And if you have any question or doubt regarding these rules, you can always [contact us](/contact/).

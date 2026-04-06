@@ -4,4 +4,4 @@ permalink: /shop/products/herbal-spray/
 product_key: herbalspray
 ---
 
-Prakriti Herbal Spray is enriched with Gomutra, Neem, Marigold and Haldi. An ayurvedic skin spray known for its surprising properties to fight chronic skin diseases like eczema, psoriasis, skin allergy, wounds, blisters, pockmark and all other skin ailments. It is also applicable on pets for their skin diseases. Can also be used in bathing water for complete protection.
+This herbal spray is enriched with Gomutra, Neem, Marigold and Haldi. It is presented as an ayurvedic skin spray traditionally used in routines related to eczema, psoriasis, skin allergy, wounds, blisters and other skin discomforts. It is also applied in some pet-care routines and can be added to bathing water.

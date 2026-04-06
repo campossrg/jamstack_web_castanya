@@ -1,35 +1,118 @@
 ---
-layout: layouts/page.njk
-title: Contact Us
+layout: base
+title: Contacta amb en Joaquim
+name: contact
 permalink: /contact/
+footerVariant: none
 ---
 
-<div style="text-align: center;">
-  <h1>Parag Gour, Founder - Prakriti</h1>
-  <p>
-    Mobile: <a href="tel:+919990551429">9990551429</a> /
-    <a href="tel:+918700907337">8700907337</a>
-  </p>
-  <p>Whatsapp: <a href="tel:+919990551429">9990551429</a></p>
-  <p>
-    Email:
-    <a href="mailto:pristineprakriti@gmail.com">pristineprakriti@gmail.com</a>
-  </p>
+<section class="contact-page-shell">
+  <div class="contact-page-split">
+    <div class="contact-page-split__image-wrap">
+      <img
+        src="/assets/images/gallery/contact_joaquim.png"
+        alt="Placeholder retrat d'en Joaquim"
+        class="contact-page-split__image"
+      />
+    </div>
 
-  <h2>Address</h2>
-  <p>
-    Prakriti Nutanvann Gausadan, Nagla ghanshyam, Pahasu, Bulandshahr, Uttar
-    Pradesh 203396
-  </p>
+    <div class="contact-page-split__content">
+      <span class="contact-page-split__eyebrow">CONTACTA AMB EN JOAQUIM</span>
+      <h1 class="contact-page-split__title">
+        ETS PROFESSIONAL?<br />SOM EL TEU PARTNER<br />A VILADRAU
+      </h1>
+      <p class="contact-page-split__text">
+        A la Castanya de Viladrau entenem que el ritme del sector professional
+        demana agilitat i confianca. No som una gran corporacio; som productors
+        que estimem la nostra terra.
+      </p>
+      <p class="contact-page-split__text">
+        Parla directament amb el Joaquim:
+      </p>
+      <p class="contact-page-split__text">
+        Si necessites un format especial, vols coneixer la disponibilitat de la
+        campanya o busques un producte derivat a mida, el Joaquim t'atendra
+        personalment. Sense intermediaris ni esperes innecessaries.
+      </p>
+      <p class="contact-page-split__text">
+        Digues-nos que necessites i mirarem com fer-ho possible. Aixi de facil.
+      </p>
+    </div>
+  </div>
 
-  <iframe
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3516.6521247623523!2d78.0535551150661!3d28.187493282595423!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390b5305c128ae39%3A0xd39466630e3ba41e!2sPrakriti%20Nutan%20Vann!5e0!3m2!1sen!2sin!4v1587219612086!5m2!1sen!2sin"
-    width="100%"
-    height="450"
-    frameborder="0"
-    style="border: 0;"
-    allowfullscreen=""
-    aria-hidden="false"
-    tabindex="0"
-  ></iframe>
-</div>
+  <section class="contact-page-benefits">
+    <article class="contact-page-benefit">
+      <div class="contact-page-benefit__icon">⌂</div>
+      <h2 class="contact-page-benefit__title">ENS ADAPTEM AL TEU VOLUM</h2>
+      <p class="contact-page-benefit__text">
+        Tant si ets un petit restaurant com una gran superficie.
+      </p>
+    </article>
+
+    <article class="contact-page-benefit">
+      <div class="contact-page-benefit__icon">↺</div>
+      <h2 class="contact-page-benefit__title">LOGISTICA FLEXIBLE</h2>
+      <p class="contact-page-benefit__text">
+        Busquem la millor manera de fer-te arribar el producte fresc o transformat.
+      </p>
+    </article>
+
+    <article class="contact-page-benefit">
+      <div class="contact-page-benefit__icon">◌</div>
+      <h2 class="contact-page-benefit__title">ASSESSORAMENT TECNIC</h2>
+      <p class="contact-page-benefit__text">
+        Com aplicar la castanya a la teva carta o aparador.
+      </p>
+    </article>
+  </section>
+
+  <section class="contact-page-bottom">
+    <div class="contact-page-bottom__column">
+      <h2 class="contact-page-bottom__title">CONTACTA'NS</h2>
+      <div class="contact-page-bottom__details">
+        <p>+34 608 13 11 99</p>
+        <p>938848395</p>
+        <p>info@castanyadeviladrau.cat</p>
+      </div>
+    </div>
+
+    <div class="contact-page-bottom__column">
+      <h2 class="contact-page-bottom__title">ET TRUQUEM NOSALTRES?</h2>
+
+      <form class="contact-form contact-form--callback" id="contactForm">
+        <input type="hidden" name="name" value="Sol.licitud de trucada" />
+        <input type="hidden" name="email" value="info@castanyadeviladrau.cat" />
+
+        <label class="contact-form__field contact-form__field--pill">
+          <input
+            type="text"
+            name="preferredTime"
+            placeholder="En quin horari?"
+            required
+          />
+        </label>
+
+        <label class="contact-form__field contact-form__field--pill">
+          <input
+            type="tel"
+            name="phone"
+            placeholder="Diga'ns el teu telefon"
+            required
+          />
+        </label>
+
+        <div class="contact-form__actions contact-form__actions--stacked">
+          <button type="submit" class="btn-olive contact-form__submit">
+            ENVIAR SOL.LICITUD
+          </button>
+          <p
+            class="contact-form__status"
+            id="contactFormStatus"
+            aria-live="polite"
+          ></p>
+        </div>
+      </form>
+    </div>
+  </section>
+  </div>
+</section>

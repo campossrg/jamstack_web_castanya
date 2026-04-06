@@ -308,6 +308,72 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
+  const setupContactForm = () => {
+    const form = document.getElementById("contactForm");
+    const status = document.getElementById("contactFormStatus");
+
+    if (!form || !status) {
+      return;
+    }
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const submitButton = form.querySelector('button[type="submit"]');
+      const formData = new FormData(form);
+      const preferredTime = formData.get("preferredTime");
+      const business = formData.get("business");
+      const visibleMessage = formData.get("message");
+      const composedMessage =
+        visibleMessage ||
+        [
+          "Sol.licitud de contacte professional.",
+          preferredTime ? `Horari preferit: ${preferredTime}` : "",
+          business ? `Negoci o projecte: ${business}` : "",
+        ]
+          .filter(Boolean)
+          .join("\n");
+
+      const payload = {
+        type: "contact",
+        data: {
+          name: formData.get("name") || "Consulta web",
+          email: formData.get("email") || "info@castanyadeviladrau.cat",
+          phone: formData.get("phone"),
+          business,
+          message: composedMessage,
+        },
+      };
+
+      submitButton.disabled = true;
+      status.textContent = "Enviant consulta...";
+
+      try {
+        const response = await fetch("/.netlify/functions/send-email", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+
+        if (!response.ok) {
+          throw new Error("Request failed");
+        }
+
+        form.reset();
+        status.textContent =
+          "Consulta enviada correctament. En Joaquim et respondra al mes aviat possible.";
+      } catch (error) {
+        status.textContent =
+          "No hem pogut enviar la consulta ara mateix. Torna-ho a provar en uns minuts.";
+      } finally {
+        submitButton.disabled = false;
+      }
+    });
+  };
+
   setupProfessionalsValueFeature();
   setupHeaderDropdown();
+  setupContactForm();
 });

@@ -1,8 +1,5 @@
 {
-  "list": [
-    "ironghee",
-    "ghee"
-  ],
+  "list": ["ironghee", "ghee"],
   "ghee": {
     "label": "Desi Cow Bilona Ghee",
     "permalink": "/shop/products/a2-cow-ghee",
@@ -30,11 +27,11 @@
     "price": "₹ 50 / 75g bottle"
   },
   "panchgavyaghrit": {
-    "label": "Prakriti Panchgavya Ghrit",
+    "label": "Panchgavya Ghrit",
     "permalink": "/shop/products/panchgavya-ghrit/",
     "image": "/assets/images/products/panchgavya-ghrit.png",
     "hero_img": "/assets/images/products/panchgavya-ghrit.png",
-    "buy_link": "https://www.gaurashtra.com/brands/prakriti-panchgavya/prakriti-ayurvedic-nasal-drops",
+    "buy_link": "/contact/",
     "price": "₹ 150 / 30ml bottle"
   },
   "herbalspray": {
@@ -42,7 +39,7 @@
     "permalink": "/shop/products/herbal-spray/",
     "image": "/assets/images/products/herbal-spray.png",
     "hero_img": "/assets/images/products/herbal-spray.png",
-    "buy_link": "https://www.gaurashtra.com/brands/prakriti-panchgavya/herbal-skin-spray",
+    "buy_link": "/contact/",
     "price": "₹ 150 / 100ml bottle"
   },
   "keshtail": {
@@ -50,7 +47,7 @@
     "permalink": "/shop/products/kesh-tail/",
     "image": "/assets/images/products/kesh-tail.png",
     "hero_img": "/assets/images/products/kesh-tail.png",
-    "buy_link": "https://www.gaurashtra.com/brands/prakriti-panchgavya/prakriti-hair-oil",
+    "buy_link": "/contact/",
     "price": "₹ 120 / 100ml bottle"
   },
   "gomutraasav": {
@@ -58,7 +55,7 @@
     "permalink": "/shop/products/gomutra-asav/",
     "image": "/assets/images/products/gomutra-asav.png",
     "hero_img": "/assets/images/products/gomutra-asav.png",
-    "buy_link": "https://www.gaurashtra.com/brands/prakriti-panchgavya/prakriti-gomutra-asav",
+    "buy_link": "/contact/",
     "price": "₹ 120 / 400ml bottle"
   },
   "haldighanvati": {
@@ -66,7 +63,7 @@
     "permalink": "/shop/products/haldi-ghanvati/",
     "image": "/assets/images/products/haldi-ghanvati.png",
     "hero_img": "/assets/images/products/haldi-ghanvati.png",
-    "buy_link": "https://www.gaurashtra.com/brands/prakriti-panchgavya/prakriti-haldi-ghanvati",
+    "buy_link": "/contact/",
     "price": "₹ 120 / 60 tablets"
   },
   "giloyadiark": {
@@ -81,7 +78,7 @@
     "permalink": "/shop/products/punarnavadi-ark/",
     "image": "/assets/images/products/punarnavadi-ark.png",
     "hero_img": "/assets/images/products/punarnavadi-ark.png",
-    "buy_link": "https://www.gaurashtra.com/brands/prakriti-panchgavya/prakriti-punarnavadi-ark",
+    "buy_link": "/contact/",
     "price": "₹ 170 / 400ml bottle"
   }
 }

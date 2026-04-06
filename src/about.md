@@ -1,10 +1,13 @@
 ---
 layout: page
-title: About Us
+title: Sobre el projecte
 ---
 
-Hello fellow Earthling,
+La Castanya de Viladrau neix amb la voluntat de donar valor al castanyer i al
+territori del Montseny a traves d'un projecte arrelat, artesà i de proximitat.
 
-Aim of <span class="bold green">Prakriti</span> is to make Earth a better place to live in by connecting its people to Nature. Using traditional Indian scientific knowledge, that has been existent for thousands of years but left ignored, in various aspects of life we aspire to bring forth the power of nature as well as help make our environment pristine.
+Treballem per transformar el fruit, explicar-ne el valor gastronomic i impulsar
+una economia local que contribueixi a mantenir viu el paisatge forestal.
 
-<span class="bold green">Prakriti</span> is an initiative by <a href="https://www.facebook.com/parag.gour.7">Parag Gour</a>, a young environmental engineer from DTU.
+Cada pas del projecte busca acostar la castanya a noves cuines, nous formats i
+noves oportunitats per al territori.
