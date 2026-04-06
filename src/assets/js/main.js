@@ -1,12 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
   const header = document.querySelector(".site-header");
   const heroImg = document.querySelector(".hero-img");
+  const hasClimbHeader =
+    document.body.classList.contains("home") ||
+    document.body.classList.contains("page-fusta");
 
   const handleScroll = () => {
-    // Only apply the "climb" effect if we are on the home page
-    const isHome = document.body.classList.contains("home");
+    if (!header) {
+      return;
+    }
 
-    if (!isHome) {
+    if (!hasClimbHeader) {
       // On internal pages, we just ensure the scrolled class is present for styling
       header.classList.add("is-scrolled");
       document.documentElement.style.setProperty("--climb-progress", "1");
@@ -373,7 +377,70 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
+  const setupFustaShowcase = () => {
+    const prev = document.getElementById("fustaShowcasePrev");
+    const next = document.getElementById("fustaShowcaseNext");
+    const heroImage = document.getElementById("fustaShowcaseHeroImage");
+    const eyebrow = document.getElementById("fustaShowcaseEyebrow");
+    const title = document.getElementById("fustaShowcaseTitle");
+    const text = document.getElementById("fustaShowcaseText");
+    const detailTitle = document.getElementById("fustaShowcaseDetailTitle");
+    const detailP1 = document.getElementById("fustaShowcaseDetailP1");
+    const detailP2 = document.getElementById("fustaShowcaseDetailP2");
+    const detailP3 = document.getElementById("fustaShowcaseDetailP3");
+    const detailImage = document.getElementById("fustaShowcaseDetailImage");
+    const slideNodes = document.querySelectorAll(".fusta-showcase-slide-data");
+
+    if (
+      !prev ||
+      !next ||
+      !heroImage ||
+      !eyebrow ||
+      !title ||
+      !text ||
+      !detailTitle ||
+      !detailP1 ||
+      !detailP2 ||
+      !detailP3 ||
+      !detailImage ||
+      !slideNodes.length
+    ) {
+      return;
+    }
+
+    const slides = Array.from(slideNodes).map((slide) => slide.dataset);
+    let index = 0;
+
+    const renderSlide = () => {
+      const slide = slides[index];
+      heroImage.src = slide.heroImage;
+      heroImage.alt = slide.heroAlt;
+      eyebrow.textContent = slide.eyebrow;
+      title.textContent = slide.title;
+      text.textContent = slide.text;
+      detailTitle.textContent = slide.detailTitle;
+      detailP1.textContent = slide.detailP1;
+      detailP2.textContent = slide.detailP2;
+      detailP3.textContent = slide.detailP3;
+      detailImage.src = slide.detailImage;
+      detailImage.alt = slide.detailAlt;
+    };
+
+    prev.addEventListener("click", () => {
+      index = (index - 1 + slides.length) % slides.length;
+      renderSlide();
+    });
+
+    next.addEventListener("click", () => {
+      index = (index + 1) % slides.length;
+      renderSlide();
+    });
+
+    renderSlide();
+  };
+
   setupProfessionalsValueFeature();
   setupHeaderDropdown();
   setupContactForm();
+  setupFustaShowcase();
 });
