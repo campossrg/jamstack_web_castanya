@@ -3997,6 +3997,258 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-link-button {
   .professionals-value-feature__image {
     height: 520px;
   }
+}
+
+.visits-slider {
+  padding: 8px 0 64px;
+}
+
+.visits-slider__header {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 28px;
+  padding: 0 28px;
+}
+
+.visits-slider__intro {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+  color: #7b6b43;
+}
+
+.visits-slider__title {
+  margin: 0;
+  font-family: var(--font-main);
+  font-size: clamp(24px, 2.1vw, 34px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.visits-slider__text {
+  margin: 12px auto 0;
+  max-width: 720px;
+  font-size: 17px;
+  line-height: 1.45;
+}
+
+.visits-slider__arrow {
+  background: rgba(186, 154, 91, 0.95);
+  box-shadow: none;
+}
+
+.visits-slider__arrow svg {
+  stroke: #fff;
+}
+
+.visits-slider__carousel {
+  margin-top: 22px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.visits-slider__carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.visits-slider__track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 84px) / 3); /* 3 cards + 2 gaps */
+  gap: 28px;
+  padding: 0 42px;
+}
+
+.visits-card {
+  position: relative;
+  overflow: hidden;
+  background-color: #f5f2e8; /* Light background for the cards */
+  color: #7b6b43;
+  padding-bottom: 30px;
+}
+
+.visits-card__image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 0.7; /* Adjust as needed */
+  object-fit: cover;
+}
+
+.visits-card__content {
+  padding: 20px 25px;
+  text-align: center;
+}
+
+.visits-card__title {
+  margin: 15px 0;
+  font-family: var(--font-main);
+  font-size: clamp(18px, 1.5vw, 24px);
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: #8b7445;
+}
+
+.visits-card__text {
+  margin: 0 auto 20px;
+  font-family: var(--font-main);
+  font-size: 15px;
+  line-height: 1.5;
+  color: #7b6b43;
+}
+
+.visits-card__meta {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.visits-card__meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.visits-card__meta-item svg {
+  width: 20px;
+  height: 20px;
+  stroke: #7b6b43;
+  stroke-width: 1.8;
+  fill: none;
+}
+
+/* Responsive adjustments for visits slider */
+@media screen and (max-width: 1024px) {
+  .visits-slider__track {
+    grid-auto-columns: calc((100% - 48px) / 2); /* 2 cards on medium screens */
+    gap: 24px;
+    padding: 0 24px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .visits-slider__header {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 0 20px;
+  }
+
+  .visits-slider__arrow {
+    justify-self: center;
+  }
+
+  .visits-slider__carousel {
+    margin-top: 18px;
+  }
+
+  .visits-slider__track {
+    grid-auto-columns: 100%; /* 1 card on small screens */
+    gap: 20px;
+    padding: 0 20px;
+  }
+
+  .visits-card__content {
+    padding: 15px 20px;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .visits-slider__intro {
+    padding: 0 10px;
+  }
+
+  .visits-card__title {
+    font-size: clamp(16px, 4vw, 20px);
+  }
+
+  .visits-card__text {
+    font-size: 14px;
+  }
+
+  .visits-card__meta {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+
+  .professionals-inspiration-hero__cta {
+    width: 100%;
+    min-width: 0;
+    max-width: 280px;
+  }
+
+  .professionals-inspiration-recipes__header {
+    padding: 46px 0 0;
+  }
+
+  .professionals-inspiration-recipes__nav {
+    top: 0;
+  }
+
+  .professionals-inspiration-recipes__grid {
+    grid-auto-columns: 100%;
+  }
+
+  .professionals-inspiration-banner__content {
+    padding: 34px 20px;
+  }
+
+  .professionals-inspiration-banner__cta {
+    align-self: stretch;
+    width: 100%;
+    max-width: 290px;
+  }
+
+  .contact-form__submit {
+    width: 100%;
+    min-width: 0;
+    max-width: 320px;
+  }
+
+  .contact-page-split__title {
+    font-size: clamp(34px, 9vw, 48px);
+  }
+
+  .contact-page-split__text {
+    margin-top: 24px;
+  }
+
+  .footer-cta-section--professionals {
+    min-height: 300px;
+    height: auto;
+  }
+
+  .cta-title--professionals {
+    font-size: clamp(28px, 8vw, 40px);
+  }
+
+  .btn-olive-transparent--professionals {
+    width: 100%;
+    max-width: 290px;
+    margin-top: 24px;
+  }
+
+  .newsletter-form,
+  .newsletter-form--professionals {
+    flex-direction: column;
+  }
+
+  .btn-newsletter-submit,
+  .btn-newsletter-submit--professionals {
+    width: 100%;
+  }
+
+  .professionals-value-feature__image {
+    height: 520px;
+  }
 
   .professionals-value-feature__content {
     padding: 50px 38px;

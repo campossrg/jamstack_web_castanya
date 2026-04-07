@@ -179,6 +179,11 @@ document.addEventListener("DOMContentLoaded", () => {
     "professionalsAuthorPrev",
     "professionalsAuthorNext",
   );
+  setupProfessionalsRecipeCarousel(
+    "visitsCarousel",
+    "visitsPrev",
+    "visitsNext",
+  );
 
   const setupHeaderDropdown = () => {
     const dropdownItem = document.querySelector(".nav-item--dropdown");
