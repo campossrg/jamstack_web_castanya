@@ -1358,12 +1358,12 @@ main {
   border-top: none !important; /* Removes the line crossing the logo */
 }
 
-body:not(.home):not(.page-fusta) {
+body:not(.home):not(.page-fusta):not(.page-visits) {
   /* Adjust 170px to the exact height of your Row 1 + Row 2 */
   padding-top: 170px !important;
 }
 
-body:not(.home):not(.page-fusta) .site-header {
+body:not(.home):not(.page-fusta):not(.page-visits) .site-header {
   position: fixed !important;
   top: 0 !important;
   left: 0;
@@ -1373,24 +1373,24 @@ body:not(.home):not(.page-fusta) .site-header {
   transform: none !important;
 }
 
-body:not(.home):not(.page-fusta) .header-top {
+body:not(.home):not(.page-fusta):not(.page-visits) .header-top {
   opacity: 1 !important;
   pointer-events: auto !important;
   transform: translateY(0) !important;
   display: flex !important;
 }
 
-body:not(.home):not(.page-fusta) .header-nav {
+body:not(.home):not(.page-fusta):not(.page-visits) .header-nav {
   background-color: transparent !important;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-body:not(.home):not(.page-fusta) .header-logo img {
+body:not(.home):not(.page-fusta):not(.page-visits) .header-logo img {
   opacity: 1;
   transform: translateY(0);
 }
 
-body:not(.home):not(.page-fusta) main {
+body:not(.home):not(.page-fusta):not(.page-visits) main {
   margin-top: 0 !important;
   position: relative;
 }
@@ -1427,20 +1427,21 @@ body:not(.home):not(.page-fusta) main {
   stroke-width: 2;
 }
 
-body.internal:not(.page-fusta) .site-header {
+body.internal:not(.page-fusta):not(.page-visits) .site-header {
   position: sticky; /* Or fixed, if you want it to follow the scroll */
   top: 0;
   background-color: #7b6b43 !important; /* Solid brown */
   transform: none !important; /* Reset the climb effect */
 }
 
-body.internal:not(.page-fusta) .header-top {
+body.internal:not(.page-fusta):not(.page-visits) .header-top {
   opacity: 1 !important; /* Always show the logo/search on internal pages */
   pointer-events: auto !important;
 }
 
 body.home .site-header,
-body.page-fusta .site-header {
+body.page-fusta .site-header,
+body.page-visits .site-header {
   position: fixed;
   left: 0;
   right: 0;
@@ -1463,7 +1464,8 @@ body.home .header-nav {
 }
 
 body.home .header-nav,
-body.page-fusta .header-nav {
+body.page-fusta .header-nav,
+body.page-visits .header-nav {
   background-color: rgba(0, 0, 0, 0.2) !important;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -1473,7 +1475,9 @@ body.page-fusta .header-nav {
 body.home .header-nav a,
 body.home .header-nav .menu-item,
 body.page-fusta .header-nav a,
-body.page-fusta .header-nav .menu-item {
+body.page-fusta .header-nav .menu-item,
+body.page-visits .header-nav a,
+body.page-visits .header-nav .menu-item {
   color: #ffffff !important;
   text-transform: uppercase;
   font-size: 0.85rem;
@@ -1483,12 +1487,14 @@ body.page-fusta .header-nav .menu-item {
 }
 
 body.home .header-nav li:not(:last-child),
-body.page-fusta .header-nav li:not(:last-child) {
+body.page-fusta .header-nav li:not(:last-child),
+body.page-visits .header-nav li:not(:last-child) {
   border-right: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 body.home .site-header.is-scrolled,
-body.page-fusta .site-header.is-scrolled {
+body.page-fusta .site-header.is-scrolled,
+body.page-visits .site-header.is-scrolled {
   background-color: var(--header-bg) !important;
   top: 0 !important;
   bottom: auto !important;
@@ -1497,7 +1503,8 @@ body.page-fusta .site-header.is-scrolled {
 }
 
 body.home .site-header.is-scrolled .header-nav,
-body.page-fusta .site-header.is-scrolled .header-nav {
+body.page-fusta .site-header.is-scrolled .header-nav,
+body.page-visits .site-header.is-scrolled .header-nav {
   background-color: transparent !important; /* Let the parent header handle the color */
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
@@ -1505,7 +1512,8 @@ body.page-fusta .site-header.is-scrolled .header-nav {
 }
 
 body.home .header-top,
-body.page-fusta .header-top {
+body.page-fusta .header-top,
+body.page-visits .header-top {
   opacity: 0;
   pointer-events: none;
   transition:
@@ -1515,7 +1523,8 @@ body.page-fusta .header-top {
 }
 
 body.home .site-header.is-scrolled .header-top,
-body.page-fusta .site-header.is-scrolled .header-top {
+body.page-fusta .site-header.is-scrolled .header-top,
+body.page-visits .site-header.is-scrolled .header-top {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
@@ -1528,25 +1537,30 @@ body.page-fusta .site-header.is-scrolled .header-top {
 }
 
 body.home .nav-item a,
-body.page-fusta .nav-item a {
+body.page-fusta .nav-item a,
+body.page-visits .nav-item a {
   color: #ffffff !important;
 }
 
 body.home .nav-link-button,
-body.page-fusta .nav-link-button {
+body.page-fusta .nav-link-button,
+body.page-visits .nav-link-button {
   color: #ffffff !important;
 }
 
 body.home .nav-item.highlight-shop,
-body.page-fusta .nav-item.highlight-shop {
+body.page-fusta .nav-item.highlight-shop,
+body.page-visits .nav-item.highlight-shop {
   background-color: #f1ede2 !important;
 }
 body.home .nav-item.highlight-shop a,
-body.page-fusta .nav-item.highlight-shop a {
+body.page-fusta .nav-item.highlight-shop a,
+body.page-visits .nav-item.highlight-shop a {
   color: var(--header-bg) !important;
 }
 
-body.page-fusta .site-header:not(.is-scrolled) .nav-item.active {
+body.page-fusta .site-header:not(.is-scrolled) .nav-item.active,
+body.page-visits .site-header:not(.is-scrolled) .nav-item.active {
   background-color: transparent;
 }
 
@@ -1554,16 +1568,24 @@ body.page-fusta .site-header:not(.is-scrolled) .nav-item.active a,
 body.page-fusta
   .site-header:not(.is-scrolled)
   .nav-item.active
+  .nav-link-button,
+body.page-visits .site-header:not(.is-scrolled) .nav-item.active a,
+body.page-visits
+  .site-header:not(.is-scrolled)
+  .nav-item.active
   .nav-link-button {
   color: #ffffff !important;
 }
 
-body.page-fusta .site-header.is-scrolled .nav-item.active {
+body.page-fusta .site-header.is-scrolled .nav-item.active,
+body.page-visits .site-header.is-scrolled .nav-item.active {
   background-color: #f5f2e8;
 }
 
 body.page-fusta .site-header.is-scrolled .nav-item.active a,
-body.page-fusta .site-header.is-scrolled .nav-item.active .nav-link-button {
+body.page-fusta .site-header.is-scrolled .nav-item.active .nav-link-button,
+body.page-visits .site-header.is-scrolled .nav-item.active a,
+body.page-visits .site-header.is-scrolled .nav-item.active .nav-link-button {
   color: #7b6b43 !important;
 }
 
@@ -1587,7 +1609,36 @@ body.page-fusta .site-header.is-scrolled .nav-item.active .nav-link-button {
   z-index: 2;
 }
 
+.visits-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(12, 17, 18, 0.26) 0%,
+      rgba(12, 17, 18, 0.26) 30%,
+      rgba(12, 17, 18, 0.58) 100%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(8, 10, 11, 0.24) 0%,
+      rgba(8, 10, 11, 0.08) 34%,
+      rgba(8, 10, 11, 0.46) 100%
+    );
+  z-index: 2;
+}
+
 .fusta-hero__overlay {
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 140px 24px 140px;
+}
+
+.visits-hero__overlay {
   z-index: 3;
   display: flex;
   align-items: center;
@@ -1601,7 +1652,23 @@ body.page-fusta .site-header.is-scrolled .nav-item.active .nav-link-button {
   text-align: center;
 }
 
+.visits-hero__content {
+  max-width: 760px;
+  text-align: center;
+}
+
 .fusta-hero__title {
+  margin: 0 0 20px;
+  font-family: var(--font-main);
+  font-size: clamp(2.2rem, 4.8vw, 4rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.28);
+}
+
+.visits-hero__title {
   margin: 0 0 20px;
   font-family: var(--font-main);
   font-size: clamp(2.2rem, 4.8vw, 4rem);
@@ -1618,6 +1685,18 @@ body.page-fusta .site-header.is-scrolled .nav-item.active .nav-link-button {
   font-size: clamp(1rem, 1.5vw, 1.35rem);
   line-height: 1.5;
   color: rgba(255, 255, 255, 0.92);
+}
+
+.visits-hero__text {
+  max-width: 700px;
+  margin: 0 auto 28px;
+  font-size: clamp(1rem, 1.5vw, 1.35rem);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.visits-hero__cta {
+  min-width: 0;
 }
 
 .fusta-intro {
@@ -1962,11 +2041,23 @@ body.page-fusta .site-header.is-scrolled .nav-item.active .nav-link-button {
     padding: 120px 20px 110px;
   }
 
+  .visits-hero__overlay {
+    padding: 120px 20px 110px;
+  }
+
   .fusta-hero__title {
     line-height: 1.14;
   }
 
+  .visits-hero__title {
+    line-height: 1.14;
+  }
+
   .fusta-hero__text {
+    font-size: 1rem;
+  }
+
+  .visits-hero__text {
     font-size: 1rem;
   }
 

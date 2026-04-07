@@ -3,7 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const heroImg = document.querySelector(".hero-img");
   const hasClimbHeader =
     document.body.classList.contains("home") ||
-    document.body.classList.contains("page-fusta");
+    document.body.classList.contains("page-fusta") ||
+    document.body.classList.contains("page-visits");
 
   const handleScroll = () => {
     if (!header) {
