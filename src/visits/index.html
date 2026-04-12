@@ -7,20 +7,17 @@ footerVariant: visits
 
 <section class="hero-wrapper visits-hero">
   <img
-    src="/assets/images/gallery/visites/visites_guiades_bg.jpg"
-    alt="Visites guiades al Montseny"
+    src="{{ visits.hero.image }}"
+    alt="{{ visits.hero.imageAlt }}"
     class="hero-img"
   />
 
   <div class="hero-content-overlay visits-hero__overlay">
     <div class="visits-hero__content">
-      <h1 class="visits-hero__title">LES NOSTRES VISITES GUIADES</h1>
-      <p class="visits-hero__text">
-        Connecta amb la natura al cor de la Reserva de la Biosfera i deixa't
-        sorprendre pels boscos i castanyers mil-lenaris del Montseny.
-      </p>
-      <a href="/projecte/" class="btn-olive visits-hero__cta"
-        >LLEGEIX MES SOBRE EL PARC DEL MONTSENY</a
+      <h1 class="visits-hero__title">{{ visits.hero.title }}</h1>
+      <p class="visits-hero__text">{{ visits.hero.text }}</p>
+      <a href="{{ visits.hero.ctaHref }}" class="btn-olive visits-hero__cta"
+        >{{ visits.hero.ctaLabel }}</a
       >
     </div>
   </div>
@@ -28,185 +25,73 @@ footerVariant: visits
 
 <section class="visits-slider unified-bg" aria-label="Visites guiades">
   <div class="visits-slider__inner">
+    <div class="visits-slider__header">
+      <div class="visits-slider__intro">
+        <h2 class="visits-slider__title">{{ visits.activitiesIntro.title }}</h2>
+        <p class="visits-slider__text">{{ visits.activitiesIntro.text }}</p>
+      </div>
+    </div>
+
     <div class="visits-slider__track">
-      {% for slide in visits.visitsSlider.slides %}
-      <article class="visits-card">
-        <img
-          src="{{ slide.image }}"
-          alt="{{ slide.imageAlt }}"
-          class="visits-card__image"
-        />
-        <div class="visits-card__content">
-          <h3 class="visits-card__title">{{ slide.title }}</h3>
-          <p class="visits-card__text">{{ slide.description }}</p>
-          <div class="visits-card__meta">
-            <div class="visits-card__meta-item">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="lucide lucide-users"
-              >
-                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                <circle cx="9" cy="7" r="4" />
-                <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-              </svg>
-              <span
-                >De {{ slide.personsMin }} a {{ slide.personsMax }}
-                persones</span
-              >
+      {% for activity in collections.visitActivities %}
+      <a href="{{ activity.url }}" class="visits-card-link">
+        <article class="visits-card">
+          <img
+            src="{{ activity.data.cardImage }}"
+            alt="{{ activity.data.cardImageAlt }}"
+            class="visits-card__image"
+          />
+          <div class="visits-card__content">
+            <h3 class="visits-card__title">{{ activity.data.title }}</h3>
+            <p class="visits-card__text">{{ activity.data.cardDescription }}</p>
+            <div class="visits-card__meta">
+              <div class="visits-card__meta-item">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-users"
+                >
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+                <span
+                  >De {{ activity.data.personsMin }} a {{
+                  activity.data.personsMax }} persones</span
+                >
+              </div>
+              <div class="visits-card__meta-item">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-clock"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>
+                <span>{{ activity.data.duration }}</span>
+              </div>
             </div>
-            <div class="visits-card__meta-item">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="lucide lucide-clock"
-              >
-                <circle cx="12" cy="12" r="10" />
-                <polyline points="12 6 12 12 16 14" />
-              </svg>
-              <span>{{ slide.timeValue }} {{ slide.timeUnit }}</span>
-            </div>
+            <span class="visits-card__cta">DESCOBREIX L'EXPERIENCIA</span>
           </div>
-        </div>
-      </article>
+        </article>
+      </a>
       {% endfor %}
-
-      <article class="visits-card">
-        <img
-          src="{{ visits.tastetSection.image }}"
-          alt="{{ visits.tastetSection.imageAlt }}"
-          class="visits-card__image"
-        />
-        <div class="visits-card__content">
-          <h3 class="visits-card__title">{{ visits.tastetSection.title }}</h3>
-          <p class="visits-card__text">
-            {{ visits.tastetSection.description }}
-          </p>
-          <div class="visits-card__meta">
-            <div class="visits-card__meta-item">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="lucide lucide-users"
-              >
-                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                <circle cx="9" cy="7" r="4" />
-                <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-              </svg>
-              <span
-                >De {{ visits.tastetSection.personsMin }} a {{
-                visits.tastetSection.personsMax }} persones</span
-              >
-            </div>
-            <div class="visits-card__meta-item">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="lucide lucide-clock"
-              >
-                <circle cx="12" cy="12" r="10" />
-                <polyline points="12 6 12 12 16 14" />
-              </svg>
-              <span
-                >{{ visits.tastetSection.timeValue }} {{
-                visits.tastetSection.timeUnit }}</span
-              >
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <article class="visits-card">
-        <img
-          src="{{ visits.visitsEscolaSection.image }}"
-          alt="{{ visits.visitsEscolaSection.imageAlt }}"
-          class="visits-card__image"
-        />
-        <div class="visits-card__content">
-          <h3 class="visits-card__title">
-            {{ visits.visitsEscolaSection.title }}
-          </h3>
-          <p class="visits-card__text">
-            {{ visits.visitsEscolaSection.description }}
-          </p>
-          <div class="visits-card__meta">
-            <div class="visits-card__meta-item">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="lucide lucide-users"
-              >
-                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                <circle cx="9" cy="7" r="4" />
-                <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-              </svg>
-              <span
-                >De {{ visits.visitsEscolaSection.personsMin }} a {{
-                visits.visitsEscolaSection.personsMax }} persones</span
-              >
-            </div>
-            <div class="visits-card__meta-item">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="lucide lucide-clock"
-              >
-                <circle cx="12" cy="12" r="10" />
-                <polyline points="12 6 12 12 16 14" />
-              </svg>
-              <span
-                >{{ visits.visitsEscolaSection.timeValue }} {{
-                visits.visitsEscolaSection.timeUnit }}</span
-              >
-            </div>
-          </div>
-        </div>
-      </article>
     </div>
   </div>
 </section>

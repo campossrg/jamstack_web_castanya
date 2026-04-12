@@ -1,56 +1,22 @@
 {
-  "visitsSlider": {
-    "slides": [
-      {
-        "title": "RUTA GUIADA: ELS CASTANYERS CENTENARIS DE VILADRAU",
-        "description": "Sent la força del Montseny: camina entre castanyers mil·lenaris, descobreix llegendes i tasta l'essència de la castanya en una visita única.",
-        "image": "/assets/images/gallery/visites/visites_guiades_1.jpg",
-        "imageAlt": "Ruta guiada: Els Castanyers Centenaris de Viladrau",
-        "personsMin": 2,
-        "personsMax": 8,
-        "timeValue": "1",
-        "timeUnit": "hora amb degustació"
-      },
-      {
-        "title": "AVENTURA 4X4: CASTANYERS CENTENARIS DEL MONTSENY",
-        "description": "Viu la màgia del Montseny amb una ruta en 4x4 cap al cor del bosc, on s'amaguen els nostres castanyers centenars més secrets. Una immersió a la Reserva de la Biosfera per sentir el batec més profund de la natura.",
-        "image": "/assets/images/gallery/visites/visites_guiades_2.jpg",
-        "imageAlt": "Aventura 4x4: Castanyers Centenaris del Montseny",
-        "personsMin": 2,
-        "personsMax": 8,
-        "timeValue": "1",
-        "timeUnit": "hora amb degustació"
-      },
-      {
-        "title": "FINCA DE LA CASTANYA: HISTÒRIA I TAST ARTESÀ",
-        "description": "Visita el centre de la Castanya de Viladrau: coneix les nostres arrels i gaudeix de la pau del Montseny amb un tast de productes artesans.",
-        "image": "/assets/images/gallery/visites/visites_guiades_3.jpg",
-        "imageAlt": "Finca de la Castanya: Història i Tast Artesà",
-        "personsMin": 2,
-        "personsMax": 8,
-        "timeValue": "1",
-        "timeUnit": "hora amb degustació"
-      }
-    ]
+  "hero": {
+    "image": "/assets/images/gallery/visites/visites_guiades_bg.jpg",
+    "imageAlt": "Visites guiades al Montseny",
+    "title": "LES NOSTRES VISITES GUIADES",
+    "text": "Connecta amb la natura al cor de la Reserva de la Biosfera i deixa't sorprendre pels boscos i castanyers mil-lenaris del Montseny.",
+    "ctaLabel": "LLEGEIX MES SOBRE EL PARC DEL MONTSENY",
+    "ctaHref": "/projecte/"
   },
-  "tastetSection": {
-    "image": "/assets/images/gallery/visites/visites_guiades_1.jpg",
-    "imageAlt": "Tastet de productes de castanya",
-    "title": "TASTET",
-    "description": "Experimenta en un tast tot el món gourmet que té la castanya. A través de 5 productes locals, tots amb castanya!",
-    "personsMin": 2,
-    "personsMax": 8,
-    "timeValue": "45",
-    "timeUnit": "min"
+  "activitiesIntro": {
+    "title": "OBLIDA'T DE TOT MENYS DE GAUDIR",
+    "text": "Descobreix cinc maneres de viure la castanya i el Montseny: rutes guiades, visites familiars, experiències a mida i propostes pensades per reconnectar amb el bosc des de perspectives diferents."
   },
-  "visitsEscolaSection": {
-    "image": "/assets/images/gallery/visites/visites_guiades_2.jpg",
-    "imageAlt": "Visites escolars a la natura",
-    "title": "VISITES ESCOLARS ESCOLA DE BOSC",
-    "description": "Gaudeix d'una immersió educativa en una finca privada on el joc de pistes i els tallers de fusta connecten totes les edats amb el valor del bosc. Un espai únic al Montseny per aprendre, dinar entre castanyers i descobrir la riquesa del nostre patrimoni viu.",
-    "personsMin": 2,
-    "personsMax": 8,
-    "timeValue": "1",
-    "timeUnit": "hora amb degustació"
+  "banner": {
+    "image": "/assets/images/gallery/visites/visites_guiades_banner.jpg",
+    "imageAlt": "Visites a mida al Montseny",
+    "title": "VISITES A MIDA: EXPERTESA FORESTAL I NATURA PER AL TEU PROJECTE",
+    "text": "Obrim les portes a professionals del bosc, escoles, paisatgistes i projectes de biodiversitat que busquen una experiencia real al Montseny.",
+    "buttonLabel": "SOL·LICITA LA TEVA VISITA A MIDA",
+    "buttonHref": "/contact/"
   }
 }

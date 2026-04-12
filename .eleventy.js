@@ -1,7 +1,13 @@
 const { DateTime } = require("luxon");
 const fs = require("fs");
+const markdownIt = require("markdown-it");
 // Import the secure minifier
-const htmlmin = require("html-minifier-terser"); 
+const htmlmin = require("html-minifier-terser");
+
+const md = markdownIt({
+  html: true,
+  breaks: true,
+});
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.setDataDeepMerge(true);
@@ -28,7 +34,9 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addLayoutAlias("product", "layouts/product.njk");
 
   eleventyConfig.addFilter("readableDate", (dateObj) => {
-    return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat("dd LLL yyyy");
+    return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat(
+      "dd LLL yyyy",
+    );
   });
 
   eleventyConfig.addFilter("htmlDateString", (dateObj) => {
@@ -40,9 +48,9 @@ module.exports = function (eleventyConfig) {
     return array.slice(0, n);
   });
 
-  eleventyConfig.addPassthroughCopy({"src/assets/images": "assets/images"});
-  eleventyConfig.addPassthroughCopy({"src/assets/css": "assets/css"});
-  eleventyConfig.addPassthroughCopy({"src/assets/static": "assets/static"});
+  eleventyConfig.addPassthroughCopy({ "src/assets/images": "assets/images" });
+  eleventyConfig.addPassthroughCopy({ "src/assets/css": "assets/css" });
+  eleventyConfig.addPassthroughCopy({ "src/assets/static": "assets/static" });
   eleventyConfig.addPassthroughCopy({ "src/assets/js": "assets/js" });
 
   eleventyConfig.setBrowserSyncConfig({
@@ -69,6 +77,20 @@ module.exports = function (eleventyConfig) {
     const noHtml = content.replace(/<[^>]*>/g, "");
     const words = noHtml.split(/\s+/g).length;
     return Math.ceil(words / wordsPerMinute);
+  });
+
+  eleventyConfig.addFilter("markdownify", (content) => {
+    if (!content) {
+      return "";
+    }
+
+    return md.render(content);
+  });
+
+  eleventyConfig.addCollection("visitActivities", (collectionApi) => {
+    return collectionApi
+      .getFilteredByGlob("./src/visits/activities/*.md")
+      .sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
   });
 
   return {

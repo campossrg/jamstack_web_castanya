@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+
+  {% include "head.html" %}
+
+  <body class="internal{% if name %} page-{{ name }}{% endif %}">
+    {% include "header.html" %}
+    <div class="outer-wrap">
+      <div class="content-wrap">
+        <section class="visit-activity-hero hero-wrapper">
+          <img
+            src="{{ heroImage }}"
+            alt="{{ heroImageAlt }}"
+            class="hero-img visit-activity-hero__image"
+          />
+
+          <div class="hero-content-overlay visit-activity-hero__overlay">
+            <div class="visit-activity-hero__content">
+              <a href="/visits/" class="visit-activity-hero__back"
+                >TORNAR A VISITES GUIADES</a
+              >
+              <h1 class="visit-activity-hero__title">{{ title }}</h1>
+
+              {% if gallery and gallery.length %}
+              <a href="#visit-activity-gallery" class="btn-olive visit-activity-hero__gallery"
+                >{{ galleryButtonLabel }}</a
+              >
+              {% endif %}
+
+              <p class="visit-activity-hero__reservation">{{ reservationPrompt }}</p>
+
+              <div class="visit-activity-hero__actions">
+                <a href="{{ reservationPrimaryLink }}" class="btn-olive visit-activity-hero__primary"
+                  >{{ reservationPrimaryLabel }}</a
+                >
+
+                {% if whatsappLink %}
+                <a
+                  href="{{ whatsappLink }}"
+                  class="visit-activity-hero__icon"
+                  aria-label="WhatsApp"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M20 12a8 8 0 0 1-11.87 7l-4.13 1 1.09-4A8 8 0 1 1 20 12Z"
+                    ></path>
+                    <path d="M8.6 9.9c.2-.5.4-.5.6-.5h.5c.2 0 .4 0 .5.4l.7 1.7c.1.2.1.4 0 .5l-.4.5c-.1.1-.2.2-.1.4.2.4.6 1 1.2 1.6.7.6 1.4 1.1 1.8 1.2.2.1.3 0 .4-.1l.5-.6c.1-.1.3-.2.5-.1l1.6.8c.2.1.4.2.4.4v.5c0 .3-.1.5-.4.7-.3.2-.9.4-1.5.2-.7-.2-1.7-.7-2.9-1.8-1-.9-1.8-2-2.1-2.7-.3-.7-.1-1.4.1-1.7Z"
+                    ></path>
+                  </svg>
+                </a>
+                {% endif %}
+
+                {% if emailAddress %}
+                <a
+                  href="mailto:{{ emailAddress }}"
+                  class="visit-activity-hero__icon"
+                  aria-label="Email"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+                    <path d="m4 7 8 6 8-6"></path>
+                  </svg>
+                </a>
+                {% endif %}
+
+                {% if phoneNumber %}
+                <a
+                  href="tel:{{ phoneNumber | replace(' ', '') }}"
+                  class="visit-activity-hero__icon"
+                  aria-label="Telefon"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.1 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7l.5 3a2 2 0 0 1-.6 1.8L7.6 9.8a16 16 0 0 0 6.6 6.6l1.3-1.3a2 2 0 0 1 1.8-.6l3 .5A2 2 0 0 1 22 16.9Z"
+                    ></path>
+                  </svg>
+                </a>
+                {% endif %}
+              </div>
+            </div>
+
+            {% if bookingHighlights and bookingHighlights.length %}
+            <div class="visit-activity-hero__highlights">
+              {% for highlight in bookingHighlights %}
+              <span class="visit-activity-hero__highlight">{{ highlight }}</span>
+              {% endfor %}
+            </div>
+            {% endif %}
+          </div>
+        </section>
+
+        <section class="visit-activity-facts unified-bg">
+          <div class="visit-activity-facts__inner">
+            <div class="visit-activity-facts__item">
+              <span class="visit-activity-facts__icon">👥</span>
+              <div>
+                <strong>De {{ personsMin }} a {{ personsMax }} persones</strong>
+              </div>
+            </div>
+            <div class="visit-activity-facts__item">
+              <span class="visit-activity-facts__icon">◷</span>
+              <div>
+                <strong>{{ duration }}</strong>
+              </div>
+            </div>
+            <div class="visit-activity-facts__item">
+              <span class="visit-activity-facts__icon">⤴</span>
+              <div>
+                <strong>A partir de {{ priceFrom }}</strong>
+                <small>{{ priceNote }}</small>
+              </div>
+            </div>
+            <div class="visit-activity-facts__item">
+              <span class="visit-activity-facts__icon">⟁</span>
+              <div>
+                <strong>{{ difficulty }}</strong>
+              </div>
+            </div>
+            <div class="visit-activity-facts__item">
+              <span class="visit-activity-facts__icon">✦</span>
+              <div>
+                <strong>{{ kidFriendly }}</strong>
+              </div>
+            </div>
+            <div class="visit-activity-facts__item">
+              <span class="visit-activity-facts__icon">◌</span>
+              <div>
+                <strong>{{ languages }}</strong>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="visit-activity-body unified-bg">
+          <div class="visit-activity-body__inner">
+            <div class="visit-activity-body__main">
+              <div class="visit-activity-section-title">DESCRIPCIO GENERAL</div>
+              {% if overviewIntro %}
+              <p class="visit-activity-body__intro">{{ overviewIntro }}</p>
+              {% endif %}
+              <div class="visit-activity-body__copy prose">{{ content | safe }}</div>
+
+              <details class="visit-activity-accordion" open>
+                <summary>SERVEIS INCLOSOS</summary>
+                <div class="visit-activity-accordion__content prose">
+                  {{ includedServices | markdownify | safe }}
+                </div>
+              </details>
+
+              <details class="visit-activity-accordion">
+                <summary>TROBADA I PUNT DE RECOLLIDA</summary>
+                <div class="visit-activity-accordion__content prose">
+                  {{ meetingPoint | markdownify | safe }}
+                </div>
+              </details>
+
+              <details class="visit-activity-accordion">
+                <summary>INFORMACIO ADDICIONAL</summary>
+                <div class="visit-activity-accordion__content prose">
+                  {{ additionalInfo | markdownify | safe }}
+                </div>
+              </details>
+            </div>
+
+            <aside class="visit-activity-sidebar">
+              <section class="visit-activity-sidebar__section">
+                <h2 class="visit-activity-sidebar__title">ITINERARI</h2>
+                <div class="visit-activity-timeline">
+                  {% for item in itinerary %}
+                  <div class="visit-activity-timeline__item">
+                    <div class="visit-activity-timeline__time">{{ item.time }}</div>
+                    <div class="visit-activity-timeline__text">
+                      <strong>{{ item.title }}</strong>
+                      <p>{{ item.description }}</p>
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+              </section>
+
+              <section class="visit-activity-sidebar__section">
+                <h2 class="visit-activity-sidebar__title">PREUS X PERSONA</h2>
+                <div class="visit-activity-pricing">
+                  {% for item in pricing %}
+                  <div class="visit-activity-pricing__row">
+                    <span>{{ item.group }}</span>
+                    <strong>{{ item.price }}</strong>
+                  </div>
+                  {% endfor %}
+                </div>
+              </section>
+            </aside>
+          </div>
+        </section>
+
+        {% if gallery and gallery.length %}
+        <section
+          class="visit-activity-gallery unified-bg"
+          id="visit-activity-gallery"
+          aria-label="Galeria de fotos"
+        >
+          <div class="visit-activity-gallery__inner">
+            <h2 class="visit-activity-gallery__title">GALERIA DE FOTOS</h2>
+            <div class="visit-activity-gallery__grid">
+              {% for image in gallery %}
+              <figure class="visit-activity-gallery__item">
+                <img src="{{ image.image }}" alt="{{ image.alt }}" />
+              </figure>
+              {% endfor %}
+            </div>
+          </div>
+        </section>
+        {% endif %}
+      </div>
+
+      {% include "footer.html" %}
+    </div>
+
+    <script src="/assets/js/main.js"></script>
+  </body>
+</html>
