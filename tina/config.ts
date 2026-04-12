@@ -602,6 +602,18 @@ export default defineConfig({
                 list: true,
                 fields: [
                   {
+                    type: "image",
+                    name: "image",
+                    label: "Card Image",
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "imageAlt",
+                    label: "Image Alt Text",
+                    required: true,
+                  },
+                  {
                     type: "string",
                     name: "title",
                     label: "Card Title",

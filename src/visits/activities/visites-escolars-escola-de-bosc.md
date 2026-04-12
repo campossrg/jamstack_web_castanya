@@ -63,40 +63,43 @@ additionalInfo: |
   - Oferim formats amb dinar de carmanyola o espai per esmorzar.
   - Recomanem portar roba comoda, aigua i calcat adequat per terreny natural.
 experienceHighlightsSection:
-  eyebrow: ENRIQUEIX LA TEVA AVENTURA AL MONTSENY
-  title: UNA SORTIDA QUE CONNECTA APRENENTATGE I BOSC
-  intro: La proposta escolar combina descoberta, moviment i dinamitzacio per fer que el bosc es converteixi en una aula viva i memorable.
+  title: ENRIQUEIX LA TEVA AVENTURA AL MONTSENY
+  intro: Detalls que fan que cada visita a la castanyeda sigui única.
   items:
-    - title: CONTINGUT ADAPTAT
-      text: Ajustem llenguatge, nivell i objectius perque cada grup hi trobi una experiencia coherent amb la seva etapa educativa.
-    - title: APRENENTATGE ACTIU
-      text: El joc de pistes i les dinamiques d'observacio permeten aprendre fent, tocant i explorant l'entorn.
-    - title: OFICI I TERRITORI
-      text: Introduim la relacio entre bosc, castanya, treball manual i sostenibilitat amb exemples clars i propers.
-    - title: JORNADA A MIDA
-      text: Podem plantejar formats amb taller, espai per esmorzar o dinar i una organitzacio adaptada a cada escola.
+    - title: LA CASTANYERA
+      image: /assets/images/gallery/visites/visites_guiades_1.jpg
+      imageAlt: Castanyera al Montseny
+    - title: EXPERIENCIA ANTIESTRES
+      image: /assets/images/gallery/visites/visites_guiades_2.jpg
+      imageAlt: Detall de castanyer al bosc
+    - title: APAT
+      image: /assets/images/gallery/visites/visites_guiades_3.jpg
+      imageAlt: Apat amb productes de castanya
+    - title: ARBRE DE CASTANYER
+      image: /assets/images/gallery/visites/visites_guiades_banner.jpg
+      imageAlt: Arbre de castanyer
 reviewsSection:
-  eyebrow: OPINIONS DELS VISITANTS
-  title: UNA SORTIDA QUE FUNCIONA MOLT BE AMB GRUPS
-  ratingLabel: VALORACIO MITJANA
-  ratingValue: 5,0/5
-  sourceLabel: ressenyes de Google
+  eyebrow:
+  title:
+  ratingLabel: ★ 4,79, · 1506 EVALUACIONS DE LA VISITA
+  ratingValue:
+  sourceLabel:
   reviews:
-    - quote: Hem vingut amb l'escola i l'activitat ha estat molt ben organitzada. Els infants han participat tota l'estona i han sortit encantats.
-      author: Escola Sant Hilari
-      date: 03/10/2025
+    - quote: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
+      author: Maria Sheferd
+      date: 19/04/2024
       avatar: /assets/images/logo-maria.png
-      avatarAlt: Escola Sant Hilari
-    - quote: Molt bon equilibri entre contingut educatiu i dinamica de grup. L'espai dona molt de joc i es nota que hi ha experiencia.
-      author: AFA Viladrau
-      date: 22/10/2025
+      avatarAlt: Maria Sheferd
+    - quote: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
+      author: Maria Sheferd
+      date: 19/04/2024
       avatar: /assets/images/logo-maria.png
-      avatarAlt: AFA Viladrau
-    - quote: Una proposta ideal per sortir de l'aula i treballar territori, natura i cooperacio d'una manera vivencial.
-      author: Institut Montseny
-      date: 11/11/2025
+      avatarAlt: Maria Sheferd
+    - quote: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
+      author: Maria Sheferd
+      date: 19/04/2024
       avatar: /assets/images/logo-maria.png
-      avatarAlt: Institut Montseny
+      avatarAlt: Maria Sheferd
 gallery:
   - image: /assets/images/gallery/visites/visites_guiades_2.jpg
     alt: Acces al bosc per a grups escolars

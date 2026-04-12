@@ -62,40 +62,43 @@ additionalInfo: |
   - Activitat recomanada per a persones interessades en gastronomia, territori i projectes artesans.
   - Si vols completar la visita amb una compra final o un format mes privat, ho podem preparar.
 experienceHighlightsSection:
-  eyebrow: ENRIQUEIX LA TEVA AVENTURA AL MONTSENY
-  title: UNA VISITA QUE EXPLICA QUI SOM
-  intro: Aquesta proposta combina relat, projecte i degustacio per oferir una immersio serena en l'univers de la Castanya de Viladrau.
+  title: ENRIQUEIX LA TEVA AVENTURA AL MONTSENY
+  intro: Detalls que fan que cada visita a la castanyeda sigui única.
   items:
-    - title: ORIGEN DEL PROJECTE
-      text: Descobrim com neix la iniciativa, quines decisions l'han feta possible i quin vincle manté amb el territori.
-    - title: PROCESSOS ARTESANS
-      text: Obrim la porta als espais i als gestos quotidians que transformen la castanya en producte acabat.
-    - title: TAST COMENTAT
-      text: La degustacio final no es un afegit, sino la manera de comprendre el projecte a traves del sabor.
-    - title: VISITA AMB CALMA
-      text: El format convida a parar, preguntar i connectar amb l'espai sense presses ni recorreguts exigents.
+    - title: LA CASTANYERA
+      image: /assets/images/gallery/visites/visites_guiades_1.jpg
+      imageAlt: Castanyera al Montseny
+    - title: EXPERIENCIA ANTIESTRES
+      image: /assets/images/gallery/visites/visites_guiades_2.jpg
+      imageAlt: Detall de castanyer al bosc
+    - title: APAT
+      image: /assets/images/gallery/visites/visites_guiades_3.jpg
+      imageAlt: Apat amb productes de castanya
+    - title: ARBRE DE CASTANYER
+      image: /assets/images/gallery/visites/visites_guiades_banner.jpg
+      imageAlt: Arbre de castanyer
 reviewsSection:
-  eyebrow: OPINIONS DELS VISITANTS
-  title: UNA EXPERIENCIA PROPERA I AMB SENSE
-  ratingLabel: VALORACIO MITJANA
-  ratingValue: 5,0/5
-  sourceLabel: ressenyes de Google
+  eyebrow:
+  title:
+  ratingLabel: ★ 4,79, · 1506 EVALUACIONS DE LA VISITA
+  ratingValue:
+  sourceLabel:
   reviews:
-    - quote: Ens va agradar molt la manera d'explicar el projecte. Tot te coherencia i el tast ajuda a entendre-ho encara millor.
-      author: Laia Pujol
-      date: 12/09/2025
+    - quote: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
+      author: Maria Sheferd
+      date: 19/04/2024
       avatar: /assets/images/logo-maria.png
-      avatarAlt: Laia Pujol
-    - quote: Una visita petita pero molt cuidada. Molt recomanable per a qui valora els projectes artesans i amb arrels.
-      author: Marc Vinyals
-      date: 04/10/2025
+      avatarAlt: Maria Sheferd
+    - quote: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
+      author: Maria Sheferd
+      date: 19/04/2024
       avatar: /assets/images/logo-maria.png
-      avatarAlt: Marc Vinyals
-    - quote: El tast final va ser excel.lent i l'entorn acompanya molt. Es una activitat serena i molt ben pensada.
-      author: Gemma Serra
-      date: 25/11/2025
+      avatarAlt: Maria Sheferd
+    - quote: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
+      author: Maria Sheferd
+      date: 19/04/2024
       avatar: /assets/images/logo-maria.png
-      avatarAlt: Gemma Serra
+      avatarAlt: Maria Sheferd
 gallery:
   - image: /assets/images/gallery/visites/visites_guiades_3.jpg
     alt: Tast de productes de castanya

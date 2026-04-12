@@ -196,9 +196,6 @@
         {% if experienceHighlightsSection and experienceHighlightsSection.items and experienceHighlightsSection.items.length %}
         <section class="visit-activity-experience">
           <div class="visit-activity-experience__inner">
-            {% if experienceHighlightsSection.eyebrow %}
-            <p class="visit-activity-experience__eyebrow">{{ experienceHighlightsSection.eyebrow }}</p>
-            {% endif %}
             <div class="visit-activity-experience__header">
               <h2 class="visit-activity-experience__title">{{ experienceHighlightsSection.title }}</h2>
               <p class="visit-activity-experience__intro">{{ experienceHighlightsSection.intro }}</p>
@@ -206,8 +203,10 @@
             <div class="visit-activity-experience__grid">
               {% for item in experienceHighlightsSection.items %}
               <article class="visit-activity-experience__card">
+                <div class="visit-activity-experience__media">
+                  <img src="{{ item.image }}" alt="{{ item.imageAlt }}" class="visit-activity-experience__image" />
+                </div>
                 <h3>{{ item.title }}</h3>
-                <p>{{ item.text }}</p>
               </article>
               {% endfor %}
             </div>
@@ -223,16 +222,13 @@
                 {% if reviewsSection.eyebrow %}
                 <p class="visit-activity-reviews__eyebrow">{{ reviewsSection.eyebrow }}</p>
                 {% endif %}
+                {% if reviewsSection.title %}
                 <h2 class="visit-activity-reviews__title">{{ reviewsSection.title }}</h2>
+                {% endif %}
               </div>
 
               <div class="visit-activity-reviews__meta">
-                <img src="/assets/images/logo-google.png" alt="Google" class="google-logo" />
-                <div>
-                  <p class="visit-activity-reviews__rating-label">{{ reviewsSection.ratingLabel }}</p>
-                  <div class="stars">★★★★★</div>
-                  <p class="visit-activity-reviews__rating-value">{{ reviewsSection.ratingValue }} · {{ reviewsSection.sourceLabel }}</p>
-                </div>
+                <p class="visit-activity-reviews__rating-line">{{ reviewsSection.ratingLabel }}</p>
               </div>
 
               <div class="visit-activity-reviews__nav title-nav-wrapper">

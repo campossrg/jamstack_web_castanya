@@ -64,40 +64,43 @@ additionalInfo: |
   - En cas de pluja suau l'activitat es mantindra, adaptant part del recorregut.
   - Es pot complementar amb una visita a mida per a grups privats.
 experienceHighlightsSection:
-  eyebrow: ENRIQUEIX LA TEVA AVENTURA AL MONTSENY
-  title: VIU LA RUTA AMB MES CAPES
-  intro: La caminada guanyara profunditat si hi afegim moments per observar, tastar i compartir el paisatge amb una mica mes de temps.
+  title: ENRIQUEIX LA TEVA AVENTURA AL MONTSENY
+  intro: Detalls que fan que cada visita a la castanyeda sigui única.
   items:
-    - title: CAMINADA INTERPRETATIVA
-      text: Convertim el recorregut en una lectura del bosc per entendre especies, usos tradicionals i gestio forestal viva.
-    - title: TAST DE TERRITORI
-      text: La ruta pot acabar amb una degustacio reposada per portar al paladar tot allo que hem vist entre els castanyers.
-    - title: FORMAT PER PETITS GRUPS
-      text: El ritme tranquil i el tracte proper fan que la proposta funcioni especialment be per a parelles, amics i grups reduits.
-    - title: VISITA ESTACIONAL
-      text: Cada epoca de l'any canvia la llum, l'olor i el relat del bosc, i la ruta s'adapta a aquest moment.
+    - title: LA CASTANYERA
+      image: /assets/images/gallery/visites/visites_guiades_1.jpg
+      imageAlt: Castanyera al Montseny
+    - title: EXPERIENCIA ANTIESTRES
+      image: /assets/images/gallery/visites/visites_guiades_2.jpg
+      imageAlt: Detall de castanyer al bosc
+    - title: APAT
+      image: /assets/images/gallery/visites/visites_guiades_3.jpg
+      imageAlt: Apat amb productes de castanya
+    - title: ARBRE DE CASTANYER
+      image: /assets/images/gallery/visites/visites_guiades_banner.jpg
+      imageAlt: Arbre de castanyer
 reviewsSection:
-  eyebrow: OPINIONS DELS VISITANTS
-  title: UNA RUTA QUE DEIXA EMPREMTA
-  ratingLabel: VALORACIO MITJANA
-  ratingValue: 5,0/5
-  sourceLabel: ressenyes de Google
+  eyebrow:
+  title:
+  ratingLabel: ★ 4,79, · 1506 EVALUACIONS DE LA VISITA
+  ratingValue:
+  sourceLabel:
   reviews:
-    - quote: Molt mes que una passejada. Vam sortir amb la sensacio d'haver entes el paisatge i la feina que hi ha darrere.
-      author: Anna Roca
-      date: 06/10/2025
+    - quote: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
+      author: Maria Sheferd
+      date: 19/04/2024
       avatar: /assets/images/logo-maria.png
-      avatarAlt: Anna Roca
-    - quote: La guia transmet calma i coneixement. El tast final esta molt ben integrat i fa que l'experiencia sigui completa.
-      author: Pau Verdaguer
-      date: 21/10/2025
+      avatarAlt: Maria Sheferd
+    - quote: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
+      author: Maria Sheferd
+      date: 19/04/2024
       avatar: /assets/images/logo-maria.png
-      avatarAlt: Pau Verdaguer
-    - quote: Ideal si busques una activitat autentica al Montseny. Sense presses, amb molt de context i amb un entorn espectacular.
-      author: Mireia Font
-      date: 17/11/2025
+      avatarAlt: Maria Sheferd
+    - quote: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
+      author: Maria Sheferd
+      date: 19/04/2024
       avatar: /assets/images/logo-maria.png
-      avatarAlt: Mireia Font
+      avatarAlt: Maria Sheferd
 gallery:
   - image: /assets/images/gallery/visites/visites_guiades_1.jpg
     alt: Castanyers centenaris de Viladrau

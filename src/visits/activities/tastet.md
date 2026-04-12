@@ -63,39 +63,43 @@ additionalInfo: |
   - El tastet es pot combinar amb una visita guiada o una proposta privada.
 experienceHighlightsSection:
   eyebrow: ENRIQUEIX LA TEVA AVENTURA AL MONTSENY
-  title: PETIT FORMAT, GRAN DESCOBERTA
-  intro: El tastet esta pensat per condensar el projecte en una estona curta, agradable i molt facil d'integrar en altres plans o escapades.
+  title: ENRIQUEIX LA TEVA AVENTURA AL MONTSENY
+  intro: Detalls que fan que cada visita a la castanyeda sigui única.
   items:
-    - title: CINC PRODUCTES SELECCIONATS
-      text: Escollim una mostra variada per recorrer textures, intensitats i maneres diferents de treballar la castanya.
-    - title: MARIDATGES I USOS
-      text: Compartim idees senzilles per imaginar com incorporar aquests productes a casa o en un regal especial.
-    - title: FORMAT FLEXIBLE
-      text: Es una proposta ideal per completar una visita, fer una pausa gastronomica o regalar una experiencia breu pero cuidada.
-    - title: TRACTE PROPER
-      text: El format reduit permet conversar, preguntar i adaptar el tast al ritme i interessos del grup.
+    - title: LA CASTANYERA
+      image: /assets/images/gallery/visites/visites_guiades_1.jpg
+      imageAlt: Castanyera al Montseny
+    - title: EXPERIENCIA ANTIESTRES
+      image: /assets/images/gallery/visites/visites_guiades_2.jpg
+      imageAlt: Detall de castanyer al bosc
+    - title: APAT
+      image: /assets/images/gallery/visites/visites_guiades_3.jpg
+      imageAlt: Apat amb productes de castanya
+    - title: ARBRE DE CASTANYER
+      image: /assets/images/gallery/visites/visites_guiades_banner.jpg
+      imageAlt: Arbre de castanyer
 reviewsSection:
-  eyebrow: OPINIONS DELS VISITANTS
-  title: UN TASTET QUE CONVIDA A TORNAR
-  ratingLabel: VALORACIO MITJANA
-  ratingValue: 5,0/5
-  sourceLabel: ressenyes de Google
+  eyebrow:
+  title:
+  ratingLabel: ★ 4,79, · 1506 EVALUACIONS DE LA VISITA
+  ratingValue:
+  sourceLabel:
   reviews:
-    - quote: Ens va sorprendre molt tot el que es pot fer amb la castanya. El tast es curt pero molt complet i molt ben explicat.
-      author: Neus Sala
-      date: 09/09/2025
+    - quote: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
+      author: Maria Sheferd
+      date: 19/04/2024
       avatar: /assets/images/logo-maria.png
-      avatarAlt: Neus Sala
-    - quote: Perfecte per fer una primera aproximacio al projecte. Producte bonissim i un tracte molt proper.
-      author: Oriol Mas
-      date: 28/10/2025
+      avatarAlt: Maria Sheferd
+    - quote: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
+      author: Maria Sheferd
+      date: 19/04/2024
       avatar: /assets/images/logo-maria.png
-      avatarAlt: Oriol Mas
-    - quote: Activitat molt recomanable si vols una experiencia gastronomica sense necessitat de dedicar-hi tot el mati.
-      author: Helena Costa
-      date: 15/12/2025
+      avatarAlt: Maria Sheferd
+    - quote: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
+      author: Maria Sheferd
+      date: 19/04/2024
       avatar: /assets/images/logo-maria.png
-      avatarAlt: Helena Costa
+      avatarAlt: Maria Sheferd
 gallery:
   - image: /assets/images/gallery/visites/visites_guiades_3.jpg
     alt: Productes artesans amb castanya
