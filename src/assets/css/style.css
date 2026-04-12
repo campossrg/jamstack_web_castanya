@@ -4141,13 +4141,28 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-link-button {
   .visit-activity-hero__content,
   .visit-activity-facts__inner,
   .visit-activity-body__inner,
-  .visit-activity-gallery__inner {
+  .visit-activity-gallery__inner,
+  .visit-activity-experience__inner,
+  .visit-activity-reviews__inner {
     padding-left: 24px;
     padding-right: 24px;
   }
 
   .visit-activity-body__inner {
     gap: 36px;
+  }
+
+  .visit-activity-experience__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .visit-activity-reviews__header {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .visit-activity-reviews__nav {
+    justify-self: start;
   }
 }
 
@@ -4178,19 +4193,31 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-link-button {
   .visit-activity-hero__content,
   .visit-activity-facts__inner,
   .visit-activity-body__inner,
-  .visit-activity-gallery__inner {
+  .visit-activity-gallery__inner,
+  .visit-activity-experience__inner,
+  .visit-activity-reviews__inner {
     padding-left: 20px;
     padding-right: 20px;
   }
 
   .visit-activity-facts__inner,
   .visit-activity-body__inner,
-  .visit-activity-gallery__grid {
+  .visit-activity-gallery__grid,
+  .visit-activity-experience__header,
+  .visit-activity-experience__grid {
     grid-template-columns: 1fr;
   }
 
   .visit-activity-body__inner {
     gap: 32px;
+  }
+
+  .visit-activity-experience__card {
+    min-height: 0;
+  }
+
+  .visit-activity-reviews__card {
+    min-width: min(100%, 310px);
   }
 
   .visit-activity-pricing__row strong {
@@ -4594,6 +4621,141 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-link-button {
   font-size: 34px;
   font-weight: 700;
   line-height: 1;
+}
+
+.visit-activity-experience {
+  padding: 0 0 72px;
+  background: #b19660;
+  color: #f8f2e5;
+}
+
+.visit-activity-experience__inner,
+.visit-activity-reviews__inner {
+  width: min(100%, 1160px);
+  margin: 0 auto;
+  padding: 0 42px;
+}
+
+.visit-activity-experience__eyebrow,
+.visit-activity-reviews__eyebrow {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+.visit-activity-experience__header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.88fr);
+  gap: 28px;
+  align-items: end;
+  margin-top: 16px;
+}
+
+.visit-activity-experience__title,
+.visit-activity-reviews__title {
+  margin: 0;
+  font-family: var(--font-secondary);
+  font-size: clamp(32px, 4vw, 52px);
+  line-height: 0.98;
+  text-transform: uppercase;
+}
+
+.visit-activity-experience__intro {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.visit-activity-experience__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 34px;
+}
+
+.visit-activity-experience__card {
+  min-height: 220px;
+  padding: 28px 24px;
+  border: 1px solid rgba(248, 242, 229, 0.28);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(2px);
+}
+
+.visit-activity-experience__card h3 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.visit-activity-experience__card p {
+  margin: 18px 0 0;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.visit-activity-reviews {
+  padding: 0 0 72px;
+}
+
+.visit-activity-reviews__header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 20px;
+  align-items: end;
+}
+
+.visit-activity-reviews__heading {
+  min-width: 0;
+}
+
+.visit-activity-reviews__meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  color: #7b6b43;
+}
+
+.visit-activity-reviews__rating-label,
+.visit-activity-reviews__rating-value {
+  margin: 0;
+}
+
+.visit-activity-reviews__rating-label {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.visit-activity-reviews__rating-value {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.visit-activity-reviews__nav {
+  justify-self: end;
+}
+
+.visit-activity-reviews__carousel-wrap {
+  margin-top: 26px;
+}
+
+.visit-activity-reviews__carousel {
+  gap: 18px;
+}
+
+.visit-activity-reviews__card {
+  min-width: min(100%, 348px);
+  text-align: left;
+  align-items: flex-start;
+}
+
+.visit-activity-reviews__card .reviewer-info {
+  align-items: flex-start;
 }
 
 .visit-activity-gallery {

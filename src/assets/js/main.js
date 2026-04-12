@@ -164,6 +164,11 @@ document.addEventListener("DOMContentLoaded", () => {
   setupCarousel("galleryScroll", "prevBtn", "nextBtn");
   setupCarousel("testimonialScroll", "prevTestimonial", "nextTestimonial");
   setupCarousel("partnerScroll", "prevPartner", "nextPartner");
+  setupCarousel(
+    "visitActivityReviewsScroll",
+    "visitActivityReviewsPrev",
+    "visitActivityReviewsNext",
+  );
   setupProfessionalsRecipeCarousel(
     "professionalsFoundationsCarousel",
     "professionalsFoundationsPrev",

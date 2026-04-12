@@ -573,6 +573,127 @@ export default defineConfig({
           },
           {
             type: "object",
+            name: "experienceHighlightsSection",
+            label: "Adventure Highlights Section",
+            fields: [
+              {
+                type: "string",
+                name: "eyebrow",
+                label: "Eyebrow",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "title",
+                label: "Title",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "intro",
+                label: "Intro",
+                ui: { component: "textarea" },
+                required: true,
+              },
+              {
+                type: "object",
+                name: "items",
+                label: "Cards",
+                list: true,
+                fields: [
+                  {
+                    type: "string",
+                    name: "title",
+                    label: "Card Title",
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "text",
+                    label: "Card Text",
+                    ui: { component: "textarea" },
+                    required: true,
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            type: "object",
+            name: "reviewsSection",
+            label: "Reviews Section",
+            fields: [
+              {
+                type: "string",
+                name: "eyebrow",
+                label: "Eyebrow",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "title",
+                label: "Title",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "ratingLabel",
+                label: "Rating Label",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "ratingValue",
+                label: "Rating Value",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "sourceLabel",
+                label: "Source Label",
+                required: true,
+              },
+              {
+                type: "object",
+                name: "reviews",
+                label: "Reviews",
+                list: true,
+                fields: [
+                  {
+                    type: "string",
+                    name: "quote",
+                    label: "Quote",
+                    ui: { component: "textarea" },
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "author",
+                    label: "Author",
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "date",
+                    label: "Date",
+                    required: true,
+                  },
+                  {
+                    type: "image",
+                    name: "avatar",
+                    label: "Avatar",
+                  },
+                  {
+                    type: "string",
+                    name: "avatarAlt",
+                    label: "Avatar Alt Text",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            type: "object",
             name: "gallery",
             label: "Gallery",
             list: true,

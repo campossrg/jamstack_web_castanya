@@ -63,6 +63,41 @@ additionalInfo: |
   - Activitat apta per a families i grups petits.
   - Recomanem portar roba d'abric lleugera a primera hora i calcat tancat.
   - Si tens necessitats especials d'accessibilitat o de ritme, ho podem valorar abans de la visita.
+experienceHighlightsSection:
+  eyebrow: ENRIQUEIX LA TEVA AVENTURA AL MONTSENY
+  title: QUATRE MANERES DE FER-LA ENCARA MES TEVA
+  intro: Completa la sortida amb petits gestos que fan que la visita sigui mes memorable, mes comoda i mes connectada amb el territori.
+  items:
+    - title: TAST FINAL A MIDA
+      text: Acabem la ruta amb una degustacio pensada segons el perfil del grup, combinant productes de castanya i altres elaboracions de proximitat.
+    - title: PARADES FOTOGRAFIQUES
+      text: Fem aturades als racons mes oberts del recorregut per gaudir del paisatge, fer fotografies i llegir el bosc amb calma.
+    - title: RELAT DEL TERRITORI
+      text: Durant la ruta expliquem com la finca, la recuperacio dels castanyers i la vida local s'entrellacen dins la Reserva de la Biosfera.
+    - title: FORMAT PRIVAT
+      text: Si busques una experiencia especial per celebrar, compartir o regalar, podem adaptar el ritme i el to de la visita al vostre grup.
+reviewsSection:
+  eyebrow: OPINIONS DELS VISITANTS
+  title: NO HO DIEM NOMES NOSALTRES
+  ratingLabel: VALORACIO MITJANA
+  ratingValue: 5,0/5
+  sourceLabel: ressenyes de Google
+  reviews:
+    - quote: Una experiencia preciosa. El trajecte en 4x4 es molt agradable i l'explicacio sobre els castanyers et fa entendre el bosc d'una altra manera.
+      author: Marta Soler
+      date: 19/10/2025
+      avatar: /assets/images/logo-maria.png
+      avatarAlt: Marta Soler
+    - quote: Vam anar en familia i va ser un encert total. Molt proper, molt ben guiat i el tast final dona un tancament rodó a tota l'activitat.
+      author: Jordi Casals
+      date: 02/11/2025
+      avatar: /assets/images/logo-maria.png
+      avatarAlt: Jordi Casals
+    - quote: El que mes ens va agradar va ser la combinacio entre paisatge, context i producte local. No es una excursio qualsevol, te molt de sentit.
+      author: Clara Bosch
+      date: 14/12/2025
+      avatar: /assets/images/logo-maria.png
+      avatarAlt: Clara Bosch
 gallery:
   - image: /assets/images/gallery/visites/visites_guiades_2.jpg
     alt: Vehicle 4x4 al bosc del Montseny

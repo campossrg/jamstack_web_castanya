@@ -62,6 +62,41 @@ additionalInfo: |
   - Es pot adaptar a primaria, secundaria i grups de lleure.
   - Oferim formats amb dinar de carmanyola o espai per esmorzar.
   - Recomanem portar roba comoda, aigua i calcat adequat per terreny natural.
+experienceHighlightsSection:
+  eyebrow: ENRIQUEIX LA TEVA AVENTURA AL MONTSENY
+  title: UNA SORTIDA QUE CONNECTA APRENENTATGE I BOSC
+  intro: La proposta escolar combina descoberta, moviment i dinamitzacio per fer que el bosc es converteixi en una aula viva i memorable.
+  items:
+    - title: CONTINGUT ADAPTAT
+      text: Ajustem llenguatge, nivell i objectius perque cada grup hi trobi una experiencia coherent amb la seva etapa educativa.
+    - title: APRENENTATGE ACTIU
+      text: El joc de pistes i les dinamiques d'observacio permeten aprendre fent, tocant i explorant l'entorn.
+    - title: OFICI I TERRITORI
+      text: Introduim la relacio entre bosc, castanya, treball manual i sostenibilitat amb exemples clars i propers.
+    - title: JORNADA A MIDA
+      text: Podem plantejar formats amb taller, espai per esmorzar o dinar i una organitzacio adaptada a cada escola.
+reviewsSection:
+  eyebrow: OPINIONS DELS VISITANTS
+  title: UNA SORTIDA QUE FUNCIONA MOLT BE AMB GRUPS
+  ratingLabel: VALORACIO MITJANA
+  ratingValue: 5,0/5
+  sourceLabel: ressenyes de Google
+  reviews:
+    - quote: Hem vingut amb l'escola i l'activitat ha estat molt ben organitzada. Els infants han participat tota l'estona i han sortit encantats.
+      author: Escola Sant Hilari
+      date: 03/10/2025
+      avatar: /assets/images/logo-maria.png
+      avatarAlt: Escola Sant Hilari
+    - quote: Molt bon equilibri entre contingut educatiu i dinamica de grup. L'espai dona molt de joc i es nota que hi ha experiencia.
+      author: AFA Viladrau
+      date: 22/10/2025
+      avatar: /assets/images/logo-maria.png
+      avatarAlt: AFA Viladrau
+    - quote: Una proposta ideal per sortir de l'aula i treballar territori, natura i cooperacio d'una manera vivencial.
+      author: Institut Montseny
+      date: 11/11/2025
+      avatar: /assets/images/logo-maria.png
+      avatarAlt: Institut Montseny
 gallery:
   - image: /assets/images/gallery/visites/visites_guiades_2.jpg
     alt: Acces al bosc per a grups escolars

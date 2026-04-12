@@ -193,6 +193,80 @@
           </div>
         </section>
 
+        {% if experienceHighlightsSection and experienceHighlightsSection.items and experienceHighlightsSection.items.length %}
+        <section class="visit-activity-experience">
+          <div class="visit-activity-experience__inner">
+            {% if experienceHighlightsSection.eyebrow %}
+            <p class="visit-activity-experience__eyebrow">{{ experienceHighlightsSection.eyebrow }}</p>
+            {% endif %}
+            <div class="visit-activity-experience__header">
+              <h2 class="visit-activity-experience__title">{{ experienceHighlightsSection.title }}</h2>
+              <p class="visit-activity-experience__intro">{{ experienceHighlightsSection.intro }}</p>
+            </div>
+            <div class="visit-activity-experience__grid">
+              {% for item in experienceHighlightsSection.items %}
+              <article class="visit-activity-experience__card">
+                <h3>{{ item.title }}</h3>
+                <p>{{ item.text }}</p>
+              </article>
+              {% endfor %}
+            </div>
+          </div>
+        </section>
+        {% endif %}
+
+        {% if reviewsSection and reviewsSection.reviews and reviewsSection.reviews.length %}
+        <section class="visit-activity-reviews unified-bg" aria-label="Ressenyes de la visita">
+          <div class="visit-activity-reviews__inner">
+            <div class="visit-activity-reviews__header">
+              <div class="visit-activity-reviews__heading">
+                {% if reviewsSection.eyebrow %}
+                <p class="visit-activity-reviews__eyebrow">{{ reviewsSection.eyebrow }}</p>
+                {% endif %}
+                <h2 class="visit-activity-reviews__title">{{ reviewsSection.title }}</h2>
+              </div>
+
+              <div class="visit-activity-reviews__meta">
+                <img src="/assets/images/logo-google.png" alt="Google" class="google-logo" />
+                <div>
+                  <p class="visit-activity-reviews__rating-label">{{ reviewsSection.ratingLabel }}</p>
+                  <div class="stars">★★★★★</div>
+                  <p class="visit-activity-reviews__rating-value">{{ reviewsSection.ratingValue }} · {{ reviewsSection.sourceLabel }}</p>
+                </div>
+              </div>
+
+              <div class="visit-activity-reviews__nav title-nav-wrapper">
+                <button class="nav-arrow-inline left" id="visitActivityReviewsPrev" aria-label="Ressenya anterior">
+                  <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+                <button class="nav-arrow-inline right" id="visitActivityReviewsNext" aria-label="Ressenya seguent">
+                  <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="gallery-container visit-activity-reviews__carousel-wrap">
+              <div class="gallery-scroll visit-activity-reviews__carousel" id="visitActivityReviewsScroll">
+                {% for review in reviewsSection.reviews %}
+                <article class="review-card visit-activity-reviews__card">
+                  <img src="/assets/images/logo-google.png" alt="Google" class="google-logo" />
+                  <div class="stars">★★★★★</div>
+                  <p class="review-text">&ldquo;{{ review.quote }}&rdquo;</p>
+                  <div class="reviewer-info">
+                    <span class="reviewer-name">{{ review.author }}</span>
+                    <span class="review-date">{{ review.date }}</span>
+                    {% if review.avatar %}
+                    <img src="{{ review.avatar }}" alt="{{ review.avatarAlt or review.author }}" class="reviewer-avatar" />
+                    {% endif %}
+                  </div>
+                </article>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </section>
+        {% endif %}
+
         {% if gallery and gallery.length %}
         <section
           class="visit-activity-gallery unified-bg"
