@@ -4187,11 +4187,11 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-link-button {
   }
 
   .visit-activity-hero {
-    min-height: 680px;
+    min-height: 520px;
   }
 
   .visit-activity-hero__overlay {
-    padding-top: 130px;
+    padding-top: 88px;
   }
 
   .visit-activity-hero__content,
@@ -4202,6 +4202,10 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-link-button {
   .visit-activity-reviews__inner {
     padding-left: 20px;
     padding-right: 20px;
+  }
+
+  .visit-activity-hero__content {
+    padding-bottom: calc(104px + var(--visit-activity-nav-offset));
   }
 
   .visit-activity-facts__inner,
@@ -4321,32 +4325,39 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-link-button {
 }
 
 .visit-activity-hero {
-  min-height: 760px;
+  position: relative;
+  min-height: 560px;
 }
 
 .visit-activity-hero__image {
   object-position: center;
 }
 
+body.internal.page-visits {
+  --visit-activity-nav-offset: 80px;
+}
+
 .visit-activity-hero__overlay {
+  position: absolute;
+  inset: 0;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  padding: 120px 0 0;
+  justify-content: center;
+  padding: 72px 0 0;
   background: linear-gradient(rgba(64, 45, 20, 0.28), rgba(64, 45, 20, 0.54));
 }
 
 .visit-activity-hero__content {
   width: min(100%, 1160px);
   margin: 0 auto;
-  padding: 0 42px 18px;
+  padding: 0 42px calc(88px + var(--visit-activity-nav-offset));
   color: #fff;
   text-align: center;
 }
 
 .visit-activity-hero__back {
   display: inline-flex;
-  margin-bottom: 22px;
+  margin-bottom: 16px;
   color: #fff;
   text-decoration: none;
   font-size: 12px;
@@ -4369,7 +4380,7 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-link-button {
 }
 
 .visit-activity-hero__reservation {
-  margin: 26px 0 0;
+  margin: 18px 0 0;
   font-size: 15px;
   font-weight: 700;
   letter-spacing: 1px;
@@ -4382,7 +4393,7 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-link-button {
   align-items: center;
   gap: 12px;
   flex-wrap: wrap;
-  margin-top: 16px;
+  margin-top: 12px;
 }
 
 .visit-activity-hero__primary {
@@ -4410,12 +4421,16 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-link-button {
 }
 
 .visit-activity-hero__highlights {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: var(--visit-activity-nav-offset);
   display: flex;
   justify-content: center;
   gap: 24px;
   flex-wrap: wrap;
   width: 100%;
-  margin-top: auto;
+  margin-top: 0;
   padding: 18px 24px;
   background: #b19660;
   color: #fff;
