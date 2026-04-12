@@ -1,7 +1,7 @@
 ---
 layout: layouts/visit-activity.njk
 name: visits
-footerVariant: visits
+footerVariant: visits-newsletter
 tags:
   - visitActivities
 order: 2

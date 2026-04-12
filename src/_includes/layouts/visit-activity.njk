@@ -21,12 +21,6 @@
               >
               <h1 class="visit-activity-hero__title">{{ title }}</h1>
 
-              {% if gallery and gallery.length %}
-              <a href="#visit-activity-gallery" class="btn-olive visit-activity-hero__gallery"
-                >{{ galleryButtonLabel }}</a
-              >
-              {% endif %}
-
               <p class="visit-activity-hero__reservation">{{ reservationPrompt }}</p>
 
               <div class="visit-activity-hero__actions">
@@ -263,24 +257,74 @@
         </section>
         {% endif %}
 
-        {% if gallery and gallery.length %}
-        <section
-          class="visit-activity-gallery unified-bg"
-          id="visit-activity-gallery"
-          aria-label="Galeria de fotos"
-        >
-          <div class="visit-activity-gallery__inner">
-            <h2 class="visit-activity-gallery__title">GALERIA DE FOTOS</h2>
-            <div class="visit-activity-gallery__grid">
-              {% for image in gallery %}
-              <figure class="visit-activity-gallery__item">
-                <img src="{{ image.image }}" alt="{{ image.alt }}" />
-              </figure>
+        <section class="visit-activity-more unified-bg" aria-label="Altres activitats">
+          <div class="visit-activity-more__inner">
+            <div class="visit-activity-more__header">
+              <h2 class="visit-activity-more__title">O MIRA'T AQUESTES ALTRES VISITES</h2>
+              <a href="/visits/" class="visit-activity-more__button">MIRAR TOTES ></a>
+            </div>
+            <div class="visit-activity-more__track">
+              {% for activity in collections.visitActivities %}
+              {% if activity.url != page.url %}
+              <a href="{{ activity.url }}" class="visits-card-link visit-activity-more__link">
+                <article class="visits-card visit-activity-more__card">
+                  <img
+                    src="{{ activity.data.cardImage }}"
+                    alt="{{ activity.data.cardImageAlt }}"
+                    class="visits-card__image"
+                  />
+                  <div class="visits-card__content">
+                    <h3 class="visits-card__title">{{ activity.data.title }}</h3>
+                    <p class="visits-card__text">{{ activity.data.cardDescription }}</p>
+                    <div class="visits-card__meta">
+                      <div class="visits-card__meta-item">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          class="lucide lucide-users"
+                        >
+                          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                          <circle cx="9" cy="7" r="4" />
+                          <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                          <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                        </svg>
+                        <span>De {{ activity.data.personsMin }} a {{ activity.data.personsMax }} persones</span>
+                      </div>
+                      <div class="visits-card__meta-item">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          class="lucide lucide-clock"
+                        >
+                          <circle cx="12" cy="12" r="10" />
+                          <polyline points="12 6 12 12 16 14" />
+                        </svg>
+                        <span>{{ activity.data.duration }}</span>
+                      </div>
+                    </div>
+                    <span class="visits-card__cta">DESCOBREIX L'EXPERIENCIA</span>
+                  </div>
+                </article>
+              </a>
+              {% endif %}
               {% endfor %}
             </div>
           </div>
         </section>
-        {% endif %}
       </div>
 
       {% include "footer.html" %}
