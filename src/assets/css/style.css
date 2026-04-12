@@ -4005,10 +4005,10 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-link-button {
 
 .visits-slider__header {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr);
   align-items: center;
   gap: 28px;
-  padding: 0 28px;
+  padding: 0 42px;
 }
 
 .visits-slider__intro {
@@ -4035,38 +4035,19 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-link-button {
   line-height: 1.45;
 }
 
-.visits-slider__arrow {
-  background: rgba(186, 154, 91, 0.95);
-  box-shadow: none;
-}
-
-.visits-slider__arrow svg {
-  stroke: #fff;
-}
-
-.visits-slider__carousel {
-  margin-top: 22px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
-}
-
-.visits-slider__carousel::-webkit-scrollbar {
-  display: none;
-}
-
 .visits-slider__track {
   display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: calc((100% - 84px) / 3); /* 3 cards + 2 gaps */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 28px;
+  margin-top: 22px;
   padding: 0 42px;
 }
 
 .visits-card {
   position: relative;
   overflow: hidden;
-  background-color: #f5f2e8; /* Light background for the cards */
+  height: 100%;
+  background-color: #f5f2e8;
   color: #7b6b43;
   padding-bottom: 30px;
 }
@@ -4124,32 +4105,26 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-link-button {
   fill: none;
 }
 
-/* Responsive adjustments for visits slider */
 @media screen and (max-width: 1024px) {
   .visits-slider__track {
-    grid-auto-columns: calc((100% - 48px) / 2); /* 2 cards on medium screens */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 24px;
+    padding: 0 24px;
+  }
+
+  .visits-slider__header {
     padding: 0 24px;
   }
 }
 
 @media screen and (max-width: 768px) {
   .visits-slider__header {
-    grid-template-columns: 1fr;
     gap: 16px;
     padding: 0 20px;
   }
 
-  .visits-slider__arrow {
-    justify-self: center;
-  }
-
-  .visits-slider__carousel {
-    margin-top: 18px;
-  }
-
   .visits-slider__track {
-    grid-auto-columns: 100%; /* 1 card on small screens */
+    grid-template-columns: 1fr;
     gap: 20px;
     padding: 0 20px;
   }
@@ -4176,6 +4151,38 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-link-button {
     flex-direction: column;
     gap: 10px;
   }
+}
+
+
+.footer-cta-section--visits {
+  min-height: 300px;
+  height: auto;
+}
+
+.cta-overlay--visits {
+  background: linear-gradient(rgba(64, 45, 20, 0.48), rgba(64, 45, 20, 0.6));
+}
+
+.cta-content--visits {
+  max-width: 900px;
+  padding: 48px 28px;
+}
+
+.cta-title--visits {
+  margin: 0;
+  font-size: clamp(28px, 3.4vw, 52px);
+  line-height: 0.98;
+}
+
+.cta-text--visits {
+  max-width: 760px;
+  font-size: clamp(17px, 1.3vw, 22px);
+}
+
+.btn-olive-transparent--visits {
+  margin-top: 22px;
+  padding: 14px 30px;
+  background: rgba(160, 136, 90, 0.92);
 }
 
 

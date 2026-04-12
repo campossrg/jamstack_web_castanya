@@ -2,11 +2,12 @@
 layout: base
 title: Visites guiades
 name: visits
+footerVariant: visits
 ---
 
 <section class="hero-wrapper visits-hero">
   <img
-    src="/assets/images/gallery/fusta_bg.jpg"
+    src="/assets/images/gallery/visites/visites_guiades_bg.jpg"
     alt="Visites guiades al Montseny"
     class="hero-img"
   />
@@ -25,218 +26,187 @@ name: visits
   </div>
 </section>
 
-<section class="visits-slider unified-bg" aria-label="Visites Guiades Slider">
+<section class="visits-slider unified-bg" aria-label="Visites guiades">
   <div class="visits-slider__inner">
-    <div class="visits-slider__header">
-      <button
-        type="button"
-        class="nav-arrow-inline visits-slider__arrow"
-        id="visitsPrev"
-        aria-label="Visita anterior"
-      >
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <polyline points="15 18 9 12 15 6"></polyline>
-        </svg>
-      </button>
-
-      <div class="visits-slider__intro">
-        <h2 class="visits-slider__title">OBLIDA'T DE TOT MENYS DE GAUDUR</h2>
-        <p class="visits-slider__text">
-          Submergeix-te en l'exuberant natura del Montseny a traves de tres
-          experiencies inoblidables, cadascuna dissenyada per conectar-te amb
-          l'essencia de la castanya i el seu entorn.
-        </p>
-      </div>
-
-      <button
-        type="button"
-        class="nav-arrow-inline visits-slider__arrow"
-        id="visitsNext"
-        aria-label="Següent visita"
-      >
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <polyline points="9 18 15 12 9 6"></polyline>
-        </svg>
-      </button>
-    </div>
-
-    <div class="visits-slider__carousel" id="visitsCarousel">
-      <div class="visits-slider__track">
-        <article class="visits-card">
-          <img
-            src="/assets/images/visits/ruta_guiada.jpg"
-            alt="Ruta guiada: Els Castanyers Centenaris de Viladrau"
-            class="visits-card__image"
-          />
-          <div class="visits-card__content">
-            <h3 class="visits-card__title">
-              RUTA GUIADA: ELS CASTANYERS CENTENARIS DE VILADRAU
-            </h3>
-            <p class="visits-card__text">
-              Sent la força del Montseny: camina entre castanyers mil·lenaris,
-              descobreix llegendes i tasta l'essència de la castanya en una
-              visita única.
-            </p>
-            <div class="visits-card__meta">
-              <div class="visits-card__meta-item">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="lucide lucide-users"
-                >
-                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                  <circle cx="9" cy="7" r="4" />
-                  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                </svg>
-                <span>De 2 a 8 persones</span>
-              </div>
-              <div class="visits-card__meta-item">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="lucide lucide-clock"
-                >
-                  <circle cx="12" cy="12" r="10" />
-                  <polyline points="12 6 12 12 16 14" />
-                </svg>
-                <span>1 hora amb degustació</span>
-              </div>
+    <div class="visits-slider__track">
+      {% for slide in visits.visitsSlider.slides %}
+      <article class="visits-card">
+        <img
+          src="{{ slide.image }}"
+          alt="{{ slide.imageAlt }}"
+          class="visits-card__image"
+        />
+        <div class="visits-card__content">
+          <h3 class="visits-card__title">{{ slide.title }}</h3>
+          <p class="visits-card__text">{{ slide.description }}</p>
+          <div class="visits-card__meta">
+            <div class="visits-card__meta-item">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-users"
+              >
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+              <span
+                >De {{ slide.personsMin }} a {{ slide.personsMax }}
+                persones</span
+              >
+            </div>
+            <div class="visits-card__meta-item">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-clock"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+              <span>{{ slide.timeValue }} {{ slide.timeUnit }}</span>
             </div>
           </div>
-        </article>
+        </div>
+      </article>
+      {% endfor %}
 
-        <article class="visits-card">
-          <img
-            src="/assets/images/visits/aventura_4x4.jpg"
-            alt="Aventura 4x4: Castanyers Centenaris del Montseny"
-            class="visits-card__image"
-          />
-          <div class="visits-card__content">
-            <h3 class="visits-card__title">
-              AVENTURA 4X4: CASTANYERS CENTENARIS DEL MONTSENY
-            </h3>
-            <p class="visits-card__text">
-              Viu la màgia del Montseny amb una ruta en 4x4 cap al cor del bosc,
-              on s'amaguen els nostres castanyers centenaris més secrets. Una
-              immersió a la Reserva de la Biosfera per sentir el batec més
-              profund de la natura.
-            </p>
-            <div class="visits-card__meta">
-              <div class="visits-card__meta-item">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="lucide lucide-users"
-                >
-                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                  <circle cx="9" cy="7" r="4" />
-                  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                </svg>
-                <span>De 2 a 8 persones</span>
-              </div>
-              <div class="visits-card__meta-item">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="lucide lucide-clock"
-                >
-                  <circle cx="12" cy="12" r="10" />
-                  <polyline points="12 6 12 12 16 14" />
-                </svg>
-                <span>1 hora amb degustació</span>
-              </div>
+      <article class="visits-card">
+        <img
+          src="{{ visits.tastetSection.image }}"
+          alt="{{ visits.tastetSection.imageAlt }}"
+          class="visits-card__image"
+        />
+        <div class="visits-card__content">
+          <h3 class="visits-card__title">{{ visits.tastetSection.title }}</h3>
+          <p class="visits-card__text">
+            {{ visits.tastetSection.description }}
+          </p>
+          <div class="visits-card__meta">
+            <div class="visits-card__meta-item">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-users"
+              >
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+              <span
+                >De {{ visits.tastetSection.personsMin }} a {{
+                visits.tastetSection.personsMax }} persones</span
+              >
+            </div>
+            <div class="visits-card__meta-item">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-clock"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+              <span
+                >{{ visits.tastetSection.timeValue }} {{
+                visits.tastetSection.timeUnit }}</span
+              >
             </div>
           </div>
-        </article>
+        </div>
+      </article>
 
-        <article class="visits-card">
-          <img
-            src="/assets/images/visits/finca_castanya.jpg"
-            alt="Finca de la Castanya: Història i Tast Artesà"
-            class="visits-card__image"
-          />
-          <div class="visits-card__content">
-            <h3 class="visits-card__title">
-              FINCA DE LA CASTANYA: HISTÒRIA I TAST ARTESÀ
-            </h3>
-            <p class="visits-card__text">
-              Visita el centre de la Castanya de Viladrau: coneix les nostres
-              arrels i gaudeix de la pau del Montseny amb un tast de productes
-              artesans.
-            </p>
-            <div class="visits-card__meta">
-              <div class="visits-card__meta-item">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="lucide lucide-users"
-                >
-                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                  <circle cx="9" cy="7" r="4" />
-                  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                </svg>
-                <span>De 2 a 8 persones</span>
-              </div>
-              <div class="visits-card__meta-item">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="lucide lucide-clock"
-                >
-                  <circle cx="12" cy="12" r="10" />
-                  <polyline points="12 6 12 12 16 14" />
-                </svg>
-                <span>1 hora amb degustació</span>
-              </div>
+      <article class="visits-card">
+        <img
+          src="{{ visits.visitsEscolaSection.image }}"
+          alt="{{ visits.visitsEscolaSection.imageAlt }}"
+          class="visits-card__image"
+        />
+        <div class="visits-card__content">
+          <h3 class="visits-card__title">
+            {{ visits.visitsEscolaSection.title }}
+          </h3>
+          <p class="visits-card__text">
+            {{ visits.visitsEscolaSection.description }}
+          </p>
+          <div class="visits-card__meta">
+            <div class="visits-card__meta-item">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-users"
+              >
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+              <span
+                >De {{ visits.visitsEscolaSection.personsMin }} a {{
+                visits.visitsEscolaSection.personsMax }} persones</span
+              >
+            </div>
+            <div class="visits-card__meta-item">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-clock"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+              <span
+                >{{ visits.visitsEscolaSection.timeValue }} {{
+                visits.visitsEscolaSection.timeUnit }}</span
+              >
             </div>
           </div>
-        </article>
-      </div>
+        </div>
+      </article>
     </div>
   </div>
 </section>
