@@ -137,5 +137,253 @@
         "ingredients": ["Castanya cuita", "Farina de castanya"]
       }
     ]
+  },
+  "classicsSection": {
+    "title": "ELS CLASSICS QUE MAI FALLEN",
+    "intro": "Les receptes de tota la vida amb el segell d'autenticitat del Montseny",
+    "ctaLabel": "VEURE TOTES",
+    "ctaHref": "/contact/",
+    "slides": [
+      {
+        "title": "COM HIDRATAR LA SECALLONA",
+        "image": "/assets/images/gallery/espai-gastronomic/cotxe.jpg",
+        "imageAlt": "Grup a l'entorn del bosc de castanyers",
+        "time": "20 minuts",
+        "difficulty": "facil",
+        "ingredientsLabel": "INGREDIENTS",
+        "ingredients": ["Castanya torrada", "Farina de castanya"]
+      },
+      {
+        "title": "COM HIDRATAR LA SECALLONA",
+        "image": "/assets/images/gallery/espai-gastronomic/cotxe.jpg",
+        "imageAlt": "Sessio practica amb castanya al Montseny",
+        "time": "20 minuts",
+        "difficulty": "facil",
+        "ingredientsLabel": "INGREDIENTS",
+        "ingredients": ["Castanya torrada", "Farina de castanya"]
+      },
+      {
+        "title": "COM HIDRATAR LA SECALLONA",
+        "image": "/assets/images/gallery/espai-gastronomic/cotxe.jpg",
+        "imageAlt": "Taller gastronomic amb castanya",
+        "time": "20 minuts",
+        "difficulty": "facil",
+        "ingredientsLabel": "INGREDIENTS",
+        "ingredients": ["Castanya torrada", "Farina de castanya"]
+      },
+      {
+        "title": "CASTANYA BULLIDA PERFECTA",
+        "image": "/assets/images/gallery/espai-gastronomic/castanya_plat.jpg",
+        "imageAlt": "Plat amb elaboracio de castanya",
+        "time": "25 minuts",
+        "difficulty": "mitja",
+        "ingredientsLabel": "INGREDIENTS",
+        "ingredients": ["Castanya bullida", "Brou vegetal"]
+      },
+      {
+        "title": "CREMA DE TARDOR",
+        "image": "/assets/images/gallery/espai-gastronomic/cake.jpg",
+        "imageAlt": "Preparacio casolana amb castanya",
+        "time": "35 minuts",
+        "difficulty": "mitja",
+        "ingredientsLabel": "INGREDIENTS",
+        "ingredients": ["Farina de castanya", "Llet"]
+      },
+      {
+        "title": "GUARNICIO DE CASTANYA",
+        "image": "/assets/images/gallery/espai-gastronomic/castanya_camp.jpg",
+        "imageAlt": "Castanya al paisatge del Montseny",
+        "time": "15 minuts",
+        "difficulty": "facil",
+        "ingredientsLabel": "INGREDIENTS",
+        "ingredients": ["Castanya fresca", "Sal fina"]
+      }
+    ]
+  },
+  "healthySection": {
+    "title": "CUINA SALUDABLE I FIT",
+    "intro": "Energia natural i plats lleugers per cuidar-te sense renunciar al millor sabor.",
+    "ctaLabel": "VEURE TOTES",
+    "ctaHref": "/contact/",
+    "slides": [
+      {
+        "title": "COM HIDRATAR LA SECALLONA",
+        "image": "/assets/images/gallery/espai-gastronomic/cotxe.jpg",
+        "imageAlt": "Grup a l'entorn del bosc de castanyers",
+        "time": "20 minuts",
+        "difficulty": "facil",
+        "ingredientsLabel": "INGREDIENTS",
+        "ingredients": ["Castanya torrada", "Farina de castanya"]
+      },
+      {
+        "title": "COM HIDRATAR LA SECALLONA",
+        "image": "/assets/images/gallery/espai-gastronomic/cotxe.jpg",
+        "imageAlt": "Sessio practica amb castanya al Montseny",
+        "time": "20 minuts",
+        "difficulty": "facil",
+        "ingredientsLabel": "INGREDIENTS",
+        "ingredients": ["Castanya torrada", "Farina de castanya"]
+      },
+      {
+        "title": "COM HIDRATAR LA SECALLONA",
+        "image": "/assets/images/gallery/espai-gastronomic/cotxe.jpg",
+        "imageAlt": "Taller gastronomic amb castanya",
+        "time": "20 minuts",
+        "difficulty": "facil",
+        "ingredientsLabel": "INGREDIENTS",
+        "ingredients": ["Castanya torrada", "Farina de castanya"]
+      },
+      {
+        "title": "POSTRES MES LLEUGERES",
+        "image": "/assets/images/gallery/espai-gastronomic/baixa_en_greixos.jpg",
+        "imageAlt": "Castanya preparada per a recepta saludable",
+        "time": "30 minuts",
+        "difficulty": "facil",
+        "ingredientsLabel": "INGREDIENTS",
+        "ingredients": ["Castanya", "Oli d'oliva"]
+      },
+      {
+        "title": "TEXTURA PER A POSTRES",
+        "image": "/assets/images/gallery/espai-gastronomic/cake.jpg",
+        "imageAlt": "Postres amb castanya",
+        "time": "35 minuts",
+        "difficulty": "mitja",
+        "ingredientsLabel": "INGREDIENTS",
+        "ingredients": ["Farina de castanya", "Xocolata"]
+      },
+      {
+        "title": "CASTANYA DE TEMPORADA",
+        "image": "/assets/images/gallery/espai-gastronomic/castanya_camp.jpg",
+        "imageAlt": "Castanya al paisatge del Montseny",
+        "time": "15 minuts",
+        "difficulty": "facil",
+        "ingredientsLabel": "INGREDIENTS",
+        "ingredients": ["Castanya fresca", "Sal fina"]
+      }
+    ]
+  },
+  "sweetSection": {
+    "title": "MOMENT DOLC (REBOSTERIA FACIL)",
+    "intro": "Capritxos irresistibles i postres artesanes per endolcir els teus moments especials.",
+    "ctaLabel": "VEURE TOTES",
+    "ctaHref": "/contact/",
+    "slides": [
+      {
+        "title": "COM HIDRATAR LA SECALLONA",
+        "image": "/assets/images/gallery/espai-gastronomic/cotxe.jpg",
+        "imageAlt": "Grup a l'entorn del bosc de castanyers",
+        "time": "20 minuts",
+        "difficulty": "facil",
+        "ingredientsLabel": "INGREDIENTS",
+        "ingredients": ["Castanya torrada", "Farina de castanya"]
+      },
+      {
+        "title": "COM HIDRATAR LA SECALLONA",
+        "image": "/assets/images/gallery/espai-gastronomic/cotxe.jpg",
+        "imageAlt": "Sessio practica amb castanya al Montseny",
+        "time": "20 minuts",
+        "difficulty": "facil",
+        "ingredientsLabel": "INGREDIENTS",
+        "ingredients": ["Castanya torrada", "Farina de castanya"]
+      },
+      {
+        "title": "COM HIDRATAR LA SECALLONA",
+        "image": "/assets/images/gallery/espai-gastronomic/cotxe.jpg",
+        "imageAlt": "Taller gastronomic amb castanya",
+        "time": "20 minuts",
+        "difficulty": "facil",
+        "ingredientsLabel": "INGREDIENTS",
+        "ingredients": ["Castanya torrada", "Farina de castanya"]
+      },
+      {
+        "title": "POSTRES DE TARDOR",
+        "image": "/assets/images/gallery/espai-gastronomic/cake.jpg",
+        "imageAlt": "Postres amb castanya",
+        "time": "35 minuts",
+        "difficulty": "mitja",
+        "ingredientsLabel": "INGREDIENTS",
+        "ingredients": ["Farina de castanya", "Xocolata"]
+      },
+      {
+        "title": "CREMA DOLCA",
+        "image": "/assets/images/gallery/espai-gastronomic/castanya_plat.jpg",
+        "imageAlt": "Plat amb elaboracio de castanya",
+        "time": "25 minuts",
+        "difficulty": "mitja",
+        "ingredientsLabel": "INGREDIENTS",
+        "ingredients": ["Castanya bullida", "Llet"]
+      },
+      {
+        "title": "PASTISSERIA DE CASA",
+        "image": "/assets/images/gallery/espai-gastronomic/cake.jpg",
+        "imageAlt": "Preparacio casolana amb castanya",
+        "time": "40 minuts",
+        "difficulty": "mitja",
+        "ingredientsLabel": "INGREDIENTS",
+        "ingredients": ["Farina de castanya", "Mantega"]
+      }
+    ]
+  },
+  "remediesSection": {
+    "title": "LA FARMACIOLA DEL BOSC: REMEIS TRADICIONALS AMB CASTANYER",
+    "intro": "Explorem l'us medicinal del castanyer de Viladrau, un arbre amb segles de saviesa en la cura de la salut.",
+    "ctaLabel": "VEURE TOTES",
+    "ctaHref": "/contact/",
+    "slides": [
+      {
+        "title": "COM HIDRATAR LA SECALLONA",
+        "image": "/assets/images/gallery/espai-gastronomic/cotxe.jpg",
+        "imageAlt": "Grup a l'entorn del bosc de castanyers",
+        "time": "20 minuts",
+        "difficulty": "facil",
+        "ingredientsLabel": "INGREDIENTS",
+        "ingredients": ["Castanya torrada", "Farina de castanya"]
+      },
+      {
+        "title": "COM HIDRATAR LA SECALLONA",
+        "image": "/assets/images/gallery/espai-gastronomic/cotxe.jpg",
+        "imageAlt": "Sessio practica amb castanya al Montseny",
+        "time": "20 minuts",
+        "difficulty": "facil",
+        "ingredientsLabel": "INGREDIENTS",
+        "ingredients": ["Castanya torrada", "Farina de castanya"]
+      },
+      {
+        "title": "COM HIDRATAR LA SECALLONA",
+        "image": "/assets/images/gallery/espai-gastronomic/cotxe.jpg",
+        "imageAlt": "Taller gastronomic amb castanya",
+        "time": "20 minuts",
+        "difficulty": "facil",
+        "ingredientsLabel": "INGREDIENTS",
+        "ingredients": ["Castanya torrada", "Farina de castanya"]
+      },
+      {
+        "title": "INFUSIO DE FULLA",
+        "image": "/assets/images/gallery/espai-gastronomic/castanya.jpg",
+        "imageAlt": "Castanya encara a l'arbre",
+        "time": "10 minuts",
+        "difficulty": "facil",
+        "ingredientsLabel": "INGREDIENTS",
+        "ingredients": ["Fulla de castanyer", "Aigua"]
+      },
+      {
+        "title": "US TRADICIONAL DEL FRUIT",
+        "image": "/assets/images/gallery/espai-gastronomic/castanya_camp.jpg",
+        "imageAlt": "Castanya al paisatge del Montseny",
+        "time": "15 minuts",
+        "difficulty": "facil",
+        "ingredientsLabel": "INGREDIENTS",
+        "ingredients": ["Castanya fresca", "Mel"]
+      },
+      {
+        "title": "REMEI DE TEMPORADA",
+        "image": "/assets/images/gallery/espai-gastronomic/recollida.jpg",
+        "imageAlt": "Recollida i triatge manual",
+        "time": "20 minuts",
+        "difficulty": "facil",
+        "ingredientsLabel": "INGREDIENTS",
+        "ingredients": ["Castanya seleccionada", "Aigua"]
+      }
+    ]
   }
 }

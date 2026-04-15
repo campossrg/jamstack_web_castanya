@@ -194,6 +194,26 @@ document.addEventListener("DOMContentLoaded", () => {
     "gastronomicHomePrev",
     "gastronomicHomeNext",
   );
+  setupProfessionalsRecipeCarousel(
+    "gastronomicClassicsCarousel",
+    "gastronomicClassicsPrev",
+    "gastronomicClassicsNext",
+  );
+  setupProfessionalsRecipeCarousel(
+    "gastronomicHealthyCarousel",
+    "gastronomicHealthyPrev",
+    "gastronomicHealthyNext",
+  );
+  setupProfessionalsRecipeCarousel(
+    "gastronomicSweetCarousel",
+    "gastronomicSweetPrev",
+    "gastronomicSweetNext",
+  );
+  setupProfessionalsRecipeCarousel(
+    "gastronomicRemediesCarousel",
+    "gastronomicRemediesPrev",
+    "gastronomicRemediesNext",
+  );
   const setupHeaderDropdown = () => {
     const dropdownItems = Array.from(
       document.querySelectorAll(".nav-item--dropdown"),
