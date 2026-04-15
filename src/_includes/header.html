@@ -61,9 +61,33 @@
           </div>
         </li>
         <li
-          class="nav-item {% if '/gastronomic' in page.url %}active{% endif %} has-dropdown"
+          class="nav-item {% if '/gastronomic' in page.url %}active{% endif %} has-dropdown nav-item--dropdown"
         >
-          <a href="/gastronomic">ESPAI GASTRONÒMIC</a>
+          <button
+            type="button"
+            class="nav-link-button"
+            aria-expanded="{% if '/gastronomic' in page.url %}true{% else %}false{% endif %}"
+            aria-controls="gastronomic-submenu"
+          >
+            ESPAI GASTRONÒMIC
+          </button>
+          <div class="nav-dropdown" id="gastronomic-submenu">
+            <a
+              href="/gastronomic"
+              class="nav-dropdown__link {% if page.url == '/gastronomic/' %}is-active{% endif %}"
+              >On menjar la castanya de Viladrau</a
+            >
+            <a
+              href="/gastronomic/valor-nutricionals"
+              class="nav-dropdown__link {% if '/gastronomic/valor-nutricionals' in page.url %}is-active{% endif %}"
+              >Valors nutricionals</a
+            >
+            <a
+              href="/gastronomic/receptes"
+              class="nav-dropdown__link {% if '/gastronomic/receptes' in page.url %}is-active{% endif %}"
+              >Receptes</a
+            >
+          </div>
         </li>
         <li
           class="nav-item {% if '/projecte' in page.url %}active{% endif %} has-dropdown"

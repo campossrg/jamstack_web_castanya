@@ -184,44 +184,79 @@ document.addEventListener("DOMContentLoaded", () => {
     "professionalsAuthorPrev",
     "professionalsAuthorNext",
   );
+  setupProfessionalsRecipeCarousel(
+    "gastronomicRecipesCarousel",
+    "gastronomicRecipesPrev",
+    "gastronomicRecipesNext",
+  );
+  setupProfessionalsRecipeCarousel(
+    "gastronomicHomeCarousel",
+    "gastronomicHomePrev",
+    "gastronomicHomeNext",
+  );
   const setupHeaderDropdown = () => {
-    const dropdownItem = document.querySelector(".nav-item--dropdown");
-    const trigger = dropdownItem?.querySelector(".nav-link-button");
+    const dropdownItems = Array.from(
+      document.querySelectorAll(".nav-item--dropdown"),
+    );
 
-    if (!dropdownItem || !trigger) {
+    if (!dropdownItems.length) {
       return;
     }
 
-    const closeDropdown = () => {
-      dropdownItem.classList.remove("is-open");
-      trigger.setAttribute("aria-expanded", "false");
-    };
+    const closeDropdown = (item) => {
+      const button = item.querySelector(".nav-link-button");
+      item.classList.remove("is-open");
 
-    const openDropdown = () => {
-      dropdownItem.classList.add("is-open");
-      trigger.setAttribute("aria-expanded", "true");
-    };
-
-    trigger.addEventListener("click", (event) => {
-      event.stopPropagation();
-      const isOpen = dropdownItem.classList.contains("is-open");
-
-      if (isOpen) {
-        closeDropdown();
-      } else {
-        openDropdown();
+      if (button) {
+        button.setAttribute("aria-expanded", "false");
       }
+    };
+
+    const openDropdown = (item) => {
+      dropdownItems.forEach((dropdownItem) => {
+        if (dropdownItem !== item) {
+          closeDropdown(dropdownItem);
+        }
+      });
+
+      const button = item.querySelector(".nav-link-button");
+      item.classList.add("is-open");
+
+      if (button) {
+        button.setAttribute("aria-expanded", "true");
+      }
+    };
+
+    dropdownItems.forEach((dropdownItem) => {
+      const trigger = dropdownItem.querySelector(".nav-link-button");
+
+      if (!trigger) {
+        return;
+      }
+
+      trigger.addEventListener("click", (event) => {
+        event.stopPropagation();
+        const isOpen = dropdownItem.classList.contains("is-open");
+
+        if (isOpen) {
+          closeDropdown(dropdownItem);
+        } else {
+          openDropdown(dropdownItem);
+        }
+      });
     });
 
     document.addEventListener("click", (event) => {
-      if (!dropdownItem.contains(event.target)) {
-        closeDropdown();
-      }
+      dropdownItems.forEach((dropdownItem) => {
+        if (!dropdownItem.contains(event.target)) {
+          closeDropdown(dropdownItem);
+        }
+      });
     });
 
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
-        closeDropdown();
+        dropdownItems.forEach(closeDropdown);
       }
     });
   };

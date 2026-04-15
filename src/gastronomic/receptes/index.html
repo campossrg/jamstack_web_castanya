@@ -1,0 +1,230 @@
+---
+layout: base
+title: Receptes amb Castanya
+name: gastronomic-recipes
+footerVariant: gastronomic
+---
+
+{% set pageContent = gastronomicRecipes.page %}
+
+<section class="gastronomic-recipes-hero">
+  <img
+    src="{{ pageContent.hero.backgroundImage }}"
+    alt="{{ pageContent.hero.backgroundAlt }}"
+    class="hero-bg-img"
+  />
+
+  <div class="hero-dark-overlay"></div>
+
+  <div class="gastronomic-recipes-hero__overlay">
+    <div class="gastronomic-recipes-hero__content">
+      <h1 class="gastronomic-recipes-hero__title">
+        {{ pageContent.hero.title | replace("\n", "<br />") | safe }}
+      </h1>
+      <p class="gastronomic-recipes-hero__text">{{ pageContent.hero.text }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="gastronomic-recipes-filters">
+  <div class="gastronomic-recipes-filters__inner">
+    <div class="gastronomic-recipes-filters__list">
+      {% for item in pageContent.filtersBar.items %}
+      <button type="button" class="gastronomic-recipes-filters__item">
+        {{ item }}
+      </button>
+      {% endfor %}
+    </div>
+
+    <a href="#receptes" class="gastronomic-recipes-filters__search">
+      {{ pageContent.filtersBar.searchLabel }}
+    </a>
+  </div>
+</section>
+
+<section
+  class="professionals-inspiration-recipes gastronomic-recipes-section"
+  id="receptes"
+>
+  <div class="professionals-inspiration-recipes__inner">
+    <div class="professionals-inspiration-recipes__header">
+      <button
+        type="button"
+        class="professionals-inspiration-recipes__nav professionals-inspiration-recipes__nav--prev"
+        id="gastronomicRecipesPrev"
+        aria-label="Bloc anterior"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+
+      <h2 class="professionals-inspiration-recipes__title">
+        {{ pageContent.foundationsSection.title }}
+      </h2>
+
+      <p class="professionals-inspiration-recipes__intro">
+        {{ pageContent.foundationsSection.intro }}
+      </p>
+
+      <button
+        type="button"
+        class="professionals-inspiration-recipes__nav professionals-inspiration-recipes__nav--next"
+        id="gastronomicRecipesNext"
+        aria-label="Bloc seguent"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+
+    <div
+      class="professionals-inspiration-recipes__carousel"
+      id="gastronomicRecipesCarousel"
+    >
+      <div class="professionals-inspiration-recipes__grid">
+        {% for slide in pageContent.foundationsSection.slides %}
+        <article
+          class="professionals-inspiration-card gastronomic-recipes-card"
+        >
+          <h3 class="professionals-inspiration-card__title">
+            {{ slide.title }}
+          </h3>
+          <img
+            src="{{ slide.image }}"
+            alt="{{ slide.imageAlt }}"
+            class="professionals-inspiration-card__image"
+          />
+          <div class="professionals-inspiration-card__meta">
+            <span class="professionals-inspiration-card__meta-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="8"></circle>
+                <path d="M12 7v5l3 2"></path>
+              </svg>
+              {{ slide.time }}
+            </span>
+            <span class="professionals-inspiration-card__meta-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7 4v8"></path>
+                <path d="M10 4v8"></path>
+                <path d="M7 8h3"></path>
+                <path d="M14 4v5c0 1.7 1.3 3 3v8"></path>
+              </svg>
+              {{ slide.difficulty }}
+            </span>
+          </div>
+          <p class="professionals-inspiration-card__label">
+            {{ slide.ingredientsLabel }}
+          </p>
+          <ul class="professionals-inspiration-card__ingredients">
+            {% for ingredient in slide.ingredients %}
+            <li>{{ ingredient }}</li>
+            {% endfor %}
+          </ul>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="professionals-inspiration-recipes__cta">
+      <a href="{{ pageContent.foundationsSection.ctaHref }}" class="btn-olive"
+        >{{ pageContent.foundationsSection.ctaLabel }}</a
+      >
+    </div>
+  </div>
+</section>
+
+<section
+  class="professionals-inspiration-recipes professionals-inspiration-recipes--stacked gastronomic-recipes-section"
+>
+  <div class="professionals-inspiration-recipes__inner">
+    <div class="professionals-inspiration-recipes__header">
+      <button
+        type="button"
+        class="professionals-inspiration-recipes__nav professionals-inspiration-recipes__nav--prev"
+        id="gastronomicHomePrev"
+        aria-label="Bloc anterior"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+
+      <h2 class="professionals-inspiration-recipes__title">
+        {{ pageContent.homeTraditionsSection.title }}
+      </h2>
+
+      <p class="professionals-inspiration-recipes__intro">
+        {{ pageContent.homeTraditionsSection.intro }}
+      </p>
+
+      <button
+        type="button"
+        class="professionals-inspiration-recipes__nav professionals-inspiration-recipes__nav--next"
+        id="gastronomicHomeNext"
+        aria-label="Bloc seguent"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+
+    <div
+      class="professionals-inspiration-recipes__carousel"
+      id="gastronomicHomeCarousel"
+    >
+      <div class="professionals-inspiration-recipes__grid">
+        {% for slide in pageContent.homeTraditionsSection.slides %}
+        <article
+          class="professionals-inspiration-card gastronomic-recipes-card"
+        >
+          <h3 class="professionals-inspiration-card__title">
+            {{ slide.title }}
+          </h3>
+          <img
+            src="{{ slide.image }}"
+            alt="{{ slide.imageAlt }}"
+            class="professionals-inspiration-card__image"
+          />
+          <div class="professionals-inspiration-card__meta">
+            <span class="professionals-inspiration-card__meta-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="8"></circle>
+                <path d="M12 7v5l3 2"></path>
+              </svg>
+              {{ slide.time }}
+            </span>
+            <span class="professionals-inspiration-card__meta-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7 4v8"></path>
+                <path d="M10 4v8"></path>
+                <path d="M7 8h3"></path>
+                <path d="M14 4v5c0 1.7 1.3 3 3v8"></path>
+              </svg>
+              {{ slide.difficulty }}
+            </span>
+          </div>
+          <p class="professionals-inspiration-card__label">
+            {{ slide.ingredientsLabel }}
+          </p>
+          <ul class="professionals-inspiration-card__ingredients">
+            {% for ingredient in slide.ingredients %}
+            <li>{{ ingredient }}</li>
+            {% endfor %}
+          </ul>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="professionals-inspiration-recipes__cta">
+      <a
+        href="{{ pageContent.homeTraditionsSection.ctaHref }}"
+        class="btn-olive"
+        >{{ pageContent.homeTraditionsSection.ctaLabel }}</a
+      >
+    </div>
+  </div>
+</section>
