@@ -5684,6 +5684,22 @@ body.internal.page-visits {
   height: 100%;
 }
 
+.gastronomic-recipes-section .professionals-inspiration-recipes__grid {
+  grid-auto-columns: calc((100% - 56px) / 3);
+}
+
+@media screen and (max-width: 900px) {
+  .gastronomic-recipes-section .professionals-inspiration-recipes__grid {
+    grid-auto-columns: calc((100% - 28px) / 2);
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .gastronomic-recipes-section .professionals-inspiration-recipes__grid {
+    grid-auto-columns: 100%;
+  }
+}
+
 
 
   .professionals-inspiration-hero__cta {
