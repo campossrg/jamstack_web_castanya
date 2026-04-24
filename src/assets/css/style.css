@@ -2630,10 +2630,16 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-link-button {
   margin-bottom: 30px;
 }
 
+.page-projecte .content-wrap {
+  width: 100%;
+  max-width: none;
+  padding: 0;
+}
+
 .projecte-page {
-  width: min(100%, 1260px);
-  margin: 0 auto;
-  padding: 0 6px 72px;
+  width: 100%;
+  margin: 0;
+  padding: 0 0 72px;
 }
 
 .projecte-page__hero {
@@ -2763,6 +2769,52 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-link-button {
   box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
 }
 
+.projecte-process {
+  padding: 80px 24px 96px;
+  background: #8a7747;
+  color: #f5efe3;
+}
+
+.projecte-process__intro {
+  max-width: 760px;
+  margin: 0 auto 56px;
+  text-align: center;
+}
+
+.projecte-process__title {
+  margin: 0 0 18px;
+  font-family: var(--font-main);
+  font-size: clamp(1.7rem, 3vw, 2.3rem);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.projecte-process__copy {
+  margin: 0 auto;
+  max-width: 680px;
+  font-family: var(--font-main);
+  font-size: 1.08rem;
+  line-height: 1.55;
+}
+
+.projecte-process__diagram {
+  width: min(100%, 980px);
+  margin: 0 auto;
+}
+
+.projecte-process__diagram-image {
+  width: 100%;
+  max-width: 840px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.projecte-process__diagram-image {
+  width: 100%;
+}
+
 @media (max-width: 900px) {
   .projecte-page {
     padding: 0 0 56px;
@@ -2794,6 +2846,14 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-link-button {
     top: auto;
     bottom: 24px;
     width: min(80%, 280px);
+  }
+
+  .projecte-process {
+    padding: 64px 20px 72px;
+  }
+
+  .projecte-process__diagram {
+    width: 100%;
   }
 }
 
