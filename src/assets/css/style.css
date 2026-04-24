@@ -2630,6 +2630,194 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-link-button {
   margin-bottom: 30px;
 }
 
+.projecte-page {
+  width: min(100%, 1260px);
+  margin: 0 auto;
+  padding: 0 6px 72px;
+}
+
+.projecte-page__hero {
+  position: relative;
+  min-height: 520px;
+  overflow: hidden;
+}
+
+.projecte-page__hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(24, 24, 24, 0.08) 0%, rgba(24, 24, 24, 0.48) 100%);
+}
+
+.projecte-page__hero-image {
+  width: 100%;
+  height: 100%;
+  min-height: 520px;
+  object-fit: cover;
+  display: block;
+}
+
+.projecte-page__hero-overlay {
+  position: absolute;
+  inset: auto 0 54px;
+  z-index: 1;
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+  padding: 0 32px;
+  text-align: center;
+  color: #f8f4ea;
+}
+
+.projecte-page__hero-kicker {
+  font-family: var(--font-main);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+}
+
+.projecte-page__hero-title,
+.projecte-page__heading {
+  font-family: var(--font-secondary);
+  color: #8f7240;
+  text-transform: uppercase;
+}
+
+.projecte-page__hero-title {
+  max-width: 720px;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.05;
+  color: #ffffff;
+}
+
+.projecte-page__hero-copy {
+  max-width: 620px;
+  font-family: var(--font-main);
+  font-size: 1.2rem;
+  line-height: 1.45;
+}
+
+.projecte-page__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.projecte-page__panel {
+  min-height: 520px;
+}
+
+.projecte-page__panel--image {
+  position: relative;
+  overflow: hidden;
+}
+
+.projecte-page__image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.projecte-page__panel--text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 22px;
+  padding: clamp(38px, 5vw, 84px);
+  background: #f3ede2;
+  text-align: center;
+}
+
+.projecte-page__heading {
+  max-width: 420px;
+  margin: 0 auto;
+  font-size: clamp(1.9rem, 3vw, 2.7rem);
+  line-height: 1.08;
+}
+
+.projecte-page__panel--text p {
+  max-width: 470px;
+  margin: 0 auto;
+  font-family: var(--font-main);
+  font-size: 1.12rem;
+  line-height: 1.55;
+  color: #5a4f40;
+}
+
+.projecte-page__panel--captioned {
+  background: #efe7da;
+}
+
+.projecte-page__caption-card {
+  position: absolute;
+  top: 23%;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 230px;
+  padding: 28px 22px;
+  background: rgba(244, 239, 232, 0.94);
+  color: #1f1f1f;
+  font-family: var(--font-main);
+  font-size: 1.05rem;
+  text-align: center;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+}
+
+@media (max-width: 900px) {
+  .projecte-page {
+    padding: 0 0 56px;
+  }
+
+  .projecte-page__hero,
+  .projecte-page__hero-image,
+  .projecte-page__panel {
+    min-height: auto;
+  }
+
+  .projecte-page__hero {
+    min-height: 420px;
+  }
+
+  .projecte-page__hero-image {
+    min-height: 420px;
+  }
+
+  .projecte-page__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .projecte-page__panel--image {
+    min-height: 360px;
+  }
+
+  .projecte-page__caption-card {
+    top: auto;
+    bottom: 24px;
+    width: min(80%, 280px);
+  }
+}
+
+@media (max-width: 640px) {
+  .projecte-page__hero-overlay {
+    inset: auto 0 28px;
+    padding: 0 20px;
+  }
+
+  .projecte-page__hero-kicker {
+    font-size: 0.9rem;
+    letter-spacing: 0.18em;
+  }
+
+  .projecte-page__hero-copy,
+  .projecte-page__panel--text p {
+    font-size: 1rem;
+  }
+
+  .projecte-page__panel--text {
+    padding: 34px 22px;
+  }
+}
+
 .gastronomic-page-hero {
   position: relative;
   min-height: 420px;
