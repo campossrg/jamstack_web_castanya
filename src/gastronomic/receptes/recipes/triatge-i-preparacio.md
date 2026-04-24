@@ -31,6 +31,14 @@ steps:
   - title: PAS 3
     text: Classifica-les segons mida o destinacio culinaria per treballar amb mes precisio, sobretot si fas lots grans o varies receptes alhora.
 secretTitle: EL SECRET DEL JOAQUIM
+relatedProductsSection:
+  title: PRODUCTES EN AQUESTA RECEPTA
+  intro: Recupera el gust d'abans amb els consells del Joaquim per aconseguir unes castanyes dolces, tendres i facils de pelar.
+  products:
+    - castanya-torrada
+    - farina-castanya
+    - secallona
+    - flocs-castanya
 secretQuote: Triar be el fruit es la recepta invisible que hi ha darrere de totes les receptes bones.
 ---
 

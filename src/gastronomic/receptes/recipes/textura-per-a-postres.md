@@ -33,6 +33,14 @@ steps:
   - title: PAS 3
     text: Deixa refredar la base abans d'utilitzar-la en postres mes complexes. Un bon refredat li dona cos i estabilitat.
 secretTitle: EL SECRET DEL JOAQUIM
+relatedProductsSection:
+  title: PRODUCTES EN AQUESTA RECEPTA
+  intro: Recupera el gust d'abans amb els consells del Joaquim per aconseguir unes castanyes dolces, tendres i facils de pelar.
+  products:
+    - castanya-torrada
+    - farina-castanya
+    - secallona
+    - flocs-castanya
 secretQuote: La xocolata no ha d'estar massa calenta quan la barreges amb la castanya si vols una textura fina i brillant.
 ---
 

@@ -1,6 +1,12 @@
 import { defineConfig } from "tinacms";
 
 const branch = process.env.HEAD || process.env.VERCEL_GIT_COMMIT_REF || "main";
+const recipeProductOptions = [
+  { label: "Castanya torrada", value: "castanya-torrada" },
+  { label: "Farina de castanya", value: "farina-castanya" },
+  { label: "Secallona", value: "secallona" },
+  { label: "Flocs de castanya", value: "flocs-castanya" },
+];
 
 export default defineConfig({
   branch,
@@ -870,6 +876,34 @@ export default defineConfig({
             name: "secretTitle",
             label: "Titol del secret",
             required: true,
+          },
+          {
+            type: "object",
+            name: "relatedProductsSection",
+            label: "Productes relacionats",
+            fields: [
+              {
+                type: "string",
+                name: "title",
+                label: "Titol de la seccio",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "intro",
+                label: "Text introductori",
+                ui: { component: "textarea" },
+                required: true,
+              },
+              {
+                type: "string",
+                name: "products",
+                label: "Productes",
+                list: true,
+                options: recipeProductOptions,
+                required: true,
+              },
+            ],
           },
           {
             type: "string",

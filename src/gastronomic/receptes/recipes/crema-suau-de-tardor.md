@@ -32,6 +32,14 @@ steps:
   - title: PAS 3
     text: Acaba amb una punta de nou moscada i rectifica la textura abans de servir. Pots completar-la amb unes castanyes esmicolades per sobre.
 secretTitle: EL SECRET DEL JOAQUIM
+relatedProductsSection:
+  title: PRODUCTES EN AQUESTA RECEPTA
+  intro: Recupera el gust d'abans amb els consells del Joaquim per aconseguir unes castanyes dolces, tendres i facils de pelar.
+  products:
+    - castanya-torrada
+    - farina-castanya
+    - secallona
+    - flocs-castanya
 secretQuote: La nou moscada s'ha de posar al final i amb molta cura; nomes ha d'acompanyar, mai tapar la castanya.
 ---
 

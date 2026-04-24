@@ -31,6 +31,14 @@ steps:
   - title: PAS 3
     text: Pela-les encara tebies i guarda-les per servir immediatament o per integrar-les a altres receptes de tardor.
 secretTitle: EL SECRET DEL JOAQUIM
+relatedProductsSection:
+  title: PRODUCTES EN AQUESTA RECEPTA
+  intro: Recupera el gust d'abans amb els consells del Joaquim per aconseguir unes castanyes dolces, tendres i facils de pelar.
+  products:
+    - castanya-torrada
+    - farina-castanya
+    - secallona
+    - flocs-castanya
 secretQuote: La millor castanya bullida es la que encara mante una mica de nervi al centre i no queda aigualida.
 ---
 

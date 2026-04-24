@@ -32,6 +32,14 @@ steps:
   - title: PAS 3
     text: Tritura fins a obtenir una crema llisa i ajusta la densitat amb mes brou si cal. Serveix-la com a base per a altres plats o com a crema lleugera.
 secretTitle: EL SECRET DEL JOAQUIM
+relatedProductsSection:
+  title: PRODUCTES EN AQUESTA RECEPTA
+  intro: Recupera el gust d'abans amb els consells del Joaquim per aconseguir unes castanyes dolces, tendres i facils de pelar.
+  products:
+    - castanya-torrada
+    - farina-castanya
+    - secallona
+    - flocs-castanya
 secretQuote: Si tritures la crema mentre encara es ben calenta, la textura queda molt mes sedosa i natural.
 ---
 

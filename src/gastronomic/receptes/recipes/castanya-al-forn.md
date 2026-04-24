@@ -31,6 +31,14 @@ steps:
   - title: PAS 3
     text: Deixa-les reposar tapades amb un drap uns minuts abans de servir. Aixi conserven escalfor i la pell surt amb mes facilitat.
 secretTitle: EL SECRET DEL JOAQUIM
+relatedProductsSection:
+  title: PRODUCTES EN AQUESTA RECEPTA
+  intro: Recupera el gust d'abans amb els consells del Joaquim per aconseguir unes castanyes dolces, tendres i facils de pelar.
+  products:
+    - castanya-torrada
+    - farina-castanya
+    - secallona
+    - flocs-castanya
 secretQuote: Un rep os curt sota un drap es la diferencia entre una castanya seca i una castanya amable de pelar.
 ---
 

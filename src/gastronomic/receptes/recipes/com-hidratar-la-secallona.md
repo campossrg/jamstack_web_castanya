@@ -34,6 +34,14 @@ steps:
   - title: PAS 3
     text: Ajusta amb un polsim de sal i acaba de donar el punt segons si la faras servir en plats salats, farcits o cremes. Aquesta base et permet reaprofitar preparacions i mantenir l'aroma del Montseny.
 secretTitle: EL SECRET DEL JOAQUIM
+relatedProductsSection:
+  title: PRODUCTES EN AQUESTA RECEPTA
+  intro: Recupera el gust d'abans amb els consells del Joaquim per aconseguir unes castanyes dolces, tendres i facils de pelar.
+  products:
+    - castanya-torrada
+    - farina-castanya
+    - secallona
+    - flocs-castanya
 secretQuote: Si deixes reposar la barreja uns minuts abans de cuinar-la, la castanya recupera cos i el resultat queda molt mes fi.
 ---
 

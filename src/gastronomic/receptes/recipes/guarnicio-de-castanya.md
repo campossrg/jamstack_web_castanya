@@ -31,6 +31,14 @@ steps:
   - title: PAS 3
     text: Serveix-les al costat del plat principal, sense carregar-les massa de condiments per mantenir-ne el protagonisme.
 secretTitle: EL SECRET DEL JOAQUIM
+relatedProductsSection:
+  title: PRODUCTES EN AQUESTA RECEPTA
+  intro: Recupera el gust d'abans amb els consells del Joaquim per aconseguir unes castanyes dolces, tendres i facils de pelar.
+  products:
+    - castanya-torrada
+    - farina-castanya
+    - secallona
+    - flocs-castanya
 secretQuote: Quan una guarnicio es bona, acompanya sense cridar; la castanya te aquesta virtut si la tractes amb mesura.
 ---
 

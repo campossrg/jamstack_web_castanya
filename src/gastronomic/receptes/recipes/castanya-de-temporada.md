@@ -32,6 +32,14 @@ steps:
   - title: PAS 3
     text: Serveix-les amb una mica de sal fina, soles o com a part d'un assortiment de temporada. Funcionen molt be en tastos i aperitius.
 secretTitle: EL SECRET DEL JOAQUIM
+relatedProductsSection:
+  title: PRODUCTES EN AQUESTA RECEPTA
+  intro: Recupera el gust d'abans amb els consells del Joaquim per aconseguir unes castanyes dolces, tendres i facils de pelar.
+  products:
+    - castanya-torrada
+    - farina-castanya
+    - secallona
+    - flocs-castanya
 secretQuote: La castanya de temporada no necessita massa coses; el millor condiment es respectar el seu punt just.
 ---
 

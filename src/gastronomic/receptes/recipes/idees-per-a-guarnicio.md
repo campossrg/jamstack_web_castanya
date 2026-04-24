@@ -32,6 +32,14 @@ steps:
   - title: PAS 3
     text: Utilitza-les sobre carns, arrossos o verdures al forn per afegir contrast de textura i un toc de bosc.
 secretTitle: EL SECRET DEL JOAQUIM
+relatedProductsSection:
+  title: PRODUCTES EN AQUESTA RECEPTA
+  intro: Recupera el gust d'abans amb els consells del Joaquim per aconseguir unes castanyes dolces, tendres i facils de pelar.
+  products:
+    - castanya-torrada
+    - farina-castanya
+    - secallona
+    - flocs-castanya
 secretQuote: Si hi afegeixes les herbes al final, l'olor arriba a taula amb molta mes forca.
 ---
 

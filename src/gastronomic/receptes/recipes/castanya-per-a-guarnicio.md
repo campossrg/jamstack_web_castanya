@@ -32,6 +32,14 @@ steps:
   - title: PAS 3
     text: Afegeix la sal al final i serveix-les calentes al costat del plat principal. Son ideals per donar textura i un punt aromatic de tardor.
 secretTitle: EL SECRET DEL JOAQUIM
+relatedProductsSection:
+  title: PRODUCTES EN AQUESTA RECEPTA
+  intro: Recupera el gust d'abans amb els consells del Joaquim per aconseguir unes castanyes dolces, tendres i facils de pelar.
+  products:
+    - castanya-torrada
+    - farina-castanya
+    - secallona
+    - flocs-castanya
 secretQuote: Si no les cuines massa, mantenen millor la textura i fan de guarnicio sense convertir-se en pure.
 ---
 

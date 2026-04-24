@@ -32,6 +32,14 @@ steps:
   - title: PAS 3
     text: Tritura, rectifica la textura i serveix immediatament amb un acabat senzill, com unes gotes d'oli o herbes suaus.
 secretTitle: EL SECRET DEL JOAQUIM
+relatedProductsSection:
+  title: PRODUCTES EN AQUESTA RECEPTA
+  intro: Recupera el gust d'abans amb els consells del Joaquim per aconseguir unes castanyes dolces, tendres i facils de pelar.
+  products:
+    - castanya-torrada
+    - farina-castanya
+    - secallona
+    - flocs-castanya
 secretQuote: Rostir una mica la base abans d'afegir la llet dona una profunditat que fa la crema molt mes memorable.
 ---
 

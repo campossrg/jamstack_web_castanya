@@ -32,6 +32,14 @@ steps:
   - title: PAS 3
     text: "Dona-li la forma o l'acabat que necessitis segons el plat: farcit, saltejat, base de coca o acompanyament."
 secretTitle: EL SECRET DEL JOAQUIM
+relatedProductsSection:
+  title: PRODUCTES EN AQUESTA RECEPTA
+  intro: Recupera el gust d'abans amb els consells del Joaquim per aconseguir unes castanyes dolces, tendres i facils de pelar.
+  products:
+    - castanya-torrada
+    - farina-castanya
+    - secallona
+    - flocs-castanya
 secretQuote: L'aprofitament no consisteix a amagar les restes, sino a donar-los una nova intencio a la cuina.
 ---
 

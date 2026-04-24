@@ -32,6 +32,14 @@ steps:
   - title: PAS 3
     text: Refreda la preparacio abans de servir per reforcar la sensacio de postres lleugeres i netes al paladar.
 secretTitle: EL SECRET DEL JOAQUIM
+relatedProductsSection:
+  title: PRODUCTES EN AQUESTA RECEPTA
+  intro: Recupera el gust d'abans amb els consells del Joaquim per aconseguir unes castanyes dolces, tendres i facils de pelar.
+  products:
+    - castanya-torrada
+    - farina-castanya
+    - secallona
+    - flocs-castanya
 secretQuote: La castanya ja te dolcor; quan no la tapes massa, el postre queda molt mes fi.
 ---
 

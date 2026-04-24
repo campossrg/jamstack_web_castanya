@@ -5873,6 +5873,82 @@ body.internal.page-gastronomic-recipes {
   opacity: 0.4;
 }
 
+.recipe-detail__related-products {
+  margin-top: 92px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(139, 116, 69, 0.45);
+}
+
+.recipe-detail__related-products-header {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.recipe-detail__related-products-title,
+.recipe-detail__related-product-title {
+  margin: 0;
+  font-family: var(--font-secondary);
+  text-transform: uppercase;
+  color: #8b7445;
+}
+
+.recipe-detail__related-products-title {
+  font-size: clamp(28px, 2.8vw, 40px);
+}
+
+.recipe-detail__related-products-intro,
+.recipe-detail__related-product-subtitle,
+.recipe-detail__related-product-price {
+  margin: 0;
+  color: #8b7445;
+}
+
+.recipe-detail__related-products-intro {
+  margin-top: 14px;
+  font-size: 18px;
+  line-height: 1.55;
+}
+
+.recipe-detail__related-products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 28px;
+  margin-top: 38px;
+}
+
+.recipe-detail__related-product-card {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  text-align: center;
+}
+
+.recipe-detail__related-product-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1.1;
+  object-fit: cover;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.recipe-detail__related-product-title {
+  margin-top: 20px;
+  font-size: clamp(28px, 2.2vw, 36px);
+  line-height: 0.92;
+}
+
+.recipe-detail__related-product-subtitle {
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.recipe-detail__related-product-price {
+  margin-top: 14px;
+  font-size: 13px;
+  letter-spacing: 0.4px;
+}
+
 @media screen and (max-width: 900px) {
   .recipe-detail__grid {
     grid-template-columns: 1fr;
@@ -5889,6 +5965,15 @@ body.internal.page-gastronomic-recipes {
   .recipe-detail__meta {
     justify-content: flex-start;
   }
+
+  .recipe-detail__related-products-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .recipe-detail__related-products-header,
+  .recipe-detail__related-product-card {
+    text-align: left;
+  }
 }
 
 @media screen and (max-width: 560px) {
@@ -5902,6 +5987,15 @@ body.internal.page-gastronomic-recipes {
 
   .recipe-detail__pagination {
     flex-direction: column;
+  }
+
+  .recipe-detail__related-products {
+    margin-top: 72px;
+  }
+
+  .recipe-detail__related-products-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
 }
 

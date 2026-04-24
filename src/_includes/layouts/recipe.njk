@@ -12,6 +12,8 @@
   {% endfor %}
   {% set previousRecipe = recipes[currentIndex - 1] if currentIndex > 0 else null %}
   {% set nextRecipe = recipes[currentIndex + 1] if currentIndex > -1 and currentIndex < (recipes | length - 1) else null %}
+  {% set relatedProductsSectionData = relatedProductsSection or {} %}
+  {% set relatedProductKeys = relatedProductsSectionData.products or [] %}
 
   <body class="internal{% if name %} page-{{ name }}{% endif %}">
     {% include "header.html" %}
@@ -103,6 +105,35 @@
               <span class="recipe-detail__pagination-link recipe-detail__pagination-link--disabled">Seguent recepta &rarr;</span>
               {% endif %}
             </nav>
+
+            {% if relatedProductKeys | length %}
+            <section class="recipe-detail__related-products" aria-labelledby="recipe-related-products-title">
+              <div class="recipe-detail__related-products-header">
+                <h2 id="recipe-related-products-title" class="recipe-detail__related-products-title">
+                  {{ relatedProductsSectionData.title }}
+                </h2>
+                <p class="recipe-detail__related-products-intro">{{ relatedProductsSectionData.intro }}</p>
+              </div>
+
+              <div class="recipe-detail__related-products-grid">
+                {% for productKey in relatedProductKeys %}
+                  {% set product = recipeProducts[productKey] %}
+                  {% if product %}
+                  <a href="{{ product.href }}" class="recipe-detail__related-product-card">
+                    <img
+                      src="{{ product.image }}"
+                      alt="{{ product.imageAlt }}"
+                      class="recipe-detail__related-product-image"
+                    />
+                    <h3 class="recipe-detail__related-product-title">{{ product.title }}</h3>
+                    <p class="recipe-detail__related-product-subtitle">{{ product.subtitle }}</p>
+                    <p class="recipe-detail__related-product-price">{{ product.price }}</p>
+                  </a>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </section>
+            {% endif %}
           </div>
         </section>
       </div>
