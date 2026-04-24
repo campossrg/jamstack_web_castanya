@@ -1,0 +1,86 @@
+{
+  "hero": {
+    "title": "ACTUALITAT I NOTICIES DE\nLA CASTANYA DE VILADRAU",
+    "text": "Descobreix el dia a dia de la Castanya de Viladrau, des de la cura dels nostres boscos fins a la cultura que ens defineix.",
+    "backgroundImage": "/assets/images/gallery/fusta_exterior.png",
+    "backgroundAlt": "Espai exterior de la Castanya de Viladrau",
+    "tagsTitle": "ULTIMES ETIQUETES",
+    "tags": [
+      "Etiqueta",
+      "Etiqueta",
+      "Etiqueta",
+      "Etiqueta",
+      "Etiqueta",
+      "Etiqueta",
+      "Etiqueta",
+      "Etiqueta",
+      "Etiqueta",
+      "Etiqueta",
+      "Etiqueta",
+      "Etiqueta"
+    ]
+  },
+  "filtersBar": {
+    "items": [
+      "Mes nou primer",
+      "Per tematica",
+      "Tipus de plat",
+      "Per temps de lectura"
+    ]
+  },
+  "featuredArticle": {
+    "date": "13 MAIG 2025",
+    "title": "LOREM IPSUM DOLOR SIT\nAMET CONSECTETUR\nADIPISCING",
+    "excerpt": "consectetur adipiscing, elit nascetur natoque mollis.",
+    "readingTimeLabel": "Temps de lectura",
+    "readingTimeValue": "12 minuts",
+    "tagsLabel": "Etiquetes",
+    "tagsValue": "Salut, Medi ambient",
+    "image": "/assets/images/gallery/recuperacio_boscos.jpg",
+    "imageAlt": "Grup de visitants caminant pel bosc",
+    "imageBadge": "Etiqueta"
+  },
+  "articleGrid": {
+    "items": [
+      {
+        "date": "13 MAIG 2025",
+        "title": "LOREM IPSUM DOLOR SIT\nAMET CONSECTETUR\nADIPISCING",
+        "excerpt": "consectetur adipiscing, elit nascetur natoque mollis.",
+        "readingTimeLabel": "Temps de lectura",
+        "readingTimeValue": "12 minuts",
+        "tagsLabel": "Etiquetes",
+        "tagsValue": "Salut, Medi ambient",
+        "image": "/assets/images/gallery/recuperacio_boscos.jpg",
+        "imageAlt": "Grup de visitants caminant pel bosc",
+        "imageBadge": "Etiqueta",
+        "highlighted": true
+      },
+      {
+        "date": "13 MAIG 2025",
+        "title": "LOREM IPSUM DOLOR SIT\nAMET CONSECTETUR\nADIPISCING",
+        "excerpt": "consectetur adipiscing, elit nascetur natoque mollis.",
+        "readingTimeLabel": "Temps de lectura",
+        "readingTimeValue": "12 minuts",
+        "tagsLabel": "Etiquetes",
+        "tagsValue": "Salut, Medi ambient",
+        "image": "/assets/images/gallery/recuperacio_boscos.jpg",
+        "imageAlt": "Grup de visitants caminant pel bosc",
+        "imageBadge": "Etiqueta",
+        "highlighted": false
+      },
+      {
+        "date": "13 MAIG 2025",
+        "title": "LOREM IPSUM DOLOR SIT\nAMET CONSECTETUR\nADIPISCING",
+        "excerpt": "consectetur adipiscing, elit nascetur natoque mollis.",
+        "readingTimeLabel": "Temps de lectura",
+        "readingTimeValue": "12 minuts",
+        "tagsLabel": "Etiquetes",
+        "tagsValue": "Salut, Medi ambient",
+        "image": "/assets/images/gallery/recuperacio_boscos.jpg",
+        "imageAlt": "Grup de visitants caminant pel bosc",
+        "imageBadge": "Etiqueta",
+        "highlighted": false
+      }
+    ]
+  }
+}

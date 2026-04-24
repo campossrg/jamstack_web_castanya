@@ -1,39 +1,113 @@
 ---
 layout: base
-title: Blog
+title: Actualitat
 name: blog
 ---
 
+{% set pageContent = actualitat.page %}
+
 <section class="blog-header-section">
-  <div class="container">
-    <h1 class="section-title">Actualitat i Notícies de la Castanya de Viladrau</h1>
-    <p class="section-subtitle">Descobreix el dia a dia de la Castanya de Viladrau, des de la cura dels nostres boscos fins a la cultura que ens defineix.</p>
-    
-    <div class="blog-filters">
-      <a href="/blog/" class="filter-btn active">Totes les entrades</a>
-      <a href="#" class="filter-btn">Històries</a>
-      <a href="#" class="filter-btn">Actualitat</a>
-      <a href="#" class="filter-btn">Consells</a>
+  <div class="blog-hero">
+    <img
+      src="{{ pageContent.hero.backgroundImage }}"
+      alt="{{ pageContent.hero.backgroundAlt }}"
+      class="blog-hero-bg"
+    />
+
+    <div class="blog-hero-overlay"></div>
+
+    <div class="container blog-hero-inner">
+      <div class="blog-hero-copy">
+        <h1 class="blog-hero-title">
+          {{ pageContent.hero.title | replace("\n", "<br />") | safe }}
+        </h1>
+        <p class="blog-hero-subtitle">{{ pageContent.hero.text }}</p>
+
+        <div class="blog-tag-cloud" aria-label="Etiquetes destacades">
+          <span class="blog-tag-cloud-title">{{ pageContent.hero.tagsTitle }}</span>
+          <div class="blog-tag-cloud-list">
+            {% for tag in pageContent.hero.tags %}
+            <span class="filter-btn">{{ tag }}</span>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="blog-sort-bar">
+    <div class="container blog-sort-list" aria-label="Opcions d'ordenacio">
+      {% for item in pageContent.filtersBar.items %}
+      <span class="blog-sort-link">{{ item }}</span>
+      {% endfor %}
     </div>
   </div>
 </section>
 
 <div class="container">
-  <div class="news-grid">
-    {% for post in collections.posts | reverse %}
-    <article class="news-card">
-      <div class="card-img-placeholder">
-        {% if post.data.image %}
-          <img src="{{ post.data.image }}" alt="{{ post.data.imageAlt }}" class="fit-img">
-        {% endif %}
+  <article class="featured-news-card">
+    <div class="featured-news-copy">
+      <p class="featured-news-date">{{ pageContent.featuredArticle.date }}</p>
+      <h2 class="featured-news-title">
+        {{ pageContent.featuredArticle.title | replace("\n", "<br />") | safe }}
+      </h2>
+      <p class="featured-news-excerpt">{{ pageContent.featuredArticle.excerpt }}</p>
+      <div class="featured-news-meta">
+        <p>
+          <strong>{{ pageContent.featuredArticle.readingTimeLabel }}</strong><br />
+          {{ pageContent.featuredArticle.readingTimeValue }}
+        </p>
+        <p>
+          <strong>{{ pageContent.featuredArticle.tagsLabel }}</strong><br />
+          {{ pageContent.featuredArticle.tagsValue }}
+        </p>
       </div>
-      <div class="news-card-content">
-        <h3 class="card-title">{{ post.data.title }}</h3>
-        <p class="post-meta">{{ post.date | readableDate }}</p>
-        <p class="card-excerpt">{{ post.data.description | truncate(120) }}</p>
-        <a href="{{ post.url }}" class="card-btn">Llegir més</a>
+    </div>
+
+    <div class="featured-news-image-link">
+      <div class="featured-news-image">
+        <span class="featured-news-chip">{{ pageContent.featuredArticle.imageBadge }}</span>
+        <img
+          src="{{ pageContent.featuredArticle.image }}"
+          alt="{{ pageContent.featuredArticle.imageAlt }}"
+          class="fit-img"
+        />
+      </div>
+    </div>
+  </article>
+
+  <section class="actualitat-grid" aria-label="Mes articles">
+    {% for item in pageContent.articleGrid.items %}
+    <article class="actualitat-card{% if item.highlighted %} actualitat-card--highlighted{% endif %}">
+      <div class="actualitat-card-image">
+        <span class="featured-news-chip">{{ item.imageBadge }}</span>
+        <img src="{{ item.image }}" alt="{{ item.imageAlt }}" class="fit-img" />
+      </div>
+
+      <div class="actualitat-card-content">
+        {% if item.highlighted %}
+        <button type="button" class="actualitat-card-arrow" aria-label="Seguent article">
+          <span>&#8599;</span>
+        </button>
+        {% endif %}
+
+        <p class="actualitat-card-date">{{ item.date }}</p>
+        <h3 class="actualitat-card-title">
+          {{ item.title | replace("\n", "<br />") | safe }}
+        </h3>
+        <p class="actualitat-card-excerpt">{{ item.excerpt }}</p>
+        <div class="actualitat-card-meta">
+          <p>
+            <strong>{{ item.readingTimeLabel }}</strong><br />
+            {{ item.readingTimeValue }}
+          </p>
+          <p>
+            <strong>{{ item.tagsLabel }}</strong><br />
+            {{ item.tagsValue }}
+          </p>
+        </div>
       </div>
     </article>
     {% endfor %}
-  </div>
+  </section>
 </div>
