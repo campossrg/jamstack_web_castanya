@@ -12,6 +12,15 @@ const md = markdownIt({
 module.exports = function (eleventyConfig) {
   eleventyConfig.setDataDeepMerge(true);
 
+  eleventyConfig.addFilter("slugify", (value = "") => {
+    return String(value)
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+  });
+
   eleventyConfig.addTransform("htmlmin", function (content, outputPath) {
     if (outputPath && outputPath.endsWith(".html")) {
       let minified = htmlmin.minify(content, {
@@ -90,6 +99,12 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addCollection("visitActivities", (collectionApi) => {
     return collectionApi
       .getFilteredByGlob("./src/visits/activities/*.md")
+      .sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
+  });
+
+  eleventyConfig.addCollection("recipes", (collectionApi) => {
+    return collectionApi
+      .getFilteredByGlob("./src/gastronomic/receptes/recipes/*.md")
       .sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
   });
 

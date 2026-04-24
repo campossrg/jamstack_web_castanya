@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+  {% include "head.html" %}
+
+  {% set recipes = collections.recipes %}
+  {% set currentIndex = -1 %}
+  {% for item in recipes %}
+    {% if item.url == page.url %}
+      {% set currentIndex = loop.index0 %}
+    {% endif %}
+  {% endfor %}
+  {% set previousRecipe = recipes[currentIndex - 1] if currentIndex > 0 else null %}
+  {% set nextRecipe = recipes[currentIndex + 1] if currentIndex > -1 and currentIndex < (recipes | length - 1) else null %}
+
+  <body class="internal{% if name %} page-{{ name }}{% endif %}">
+    {% include "header.html" %}
+    <div class="outer-wrap">
+      <div class="content-wrap unified-bg">
+        <section class="recipe-detail">
+          <div class="recipe-detail__inner">
+            <a href="/gastronomic/receptes/" class="recipe-detail__back">&larr; Tornar</a>
+
+            <div class="recipe-detail__grid">
+              <div class="recipe-detail__main">
+                <div class="recipe-detail__media-wrap">
+                  <img
+                    src="{{ image }}"
+                    alt="{{ imageAlt }}"
+                    class="recipe-detail__image"
+                  />
+                </div>
+
+                {% if body %}
+                <div class="recipe-detail__intro prose">{{ content | safe }}</div>
+                {% endif %}
+
+                {% for step in steps %}
+                <section class="recipe-detail__step">
+                  <h2 class="recipe-detail__step-title">{{ step.title }}</h2>
+                  <p class="recipe-detail__step-text">{{ step.text }}</p>
+                </section>
+                {% endfor %}
+              </div>
+
+              <aside class="recipe-detail__sidebar">
+                <div class="recipe-detail__summary">
+                  <h1 class="recipe-detail__title">{{ title }}</h1>
+                  <p class="recipe-detail__author">Per {{ author }}, {{ origin }}</p>
+                  <p class="recipe-detail__description">{{ summary }}</p>
+
+                  <div class="recipe-detail__meta">
+                    <span class="recipe-detail__meta-item"
+                      ><svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="12" r="8"></circle>
+                        <path d="M12 7v5l3 2"></path></svg
+                      >{{ time }}</span
+                    >
+                    <span class="recipe-detail__meta-item"
+                      ><svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M7 4v8"></path>
+                        <path d="M10 4v8"></path>
+                        <path d="M7 8h3"></path>
+                        <path d="M14 4v5c0 1.7 1.3 3 3v8"></path></svg
+                      >{{ difficulty }}</span
+                    >
+                  </div>
+
+                  {% if pdfEnabled %}
+                  <a
+                    href="/api/recipe-pdf?slug={{ page.fileSlug }}"
+                    class="btn-olive recipe-detail__download"
+                  >{{ downloadPdfLabel }}</a>
+                  {% endif %}
+                </div>
+
+                <section class="recipe-detail__aside-section">
+                  <h2 class="recipe-detail__aside-title">{{ ingredientsLabel }}</h2>
+                  <ul class="recipe-detail__ingredients">
+                    {% for ingredient in ingredients %}
+                    <li>{{ ingredient }}</li>
+                    {% endfor %}
+                  </ul>
+                </section>
+
+                <section class="recipe-detail__secret">
+                  <h2 class="recipe-detail__aside-title">{{ secretTitle }}</h2>
+                  <p class="recipe-detail__secret-quote">&ldquo;{{ secretQuote }}&rdquo;</p>
+                </section>
+              </aside>
+            </div>
+
+            <nav class="recipe-detail__pagination" aria-label="Navegacio entre receptes">
+              {% if previousRecipe %}
+              <a href="{{ previousRecipe.url }}" class="recipe-detail__pagination-link">&larr; Anterior recepta</a>
+              {% else %}
+              <span class="recipe-detail__pagination-link recipe-detail__pagination-link--disabled">&larr; Anterior recepta</span>
+              {% endif %}
+
+              {% if nextRecipe %}
+              <a href="{{ nextRecipe.url }}" class="recipe-detail__pagination-link">Seguent recepta &rarr;</a>
+              {% else %}
+              <span class="recipe-detail__pagination-link recipe-detail__pagination-link--disabled">Seguent recepta &rarr;</span>
+              {% endif %}
+            </nav>
+          </div>
+        </section>
+      </div>
+      {% include "footer.html" %}
+    </div>
+    <script src="/assets/js/main.js"></script>
+  </body>
+</html>
