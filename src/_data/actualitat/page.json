@@ -1,10 +1,10 @@
 {
   "hero": {
-    "title": "ACTUALITAT I NOTICIES DE\nLA CASTANYA DE VILADRAU",
+    "title": "ACTUALITAT I NOTÍCIES DE\nLA CASTANYA DE VILADRAU",
     "text": "Descobreix el dia a dia de la Castanya de Viladrau, des de la cura dels nostres boscos fins a la cultura que ens defineix.",
     "backgroundImage": "/assets/images/gallery/fusta_exterior.png",
     "backgroundAlt": "Espai exterior de la Castanya de Viladrau",
-    "tagsTitle": "ULTIMES ETIQUETES",
+    "tagsTitle": "ÚLTIMES ETIQUETES",
     "tags": [
       "Etiqueta",
       "Etiqueta",
@@ -22,8 +22,8 @@
   },
   "filtersBar": {
     "items": [
-      "Mes nou primer",
-      "Per tematica",
+      "Més nou primer",
+      "Per temàtica",
       "Tipus de plat",
       "Per temps de lectura"
     ]
@@ -38,7 +38,8 @@
     "tagsValue": "Salut, Medi ambient",
     "image": "/assets/images/gallery/recuperacio_boscos.jpg",
     "imageAlt": "Grup de visitants caminant pel bosc",
-    "imageBadge": "Etiqueta"
+    "imageBadge": "Etiqueta",
+    "href": "/blog/el-bosc-nosatura/"
   },
   "articleGrid": {
     "items": [
@@ -53,6 +54,7 @@
         "image": "/assets/images/gallery/recuperacio_boscos.jpg",
         "imageAlt": "Grup de visitants caminant pel bosc",
         "imageBadge": "Etiqueta",
+        "href": "/blog/el-bosc-nosatura/",
         "highlighted": true
       },
       {
@@ -66,6 +68,7 @@
         "image": "/assets/images/gallery/recuperacio_boscos.jpg",
         "imageAlt": "Grup de visitants caminant pel bosc",
         "imageBadge": "Etiqueta",
+        "href": "/blog/el-bosc-nosatura/",
         "highlighted": false
       },
       {
@@ -79,8 +82,48 @@
         "image": "/assets/images/gallery/recuperacio_boscos.jpg",
         "imageAlt": "Grup de visitants caminant pel bosc",
         "imageBadge": "Etiqueta",
+        "href": "/blog/el-bosc-nosatura/",
         "highlighted": false
       }
     ]
+  },
+  "articleContinuation": {
+    "items": [
+      {
+        "date": "13 MAIG 2025",
+        "title": "LOREM IPSUM DOLOR SIT\nAMET CONSECTETUR\nADIPISCING",
+        "excerpt": "consectetur adipiscing, elit nascetur natoque mollis.",
+        "readingTimeLabel": "Temps de lectura",
+        "readingTimeValue": "12 minuts",
+        "tagsLabel": "Etiquetes",
+        "tagsValue": "Salut, Medi ambient",
+        "image": "/assets/images/gallery/recuperacio_boscos.jpg",
+        "imageAlt": "Grup de visitants caminant pel bosc",
+        "imageBadge": "Etiqueta",
+        "href": "/blog/el-bosc-nosatura/",
+        "wide": false
+      },
+      {
+        "date": "13 MAIG 2025",
+        "title": "LOREM IPSUM DOLOR SIT AMET CONSECTETUR\nADIPISCING",
+        "excerpt": "consectetur adipiscing, elit nascetur natoque mollis.",
+        "readingTimeLabel": "Temps de lectura",
+        "readingTimeValue": "12 minuts",
+        "tagsLabel": "Etiquetes",
+        "tagsValue": "Salut, Medi ambient",
+        "image": "/assets/images/gallery/recuperacio_boscos.jpg",
+        "imageAlt": "Grup de visitants caminant pel bosc",
+        "imageBadge": "Etiqueta",
+        "href": "/blog/el-bosc-nosatura/",
+        "wide": true
+      }
+    ]
+  },
+  "loadMoreLabel": "CARREGAR MÉS",
+  "newsletter": {
+    "title": "BUTLLETÍ",
+    "text": "Uneix-te al nostre butlletí per estar al dia de nous productes i activitats a més de rebre descomptes",
+    "inputLabel": "Correu electrònic",
+    "buttonLabel": "AFEGEIX-ME!"
   }
 }

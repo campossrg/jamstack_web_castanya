@@ -2,6 +2,7 @@
 layout: base
 title: Actualitat
 name: blog
+footerVariant: none
 ---
 
 {% set pageContent = actualitat.page %}
@@ -36,7 +37,7 @@ name: blog
   </div>
 
   <div class="blog-sort-bar">
-    <div class="container blog-sort-list" aria-label="Opcions d'ordenacio">
+    <div class="container blog-sort-list" aria-label="Opcions d'ordenació">
       {% for item in pageContent.filtersBar.items %}
       <span class="blog-sort-link">{{ item }}</span>
       {% endfor %}
@@ -45,7 +46,7 @@ name: blog
 </section>
 
 <div class="container">
-  <article class="featured-news-card">
+  <a class="featured-news-card" href="{{ pageContent.featuredArticle.href }}">
     <div class="featured-news-copy">
       <p class="featured-news-date">{{ pageContent.featuredArticle.date }}</p>
       <h2 class="featured-news-title">
@@ -74,23 +75,17 @@ name: blog
         />
       </div>
     </div>
-  </article>
+  </a>
 
-  <section class="actualitat-grid" aria-label="Mes articles">
+  <section class="actualitat-grid" aria-label="Més articles">
     {% for item in pageContent.articleGrid.items %}
-    <article class="actualitat-card{% if item.highlighted %} actualitat-card--highlighted{% endif %}">
+    <a class="actualitat-card" href="{{ item.href }}">
       <div class="actualitat-card-image">
         <span class="featured-news-chip">{{ item.imageBadge }}</span>
         <img src="{{ item.image }}" alt="{{ item.imageAlt }}" class="fit-img" />
       </div>
 
       <div class="actualitat-card-content">
-        {% if item.highlighted %}
-        <button type="button" class="actualitat-card-arrow" aria-label="Seguent article">
-          <span>&#8599;</span>
-        </button>
-        {% endif %}
-
         <p class="actualitat-card-date">{{ item.date }}</p>
         <h3 class="actualitat-card-title">
           {{ item.title | replace("\n", "<br />") | safe }}
@@ -107,7 +102,60 @@ name: blog
           </p>
         </div>
       </div>
-    </article>
+    </a>
     {% endfor %}
   </section>
+
+  <section class="actualitat-grid actualitat-grid--continued" aria-label="Més articles destacats">
+    {% for item in pageContent.articleContinuation.items %}
+    <a class="actualitat-card{% if item.wide %} actualitat-card--wide{% endif %}" href="{{ item.href }}">
+      <div class="actualitat-card-image">
+        <span class="featured-news-chip">{{ item.imageBadge }}</span>
+        <img src="{{ item.image }}" alt="{{ item.imageAlt }}" class="fit-img" />
+      </div>
+
+      <div class="actualitat-card-content">
+        <p class="actualitat-card-date">{{ item.date }}</p>
+        <h3 class="actualitat-card-title">
+          {{ item.title | replace("\n", "<br />") | safe }}
+        </h3>
+        <p class="actualitat-card-excerpt">{{ item.excerpt }}</p>
+        <div class="actualitat-card-meta">
+          <p>
+            <strong>{{ item.readingTimeLabel }}</strong><br />
+            {{ item.readingTimeValue }}
+          </p>
+          <p>
+            <strong>{{ item.tagsLabel }}</strong><br />
+            {{ item.tagsValue }}
+          </p>
+        </div>
+      </div>
+    </a>
+    {% endfor %}
+  </section>
+
+  <nav class="actualitat-pagination" aria-label="Paginació d'articles">
+    <a href="#" aria-label="Pàgina anterior">&lsaquo;</a>
+    <span>1 · 2 · 3 · 4 ....12</span>
+    <a href="#" aria-label="Pàgina següent">&rsaquo;</a>
+  </nav>
+
+  <div class="actualitat-load-more">
+    <button type="button">{{ pageContent.loadMoreLabel }}</button>
+  </div>
 </div>
+
+<section class="actualitat-newsletter" aria-labelledby="actualitat-newsletter-title">
+  <div class="container actualitat-newsletter-inner">
+    <div class="actualitat-newsletter-copy">
+      <h2 id="actualitat-newsletter-title">{{ pageContent.newsletter.title }}</h2>
+      <p>{{ pageContent.newsletter.text }}</p>
+    </div>
+    <form class="actualitat-newsletter-form">
+      <label class="sr-only" for="actualitat-newsletter-email">{{ pageContent.newsletter.inputLabel }}</label>
+      <input id="actualitat-newsletter-email" type="email" />
+      <button type="submit">{{ pageContent.newsletter.buttonLabel }}</button>
+    </form>
+  </div>
+</section>
