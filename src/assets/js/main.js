@@ -162,6 +162,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Initialize all three carousels
   setupCarousel("galleryScroll", "prevBtn", "nextBtn");
+  setupCarousel(
+    "shopFeaturedCarousel",
+    "shopFeaturedPrev",
+    "shopFeaturedNext",
+  );
   setupCarousel("testimonialScroll", "prevTestimonial", "nextTestimonial");
   setupCarousel("partnerScroll", "prevPartner", "nextPartner");
   setupCarousel(

@@ -1,24 +1,292 @@
 ---
-layout: default
-title: Products
-name: products
+layout: base
+title: Botiga
+name: botiga
 ---
 
-<!--<div style="display: flex; justify-content: center; margin-bottom: 1rem">
-  <a download href="/static/prakriti-catalogue.pdf" class="btn"
-    >Download complete product catalogue</a
-  >
-</div>-->
+<section class="shop-page-hero">
+  <img
+    src="/assets/images/gallery/elaborats.jpg"
+    alt="Productes artesans de Castanya de Viladrau"
+    class="shop-page-hero__image"
+  />
+  <div class="shop-page-hero__overlay"></div>
+  <div class="shop-page-hero__content">
+    <span class="shop-page-hero__kicker">BOTIGA</span>
+    <h1 class="shop-page-hero__title">
+      EL GUST AUTENTIC DEL<br />
+      MONTSENY, A LA TEVA TAULA
+    </h1>
+    <p class="shop-page-hero__text">
+      Productes artesans de castanya 100% locals, fets amb respecte pel bosc i
+      la tradicio.
+    </p>
+  </div>
+</section>
 
-<div class="text--center row tile-container">
-  {% for product_key in products.list %} {% set product = products[product_key]
-  %}
-  <a class="summary-tile" href="{{product.permalink}}">
-    <div
-      class="summary-tile__img"
-      style="background-image:url('{{product.image}}')"
-    ></div>
-    <div class="summary-tile__title">{{product.label}}</div>
-  </a>
-  {% endfor %}
-</div>
+<nav class="shop-page-filters" aria-label="Filtres de producte">
+  <div class="shop-page-filters__inner">
+    <button type="button" class="shop-page-filter">
+      Per categoria
+      <span aria-hidden="true">&#8964;</span>
+    </button>
+    <button type="button" class="shop-page-filter">
+      Moment de consum
+      <span aria-hidden="true">&#8964;</span>
+    </button>
+    <button type="button" class="shop-page-filter">
+      Dietes e intolerancies
+      <span aria-hidden="true">&#8964;</span>
+    </button>
+    <a href="/gastronomic/receptes" class="shop-page-filter">Arbres</a>
+    <a href="/contact/" class="shop-page-search">
+      Busca producte
+      <span aria-hidden="true">&rsaquo;</span>
+    </a>
+  </div>
+</nav>
+
+<section class="shop-page-products" aria-labelledby="shop-products-title">
+  <div class="shop-page-products__header">
+    <button
+      type="button"
+      class="shop-page-products__arrow"
+      id="prevBtn"
+      aria-label="Productes anteriors"
+    >
+      &lsaquo;
+    </button>
+    <div>
+      <h2 id="shop-products-title" class="shop-page-products__title">
+        ELS NOSTRES PRODUCTES
+      </h2>
+      <p class="shop-page-products__subtitle">
+        Castanyes pels 365 dies de l'any
+      </p>
+    </div>
+    <button
+      type="button"
+      class="shop-page-products__arrow"
+      id="nextBtn"
+      aria-label="Productes seguents"
+    >
+      &rsaquo;
+    </button>
+  </div>
+
+  <div class="shop-page-products__scroller" id="galleryScroll">
+    <article class="shop-page-product gallery-item">
+      <img
+        src="/assets/images/gallery/chestnuts_hexagon.png"
+        alt="Castanya fresca"
+        class="shop-page-product__image"
+      />
+      <h3 class="shop-page-product__title">CASTANYA</h3>
+    </article>
+
+    <article class="shop-page-product gallery-item">
+      <img
+        src="/assets/images/gallery/product_castanya_seca.png"
+        alt="Secallona de castanya"
+        class="shop-page-product__image"
+      />
+      <h3 class="shop-page-product__title">CASTANYA</h3>
+    </article>
+
+    <article class="shop-page-product gallery-item">
+      <img
+        src="/assets/images/gallery/elaborats.jpg"
+        alt="Crema artesana de castanya"
+        class="shop-page-product__image"
+      />
+      <h3 class="shop-page-product__title">CASTANYA</h3>
+    </article>
+
+    <article class="shop-page-product gallery-item">
+      <img
+        src="/assets/images/gallery/product_castanya_farina.png"
+        alt="Farina de castanya"
+        class="shop-page-product__image"
+      />
+      <h3 class="shop-page-product__title">CASTANYA</h3>
+    </article>
+
+    <article class="shop-page-product gallery-item">
+      <img
+        src="/assets/images/gallery/product_castanya_flocs.png"
+        alt="Flocs de castanya"
+        class="shop-page-product__image"
+      />
+      <h3 class="shop-page-product__title">CASTANYA</h3>
+    </article>
+  </div>
+</section>
+
+<section class="shop-page-seasonal" aria-labelledby="shop-seasonal-title">
+  <img
+    src="/assets/images/gallery/botiga/botiga_chocolate.png"
+    alt="Dolcos artesans amb castanya"
+    class="shop-page-seasonal__image"
+  />
+  <div class="shop-page-seasonal__overlay"></div>
+  <div class="shop-page-seasonal__content">
+    <p class="shop-page-seasonal__kicker">PRODUCTES EXCLUSIUS DE TEMPORADA</p>
+    <h2 id="shop-seasonal-title" class="shop-page-seasonal__title">
+      ROQUETS DE<br />
+      TXOCOLATA
+    </h2>
+    <p class="shop-page-seasonal__text">
+      El nostre marron glace, ara en xocolata negra. La teva nova temptacio.
+    </p>
+    <a href="/contact/" class="shop-page-seasonal__cta"
+      >CONTACTA AMB NOSALTRES</a
+    >
+  </div>
+</section>
+
+<section class="shop-page-commitment" aria-labelledby="shop-commitment-title">
+  <div class="shop-page-commitment__frame">
+    <div class="shop-page-commitment__inner">
+      <h2 id="shop-commitment-title" class="shop-page-commitment__title">
+        EL NOSTRE COMPROMIS
+      </h2>
+
+      <div class="shop-page-commitment__grid">
+        <article class="shop-page-commitment-card">
+          <div class="shop-page-commitment-card__icon">
+            <img src="/assets/images/gallery/botiga/botiga_location.png" alt="Directe del productor" />
+          </div>
+        </article>
+
+        <article class="shop-page-commitment-card">
+          <div class="shop-page-commitment-card__icon">
+            <img src="/assets/images/gallery/botiga/botiga_natural.png" alt="100% natural" />
+          </div>
+        </article>
+
+        <article class="shop-page-commitment-card">
+          <div class="shop-page-commitment-card__icon">
+            <img src="/assets/images/gallery/botiga/botiga_gestió.png" alt="Gestio sostenible" />
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="shop-page-featured" aria-labelledby="shop-featured-title">
+  <div class="shop-page-featured__header">
+    <button
+      type="button"
+      class="shop-page-products__arrow"
+      id="shopFeaturedPrev"
+      aria-label="Productes estrella anteriors"
+    >
+      &lsaquo;
+    </button>
+    <div>
+      <h2 id="shop-featured-title" class="shop-page-products__title">
+        PRODUCTES ESTRELLA
+      </h2>
+      <p class="shop-page-products__subtitle">Els que productes que mes agraden</p>
+    </div>
+    <button
+      type="button"
+      class="shop-page-products__arrow"
+      id="shopFeaturedNext"
+      aria-label="Productes estrella seguents"
+    >
+      &rsaquo;
+    </button>
+  </div>
+
+  <div class="shop-page-featured__scroller" id="shopFeaturedCarousel">
+    <article class="shop-page-featured-product gallery-item">
+      <img
+        src="/assets/images/gallery/chestnuts_hexagon.png"
+        alt="Castanya torrada"
+        class="shop-page-featured-product__image"
+      />
+      <h3 class="shop-page-featured-product__title">
+        CASTANYA<br />
+        TORRADA
+      </h3>
+      <p class="shop-page-featured-product__meta">Disponible 365 l'any</p>
+      <p class="shop-page-featured-product__price">24&euro;</p>
+    </article>
+
+    <article class="shop-page-featured-product is-highlighted gallery-item">
+      <img
+        src="/assets/images/gallery/chestnuts_hexagon.png"
+        alt="Castanya torrada"
+        class="shop-page-featured-product__image"
+      />
+      <div class="shop-page-featured-product__actions" aria-label="Accions">
+        <a href="/contact/" aria-label="Afegir al carro">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 6h15l-2 8H8L6 6Z" />
+            <path d="M6 6 5 3H2" />
+            <circle cx="9" cy="20" r="1.5" />
+            <circle cx="18" cy="20" r="1.5" />
+          </svg>
+        </a>
+        <a href="/contact/" aria-label="Veure producte">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7 17 17 7" />
+            <path d="M9 7h8v8" />
+          </svg>
+        </a>
+      </div>
+      <h3 class="shop-page-featured-product__title">
+        CASTANYA<br />
+        TORRADA
+      </h3>
+      <p class="shop-page-featured-product__meta">Disponible 365 l'any</p>
+      <p class="shop-page-featured-product__price">24&euro;</p>
+    </article>
+
+    <article class="shop-page-featured-product gallery-item">
+      <img
+        src="/assets/images/gallery/chestnuts_hexagon.png"
+        alt="Castanya torrada"
+        class="shop-page-featured-product__image"
+      />
+      <h3 class="shop-page-featured-product__title">
+        CASTANYA<br />
+        TORRADA
+      </h3>
+      <p class="shop-page-featured-product__meta">Disponible 365 l'any</p>
+      <p class="shop-page-featured-product__price">24&euro;</p>
+    </article>
+
+    <article class="shop-page-featured-product gallery-item">
+      <img
+        src="/assets/images/gallery/chestnuts_hexagon.png"
+        alt="Castanya torrada"
+        class="shop-page-featured-product__image"
+      />
+      <h3 class="shop-page-featured-product__title">
+        CASTANYA<br />
+        TORRADA
+      </h3>
+      <p class="shop-page-featured-product__meta">Disponible 365 l'any</p>
+      <p class="shop-page-featured-product__price">24&euro;</p>
+    </article>
+
+    <article class="shop-page-featured-product gallery-item">
+      <img
+        src="/assets/images/gallery/chestnuts_hexagon.png"
+        alt="Castanya torrada"
+        class="shop-page-featured-product__image"
+      />
+      <h3 class="shop-page-featured-product__title">
+        CASTANYA<br />
+        TORRADA
+      </h3>
+      <p class="shop-page-featured-product__meta">Disponible 365 l'any</p>
+      <p class="shop-page-featured-product__price">24&euro;</p>
+    </article>
+  </div>
+
+  <a href="/contact/" class="shop-page-featured__cta">VEURE TOTES</a>
+</section>
