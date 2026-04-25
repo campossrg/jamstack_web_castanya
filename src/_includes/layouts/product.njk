@@ -1,37 +1,115 @@
 ---
 layout: base
+footerVariant: projecte-newsletter
 ---
 
-<div class="post">
-  {% set product = products[product_key] %}
+{% set currentUrl = page.url %}
+{% set relatedProducts = collections.products | reverse %}
 
-  <div style="text-align:center; margin:1rem 0;">
-    <a href="/shop/products">Products</a> / {{ product.label }}
-  </div>
+<section class="product-detail">
+  <div class="product-detail__inner">
+    <a href="/shop/products/" class="product-detail__back">&larr; TORNAR</a>
 
-  <div class="product-header">
-    <div>
-      <img class="product-image" src="{{ product.image }}" />
+    <div class="product-detail__grid">
+      <div class="product-detail__media">
+        <img
+          src="{{ image }}"
+          alt="{{ title }}"
+          class="product-detail__main-image"
+        />
+
+        {% if gallery and gallery.length %}
+          <div class="product-detail__thumbs" aria-label="Galeria del producte">
+            {% for item in gallery %}
+              <img
+                src="{{ item.image }}"
+                alt="{{ title }} vista {{ loop.index }}"
+                class="product-detail__thumb"
+              />
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <aside class="product-detail__aside">
+        <p class="product-detail__brand">CASTANYA DE<br />VILADRAU TORRADA</p>
+        <h1 class="product-detail__title">{{ title }}</h1>
+        <p class="product-detail__tagline">{{ tagline }}</p>
+
+        <div class="product-detail__purchase">
+          <label class="product-detail__format-label" for="product-format">{{ formatLabel }}</label>
+          <select id="product-format" class="product-detail__format-select">
+            {% for option in formats %}
+              <option>{{ option }}</option>
+            {% endfor %}
+          </select>
+
+          <a href="{{ ctaHref }}" class="product-detail__cta">{{ ctaLabel }}</a>
+        </div>
+
+        <div class="product-detail__info-list">
+          <p class="product-detail__shipping">{{ shippingNote }}</p>
+
+          {% if highlights and highlights.length %}
+            {% for item in highlights %}
+              <p class="product-detail__info-item">{{ item.text }}</p>
+            {% endfor %}
+          {% endif %}
+        </div>
+
+        <div class="product-detail__ingredients">
+          <h2 class="product-detail__aside-title">{{ ingredientsLabel }}</h2>
+          <p class="product-detail__ingredients-text">{{ ingredients }}</p>
+        </div>
+
+        <div class="product-detail__notes">
+          <p class="product-detail__price">{{ price }}</p>
+          <p class="product-detail__availability">{{ availability }}</p>
+
+          {% if detailNotes and detailNotes.length %}
+            {% for item in detailNotes %}
+              <p class="product-detail__note">{{ item.text }}</p>
+            {% endfor %}
+          {% endif %}
+        </div>
+      </aside>
     </div>
 
-    <div class="product-summary stack">
-      <h1 class="product-title">{{ product.label }}</h1>
-      <p class="product-price">{{ product.price }}</p>
-      <div>
-        Vols mes informacio sobre aquest producte?
-        <a class="btn btn--buy-now" href="/contact/">
-          Contacta amb en Joaquim</a
-        >
+    <div class="product-detail__content-grid">
+      <div class="product-detail__content">
+        <h2 class="product-detail__content-title">{{ detailLabel }}</h2>
+        <div class="product-detail__body">{{ content | safe }}</div>
       </div>
     </div>
-  </div>
 
-  <div class="product-desc">
-    {{ content | safe }}
+    <div class="product-detail__pager">
+      <a href="/shop/products/" class="product-detail__pager-link">&larr; ANTERIOR PRODUCTE</a>
+      <a href="/shop/products/" class="product-detail__pager-link">SEGUENT PRODUCTE &rarr;</a>
+    </div>
   </div>
+</section>
 
-  <div style="text-align:center; margin:1rem 0;">
-    <a href="/shop/products">See more products</a>
+<section class="product-detail__related" aria-labelledby="product-related-title">
+  <div class="product-detail__related-inner">
+    <h2 id="product-related-title" class="product-detail__related-title">
+      ALTRES PRODUCTES QUE ET PODRIEN AGRADAR
+    </h2>
+
+    <div class="product-detail__related-grid">
+      {% for product in relatedProducts %}
+        {% if product.url != currentUrl and loop.index0 < 4 %}
+          <a href="{{ product.url }}" class="product-detail__related-card">
+            <img
+              src="{{ product.data.image }}"
+              alt="{{ product.data.title }}"
+              class="product-detail__related-image"
+            />
+            <h3 class="product-detail__related-name">{{ product.data.title }}</h3>
+            <p class="product-detail__related-meta">{{ product.data.availability }}</p>
+            <p class="product-detail__related-price">{{ product.data.price }}</p>
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
   </div>
-
-</div>
+</section>

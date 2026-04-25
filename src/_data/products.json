@@ -2,7 +2,7 @@
   "list": ["ironghee", "ghee"],
   "ghee": {
     "label": "Desi Cow Bilona Ghee",
-    "permalink": "/shop/products/a2-cow-ghee",
+    "permalink": "/shop/products/castanya_formatge",
     "image": "/assets/images/products/ghee.png",
     "hero_img": "/assets/images/products/ghee.jpg",
     "price": "₹ 1199 / 500ml",
@@ -11,7 +11,7 @@
   },
   "ironghee": {
     "label": "Desi Cow Bilona Ghee (Iron vessel)",
-    "permalink": "/shop/products/a2-cow-ghee-iron",
+    "permalink": "/shop/products/castanya_formatge",
     "image": "/assets/images/products/ghee-kadai.png",
     "hero_img": "/assets/images/products/ghee.jpg",
     "price": "₹ 1355 / 500ml (7.5% discount on 1 litre and above)",
@@ -21,8 +21,8 @@
   "angrakshakmrida": {
     "label": "Angrakshak Mrida",
     "permalink": "/shop/products/angrakshak-mrida/",
-    "image": "/assets/images/products/angrakshak-mrida.jpg",
-    "hero_img": "/assets/images/products/angrakshak-mrida.jpg",
+      "image": "/assets/images/products/angrakshak-mrida.jpg",
+      "hero_img": "/assets/images/products/angrakshak-mrida.jpg",
     "buy_link": "https://www.gaurashtra.com/angrakshak-mrida",
     "price": "₹ 50 / 75g bottle"
   },
