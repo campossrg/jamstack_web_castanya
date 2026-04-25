@@ -101,12 +101,26 @@ document.addEventListener("DOMContentLoaded", () => {
     const next = document.getElementById(nextId);
 
     if (container && prev && next) {
-      const step = 340; // Card width + gap
+      const getStep = () => {
+        const firstCard = container.querySelector(".gallery-item");
+
+        if (!firstCard) {
+          return 340;
+        }
+
+        const nextCard = firstCard.nextElementSibling;
+        if (!nextCard) {
+          return firstCard.getBoundingClientRect().width;
+        }
+
+        return nextCard.offsetLeft - firstCard.offsetLeft;
+      };
+
       next.addEventListener("click", () =>
-        container.scrollBy({ left: step, behavior: "smooth" }),
+        container.scrollBy({ left: getStep(), behavior: "smooth" }),
       );
       prev.addEventListener("click", () =>
-        container.scrollBy({ left: -step, behavior: "smooth" }),
+        container.scrollBy({ left: -getStep(), behavior: "smooth" }),
       );
     }
   };

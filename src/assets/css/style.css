@@ -6108,27 +6108,46 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-link-button {
 }
 
 .shop-page-featured {
-  padding: 74px 0 72px;
+  width: min(1240px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 42px 0 72px;
+  background: #f3eee3;
   text-align: center;
 }
 
 .shop-page-featured__header {
-  width: min(1040px, calc(100% - 40px));
+  width: min(1120px, calc(100% - 48px));
   margin: 0 auto 48px;
   display: grid;
-  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  grid-template-columns: 48px minmax(0, 1fr) 48px;
   align-items: center;
-  gap: 28px;
+  gap: 24px;
   text-align: center;
+}
+
+.shop-page-featured__heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.shop-page-featured__arrow {
+  width: 48px;
+  height: 48px;
+  border: 0;
+  background: #8b7445;
+  color: #fff;
 }
 
 .shop-page-featured__scroller {
   display: flex;
-  width: 100%;
+  gap: 8px;
+  width: min(1120px, calc(100% - 48px));
+  margin: 0 auto;
   overflow-x: auto;
   scroll-behavior: smooth;
   scrollbar-width: none;
-  padding: 0 max(0px, calc((100vw - 1040px) / 2)) 18px;
+  padding: 0 0 18px;
 }
 
 .shop-page-featured__scroller::-webkit-scrollbar {
@@ -6136,72 +6155,42 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-link-button {
 }
 
 .shop-page-featured-product {
-  position: relative;
-  flex: 0 0 20%;
-  min-width: 220px;
-  padding-bottom: 30px;
-  background: #eee9df;
+  flex: 0 0 calc((100% - 32px) / 5);
+  min-width: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 24px;
+  background: transparent;
   text-align: center;
   color: inherit;
   text-decoration: none;
 }
 
 .shop-page-featured-product + .shop-page-featured-product {
-  border-left: 8px solid #eee9df;
+  border-left: 0;
 }
 
-.shop-page-featured-product.is-highlighted {
-  background: #b9a77c;
+.shop-page-featured__scroller > .shop-page-featured-product:first-child {
+  margin-left: 0;
 }
 
 .shop-page-featured-product__image {
   display: block;
   width: 100%;
-  aspect-ratio: 1 / 1.08;
+  aspect-ratio: 1 / 1.28;
   object-fit: contain;
-  background: #f5f0e4;
-}
-
-.shop-page-featured-product.is-highlighted .shop-page-featured-product__image {
-  opacity: 0.52;
-}
-
-.shop-page-featured-product__actions {
-  position: absolute;
-  top: 32%;
-  left: 50%;
-  display: flex;
-  gap: 10px;
-  transform: translate(-50%, -50%);
-}
-
-.shop-page-featured-product__actions a {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background: rgba(139, 116, 69, 0.82);
-  color: #fff;
-}
-
-.shop-page-featured-product__actions svg {
-  width: 20px;
-  height: 20px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.8;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+  background: #f7f0e5;
 }
 
 .shop-page-featured-product__title {
-  margin: 24px 0 4px;
+  margin: 14px 0 4px;
+  min-height: 64px;
   color: #8b7445;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(25px, 2vw, 34px);
+  font-size: clamp(18px, 1.55vw, 28px);
   font-weight: 400;
-  line-height: 0.88;
+  line-height: 0.92;
   text-transform: uppercase;
 }
 
@@ -6214,12 +6203,14 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-link-button {
 }
 
 .shop-page-featured-product__meta {
-  font-size: 12px;
+  font-size: 13px;
+  min-height: 18px;
 }
 
 .shop-page-featured-product__price {
-  margin-top: 18px;
-  font-size: 12px;
+  margin-top: auto;
+  margin-top: 14px;
+  font-size: 13px;
 }
 
 .shop-page-featured__cta {
@@ -6228,8 +6219,8 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-link-button {
   justify-content: center;
   min-width: 150px;
   min-height: 46px;
-  margin-top: 8px;
-  padding: 0 28px;
+  margin-top: 28px;
+  padding: 0 30px;
   border-radius: 999px;
   background: #8b7445;
   color: #fff;
@@ -6237,6 +6228,44 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-link-button {
   font-size: 12px;
   font-weight: 700;
   text-decoration: none;
+}
+
+@media (max-width: 980px) {
+  .shop-page-featured__scroller {
+    width: calc(100% - 32px);
+  }
+
+  .shop-page-featured-product {
+    flex-basis: calc((100% - 16px) / 3);
+  }
+}
+
+@media (max-width: 680px) {
+  .shop-page-featured {
+    width: calc(100% - 24px);
+    padding: 32px 0 56px;
+  }
+
+  .shop-page-featured__header {
+    width: calc(100% - 24px);
+    margin-bottom: 30px;
+    grid-template-columns: 40px minmax(0, 1fr) 40px;
+    gap: 12px;
+  }
+
+  .shop-page-featured__arrow {
+    width: 40px;
+    height: 40px;
+  }
+
+  .shop-page-featured__scroller {
+    width: calc(100% - 24px);
+  }
+
+  .shop-page-featured-product {
+    flex-basis: 72%;
+    min-width: 72%;
+  }
 }
 
 .product-detail {
@@ -8508,7 +8537,8 @@ body.internal.page-gastronomic-recipes {
   }
 
   .shop-page-featured__scroller {
-    padding: 0 20px 14px;
+    width: calc(100% - 40px);
+    padding: 0 0 14px;
   }
 
   .shop-page-featured-product {
