@@ -3,7 +3,7 @@
 
   {% include "head.html" %}
 
-  <body class="internal{% if name %} page-{{ name }}{% endif %}">
+  <body class="internal page-visit-activity{% if name %} page-{{ name }}{% endif %}">
     {% include "header.html" %}
     <div class="outer-wrap">
       <div class="content-wrap">
@@ -21,12 +21,17 @@
               >
               <h1 class="visit-activity-hero__title">{{ title }}</h1>
 
-              <p class="visit-activity-hero__reservation">{{ reservationPrompt }}</p>
+              {% if gallery and gallery.length %}
+              <div class="visit-activity-hero__gallery">
+                <a href="#visit-activity-gallery" class="visit-activity-hero__gallery-link">
+                  {{ galleryButtonLabel or "VEURE GALERIA DE FOTOS" }}
+                  <span aria-hidden="true">›</span>
+                </a>
+              </div>
+              {% endif %}
 
               <div class="visit-activity-hero__actions">
-                <a href="{{ reservationPrimaryLink }}" class="btn-olive visit-activity-hero__primary"
-                  >{{ reservationPrimaryLabel }}</a
-                >
+                <p class="visit-activity-hero__reservation">{{ reservationPrompt }}</p>
 
                 {% if whatsappLink %}
                 <a
@@ -73,13 +78,16 @@
               </div>
             </div>
 
-            {% if bookingHighlights and bookingHighlights.length %}
-            <div class="visit-activity-hero__highlights">
-              {% for highlight in bookingHighlights %}
-              <span class="visit-activity-hero__highlight">{{ highlight }}</span>
-              {% endfor %}
+            <div class="visit-activity-hero__reserve-bar" aria-label="Condicions de reserva">
+              <p class="visit-activity-hero__reserve-row">
+                <span class="visit-activity-hero__reserve-label">RESERVA ARA I PAGA DESPRÉS</span>
+                <span class="visit-activity-hero__reserve-text">Reserva plaça mantenint la flexibilitat</span>
+              </p>
+              <p class="visit-activity-hero__reserve-row">
+                <span class="visit-activity-hero__reserve-label">POLÍTICA DE CANCEL·LACIÓ FLEXIBLE</span>
+                <span class="visit-activity-hero__reserve-text">Fins a 48 hores abans de la visita</span>
+              </p>
             </div>
-            {% endif %}
           </div>
         </section>
 
@@ -208,6 +216,26 @@
         </section>
         {% endif %}
 
+        {% if gallery and gallery.length %}
+        <section class="visit-activity-gallery unified-bg" id="visit-activity-gallery" aria-label="Galeria de fotos">
+          <div class="visit-activity-gallery__inner">
+            <div class="visit-activity-gallery__header title-nav-wrapper">
+              <h2 class="visit-activity-gallery__title">GALERIA DE FOTOS</h2>
+            </div>
+
+            <div class="gallery-container visit-activity-gallery__wrap">
+              <div class="gallery-scroll visit-activity-gallery__scroll" id="visitActivityGalleryScroll">
+                {% for photo in gallery %}
+                <div class="gallery-item visit-activity-gallery__item">
+                  <img src="{{ photo.image }}" alt="{{ photo.alt }}" class="item-img visit-activity-gallery__image" />
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </section>
+        {% endif %}
+
         {% if reviewsSection and reviewsSection.reviews and reviewsSection.reviews.length %}
         <section class="visit-activity-reviews unified-bg" aria-label="Ressenyes de la visita">
           <div class="visit-activity-reviews__inner">
@@ -316,7 +344,6 @@
                         <span>{{ activity.data.duration }}</span>
                       </div>
                     </div>
-                    <span class="visits-card__cta">DESCOBREIX L'EXPERIENCIA</span>
                   </div>
                 </article>
               </a>

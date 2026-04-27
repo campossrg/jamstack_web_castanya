@@ -25,12 +25,6 @@ footerVariant: visits
 
 <section class="visits-slider unified-bg" aria-label="Visites guiades">
   <div class="visits-slider__inner">
-    <div class="visits-slider__header">
-      <div class="visits-slider__intro">
-        <h2 class="visits-slider__title">{{ visits.activitiesIntro.title }}</h2>
-        <p class="visits-slider__text">{{ visits.activitiesIntro.text }}</p>
-      </div>
-    </div>
 
     <div class="visits-slider__track">
       {% for activity in collections.visitActivities %}
@@ -87,7 +81,6 @@ footerVariant: visits
                 <span>{{ activity.data.duration }}</span>
               </div>
             </div>
-            <span class="visits-card__cta">DESCOBREIX L'EXPERIENCIA</span>
           </div>
         </article>
       </a>

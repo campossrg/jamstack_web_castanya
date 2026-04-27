@@ -7,10 +7,6 @@
     "ctaLabel": "LLEGEIX MES SOBRE EL PARC DEL MONTSENY",
     "ctaHref": "/projecte/"
   },
-  "activitiesIntro": {
-    "title": "OBLIDA'T DE TOT MENYS DE GAUDIR",
-    "text": "Descobreix cinc maneres de viure la castanya i el Montseny: rutes guiades, visites familiars, experiències a mida i propostes pensades per reconnectar amb el bosc des de perspectives diferents."
-  },
   "banner": {
     "image": "/assets/images/gallery/visites/visites_guiades_banner.jpg",
     "imageAlt": "Visites a mida al Montseny",
