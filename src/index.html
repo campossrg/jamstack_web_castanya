@@ -156,5 +156,109 @@ name: home
     </div>
 
     <a href="/blog" class="btn-olive">VEURE L'ACTUALITAT</a>
+
+    <div class="home-carousel-section">
+      <div class="title-nav-wrapper">
+        <button class="nav-arrow-inline left" id="prevTestimonial" aria-label="Previous">
+          <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+
+        <h2 class="section-title-main">NO NOMÉS HO DIEM NOSALTRES</h2>
+
+        <button class="nav-arrow-inline right" id="nextTestimonial" aria-label="Next">
+          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+      </div>
+
+      {% set testimonials = [
+        {
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
+          "name": "Maria Sheferd",
+          "date": "19/04/2024",
+          "initials": "MS"
+        },
+        {
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
+          "name": "Jordi Vila",
+          "date": "02/03/2024",
+          "initials": "JV"
+        },
+        {
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
+          "name": "Anna Puig",
+          "date": "27/02/2024",
+          "initials": "AP"
+        },
+        {
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
+          "name": "Pau Martí",
+          "date": "10/02/2024",
+          "initials": "PM"
+        },
+        {
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
+          "name": "Clàudia Serra",
+          "date": "19/01/2024",
+          "initials": "CS"
+        }
+      ] %}
+
+      <div class="home-inline-carousel-wrap" aria-label="Testimonis">
+        <div class="home-inline-carousel" id="testimonialScroll">
+          {% for item in testimonials %}
+          <article class="review-card">
+            <img src="/assets/images/logo-google.png" alt="Google" class="google-logo" />
+            <div class="stars" aria-label="5 estrelles">★★★★★</div>
+            <p class="review-text">{{ item.text }}</p>
+            <div class="reviewer-info">
+              <div class="reviewer-name">{{ item.name }}</div>
+              <div class="review-date">{{ item.date }}</div>
+              <div class="reviewer-avatar-placeholder" aria-hidden="true">{{ item.initials }}</div>
+            </div>
+          </article>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="home-carousel-section home-carousel-section--partners">
+      <span class="label-small">ON TROBAR-NOS</span>
+
+      <div class="title-nav-wrapper">
+        <button class="nav-arrow-inline left" id="prevPartner" aria-label="Previous">
+          <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+
+        <h2 class="section-title-main">
+          BOTIGUES O RESTAURANTS QUE<br />
+          JA HAN CONFIAT EN NOSALTRES
+        </h2>
+
+        <button class="nav-arrow-inline right" id="nextPartner" aria-label="Next">
+          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+      </div>
+
+      {% set partners = [
+        { "src": "/assets/images/logo-la-coromina.png", "alt": "Xalet La Coromina" },
+        { "src": "/assets/images/logo-ccpae.png", "alt": "CCPAE" },
+        { "src": "/assets/images/logo-feta-osona.png", "alt": "Fet a Osona" },
+        { "src": "/assets/images/logo-girona-excelent.png", "alt": "Girona Excel·lent" },
+        { "src": "/assets/images/logo-venda-proximitat.png", "alt": "Venda de Proximitat" },
+        { "src": "/assets/images/logo-maria.png", "alt": "Maria" }
+      ] %}
+
+      <div class="home-inline-carousel-wrap" aria-label="Botigues i restaurants">
+        <div class="home-inline-carousel home-inline-carousel--partners" id="partnerScroll">
+          {% for item in partners %}
+          <div class="partner-card">
+            <img src="{{ item.src }}" alt="{{ item.alt }}" class="partner-logo" loading="lazy" />
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <a href="/trobar-nos" class="btn-olive">ON TROBAR-NOS</a>
+    </div>
   </div>
 </section>

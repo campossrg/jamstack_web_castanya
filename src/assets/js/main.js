@@ -181,8 +181,13 @@ document.addEventListener("DOMContentLoaded", () => {
     "shopFeaturedPrev",
     "shopFeaturedNext",
   );
-  setupCarousel("testimonialScroll", "prevTestimonial", "nextTestimonial");
-  setupCarousel("partnerScroll", "prevPartner", "nextPartner");
+  setupCarousel(
+    "testimonialScroll",
+    "prevTestimonial",
+    "nextTestimonial",
+    ".review-card",
+  );
+  setupCarousel("partnerScroll", "prevPartner", "nextPartner", ".partner-card");
   setupCarousel(
     "homeActualitatCarousel",
     "homeActualitatPrev",
