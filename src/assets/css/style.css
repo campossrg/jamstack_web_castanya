@@ -3202,7 +3202,7 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-link-button {
 }
 
 .nav-arrow-inline {
-  background: #ffffff;
+  background: #7b6b43;
   border: none;
   width: 45px;
   height: 45px;
@@ -3218,17 +3218,17 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-link-button {
 .nav-arrow-inline svg {
   width: 24px;
   height: 24px;
-  stroke: #7b6b43;
+  stroke: #ffffff;
   stroke-width: 2;
   fill: none;
 }
 
 .nav-arrow-inline:hover {
-  background-color: #7b6b43;
+  background-color: #ffffff;
 }
 
 .nav-arrow-inline:hover svg {
-  stroke: #ffffff;
+  stroke: #7b6b43;
 }
 
 .section-subtitle-italic {
