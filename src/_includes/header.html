@@ -13,7 +13,17 @@
     <div class="header-logo">
       <div class="header-logo">
         <a href="/" class="logo-link">
-          <img src="/assets/images/logo.png" alt="Castanya de Viladrau" />
+          <img
+            src="/assets/images/logo-white.png"
+            alt="Castanya de Viladrau"
+            class="logo-img logo-img--white"
+          />
+          <img
+            src="/assets/images/logo.png"
+            alt=""
+            class="logo-img logo-img--color"
+            aria-hidden="true"
+          />
           <span class="logo-title">Castanya de Viladrau</span>
         </a>
       </div>
@@ -21,7 +31,31 @@
 
     <!-- Right Side: Shopping Cart -->
     <div class="utility-right">
-      <svg class="icon cart"><use xlink:href="#cart-icon"></use></svg>
+      <a class="header-contact-button" href="/contact">CONTACTE</a>
+      <a
+        class="header-icon-button header-icon-button--cart"
+        href="/shop/products"
+        aria-label="Carret"
+      >
+        <img
+          src="/assets/images/shopping_cart_button.png"
+          alt=""
+          class="header-icon-image"
+          aria-hidden="true"
+        />
+      </a>
+      <a
+        class="header-icon-button header-icon-button--whatsapp"
+        href="/contact"
+        aria-label="WhatsApp"
+      >
+        <img
+          src="/assets/images/whatsapp_button.png"
+          alt=""
+          class="header-icon-image header-icon-image--whatsapp"
+          aria-hidden="true"
+        />
+      </a>
     </div>
   </div>
 
