@@ -561,7 +561,7 @@ button:focus-visible {
   position: absolute;
   width: 45px;
   height: 45px;
-  background: rgba(0, 0, 0, 0.4);
+  background: #7b6b43;
   border: none;
   border-radius: 50%;
   display: flex;
@@ -570,6 +570,17 @@ button:focus-visible {
   cursor: pointer;
   z-index: 5;
   color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.nav-arrow:hover {
+  background: #ffffff;
+  color: #7b6b43;
+  transform: translateY(-1px);
 }
 
 .nav-arrow svg {
@@ -4492,6 +4503,35 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-link-button {
   color: #7b6b43;
   font-style: italic;
   font-size: 18px;
+}
+
+.actualitat-home-carousel-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 34px;
+  width: 100%;
+  margin: 34px auto 42px;
+}
+
+.actualitat-home-carousel {
+  display: flex;
+  gap: 34px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 8px 4px;
+  width: min(1180px, 100%);
+}
+
+.actualitat-home-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.actualitat-card--home {
+  flex: 0 0 auto;
+  width: min(360px, 78vw);
+  scroll-snap-align: start;
 }
 
 /* Review Card Styling */

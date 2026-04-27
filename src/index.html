@@ -91,7 +91,7 @@ name: home
   <div class="hero-overlay-content">
     <span class="label-small light">VISITES GUIADES</span>
     <h2 class="hero-title-elegant light">CONNECTA AMB L'ÀNIMA DEL PARC NATURAL<br>DEL MONTSENY – RESERVA DE LA BIOSFERA</h2>
-    <p class="hero-text-body light">Vine a conèixer els guardians centenaris del Montseny. Una experiència de turisme conscient on gaudeixes de la natura mentre col·labores activament a preservar-la. El bosc et dona aire pur, tu li dones vida.</p>
+    <p class="hero-text-body light">Vine a conèixer els guardians centenaris del Montseny. Una experiència de turisme conscient on gaudeixes de la natura mentre col·laboras activament a preservar-la. El bosc et dona aire pur, tu li dones vida.</p>
     <a href="#" class="btn-olive">EXPLORAR VISITES GUIADES</a>
   </div>
 </section>
@@ -110,114 +110,51 @@ name: home
 
 <section class="actualitat-section-updated unified-bg">
   <div class="actualitat-content-centered">
-    <!-- Header matches the Botiga and Projecte style -->
     <span class="label-small">ACTUALITAT</span>
     <h2 class="section-title-main">L’ÚLTIM A LA CASTANYA DE VILADRAU</h2>
     <p class="section-subtitle-italic">Receptes, nous productes i històries de la vida al Montseny.</p>
 
-    <!-- Placeholder for future design -->
-    <div class="actualitat-placeholder">
-      <p>aquest espai s'emplenarà quan es dissenyi la pàgina d'actualitat</p>
-    </div>
+    {% set pageContent = actualitat.page %}
 
-    <!-- Centered Brand Button -->
-    <a href="/actualitat" class="btn-olive">VEURE L'ACTUALITAT</a>
-  </div>
-</section>
-
-<!-- TESTIMONIALS SECTION -->
-<section class="testimonials-section unified-bg">
-  <div class="botiga-header-centered">
-    <h2 class="section-title-main">NO NOMÉS HO DIEM NOSALTRES</h2>
-    <div class="title-nav-wrapper">
-      <button class="nav-arrow-inline left" id="prevTestimonial">
+    <div class="actualitat-home-carousel-wrap" aria-label="Últimes publicacions">
+      <button class="nav-arrow-inline left" id="homeActualitatPrev" aria-label="Previous">
         <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
       </button>
-      <div class="spacer-horizontal"></div> <!-- For visual spacing if needed -->
-      <button class="nav-arrow-inline right" id="nextTestimonial">
+
+      <div class="actualitat-home-carousel" id="homeActualitatCarousel">
+        {% for item in pageContent.articleGrid.items %}
+        <a class="actualitat-card actualitat-card--home" href="{{ item.href }}">
+          <div class="actualitat-card-image">
+            <span class="featured-news-chip">{{ item.imageBadge }}</span>
+            <img src="{{ item.image }}" alt="{{ item.imageAlt }}" class="fit-img" />
+          </div>
+
+          <div class="actualitat-card-content">
+            <p class="actualitat-card-date">{{ item.date }}</p>
+            <h3 class="actualitat-card-title">
+              {{ item.title | replace("\n", "<br />") | safe }}
+            </h3>
+            <p class="actualitat-card-excerpt">{{ item.excerpt }}</p>
+            <div class="actualitat-card-meta">
+              <p>
+                <strong>{{ item.readingTimeLabel }}</strong><br />
+                {{ item.readingTimeValue }}
+              </p>
+              <p>
+                <strong>{{ item.tagsLabel }}</strong><br />
+                {{ item.tagsValue }}
+              </p>
+            </div>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+
+      <button class="nav-arrow-inline right" id="homeActualitatNext" aria-label="Next">
         <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
       </button>
     </div>
-  </div>
 
-  <div class="gallery-container">
-    <div class="gallery-scroll" id="testimonialScroll">
-      <!-- Example Review Card -->
-      <div class="review-card">
-        <img src="/assets/images/logo-google.png" alt="Google" class="google-logo">
-        <div class="stars">★★★★★</div>
-        <p class="review-text">"La millor castanya que he provat mai. Es nota que és un producte artesà i de proximitat. Totalment recomanable per a qualsevol època de l'any."</p>
-        <div class="reviewer-info">
-          <span class="reviewer-name">Maria Sheferd</span>
-          <span class="review-date">19/04/2024</span>
-          <img src="/assets/images/logo-maria.png" alt="Maria" class="reviewer-avatar">
-        </div>
-      </div>
-      <div class="review-card">
-        <img src="/assets/images/logo-google.png" alt="Google" class="google-logo">
-        <div class="stars">★★★★★</div>
-        <p class="review-text">"La millor castanya que he provat mai. Es nota que és un producte artesà i de proximitat. Totalment recomanable per a qualsevol època de l'any."</p>
-        <div class="reviewer-info">
-          <span class="reviewer-name">Maria Sheferd</span>
-          <span class="review-date">19/04/2024</span>
-          <img src="/assets/images/logo-maria.png" alt="Maria" class="reviewer-avatar">
-        </div>
-      </div>
-      <div class="review-card">
-        <img src="/assets/images/logo-google.png" alt="Google" class="google-logo">
-        <div class="stars">★★★★★</div>
-        <p class="review-text">"La millor castanya que he provat mai. Es nota que és un producte artesà i de proximitat. Totalment recomanable per a qualsevol època de l'any."</p>
-        <div class="reviewer-info">
-          <span class="reviewer-name">Maria Sheferd</span>
-          <span class="review-date">19/04/2024</span>
-          <img src="/assets/images/logo-maria.png" alt="Maria" class="reviewer-avatar">
-        </div>
-      </div>
-      <!-- Repeat for other reviews -->
-    </div>
-  </div>
-</section>
-
-<!-- PARTNERS / ON TROBAR-NOS SECTION -->
-<section class="partners-section unified-bg">
-  <div class="botiga-header-centered">
-    <span class="label-small">ON TROBAR-NOS</span>
-    <h2 class="section-title-main">BOTIGUES O RESTAURANTS QUE<br>JA HAN CONFIAT EN NOSALTRES</h2>
-    <div class="title-nav-wrapper">
-      <button class="nav-arrow-inline left" id="prevPartner">
-        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
-      </button>
-      <button class="nav-arrow-inline right" id="nextPartner">
-        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
-      </button>
-    </div>
-  </div>
-
-  <div class="gallery-container">
-    <div class="gallery-scroll" id="partnerScroll">
-      <!-- Partner Logo Card -->
-      <div class="partner-card">
-        <img src="/assets/images/logo-la-coromina.png" alt="La Coromina" class="partner-logo">
-      </div>
-      <div class="partner-card">
-        <img src="/assets/images/logo-la-coromina.png" alt="La Coromina" class="partner-logo">
-      </div>
-      <div class="partner-card">
-        <img src="/assets/images/logo-la-coromina.png" alt="La Coromina" class="partner-logo">
-      </div>
-      <div class="partner-card">
-        <img src="/assets/images/logo-la-coromina.png" alt="La Coromina" class="partner-logo">
-      </div>
-      <div class="partner-card">
-        <img src="/assets/images/logo-la-coromina.png" alt="La Coromina" class="partner-logo">
-      </div>
-      <div class="partner-card">
-        <img src="/assets/images/logo-la-coromina.png" alt="La Coromina" class="partner-logo">
-      </div>
-    </div>
-  </div>
-
-  <div class="section-outro" style="text-align: center; margin-top: 40px;">
-    <a href="/on-trobar-nos" class="btn-olive">ON TROBAR-NOS</a>
+    <a href="/blog" class="btn-olive">VEURE L'ACTUALITAT</a>
   </div>
 </section>

@@ -95,14 +95,14 @@ document.addEventListener("DOMContentLoaded", () => {
     toggleArrows();
   }
 
-  const setupCarousel = (scrollId, prevId, nextId) => {
+  const setupCarousel = (scrollId, prevId, nextId, cardSelector = ".gallery-item") => {
     const container = document.getElementById(scrollId);
     const prev = document.getElementById(prevId);
     const next = document.getElementById(nextId);
 
     if (container && prev && next) {
       const getStep = () => {
-        const firstCard = container.querySelector(".gallery-item");
+        const firstCard = container.querySelector(cardSelector);
 
         if (!firstCard) {
           return 340;
@@ -183,6 +183,12 @@ document.addEventListener("DOMContentLoaded", () => {
   );
   setupCarousel("testimonialScroll", "prevTestimonial", "nextTestimonial");
   setupCarousel("partnerScroll", "prevPartner", "nextPartner");
+  setupCarousel(
+    "homeActualitatCarousel",
+    "homeActualitatPrev",
+    "homeActualitatNext",
+    ".actualitat-card",
+  );
   setupCarousel(
     "visitActivityReviewsScroll",
     "visitActivityReviewsPrev",
