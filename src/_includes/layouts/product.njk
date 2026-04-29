@@ -4,7 +4,8 @@ footerVariant: projecte-newsletter
 ---
 
 {% set currentUrl = page.url %}
-{% set relatedProducts = collections.products | reverse %}
+{% set relatedCollection = collections.products | default([]) | reverse %}
+{% set relatedFallback = relatedProducts.list | default([]) %}
 
 <section class="product-detail">
   <div class="product-detail__inner">
@@ -96,20 +97,37 @@ footerVariant: projecte-newsletter
     </h2>
 
     <div class="product-detail__related-grid">
-      {% for product in relatedProducts %}
-        {% if product.url != currentUrl and loop.index0 < 4 %}
-          <a href="{{ product.url }}" class="product-detail__related-card">
-            <img
-              src="{{ product.data.image }}"
-              alt="{{ product.data.title }}"
-              class="product-detail__related-image"
-            />
-            <h3 class="product-detail__related-name">{{ product.data.title }}</h3>
-            <p class="product-detail__related-meta">{{ product.data.availability }}</p>
-            <p class="product-detail__related-price">{{ product.data.price }}</p>
-          </a>
-        {% endif %}
-      {% endfor %}
+      {% if relatedCollection and relatedCollection.length > 1 %}
+        {% for product in relatedCollection %}
+          {% if product.url != currentUrl and loop.index0 < 8 %}
+            <a href="{{ product.url }}" class="product-detail__related-card">
+              <img
+                src="{{ product.data.image }}"
+                alt="{{ product.data.title }}"
+                class="product-detail__related-image"
+              />
+              <h3 class="product-detail__related-name">{{ product.data.title }}</h3>
+              <p class="product-detail__related-meta">{{ product.data.availability }}</p>
+              <p class="product-detail__related-price">{{ product.data.price }}</p>
+            </a>
+          {% endif %}
+        {% endfor %}
+      {% else %}
+        {% for product in relatedFallback %}
+          {% if loop.index0 < 8 %}
+            <a href="{{ product.url }}" class="product-detail__related-card">
+              <img
+                src="{{ product.image }}"
+                alt="{{ product.title }}"
+                class="product-detail__related-image"
+              />
+              <h3 class="product-detail__related-name">{{ product.title }}</h3>
+              <p class="product-detail__related-meta">{{ product.availability }}</p>
+              <p class="product-detail__related-price">{{ product.price }}</p>
+            </a>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
     </div>
   </div>
 </section>

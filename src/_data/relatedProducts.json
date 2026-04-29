@@ -1,0 +1,39 @@
+{
+  "list": [
+    {
+      "title": "CASTANYA TORRADA",
+      "image": "/assets/images/gallery/chestnuts_hexagon.png",
+      "availability": "Disponible 365 l'any",
+      "price": "24€",
+      "url": "/shop/products/castanya_formatge/"
+    },
+    {
+      "title": "CASTANYA SECA",
+      "image": "/assets/images/gallery/product_castanya_seca.png",
+      "availability": "Disponible 365 l'any",
+      "price": "24€",
+      "url": "/shop/products/castanya_formatge/"
+    },
+    {
+      "title": "CREMA DE CASTANYA",
+      "image": "/assets/images/gallery/elaborats.jpg",
+      "availability": "Disponible 365 l'any",
+      "price": "24€",
+      "url": "/shop/products/castanya_formatge/"
+    },
+    {
+      "title": "FARINA DE CASTANYA",
+      "image": "/assets/images/gallery/product_castanya_farina.png",
+      "availability": "Disponible 365 l'any",
+      "price": "24€",
+      "url": "/shop/products/castanya_formatge/"
+    },
+    {
+      "title": "FLOCS DE CASTANYA",
+      "image": "/assets/images/gallery/product_castanya_flocs.png",
+      "availability": "Disponible 365 l'any",
+      "price": "24€",
+      "url": "/shop/products/castanya_formatge/"
+    }
+  ]
+}
