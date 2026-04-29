@@ -6215,15 +6215,23 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-dropdown__link.i
 .professionals-value-feature__grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 20px;
+  gap: 24px;
   align-items: start;
+}
+
+.professionals-value-product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .professionals-value-product__image {
   display: block;
-  width: 100%;
+  width: min(100%, 182px);
   aspect-ratio: 0.78 / 1;
   object-fit: contain;
+  margin: 0 auto;
 }
 
 .professionals-value-product__title {
@@ -8975,6 +8983,10 @@ body.internal.page-gastronomic-recipes {
   .gastronomic-recipes-section .professionals-inspiration-recipes__grid {
     grid-auto-columns: 100%;
   }
+
+  .professionals-value-feature__grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 
@@ -9056,10 +9068,6 @@ body.internal.page-gastronomic-recipes {
 
   .professionals-value-feature__products-title br {
     display: none;
-  }
-
-  .professionals-value-feature__grid {
-    grid-template-columns: 1fr;
   }
 
   .shop-page-hero {
