@@ -2248,6 +2248,24 @@ body.page-visits .header-nav .menu-item {
   text-decoration: none;
 }
 
+body.home .header-nav .nav-dropdown a,
+body.page-fusta .header-nav .nav-dropdown a,
+body.page-visits .header-nav .nav-dropdown a {
+  color: #7b6b43 !important;
+}
+
+body.home .header-nav .nav-dropdown a:hover,
+body.home .header-nav .nav-dropdown a:focus-visible,
+body.home .header-nav .nav-dropdown a.is-active,
+body.page-fusta .header-nav .nav-dropdown a:hover,
+body.page-fusta .header-nav .nav-dropdown a:focus-visible,
+body.page-fusta .header-nav .nav-dropdown a.is-active,
+body.page-visits .header-nav .nav-dropdown a:hover,
+body.page-visits .header-nav .nav-dropdown a:focus-visible,
+body.page-visits .header-nav .nav-dropdown a.is-active {
+  color: #ffffff !important;
+}
+
 body.home .header-nav li:not(:last-child),
 body.page-fusta .header-nav li:not(:last-child),
 body.page-visits .header-nav li:not(:last-child) {
@@ -2310,6 +2328,24 @@ body.page-visits .nav-link-button {
   color: #ffffff !important;
 }
 
+body.home .nav-dropdown__link,
+body.page-fusta .nav-dropdown__link,
+body.page-visits .nav-dropdown__link {
+  color: #7b6b43 !important;
+}
+
+body.home .nav-dropdown__link:hover,
+body.home .nav-dropdown__link:focus-visible,
+body.home .nav-dropdown__link.is-active,
+body.page-fusta .nav-dropdown__link:hover,
+body.page-fusta .nav-dropdown__link:focus-visible,
+body.page-fusta .nav-dropdown__link.is-active,
+body.page-visits .nav-dropdown__link:hover,
+body.page-visits .nav-dropdown__link:focus-visible,
+body.page-visits .nav-dropdown__link.is-active {
+  color: #ffffff !important;
+}
+
 body.home .nav-item.highlight-shop,
 body.page-fusta .nav-item.highlight-shop,
 body.page-visits .nav-item.highlight-shop {
@@ -2339,6 +2375,26 @@ body.page-visits
   color: #ffffff !important;
 }
 
+body.page-fusta .site-header:not(.is-scrolled) .nav-item.active .nav-dropdown__link,
+body.page-visits .site-header:not(.is-scrolled) .nav-item.active .nav-dropdown__link {
+  color: #7b6b43 !important;
+}
+
+body.page-fusta .site-header:not(.is-scrolled) .nav-item.active .nav-dropdown__link:hover,
+body.page-fusta
+  .site-header:not(.is-scrolled)
+  .nav-item.active
+  .nav-dropdown__link:focus-visible,
+body.page-fusta .site-header:not(.is-scrolled) .nav-item.active .nav-dropdown__link.is-active,
+body.page-visits .site-header:not(.is-scrolled) .nav-item.active .nav-dropdown__link:hover,
+body.page-visits
+  .site-header:not(.is-scrolled)
+  .nav-item.active
+  .nav-dropdown__link:focus-visible,
+body.page-visits .site-header:not(.is-scrolled) .nav-item.active .nav-dropdown__link.is-active {
+  color: #ffffff !important;
+}
+
 body.page-fusta .site-header.is-scrolled .nav-item.active,
 body.page-visits .site-header.is-scrolled .nav-item.active {
   background-color: #f5f2e8;
@@ -2349,6 +2405,26 @@ body.page-fusta .site-header.is-scrolled .nav-item.active .nav-link-button,
 body.page-visits .site-header.is-scrolled .nav-item.active a,
 body.page-visits .site-header.is-scrolled .nav-item.active .nav-link-button {
   color: #7b6b43 !important;
+}
+
+body.page-fusta .site-header.is-scrolled .nav-item.active .nav-dropdown__link,
+body.page-visits .site-header.is-scrolled .nav-item.active .nav-dropdown__link {
+  color: #7b6b43 !important;
+}
+
+body.page-fusta .site-header.is-scrolled .nav-item.active .nav-dropdown__link:hover,
+body.page-fusta
+  .site-header.is-scrolled
+  .nav-item.active
+  .nav-dropdown__link:focus-visible,
+body.page-fusta .site-header.is-scrolled .nav-item.active .nav-dropdown__link.is-active,
+body.page-visits .site-header.is-scrolled .nav-item.active .nav-dropdown__link:hover,
+body.page-visits
+  .site-header.is-scrolled
+  .nav-item.active
+  .nav-dropdown__link:focus-visible,
+body.page-visits .site-header.is-scrolled .nav-item.active .nav-dropdown__link.is-active {
+  color: #ffffff !important;
 }
 
 .fusta-hero::after {
