@@ -25,7 +25,7 @@
               <div class="visit-activity-hero__gallery">
                 <a href="#visit-activity-gallery" class="visit-activity-hero__gallery-link">
                   {{ galleryButtonLabel or "VEURE GALERIA DE FOTOS" }}
-                  <span aria-hidden="true">â€º</span>
+                  <span aria-hidden="true">›</span>
                 </a>
               </div>
               {% endif %}
@@ -80,11 +80,11 @@
 
             <div class="visit-activity-hero__reserve-bar" aria-label="Condicions de reserva">
               <p class="visit-activity-hero__reserve-row">
-                <span class="visit-activity-hero__reserve-label">RESERVA ARA I PAGA DESPRÃ‰S</span>
-                <span class="visit-activity-hero__reserve-text">Reserva plaÃ§a mantenint la flexibilitat</span>
+                <span class="visit-activity-hero__reserve-label">RESERVA ARA I PAGA DESPRÉS</span>
+                <span class="visit-activity-hero__reserve-text">Reserva plaça mantenint la flexibilitat</span>
               </p>
               <p class="visit-activity-hero__reserve-row">
-                <span class="visit-activity-hero__reserve-label">POLÃTICA DE CANCELÂ·LACIÃ“ FLEXIBLE</span>
+                <span class="visit-activity-hero__reserve-label">POLÍTICA DE CANCEL·LACIÓ FLEXIBLE</span>
                 <span class="visit-activity-hero__reserve-text">Fins a 48 hores abans de la visita</span>
               </p>
             </div>
@@ -281,7 +281,7 @@
                 <button class="nav-arrow-inline left" id="visitActivityReviewsPrev" aria-label="Ressenya anterior">
                   <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
                 </button>
-                <button class="nav-arrow-inline right" id="visitActivityReviewsNext" aria-label="Ressenya seguent">
+                <button class="nav-arrow-inline right" id="visitActivityReviewsNext" aria-label="Ressenya següent">
                   <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </button>
               </div>
@@ -292,7 +292,7 @@
                 {% for review in reviewsSection.reviews %}
                 <article class="review-card visit-activity-reviews__card">
                   <img src="/assets/images/logo-google.png" alt="Google" class="google-logo" />
-                  <div class="stars">â˜…â˜…â˜…â˜…â˜…</div>
+                  <div class="stars">★★★★★</div>
                   <p class="review-text">&ldquo;{{ review.quote }}&rdquo;</p>
                   <div class="reviewer-info">
                     <span class="reviewer-name">{{ review.author }}</span>
