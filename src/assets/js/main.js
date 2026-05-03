@@ -1,4 +1,27 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const cookieConsentStorageKey = "castanya-cookie-consent";
+  const getCookieConsent = () => {
+    try {
+      return window.localStorage.getItem(cookieConsentStorageKey);
+    } catch (error) {
+      return null;
+    }
+  };
+
+  const setCookieConsent = (value) => {
+    try {
+      window.localStorage.setItem(cookieConsentStorageKey, value);
+    } catch (error) {
+      // Ignore storage failures and still update the session UI.
+    }
+
+    document.dispatchEvent(
+      new CustomEvent("cookie-consent:updated", {
+        detail: { value },
+      }),
+    );
+  };
+
   const header = document.querySelector(".site-header");
   const heroImg = document.querySelector(".hero-img");
   const hasClimbHeader =
@@ -561,13 +584,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const setupCookieBanner = () => {
     const banner = document.getElementById("cookieBanner");
+    const reopenControls = document.querySelectorAll("[data-cookie-preferences]");
 
     if (!banner) {
       return;
     }
 
-    const storageKey = "castanya-cookie-consent";
     const buttons = banner.querySelectorAll("[data-cookie-action]");
+
+    const showBanner = () => {
+      banner.hidden = false;
+      document.body.classList.add("has-cookie-banner");
+
+      window.requestAnimationFrame(() => {
+        banner.classList.add("is-visible");
+      });
+    };
 
     const hideBanner = () => {
       banner.classList.remove("is-visible");
@@ -578,41 +610,108 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 220);
     };
 
-    let storedPreference = null;
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const action = button.dataset.cookieAction;
 
-    try {
-      storedPreference = window.localStorage.getItem(storageKey);
-    } catch (error) {
-      storedPreference = null;
-    }
+        setCookieConsent(action === "accept" ? "accepted" : "rejected");
+
+        hideBanner();
+      });
+    });
+
+    reopenControls.forEach((control) => {
+      control.addEventListener("click", () => {
+        showBanner();
+      });
+    });
+
+    const storedPreference = getCookieConsent();
 
     if (storedPreference === "accepted" || storedPreference === "rejected") {
       return;
     }
 
-    banner.hidden = false;
-    document.body.classList.add("has-cookie-banner");
+    showBanner();
+  };
 
-    window.requestAnimationFrame(() => {
-      banner.classList.add("is-visible");
-    });
+  const setupConsentMaps = () => {
+    const mapFrames = Array.from(document.querySelectorAll(".where-card__map-frame"));
 
-    buttons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const action = button.dataset.cookieAction;
+    const mapEmbeds = mapFrames
+      .map((frame) => {
+        const placeholder = frame.querySelector("[data-map-embed]");
 
-        try {
-          window.localStorage.setItem(
-            storageKey,
-            action === "accept" ? "accepted" : "rejected",
-          );
-        } catch (error) {
-          // If storage is blocked, we still dismiss the banner for the session.
+        if (!placeholder) {
+          return null;
         }
 
-        hideBanner();
+        return {
+          frame,
+          placeholderMarkup: placeholder.outerHTML,
+          title: placeholder.dataset.mapTitle || "Mapa",
+          src: placeholder.dataset.mapSrc || "",
+        };
+      })
+      .filter(Boolean);
+
+    if (!mapEmbeds.length) {
+      return;
+    }
+
+    const renderMap = (mapEmbed) => {
+      if (mapEmbed.frame.querySelector("iframe.where-card__map")) {
+        return;
+      }
+
+      const iframe = document.createElement("iframe");
+      iframe.className = "where-card__map";
+      iframe.title = mapEmbed.title;
+      iframe.loading = "lazy";
+      iframe.referrerPolicy = "no-referrer-when-downgrade";
+      iframe.src = mapEmbed.src;
+
+      mapEmbed.frame.replaceChildren(iframe);
+    };
+
+    const attachPlaceholderAction = (mapEmbed) => {
+      const placeholder = mapEmbed.frame.querySelector("[data-map-embed]");
+
+      if (!placeholder) {
+        return;
+      }
+
+      const acceptButton = placeholder.querySelector('[data-map-action="accept"]');
+
+      if (!acceptButton) {
+        return;
+      }
+
+      acceptButton.addEventListener("click", () => {
+        setCookieConsent("accepted");
+        renderMap(mapEmbed);
       });
+    };
+
+    const renderPlaceholder = (mapEmbed) => {
+      mapEmbed.frame.innerHTML = mapEmbed.placeholderMarkup;
+      attachPlaceholderAction(mapEmbed);
+    };
+
+    const applyConsentToMaps = (consentValue) => {
+      if (consentValue === "accepted") {
+        mapEmbeds.forEach(renderMap);
+        return;
+      }
+
+      mapEmbeds.forEach(renderPlaceholder);
+    };
+
+    document.addEventListener("cookie-consent:updated", (event) => {
+      applyConsentToMaps(event.detail?.value);
     });
+
+    applyConsentToMaps(getCookieConsent());
   };
 
   const setupFustaShowcase = () => {
@@ -682,5 +781,6 @@ document.addEventListener("DOMContentLoaded", () => {
   setupHeaderDropdown();
   setupContactForm();
   setupCookieBanner();
+  setupConsentMaps();
   setupFustaShowcase();
 });
