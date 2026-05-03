@@ -3,7 +3,7 @@
     "title": "INSPIRACIO: DE XEFS PER A XEFS",
     "text": "Inspira't amb les receptes i tecniques dels xefs que ja confien en la Castanya de Viladrau. Descobreix el potencial de la gastronomia del Montseny i eleva la teva carta amb idees d'alt nivell i producte de proximitat unic.",
     "ctaLabel": "BUSCA RECEPTA",
-    "ctaHref": "#receptes",
+    "ctaHref": "#fonaments-gastronomics",
     "backgroundImage": "/assets/images/gallery/chef_kitchen_bg.png",
     "backgroundAlt": "Inspiracio gastronomica per a xefs"
   },
@@ -11,7 +11,7 @@
     "title": "FONAMENTS GASTRONOMICS DE LA CASTANYA DE VILADRAU",
     "intro": "Tecniques i consells del Joaquim de com tractar la nostra Castanya",
     "ctaLabel": "VEURE TOTES",
-    "ctaHref": "/contact/",
+    "ctaHref": "/gastronomic/receptes/#fonaments-gastronomics",
     "slides": [
       {
         "title": "COM HIDRATAR LA SECALLONA",
@@ -64,7 +64,7 @@
     "title": "CUINA EFICIENT",
     "intro": "Receptes Facils i Rendibles per a Restauracio",
     "ctaLabel": "VEURE TOTES",
-    "ctaHref": "/contact/",
+    "ctaHref": "/gastronomic/receptes/#els-classics",
     "slides": [
       {
         "title": "COM HIDRATAR LA SECALLONA",
@@ -117,7 +117,7 @@
     "title": "ALTA GASTRONOMIA I RECEPTES D'AUTOR AMB CASTANYA",
     "intro": "Tecniques avancades i plats de signatura per elevar la proposta gastronomica del teu restaurant. Per temporades, per que si es pot menjar Castanya tot l'any!",
     "ctaLabel": "VEURE TOTES",
-    "ctaHref": "/contact/",
+    "ctaHref": "/gastronomic/receptes/#cuina-saludable",
     "slides": [
       {
         "title": "COM HIDRATAR LA SECALLONA",
