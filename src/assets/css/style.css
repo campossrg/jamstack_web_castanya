@@ -522,6 +522,7 @@ button:focus-visible {
 .gallery-scroll {
   display: flex;
   gap: 20px;
+  justify-content: center;
   overflow-x: auto;
   scroll-behavior: smooth;
   scrollbar-width: none; /* Hide scrollbar for clean look */
@@ -6623,6 +6624,7 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-dropdown__link.i
 .shop-page-products__scroller {
   display: flex;
   gap: 38px;
+  justify-content: center;
   width: 100%;
   overflow-x: auto;
   scroll-behavior: smooth;
