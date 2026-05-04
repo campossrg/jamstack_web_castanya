@@ -427,3 +427,6 @@ _site/
 # Agents
 AGENTS.md
 SKILLS.md
+.agents/
+.junie/
+skills-lock.json
