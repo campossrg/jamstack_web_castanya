@@ -1,6 +1,7 @@
 const crypto = require('crypto');
 const querystring = require('querystring');
 require('dotenv').config();
+const { sendEmail, isSendgridConfigured } = require('./send-email');
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -100,6 +101,23 @@ async function fetchOrderByPaymentReference(paymentReference) {
   return Array.isArray(rows) ? rows[0] : null;
 }
 
+async function fetchOrderItems(orderId) {
+  const responseResult = await fetch(
+    `${SUPABASE_URL}/rest/v1/order_items?select=*&order_id=eq.${encodeURIComponent(orderId)}`,
+    {
+      headers: getSupabaseHeaders(),
+    },
+  );
+
+  if (!responseResult.ok) {
+    const errorText = await responseResult.text();
+    throw new Error(`Supabase order items lookup failed: ${errorText}`);
+  }
+
+  const rows = await responseResult.json();
+  return Array.isArray(rows) ? rows : [];
+}
+
 async function updateOrder(orderId, payload) {
   const responseResult = await fetch(`${SUPABASE_URL}/rest/v1/orders?id=eq.${encodeURIComponent(orderId)}`, {
     method: 'PATCH',
@@ -125,6 +143,39 @@ function mergePaymentSnapshot(existingSnapshot, nextSnapshot) {
     ...existingSnapshot,
     ...nextSnapshot,
   };
+}
+
+async function sendOrderConfirmationEmail(order) {
+  if (!isSendgridConfigured()) {
+    console.log(`SendGrid not configured, skipping confirmation email for ${order.public_order_code}`);
+    return { skipped: true, reason: 'not_configured' };
+  }
+
+  const orderItems = await fetchOrderItems(order.id);
+  const shippingAddress = order.shipping_address_json || {};
+
+  await sendEmail({
+    type: 'order-confirmation',
+    to: order.customer_email,
+    data: {
+      orderId: order.public_order_code,
+      items: orderItems.map((item) => ({
+        name: item.product_name,
+        variantLabel: item.variant_label,
+        quantity: item.quantity,
+        lineTotal: Number(item.line_total || 0),
+      })),
+      customer: {
+        name: order.customer_name,
+        address: shippingAddress.address_line_1 || '',
+        city: shippingAddress.city || '',
+        postalCode: shippingAddress.postal_code || '',
+        country: shippingAddress.country || '',
+      },
+    },
+  });
+
+  return { skipped: false };
 }
 
 exports.handler = async (event) => {
@@ -177,11 +228,20 @@ exports.handler = async (event) => {
         return response(200, 'OK');
       }
 
-      await updateOrder(order.id, {
+      const updatedOrder = await updateOrder(order.id, {
         status: 'paid',
         payment_status: 'paid',
         payment_raw_response: paymentSnapshot,
       });
+
+      try {
+        await sendOrderConfirmationEmail(updatedOrder || order);
+      } catch (emailError) {
+        console.error(
+          `Order paid but confirmation email failed for ${order.public_order_code}:`,
+          emailError,
+        );
+      }
 
       console.log(`Payment successful for order ${order.public_order_code} (${paymentReference})`);
       return response(200, 'OK');

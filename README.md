@@ -315,6 +315,17 @@ Important behavior:
 - the raw callback payload is stored in `payment_raw_response`
 - already-paid callbacks return `OK` without duplicating work
 
+## Order Confirmation Email
+
+Step 9 sends the order confirmation email after a verified successful payment callback.
+
+Important behavior:
+
+- payment success is written to Supabase first
+- confirmation email is attempted afterwards as a best-effort action
+- if `SENDGRID_API_KEY` or `FROM_EMAIL` is missing, payment still remains `paid`
+- missing SendGrid configuration is treated like RedSys configuration: code is ready, activation depends on environment variables
+
 ### TinaCMS Configuration (`tina/config.ts`)
 - Content schema definition
 - Collection setup
