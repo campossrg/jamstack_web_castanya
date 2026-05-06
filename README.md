@@ -271,6 +271,34 @@ Important behavior:
 - SKUs are validated against `src/_data/products.json`
 - the function inserts one row in `orders` and many rows in `order_items`
 
+## Payment Initiation Function
+
+Step 7 updates `netlify/functions/payment-process.js` so payment starts from the stored Supabase order instead of browser totals.
+
+Request body shape:
+
+```json
+{
+  "orderId": "supabase-order-uuid"
+}
+```
+
+You can also send:
+
+```json
+{
+  "publicOrderCode": "CV-12345678-ABCD"
+}
+```
+
+Important behavior:
+
+- the function loads the order from Supabase
+- the charged amount comes from `orders.total_amount`
+- a 12-digit `payment_reference` is generated and stored for RedSys callback matching
+- if RedSys env vars are missing, the function returns a controlled `Payment provider not configured` error
+- `REDSYS_URL` is optional and defaults to the RedSys test URL
+
 ### TinaCMS Configuration (`tina/config.ts`)
 - Content schema definition
 - Collection setup
