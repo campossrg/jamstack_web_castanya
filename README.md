@@ -299,6 +299,22 @@ Important behavior:
 - if RedSys env vars are missing, the function returns a controlled `Payment provider not configured` error
 - `REDSYS_URL` is optional and defaults to the RedSys test URL
 
+## Payment Callback Function
+
+Step 8 updates `netlify/functions/payment-callback.js` to resolve the order from the stored `payment_reference` and update Supabase after the RedSys response.
+
+Important behavior:
+
+- the callback verifies the RedSys signature before updating anything
+- the order is resolved by `orders.payment_reference`
+- successful callbacks set:
+  - `status = paid`
+  - `payment_status = paid`
+- failed callbacks set:
+  - `payment_status = failed`
+- the raw callback payload is stored in `payment_raw_response`
+- already-paid callbacks return `OK` without duplicating work
+
 ### TinaCMS Configuration (`tina/config.ts`)
 - Content schema definition
 - Collection setup
