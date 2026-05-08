@@ -7,6 +7,7 @@ const MERCHANT_CODE = process.env.REDSYS_MERCHANT_CODE;
 const SECRET_KEY = process.env.REDSYS_SECRET_KEY;
 const REDSYS_URL = process.env.REDSYS_URL || 'https://sis-t.redsys.es:25443/sis/realizarPago';
 const SITE_URL = process.env.URL;
+const PAYMENT_PROVIDER = String(process.env.PAYMENT_PROVIDER || '').trim().toLowerCase();
 const TERMINAL = '001';
 const CURRENCY = '978'; // EUR
 
@@ -32,20 +33,25 @@ function getSupabaseHeaders(prefer = 'return=minimal') {
 
 async function fetchSupabaseOrder({ orderId, publicOrderCode }) {
   const filters = [];
+  const logicFilters = [];
 
   if (orderId) {
     filters.push(`id=eq.${encodeURIComponent(orderId)}`);
+    logicFilters.push(`id.eq.${encodeURIComponent(orderId)}`);
   }
 
   if (publicOrderCode) {
     filters.push(`public_order_code=eq.${encodeURIComponent(publicOrderCode)}`);
+    logicFilters.push(`public_order_code.eq.${encodeURIComponent(publicOrderCode)}`);
   }
 
   if (!filters.length) {
     throw new Error('Missing order identifier');
   }
 
-  const query = filters.length > 1 ? `or=(${filters.join(',')})` : filters[0];
+  // PostgREST logic-tree filters (or/and) use dot syntax (col.op.value)
+  // while normal query params use equals (col=op.value).
+  const query = filters.length > 1 ? `or=(${logicFilters.join(',')})` : filters[0];
   const response = await fetch(
     `${SUPABASE_URL}/rest/v1/orders?select=*&limit=1&${query}`,
     {
@@ -114,7 +120,24 @@ exports.handler = async (event, context) => {
     return jsonResponse(500, { error: 'Supabase environment is not configured' });
   }
 
-  if (!MERCHANT_CODE || !SECRET_KEY || !SITE_URL) {
+  if (!SITE_URL) {
+    return jsonResponse(503, {
+      error: 'Payment provider not configured',
+      details: 'Missing site URL environment variables',
+    });
+  }
+
+  const isMockProvider = PAYMENT_PROVIDER === 'mock';
+  if (isMockProvider) {
+    // In mock mode we still generate signatures so callback verification stays meaningful.
+    // Allow a dedicated dev key, falling back to the standard key.
+    if (!process.env.REDSYS_SECRET_KEY_DEV && !SECRET_KEY) {
+      return jsonResponse(503, {
+        error: 'Payment provider not configured',
+        details: 'Missing REDSYS_SECRET_KEY (or REDSYS_SECRET_KEY_DEV) for mock signing',
+      });
+    }
+  } else if (!MERCHANT_CODE || !SECRET_KEY) {
     return jsonResponse(503, {
       error: 'Payment provider not configured',
       details: 'Missing RedSys merchant environment variables',
@@ -152,7 +175,7 @@ exports.handler = async (event, context) => {
     const parameters = {
       Ds_Merchant_Amount: amountInCents.toString(),
       Ds_Merchant_Order: merchantOrderCode,
-      Ds_Merchant_MerchantCode: MERCHANT_CODE,
+      Ds_Merchant_MerchantCode: MERCHANT_CODE || 'MOCK',
       Ds_Merchant_Currency: CURRENCY,
       Ds_Merchant_TransactionType: '0',
       Ds_Merchant_Terminal: TERMINAL,
@@ -164,7 +187,8 @@ exports.handler = async (event, context) => {
       Ds_Merchant_MerchantName: 'Castanya de Viladrau',
     };
 
-    const signature = generateSignature(parameters, SECRET_KEY);
+    const signingKey = process.env.REDSYS_SECRET_KEY_DEV || SECRET_KEY;
+    const signature = generateSignature(parameters, signingKey);
     const parametersBase64 = Buffer.from(JSON.stringify(parameters)).toString('base64');
     const updatedOrder = await updateSupabaseOrder(order.id, {
       status: 'pending_payment',
@@ -180,7 +204,7 @@ exports.handler = async (event, context) => {
     return jsonResponse(200, {
       success: true,
       payment: {
-        redsysUrl: REDSYS_URL,
+        redsysUrl: isMockProvider ? `${SITE_URL}/.netlify/functions/redsys-mock` : REDSYS_URL,
         parameters: parametersBase64,
         signature,
         signatureVersion: 'HMAC_SHA256_V1',

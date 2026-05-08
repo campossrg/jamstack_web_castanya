@@ -165,9 +165,17 @@ project-root/
    ```
 
 4. **Start development server**
-   ```bash
-   npm run dev
-   ```
+    ```bash
+    npm run dev
+    ```
+
+    Notes:
+    - `npm run dev` runs Eleventy only.
+    - To run Netlify Functions locally (so `/.netlify/functions/*` works), use `npm run netlify:dev`.
+
+    ```bash
+    npm run netlify:dev
+    ```
 
 5. **Start TinaCMS**
    ```bash
@@ -268,7 +276,7 @@ Important behavior:
 
 - prices are recalculated on the backend
 - browser totals are ignored
-- SKUs are validated against `src/_data/products.json`
+- Product slugs + variant labels are validated against `src/_data/products.json`
 - the function inserts one row in `orders` and many rows in `order_items`
 
 ## Payment Initiation Function

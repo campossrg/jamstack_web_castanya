@@ -409,6 +409,7 @@ FodyWeavers.xsd
 
 # Built Visual Studio Code Extensions
 *.vsix
+.vscode
 
 # Windows Installer files from build outputs
 *.cab
@@ -430,3 +431,6 @@ SKILLS.md
 .agents/
 .junie/
 skills-lock.json
+
+# Local Netlify folder
+.netlify

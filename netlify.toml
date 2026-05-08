@@ -112,6 +112,6 @@
 # Development settings
 [dev]
   command = "npm run dev"
-  port = 8080
+  port = 8081
   publish = "_site"
   autoLaunch = false

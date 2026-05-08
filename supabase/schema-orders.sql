@@ -40,7 +40,6 @@ create table if not exists public.orders (
 create table if not exists public.order_items (
   id uuid primary key default gen_random_uuid(),
   order_id uuid not null references public.orders(id) on delete cascade,
-  sku text not null,
   product_slug text not null,
   product_name text not null,
   variant_label text not null,
@@ -58,7 +57,6 @@ create index if not exists orders_created_at_idx on public.orders (created_at de
 create index if not exists orders_payment_status_idx on public.orders (payment_status);
 create index if not exists orders_fulfillment_status_idx on public.orders (fulfillment_status);
 create index if not exists order_items_order_id_idx on public.order_items (order_id);
-create index if not exists order_items_sku_idx on public.order_items (sku);
 
 create or replace function public.set_updated_at()
 returns trigger

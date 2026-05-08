@@ -798,7 +798,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         const items = parsed.items.filter(
-          (item) => item && item.sku && Number(item.quantity) > 0,
+          (item) =>
+            item &&
+            item.productSlug &&
+            item.variantLabel &&
+            Number(item.quantity) > 0,
         );
         return { items };
       } catch (error) {
@@ -879,7 +883,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const buildCartFingerprint = (cart) => {
       return cart.items
-        .map((item) => `${item.sku}:${item.variantLabel}:${Number(item.quantity || 0)}`)
+        .map(
+          (item) =>
+            `${item.productSlug}:${item.variantLabel}:${Number(item.quantity || 0)}`,
+        )
         .sort()
         .join("|");
     };
@@ -956,7 +963,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const upsertCartItem = (nextItem) => {
       const cart = readCart();
       const existingItem = cart.items.find(
-        (item) => item.sku === nextItem.sku && item.variantLabel === nextItem.variantLabel,
+        (item) =>
+          item.productSlug === nextItem.productSlug &&
+          item.variantLabel === nextItem.variantLabel,
       );
 
       if (existingItem) {
@@ -986,7 +995,10 @@ document.addEventListener("DOMContentLoaded", () => {
           const selectedOption = formatSelect.options[formatSelect.selectedIndex];
           const selectedPrice = Number(selectedOption.dataset.price || button.dataset.productPrice || 0);
 
-          button.dataset.productSku = selectedOption.dataset.sku || button.dataset.productSku;
+          button.dataset.productVariantLabel =
+            selectedOption.dataset.variantLabel ||
+            selectedOption.value ||
+            button.dataset.productVariantLabel;
           button.dataset.productPrice = String(selectedPrice);
 
           if (priceNode) {
@@ -1002,10 +1014,14 @@ document.addEventListener("DOMContentLoaded", () => {
         button.addEventListener("click", () => {
           const selectedOption = formatSelect?.options[formatSelect.selectedIndex];
           const variantLabel = selectedOption?.value || "Format general";
-          const sku = selectedOption?.dataset.sku || button.dataset.productSku;
+          const productSlug = button.dataset.productSlug;
+          const normalizedVariantLabel =
+            selectedOption?.dataset.variantLabel ||
+            button.dataset.productVariantLabel ||
+            variantLabel;
           const unitPrice = Number(selectedOption?.dataset.price || button.dataset.productPrice || 0);
 
-          if (!sku || unitPrice <= 0) {
+          if (!productSlug || !normalizedVariantLabel || unitPrice <= 0) {
             if (feedbackNode) {
               feedbackNode.hidden = false;
               feedbackNode.dataset.state = "error";
@@ -1015,12 +1031,11 @@ document.addEventListener("DOMContentLoaded", () => {
           }
 
           upsertCartItem({
-            sku,
-            slug: button.dataset.productSlug,
+            productSlug,
             name: button.dataset.productName,
             image: button.dataset.productImage,
             currency: button.dataset.productCurrency || currency,
-            variantLabel,
+            variantLabel: normalizedVariantLabel,
             unitPrice,
             quantity: 1,
           });
@@ -1120,7 +1135,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const lineTotal = Number(item.unitPrice || 0) * Number(item.quantity || 0);
 
             return `
-              <article class="shop-cart-item" data-cart-item data-sku="${item.sku}" data-variant="${item.variantLabel}">
+              <article class="shop-cart-item" data-cart-item data-slug="${item.productSlug}" data-variant="${item.variantLabel}">
                 <img src="${item.image}" alt="${item.name}" class="shop-cart-item__image" />
                 <div class="shop-cart-item__body">
                   <div class="shop-cart-item__top">
@@ -1150,10 +1165,10 @@ document.addEventListener("DOMContentLoaded", () => {
         cartRoot.innerHTML = itemsMarkup;
       };
 
-      const updateQuantity = (sku, variantLabel, delta) => {
+      const updateQuantity = (productSlug, variantLabel, delta) => {
         const cart = readCart();
         const item = cart.items.find(
-          (entry) => entry.sku === sku && entry.variantLabel === variantLabel,
+          (entry) => entry.productSlug === productSlug && entry.variantLabel === variantLabel,
         );
 
         if (!item) {
@@ -1178,7 +1193,7 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
         }
 
-        const sku = itemNode.dataset.sku;
+        const sku = itemNode.dataset.slug;
         const variantLabel = itemNode.dataset.variant;
         if (!sku || !variantLabel) {
           return;

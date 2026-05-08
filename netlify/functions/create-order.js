@@ -1,10 +1,7 @@
-const fs = require('fs');
-const path = require('path');
 require('dotenv').config();
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
-const PRODUCTS_PATH = path.join(__dirname, '..', '..', 'src', '_data', 'products.json');
 
 function jsonResponse(statusCode, body) {
   return {
@@ -17,10 +14,13 @@ function jsonResponse(statusCode, body) {
   };
 }
 
-function loadCatalog() {
-  const rawCatalog = fs.readFileSync(PRODUCTS_PATH, 'utf8');
-  const parsedCatalog = JSON.parse(rawCatalog);
-  return Array.isArray(parsedCatalog.list) ? parsedCatalog.list : [];
+function getSupabaseHeaders(prefer = 'return=minimal') {
+  return {
+    apikey: SUPABASE_SERVICE_ROLE_KEY,
+    Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`,
+    'Content-Type': 'application/json',
+    Prefer: prefer,
+  };
 }
 
 function createOrderCode() {
@@ -54,38 +54,49 @@ function validateCustomer(customer) {
   };
 }
 
-function buildValidatedItems(rawItems, catalog) {
+function buildValidatedItems(rawItems) {
   if (!Array.isArray(rawItems) || rawItems.length === 0) {
     throw new Error('Cart is empty');
   }
 
-  return rawItems.map((item) => {
-    const sku = normalizeText(item.sku);
-    const quantity = Number(item.quantity);
-
-    if (!sku || !Number.isInteger(quantity) || quantity <= 0) {
-      throw new Error('Invalid cart item payload');
-    }
-
-    const catalogProduct = catalog.find((product) =>
-      Array.isArray(product.variants) && product.variants.some((variant) => variant.sku === sku),
+  return rawItems.map((item, index) => {
+    const safeItem = item && typeof item === 'object' ? item : {};
+    // Accept a few historical/client-side keys to avoid hard failures when
+    // older carts exist in localStorage or the payload shape evolves.
+    const productSlug = normalizeText(
+      safeItem.productSlug || safeItem.slug || safeItem.product_slug,
     );
+    const variantLabel = normalizeText(
+      safeItem.variantLabel || safeItem.variant || safeItem.variant_label,
+    );
+    const quantity = Number(safeItem.quantity);
+    const unitPrice = Number(safeItem.unitPrice || safeItem.unit_price);
+    const productName = normalizeText(safeItem.name || safeItem.productName || safeItem.product_name);
+    const productImage = normalizeText(safeItem.image || safeItem.productImage || safeItem.product_image);
+    const itemCurrency = normalizeText(safeItem.currency) || 'EUR';
 
-    if (!catalogProduct) {
-      throw new Error(`Unknown SKU: ${sku}`);
+    if (!productSlug || !variantLabel) {
+      throw new Error(
+        `Invalid cart item payload at index ${index}: missing productSlug/variantLabel`,
+      );
     }
 
-    const catalogVariant = catalogProduct.variants.find((variant) => variant.sku === sku);
-    const unitPrice = Number(catalogVariant.price);
+    if (!Number.isInteger(quantity) || quantity <= 0) {
+      throw new Error('Invalid cart item quantity');
+    }
+
+    if (!Number.isFinite(unitPrice) || unitPrice <= 0) {
+      throw new Error('Invalid cart item price');
+    }
+
     const lineTotal = Number((unitPrice * quantity).toFixed(2));
 
     return {
-      sku,
-      product_slug: catalogProduct.slug,
-      product_name: catalogProduct.name,
-      variant_label: catalogVariant.label,
-      product_image: catalogProduct.image || null,
-      currency: catalogProduct.currency || 'EUR',
+      product_slug: productSlug,
+      product_name: productName || productSlug,
+      variant_label: variantLabel,
+      product_image: productImage || null,
+      currency: itemCurrency,
       unit_price: unitPrice,
       quantity,
       line_total: lineTotal,
@@ -98,10 +109,7 @@ async function insertSupabaseRow(table, payload, options = {}) {
   const response = await fetch(`${SUPABASE_URL}/rest/v1/${table}${query}`, {
     method: 'POST',
     headers: {
-      apikey: SUPABASE_SERVICE_ROLE_KEY,
-      Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`,
-      'Content-Type': 'application/json',
-      Prefer: options.returnRepresentation ? 'return=representation' : 'return=minimal',
+      ...getSupabaseHeaders(options.returnRepresentation ? 'return=representation' : 'return=minimal'),
     },
     body: JSON.stringify(payload),
   });
@@ -133,9 +141,8 @@ exports.handler = async (event) => {
 
   try {
     const { items, customer } = JSON.parse(event.body || '{}');
-    const catalog = loadCatalog();
     const validatedCustomer = validateCustomer(customer);
-    const validatedItems = buildValidatedItems(items, catalog);
+    const validatedItems = buildValidatedItems(items);
     const subtotalAmount = Number(
       validatedItems.reduce((sum, item) => sum + item.line_total, 0).toFixed(2),
     );
@@ -176,7 +183,6 @@ exports.handler = async (event) => {
 
     const orderItemsPayload = validatedItems.map((item) => ({
       order_id: insertedOrder.id,
-      sku: item.sku,
       product_slug: item.product_slug,
       product_name: item.product_name,
       variant_label: item.variant_label,
@@ -199,16 +205,15 @@ exports.handler = async (event) => {
         shippingAmount,
         totalAmount,
         currency: insertedOrder.currency,
-        items: validatedItems.map((item) => ({
-          sku: item.sku,
-          name: item.product_name,
-          variantLabel: item.variant_label,
-          quantity: item.quantity,
-          unitPrice: item.unit_price,
-          lineTotal: item.line_total,
-        })),
-      },
-    });
+          items: validatedItems.map((item) => ({
+            name: item.product_name,
+            variantLabel: item.variant_label,
+            quantity: item.quantity,
+            unitPrice: item.unit_price,
+            lineTotal: item.line_total,
+          })),
+        },
+      });
   } catch (error) {
     console.error('Create order error:', error);
     return jsonResponse(500, {
