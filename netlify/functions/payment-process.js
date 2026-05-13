@@ -113,6 +113,14 @@ function generateSignature(parameters, key) {
   return hmac.digest('base64');
 }
 
+// Expose a small, explicit surface for unit tests.
+// This keeps the handler behavior unchanged while allowing node:test to exercise
+// signature generation and deterministic helpers without adding deps.
+exports._test = {
+  createMerchantOrderCode,
+  generateSignature,
+};
+
 exports.handler = async (event, context) => {
   if (event.httpMethod === 'OPTIONS') {
     return jsonResponse(200, { ok: true });

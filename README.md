@@ -130,6 +130,57 @@ project-root/
 - Media management
 - User authentication
 
+## Payment Flow, Source of Truth, and Failure Modes
+
+This repo integrates RedSys via Netlify Functions.
+
+### Endpoints
+
+- `POST /.netlify/functions/create-order`: Validates cart + customer, stores `orders` and `order_items` in Supabase.
+- `POST /.netlify/functions/payment-process`: Prepares RedSys parameters for an existing order, updates the order to `pending` and sets `payment_reference`.
+- `POST /.netlify/functions/payment-callback`: RedSys server-to-server callback; verifies signature and finalizes `payment_status` in Supabase.
+
+### Source of truth
+
+- The only authoritative payment result is `/.netlify/functions/payment-callback` (signed payload + server-side update in Supabase).
+- Browser redirects (`Ds_Merchant_UrlOK` / `Ds_Merchant_UrlKO`) are UX only and can be missed due to network/browser issues.
+
+### Order state transitions (current implementation)
+
+- On initiation (`payment-process`): `status = pending_payment`, `payment_status = pending`, `payment_reference` is set.
+- On callback success (`Ds_Response 0..99`): `status = processed`, `payment_status = paid`, `fulfillment_status = delivered`.
+- On callback failure (`Ds_Response > 99`): `status = pending_payment`, `payment_status = failed`.
+
+### Cart behavior
+
+- Cart persistence/clearing is client-side.
+- Recommendation: clear the cart only after confirming the order is `paid` (do not rely solely on a user landing on `/payment/success`).
+
+### Lost connection scenarios
+
+1. Client loses connection before calling `payment-process`.
+2. Client pays but never returns to the site.
+3. Callback arrives but our callback handler fails (Supabase down, etc.).
+
+In scenarios 2 and 3, payment may be captured without the user seeing the success page. The callback handler is responsible for recording the final payment status; the redirect is not.
+
+### Payment unit tests
+
+This repo includes simple payment unit tests using Node's built-in test runner.
+
+Run them with:
+
+```bash
+npm test
+```
+
+Current coverage is split into two groups:
+
+- `test/payment-process.test.js`: tests payment initiation helpers and handler behavior such as missing orders, invalid totals, already-paid orders, valid payment payload generation, and missing payment configuration.
+- `test/payment-callback.test.js`: tests callback signature verification, body parsing, payment snapshot merging, successful and failed callback flows, missing callback payloads, missing secret-key configuration, and idempotent handling of already-paid orders.
+
+These tests are unit-level and mock external services such as Supabase. They do not exercise the browser cart flow or live RedSys/SendGrid integrations.
+
 ## Setup & Installation
 
 ### Prerequisites

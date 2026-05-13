@@ -8,6 +8,7 @@
     "netlify:dev": "netlify dev",
     "products:generate": "node scripts/generate-products-json.js",
     "build": "npm run products:generate && npx @11ty/eleventy",
+    "test": "node --test",
     "tina:dev": "tinacms dev -c \"npm run dev\"",
     "tina:build": "tinacms build",
     "format": "prettier --write .",

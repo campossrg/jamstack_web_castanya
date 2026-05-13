@@ -68,6 +68,14 @@ function verifySignature(merchantParameters, signature, secretKey) {
   };
 }
 
+// Expose a small, explicit surface for unit tests.
+exports._test = {
+  normalizeSignature,
+  verifySignature,
+  parseEventBody,
+  mergePaymentSnapshot,
+};
+
 function parseEventBody(event) {
   if (!event.body) {
     return {};
