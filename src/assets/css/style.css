@@ -1910,7 +1910,7 @@ body.page-blog .content-wrap {
 }
 
 .hero-central-logo {
-  height: clamp(140px, 12vw, 210px);
+  height: clamp(260px, 20vw, 340px);
   margin-bottom: 10px;
   width: auto;
   object-fit: contain;
