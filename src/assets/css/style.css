@@ -2139,6 +2139,7 @@ body:not(.home) .header-logo img {
   padding: 10px 15px;
   color: white;
   text-decoration: none;
+  font-family: "Gotham-Medium", var(--font-main);
   font-size: 14px;
   font-weight: 700;
   line-height: 1.2;
@@ -2207,6 +2208,7 @@ body:not(.home) .header-logo img {
   padding: 12px 14px;
   color: #7b6b43 !important;
   text-decoration: none;
+  font-family: "Gotham-Medium", var(--font-main);
   text-transform: uppercase;
   letter-spacing: 0.9px;
   font-size: 12px;
