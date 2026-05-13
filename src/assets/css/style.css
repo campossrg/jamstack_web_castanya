@@ -17,6 +17,14 @@
 }
 
 @font-face {
+  font-family: "Copperplate Castanya";
+  src: url("/assets/fonts/Copperplate.ttc") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
   font-family: "Gotham-Medium";
   src:
     local("Gotham Medium"),
@@ -44,8 +52,9 @@
   --color-body: #444444;
   --color-bg: #fcfcfc;
   --color-cream: #fefdf9;
-  --font-main: "Montserrat", sans-serif;
-  --font-secondary: "Frutiger LT Std", Helvetica, Arial, sans-serif;
+  --font-main: "Gotham-Medium", "Gotham Medium", sans-serif;
+  --font-secondary: "Gotham-Medium", "Gotham Medium", sans-serif;
+  --font-title: "PP Neue World", serif;
   --font-subtitle: "Gotham-Medium", "Gotham Medium", var(--font-main);
   --transition-fast: 0.2s ease;
   --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -56,9 +65,45 @@
 
 [class$="__eyebrow"],
 [class$="__kicker"],
-.label-small {
+[class$="__subtitle"],
+[class$="__label"],
+[class$="__tagline"],
+.label-small,
+.botiga-subtitle,
+.intro-subtitle,
+.section-subtitle,
+.blog-hero-subtitle,
+.post-subtitle,
+.section-subtitle-italic,
+.where-page__subtitle {
   font-family: var(--font-subtitle);
   font-weight: 500;
+}
+
+[class$="__title"],
+[class$="__heading"],
+[class$="__name"],
+.hero-title,
+.hero-subtitle,
+.hero-title-elegant,
+.section-title,
+.section-title-main,
+.card-title,
+.botiga-title,
+.info-title,
+.intro-title,
+.post-title,
+.featured-news-title,
+.actualitat-card-title,
+.logo-title,
+.cta-title,
+.newsletter-heading,
+.visit-activity-section-title,
+.footer-col h3,
+.footer-grid h3,
+.projecte-feature__slide h2,
+.visit-activity-experience__card h3 {
+  font-family: var(--font-title) !important;
 }
 
 body.has-cookie-banner {
@@ -1024,7 +1069,7 @@ button:focus-visible {
 
 /* Update these for the "L'últim a la Castanya" section */
 .section-title {
-  font-family: var(--font-secondary);
+  font-family: var(--font-title);
   font-weight: 800; /* Force bold */
   font-size: 28px;
   margin-bottom: 10px;
@@ -1039,7 +1084,7 @@ button:focus-visible {
 
 /* Update for the card titles within the grid */
 .card-title {
-  font-family: var(--font-secondary);
+  font-family: var(--font-title);
   font-weight: 800; /* Bold headers in cards */
   font-size: 18px;
   margin-bottom: 10px;
@@ -1972,7 +2017,7 @@ body.page-blog .content-wrap {
 
 /* Main Typography from Screenshot */
 .hero-title {
-  font-family: Copperplate, "Copperplate Gothic Light", "Copperplate Gothic Bold", serif;
+  font-family: var(--font-title);
   font-size: clamp(2.5rem, 6vw, 5rem); /* Responsive sizing */
   font-weight: 800;
   letter-spacing: 2px;
@@ -1982,13 +2027,21 @@ body.page-blog .content-wrap {
 }
 
 .hero-subtitle {
-  font-family: Copperplate, "Copperplate Gothic Light", "Copperplate Gothic Bold", serif;
+  font-family: var(--font-title);
   font-size: clamp(2.1rem, 5vw, 4.5rem);
   font-weight: 800;
   letter-spacing: 2px;
   line-height: 1;
   margin-bottom: 30px;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+body.home .hero-title,
+body.home .hero-subtitle {
+  font-family: "Copperplate Castanya", Copperplate, "Copperplate Gothic Light", "Copperplate Gothic Bold", serif !important;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  font-stretch: normal;
 }
 
 .hero-tagline {
@@ -3720,7 +3773,7 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-dropdown__link.i
 }
 
 .section-title-main {
-  font-family: var(--font-secondary);
+  font-family: var(--font-title);
   font-size: 34px;
   font-weight: 800;
   color: #7b6b43;
@@ -3775,7 +3828,7 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-dropdown__link.i
 }
 
 .hero-title-elegant {
-  font-family: "Frutiger LT Std", serif; /* Or your chosen serif font */
+  font-family: var(--font-title);
   font-size: clamp(28px, 4vw, 48px);
   line-height: 1.1;
   color: #7b6b43;
@@ -5932,7 +5985,7 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-dropdown__link.i
 }
 
 .where-card__title {
-  font-family: "Frutiger LT Std", serif;
+  font-family: var(--font-title);
   font-size: 33px;
   font-weight: 400;
   text-transform: uppercase;
@@ -5971,7 +6024,7 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-dropdown__link.i
 }
 
 .where-stockists__title {
-  font-family: var(--font-secondary);
+  font-family: var(--font-title);
   font-size: 28px;
   font-weight: 700;
   letter-spacing: 0.8px;
@@ -6048,7 +6101,7 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-dropdown__link.i
 }
 
 .stockist-card__title {
-  font-family: "Frutiger LT Std", serif;
+  font-family: var(--font-title);
   font-size: 28px;
   font-weight: 400;
   text-transform: uppercase;
@@ -6113,7 +6166,7 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-dropdown__link.i
 
 .where-sales-cta__title {
   max-width: 700px;
-  font-family: "Frutiger LT Std", serif;
+  font-family: var(--font-title);
   font-size: 58px;
   font-weight: 400;
   line-height: 0.95;
@@ -7032,7 +7085,7 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-dropdown__link.i
 
 .shop-page-commitment__title {
   margin: 0;
-  font-family: var(--font-main);
+  font-family: var(--font-title);
   font-size: clamp(16px, 1.1vw, 18px);
   font-weight: 700;
   letter-spacing: 2.4px;
@@ -7336,7 +7389,7 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-dropdown__link.i
 .product-detail__title {
   margin: 0 0 8px;
   color: #6f5a33;
-  font-family: var(--font-main);
+  font-family: var(--font-title);
   font-size: 30px;
   font-weight: 700;
 }
@@ -7733,7 +7786,7 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-dropdown__link.i
 .shop-cart-summary__title {
   margin: 12px 0 0;
   color: #7b6b43;
-  font-family: var(--font-main);
+  font-family: var(--font-title);
   font-size: clamp(24px, 2vw, 34px);
   font-weight: 700;
   line-height: 1.08;
@@ -9955,7 +10008,7 @@ body.internal.page-gastronomic-recipes {
 .recipe-detail__step-title,
 .recipe-detail__title {
   margin: 0;
-  font-family: var(--font-secondary);
+  font-family: var(--font-title);
   text-transform: uppercase;
   color: #8b7445;
 }
@@ -10089,7 +10142,7 @@ body.internal.page-gastronomic-recipes {
 .recipe-detail__related-products-title,
 .recipe-detail__related-product-title {
   margin: 0;
-  font-family: var(--font-secondary);
+  font-family: var(--font-title);
   text-transform: uppercase;
   color: #8b7445;
 }
