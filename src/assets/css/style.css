@@ -1953,7 +1953,7 @@ body.page-blog .content-wrap {
 
 /* Main Typography from Screenshot */
 .hero-title {
-  font-family: var(--font-main);
+  font-family: Copperplate, "Copperplate Gothic Light", "Copperplate Gothic Bold", serif;
   font-size: clamp(2.5rem, 6vw, 5rem); /* Responsive sizing */
   font-weight: 800;
   letter-spacing: 2px;
@@ -1963,7 +1963,7 @@ body.page-blog .content-wrap {
 }
 
 .hero-subtitle {
-  font-family: var(--font-main);
+  font-family: Copperplate, "Copperplate Gothic Light", "Copperplate Gothic Bold", serif;
   font-size: clamp(2.1rem, 5vw, 4.5rem);
   font-weight: 800;
   letter-spacing: 2px;
@@ -1973,7 +1973,7 @@ body.page-blog .content-wrap {
 }
 
 .hero-tagline {
-  font-family: var(--font-secondary); /* Using the serif font */
+  font-family: "Gotham-Medium", "Gotham Medium", var(--font-main);
   font-style: italic;
   font-size: 18px;
   opacity: 0.9;
