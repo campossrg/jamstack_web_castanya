@@ -1,4 +1,4 @@
-const sgMail = require('@sendgrid/mail');
+const BREVO_API_URL = 'https://api.brevo.com/v3/smtp/email';
 
 function jsonResponse(statusCode, body) {
   return {
@@ -11,16 +11,29 @@ function jsonResponse(statusCode, body) {
   };
 }
 
-function isSendgridConfigured() {
-  return Boolean(process.env.SENDGRID_API_KEY && process.env.FROM_EMAIL);
+function isBrevoConfigured() {
+  return Boolean(process.env.BREVO_API_KEY && process.env.FROM_EMAIL);
 }
 
-function configureSendgrid() {
-  if (!isSendgridConfigured()) {
-    throw new Error('SendGrid environment is not configured');
-  }
+function getSender() {
+  return {
+    email: process.env.FROM_EMAIL,
+    name: process.env.FROM_NAME || 'Castanya de Viladrau',
+  };
+}
 
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+function getRequiredRecipient(type, to) {
+  switch (type) {
+    case 'contact':
+      return process.env.CONTACT_EMAIL;
+    case 'order-confirmation':
+    case 'newsletter':
+      return to;
+    case 'order-notification':
+      return process.env.ORDER_NOTIFICATION_EMAIL;
+    default:
+      return undefined;
+  }
 }
 
 function escapeHtml(value) {
@@ -30,6 +43,21 @@ function escapeHtml(value) {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
+}
+
+function withEmailContent(emailConfig) {
+  const htmlContent = String(emailConfig.htmlContent || emailConfig.html || '').trim();
+  const textContent = String(emailConfig.textContent || '').trim();
+
+  return {
+    ...emailConfig,
+    htmlContent:
+      htmlContent ||
+      '<p>Hem rebut la teva solicitud correctament. Si us plau, contacta amb nosaltres si necessites ajuda addicional.</p>',
+    textContent:
+      textContent ||
+      'Hem rebut la teva solicitud correctament. Si us plau, contacta amb nosaltres si necessites ajuda addicional.',
+  };
 }
 
 function buildOrderConfirmationEmail({ to, data }) {
@@ -42,10 +70,10 @@ function buildOrderConfirmationEmail({ to, data }) {
     .join('');
 
   return {
-    to,
-    from: process.env.FROM_EMAIL,
+    to: [{ email: to }],
+    sender: getSender(),
     subject: `Confirmacion de pedido #${data.orderId}`,
-    html: `
+    htmlContent: `
       <h2>Gracies per la teva comanda</h2>
       <p>Hem rebut correctament la comanda <strong>#${escapeHtml(data.orderId)}</strong>.</p>
 
@@ -67,12 +95,52 @@ function buildOrderConfirmationEmail({ to, data }) {
   };
 }
 
+function buildOrderNotificationEmail({ data }) {
+  const orderTotal = data.items.reduce((sum, item) => sum + item.lineTotal, 0);
+  const itemsList = data.items
+    .map(
+      (item) =>
+        `<li>${escapeHtml(item.name)} (${escapeHtml(item.variantLabel)}) x${item.quantity} - EUR ${item.lineTotal.toFixed(2)}</li>`,
+    )
+    .join('');
+
+  return {
+    to: [{ email: getRequiredRecipient('order-notification') }],
+    sender: getSender(),
+    subject: `Nou pedido pagat #${data.orderId}`,
+    htmlContent: `
+      <h2>Nou pedido pagat</h2>
+      <p>S'ha confirmat el pagament de la comanda <strong>#${escapeHtml(data.orderId)}</strong>.</p>
+
+      <h3>Dades del client</h3>
+      <p>
+        <strong>Nom:</strong> ${escapeHtml(data.customer.name)}<br>
+        <strong>Email:</strong> ${escapeHtml(data.customer.email)}<br>
+        <strong>Telefon:</strong> ${escapeHtml(data.customer.phone || '')}
+      </p>
+
+      <h3>Adreca d'enviament</h3>
+      <p>
+        ${escapeHtml(data.customer.address)}<br>
+        ${escapeHtml(data.customer.city)}, ${escapeHtml(data.customer.postalCode)}<br>
+        ${escapeHtml(data.customer.country)}
+      </p>
+
+      <h3>Detalls de la comanda</h3>
+      <ul>${itemsList}</ul>
+
+      <p><strong>Total: EUR ${orderTotal.toFixed(2)}</strong></p>
+      ${data.customer.notes ? `<p><strong>Notes:</strong> ${escapeHtml(data.customer.notes)}</p>` : ''}
+    `,
+  };
+}
+
 function buildContactEmail({ data }) {
   return {
-    to: process.env.CONTACT_EMAIL,
-    from: process.env.FROM_EMAIL,
+    to: [{ email: getRequiredRecipient('contact') }],
+    sender: getSender(),
     subject: `Nuevo mensaje de contacto de ${data.name}`,
-    html: `
+    htmlContent: `
       <h2>Nuevo mensaje de contacto</h2>
       <p><strong>Nombre:</strong> ${escapeHtml(data.name)}</p>
       <p><strong>Email:</strong> ${escapeHtml(data.email)}</p>
@@ -85,10 +153,10 @@ function buildContactEmail({ data }) {
 
 function buildNewsletterEmail({ to }) {
   return {
-    to,
-    from: process.env.FROM_EMAIL,
+    to: [{ email: getRequiredRecipient('newsletter', to) }],
+    sender: getSender(),
     subject: 'Bienvenido a nuestro newsletter',
-    html: `
+    htmlContent: `
       <h2>Bienvenido a nuestro newsletter</h2>
       <p>Gracias por suscribirte. Recibiras nuestras ultimas novedades y ofertas exclusivas.</p>
       <p>Si no deseas recibir mas emails, puedes <a href="${process.env.URL}/unsubscribe">darte de baja aqui</a>.</p>
@@ -102,6 +170,8 @@ function buildEmailConfig({ type, to, data }) {
       return buildContactEmail({ data });
     case 'order-confirmation':
       return buildOrderConfirmationEmail({ to, data });
+    case 'order-notification':
+      return buildOrderNotificationEmail({ data });
     case 'newsletter':
       return buildNewsletterEmail({ to });
     default:
@@ -109,15 +179,50 @@ function buildEmailConfig({ type, to, data }) {
   }
 }
 
+async function sendBrevoEmail(emailConfig) {
+  const response = await fetch(BREVO_API_URL, {
+    method: 'POST',
+    headers: {
+      accept: 'application/json',
+      'api-key': process.env.BREVO_API_KEY,
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify(emailConfig),
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Brevo API request failed: ${errorText}`);
+  }
+
+  return response.json();
+}
+
 async function sendEmail({ type, to, data }) {
-  configureSendgrid();
-  const emailConfig = buildEmailConfig({ type, to, data });
-  await sgMail.send(emailConfig);
+  if (!isBrevoConfigured()) {
+    throw new Error('Brevo environment is not configured');
+  }
+
+  const recipient = getRequiredRecipient(type, to);
+  if (!recipient) {
+    if (type === 'contact') {
+      throw new Error('Contact email is not configured');
+    }
+
+    if (type === 'order-notification') {
+      throw new Error('Order notification email is not configured');
+    }
+
+    throw new Error('Recipient email is required');
+  }
+
+  const emailConfig = withEmailContent(buildEmailConfig({ type, to, data }));
+  await sendBrevoEmail(emailConfig);
   return { success: true };
 }
 
 exports.sendEmail = sendEmail;
-exports.isSendgridConfigured = isSendgridConfigured;
+exports.isBrevoConfigured = isBrevoConfigured;
 
 exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') {
@@ -132,7 +237,7 @@ exports.handler = async (event) => {
   } catch (error) {
     console.error('Email sending error:', error);
 
-    const statusCode = error.message === 'SendGrid environment is not configured' ? 503 : 500;
+    const statusCode = error.message === 'Brevo environment is not configured' ? 503 : 500;
     return jsonResponse(statusCode, {
       success: false,
       error: 'Failed to send email',

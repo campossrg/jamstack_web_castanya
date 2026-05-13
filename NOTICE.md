@@ -27,5 +27,5 @@ This product includes software developed by the following projects:
   Copyright (c) Vitaly Puzrin, Alex Kocharin
   License: MIT (https://github.com/markdown-it/markdown-it)
 
-This project also integrates third-party APIs including RedSys and SendGrid. 
+This project also integrates third-party APIs including RedSys and Brevo.
 Usage of those services is subject to their respective Terms of Service.

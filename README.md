@@ -29,7 +29,7 @@ This project follows the JAMStack (JavaScript, APIs, Markup) architecture patter
 
 ### Services & APIs
 - **[RedSys](https://www.redsys.es/)** - Spanish payment gateway integration
-- **[SendGrid](https://sendgrid.com/)** - Email delivery service
+- **[Brevo](https://www.brevo.com/)** - Email delivery service
 - **[Supabase](https://supabase.com/)** - Low-cost order storage for guest checkout
 - **Netlify Functions** - Serverless functions for API endpoints
 
@@ -107,7 +107,7 @@ project-root/
 - Hero section with call-to-action
 - Featured products showcase
 - Latest blog posts preview
-- Contact form with SendGrid integration
+- Contact form with Brevo integration
 - Responsive design with mobile-first approach
 
 ### Blog System
@@ -179,7 +179,7 @@ Current coverage is split into two groups:
 - `test/payment-process.test.js`: tests payment initiation helpers and handler behavior such as missing orders, invalid totals, already-paid orders, valid payment payload generation, and missing payment configuration.
 - `test/payment-callback.test.js`: tests callback signature verification, body parsing, payment snapshot merging, successful and failed callback flows, missing callback payloads, missing secret-key configuration, and idempotent handling of already-paid orders.
 
-These tests are unit-level and mock external services such as Supabase. They do not exercise the browser cart flow or live RedSys/SendGrid integrations.
+These tests are unit-level and mock external services such as Supabase. They do not exercise the browser cart flow or live RedSys/Brevo integrations.
 
 ## Setup & Installation
 
@@ -207,7 +207,10 @@ These tests are unit-level and mock external services such as Supabase. They do 
 3. **Environment variables**
    Create `.env` file:
    ```env
-    SENDGRID_API_KEY=your_sendgrid_api_key
+    BREVO_API_KEY=your_brevo_api_key
+    FROM_EMAIL=no-reply@example.com
+    FROM_NAME=Castanya de Viladrau
+    ORDER_NOTIFICATION_EMAIL=orders@example.com
     REDSYS_MERCHANT_CODE=your_merchant_code
     REDSYS_SECRET_KEY=your_secret_key
     SUPABASE_URL=your_supabase_project_url
@@ -382,8 +385,8 @@ Important behavior:
 
 - payment success is written to Supabase first
 - confirmation email is attempted afterwards as a best-effort action
-- if `SENDGRID_API_KEY` or `FROM_EMAIL` is missing, payment still remains `paid`
-- missing SendGrid configuration is treated like RedSys configuration: code is ready, activation depends on environment variables
+- if `BREVO_API_KEY` or `FROM_EMAIL` is missing, payment still remains `paid`
+- missing Brevo configuration is treated like RedSys configuration: code is ready, activation depends on environment variables
 
 ### TinaCMS Configuration (`tina/config.ts`)
 - Content schema definition

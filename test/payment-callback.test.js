@@ -96,7 +96,7 @@ test('payment-callback handler marks order as paid on successful response', asyn
   process.env.SUPABASE_SERVICE_ROLE_KEY = 'service-role';
   process.env.REDSYS_SECRET_KEY = Buffer.alloc(24, 9).toString('base64');
   process.env.PAYMENT_PROVIDER = '';
-  process.env.SENDGRID_API_KEY = '';
+  process.env.BREVO_API_KEY = '';
   process.env.FROM_EMAIL = '';
 
   const originalFetch = global.fetch;
@@ -328,6 +328,122 @@ test('payment-callback handler is idempotent when order is already paid', async 
     assert.equal(response.statusCode, 200);
     assert.equal(response.body, 'OK');
     assert.equal(fetchCalls.length, 1);
+  } finally {
+    global.fetch = originalFetch;
+  }
+});
+
+test('payment-callback handler sends customer and provider emails when Brevo is configured', async () => {
+  process.env.SUPABASE_URL = 'https://example.supabase.co';
+  process.env.SUPABASE_SERVICE_ROLE_KEY = 'service-role';
+  process.env.REDSYS_SECRET_KEY = Buffer.alloc(24, 14).toString('base64');
+  process.env.PAYMENT_PROVIDER = '';
+  process.env.BREVO_API_KEY = 'brevo-key';
+  process.env.FROM_EMAIL = 'no-reply@example.com';
+  process.env.ORDER_NOTIFICATION_EMAIL = 'orders@example.com';
+
+  const originalFetch = global.fetch;
+  const fetchCalls = [];
+  global.fetch = async (url, options = {}) => {
+    fetchCalls.push({ url, options });
+
+    if (String(url).includes('payment_reference=eq.123456789012')) {
+      return {
+        ok: true,
+        json: async () => [
+          {
+            id: 'order-3',
+            public_order_code: 'CV-PAID-EMAILS',
+            payment_status: 'pending',
+            payment_raw_response: { initiated_at: '2026-01-01T00:00:00.000Z' },
+            customer_email: 'buyer@example.com',
+            customer_name: 'Buyer',
+            customer_phone: '+34123456789',
+            notes: 'Leave at the door',
+            shipping_address_json: {
+              address_line_1: 'Street 1',
+              city: 'Vic',
+              postal_code: '08500',
+              country: 'ES',
+            },
+          },
+        ],
+      };
+    }
+
+    if (String(url).includes('/rest/v1/orders?id=eq.order-3')) {
+      return {
+        ok: true,
+        json: async () => [
+          {
+            id: 'order-3',
+            public_order_code: 'CV-PAID-EMAILS',
+            payment_status: 'paid',
+            customer_email: 'buyer@example.com',
+            customer_name: 'Buyer',
+            customer_phone: '+34123456789',
+            notes: 'Leave at the door',
+            shipping_address_json: {
+              address_line_1: 'Street 1',
+              city: 'Vic',
+              postal_code: '08500',
+              country: 'ES',
+            },
+          },
+        ],
+      };
+    }
+
+    if (String(url).includes('/rest/v1/order_items?select=*&order_id=eq.order-3')) {
+      return {
+        ok: true,
+        json: async () => [
+          {
+            product_name: 'Castanya',
+            variant_label: '1kg',
+            quantity: 2,
+            line_total: 15,
+          },
+        ],
+      };
+    }
+
+    if (String(url) === 'https://api.brevo.com/v3/smtp/email') {
+      return {
+        ok: true,
+        json: async () => ({ messageId: 'brevo-message' }),
+      };
+    }
+
+    throw new Error(`Unexpected fetch call: ${url}`);
+  };
+
+  try {
+    const mod = freshRequire('../netlify/functions/payment-callback.js');
+    const callbackPayload = { Ds_Order: '123456789012', Ds_Response: '0000' };
+    const merchantParameters = Buffer.from(JSON.stringify(callbackPayload), 'utf8').toString('base64');
+    const signature = signMerchantParameters(
+      merchantParameters,
+      callbackPayload.Ds_Order,
+      process.env.REDSYS_SECRET_KEY,
+    );
+
+    const response = await mod.handler({
+      httpMethod: 'POST',
+      headers: { 'content-type': 'application/x-www-form-urlencoded' },
+      body: `Ds_MerchantParameters=${encodeURIComponent(merchantParameters)}&Ds_Signature=${encodeURIComponent(signature)}`,
+    });
+
+    assert.equal(response.statusCode, 200);
+    assert.equal(response.body, 'OK');
+
+    const brevoCalls = fetchCalls.filter((call) => String(call.url) === 'https://api.brevo.com/v3/smtp/email');
+    assert.equal(brevoCalls.length, 2);
+
+    const customerEmailPayload = JSON.parse(brevoCalls[0].options.body);
+    const providerEmailPayload = JSON.parse(brevoCalls[1].options.body);
+    assert.equal(customerEmailPayload.to[0].email, 'buyer@example.com');
+    assert.equal(providerEmailPayload.to[0].email, 'orders@example.com');
   } finally {
     global.fetch = originalFetch;
   }

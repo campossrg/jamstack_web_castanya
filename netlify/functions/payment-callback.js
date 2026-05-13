@@ -1,7 +1,7 @@
 const crypto = require('crypto');
 const querystring = require('querystring');
 require('dotenv').config();
-const { sendEmail, isSendgridConfigured } = require('./send-email');
+const { sendEmail, isBrevoConfigured } = require('./send-email');
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -163,34 +163,43 @@ function mergePaymentSnapshot(existingSnapshot, nextSnapshot) {
   };
 }
 
-async function sendOrderConfirmationEmail(order) {
-  if (!isSendgridConfigured()) {
-    console.log(`SendGrid not configured, skipping confirmation email for ${order.public_order_code}`);
+async function sendOrderEmails(order) {
+  if (!isBrevoConfigured()) {
+    console.log(`Brevo not configured, skipping order emails for ${order.public_order_code}`);
     return { skipped: true, reason: 'not_configured' };
   }
 
   const orderItems = await fetchOrderItems(order.id);
   const shippingAddress = order.shipping_address_json || {};
+  const emailData = {
+    orderId: order.public_order_code,
+    items: orderItems.map((item) => ({
+      name: item.product_name,
+      variantLabel: item.variant_label,
+      quantity: item.quantity,
+      lineTotal: Number(item.line_total || 0),
+    })),
+    customer: {
+      name: order.customer_name,
+      email: order.customer_email,
+      phone: order.customer_phone,
+      address: shippingAddress.address_line_1 || '',
+      city: shippingAddress.city || '',
+      postalCode: shippingAddress.postal_code || '',
+      country: shippingAddress.country || '',
+      notes: order.notes || '',
+    },
+  };
 
   await sendEmail({
     type: 'order-confirmation',
     to: order.customer_email,
-    data: {
-      orderId: order.public_order_code,
-      items: orderItems.map((item) => ({
-        name: item.product_name,
-        variantLabel: item.variant_label,
-        quantity: item.quantity,
-        lineTotal: Number(item.line_total || 0),
-      })),
-      customer: {
-        name: order.customer_name,
-        address: shippingAddress.address_line_1 || '',
-        city: shippingAddress.city || '',
-        postalCode: shippingAddress.postal_code || '',
-        country: shippingAddress.country || '',
-      },
-    },
+    data: emailData,
+  });
+
+  await sendEmail({
+    type: 'order-notification',
+    data: emailData,
   });
 
   return { skipped: false };
@@ -254,10 +263,10 @@ exports.handler = async (event) => {
       });
 
       try {
-        await sendOrderConfirmationEmail(updatedOrder || order);
+        await sendOrderEmails(updatedOrder || order);
       } catch (emailError) {
         console.error(
-          `Order paid but confirmation email failed for ${order.public_order_code}:`,
+          `Order paid but order emails failed for ${order.public_order_code}:`,
           emailError,
         );
       }
