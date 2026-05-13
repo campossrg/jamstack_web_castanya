@@ -1,0 +1,10 @@
+allowBuilds:
+  '@parcel/watcher': true
+  better-sqlite3: true
+  core-js: true
+  esbuild: true
+  netlify-cli: true
+  protobufjs: true
+  puppeteer: true
+  sharp: true
+  unix-dgram: true
