@@ -761,6 +761,10 @@ button:focus-visible {
   scrollbar-width: none; /* Hide scrollbar for clean look */
 }
 
+.botiga-section-updated .gallery-scroll {
+  justify-content: flex-start;
+}
+
 .gallery-scroll::-webkit-scrollbar {
   display: none;
 }
@@ -768,6 +772,10 @@ button:focus-visible {
 .gallery-item {
   min-width: 280px;
   flex: 0 0 auto;
+}
+
+.botiga-section-updated .gallery-item {
+  text-decoration: none;
 }
 
 .item-img {
@@ -788,6 +796,12 @@ button:focus-visible {
   font-weight: 700;
   font-size: 16px;
   color: #000;
+}
+
+.botiga-section-updated .item-img {
+  object-fit: contain;
+  object-position: center;
+  background: #f8f5eb;
 }
 
 /* Circular Arrows */
@@ -3970,6 +3984,8 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-dropdown__link.i
 }
 
 .hero-text-body {
+  font-family: var(--font-main);
+  font-weight: 500;
   font-size: 18px;
   line-height: 1.6;
   margin-bottom: 30px;
@@ -5356,6 +5372,10 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-dropdown__link.i
   padding: 0 20px;
 }
 
+.cta-content--home {
+  max-width: 1080px;
+}
+
 .cta-title {
   color: white;
   font-family: var(--font-title);
@@ -5363,6 +5383,14 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-dropdown__link.i
   margin-bottom: 30px;
   line-height: var(--type-banner-title-line-height);
   text-transform: uppercase;
+}
+
+.cta-title--home {
+  font-size: clamp(40px, 4.1vw, 64px);
+}
+
+.cta-title-line {
+  display: block;
 }
 
 .btn-olive-transparent {
@@ -5476,6 +5504,16 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-dropdown__link.i
   gap: 32px;
 }
 
+.flex-newsletter--home {
+  align-items: center;
+  gap: 20px;
+}
+
+.newsletter-copy--home {
+  flex: 0 0 40%;
+  max-width: 430px;
+}
+
 .newsletter-copy {
   max-width: 450px;
 }
@@ -5504,6 +5542,34 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-dropdown__link.i
   gap: 15px;
   flex: 1;
   max-width: 600px;
+}
+
+.newsletter-form--home {
+  flex: 0 0 38%;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  max-width: none;
+}
+
+.newsletter-input-field--home {
+  min-width: 0;
+  width: 100%;
+}
+
+.btn-newsletter-submit--home {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  white-space: nowrap;
+  width: fit-content;
+  min-width: 0;
+  max-width: max-content;
+  font-size: 16px;
+  line-height: 1.2;
+  padding: 10px 18px;
 }
 
 .newsletter-input-field {

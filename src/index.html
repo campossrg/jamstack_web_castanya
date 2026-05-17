@@ -1,5 +1,6 @@
 ---
 layout: default
+footerVariant: home
 title: "Castanya de Viladrau"
 seoTitle: "Castanya de Viladrau | Productes artesans, visites guiades i gastronomia al Montseny"
 description: "Descobreix Castanya de Viladrau: productes artesans de castanya, visites guiades al Montseny i propostes gastronomiques arrelades al territori."
@@ -26,6 +27,8 @@ name: home
   </div>
 </section>
 
+{% set homeProducts = collections.products | default([]) %}
+
 <section class="botiga-section-updated unified-bg">
   <div class="botiga-header-centered">
     <span class="label-small">BOTIGA</span>
@@ -47,26 +50,16 @@ name: home
 
   <div class="gallery-container">
     <div class="gallery-scroll" id="galleryScroll">
-      <div class="gallery-item">
-        <img src="/assets/images/gallery/castanyes.jpg" alt="Castanyes" class="item-img">
-        <span class="item-name">CASTANYES</span>
-      </div>
-      <div class="gallery-item">
-        <img src="/assets/images/gallery/elaborats.jpg" alt="Elaborats de castanya" class="item-img">
-        <span class="item-name">ELABORATS DE CASTANYA</span>
-      </div>
-      <div class="gallery-item">
-        <img src="/assets/images/gallery/cremes.jpg" alt="Per dinar" class="item-img">
-        <span class="item-name">PER DINAR</span>
-      </div>
-      <div class="gallery-item">
-        <img src="/assets/images/gallery/dolcos.jpg" alt="Dolços" class="item-img">
-        <span class="item-name">DOLÇOS</span>
-      </div>
-      <div class="gallery-item">
-        <img src="/assets/images/gallery/deshidratada.jpg" alt="Per picar" class="item-img">
-        <span class="item-name">PER PICAR</span>
-      </div>
+      {% for product in homeProducts %}
+        <a href="{{ product.url }}" class="gallery-item">
+          <img
+            src="{{ product.data.image }}"
+            alt="{{ product.data.imageAlt or product.data.title }}"
+            class="item-img"
+          >
+          <span class="item-name">{{ product.data.title }}</span>
+        </a>
+      {% endfor %}
     </div>
   </div>
 </section>
@@ -101,7 +94,7 @@ name: home
 
 <section class="gastronomic-split unified-bg">
   <div class="split-image">
-    <img src="/assets/images/gallery/banner-xalet-coromina.png" alt="Plat de risotto amb castanyes">
+    <img src="/assets/images/gallery/chalet_coromina_dish.jpg" alt="Plat de risotto amb castanyes">
   </div>
   <div class="split-text-content">
     <span class="label-small">ESPAI GASTRONÒMIC</span>
