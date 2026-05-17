@@ -5,7 +5,7 @@ seoTitle: "Actualitat | Blog i novetats de Castanya de Viladrau"
 description: "Actualitat de Castanya de Viladrau amb novetats, receptes, sostenibilitat i histories del Montseny."
 seoImage: /assets/images/gallery/sostenibilitat.jpeg
 name: blog
-footerVariant: none
+footerVariant: home-newsletter
 ---
 
 {% set pageContent = actualitat.page %}
@@ -134,16 +134,3 @@ footerVariant: none
   </div>
 </div>
 
-<section class="actualitat-newsletter" aria-labelledby="actualitat-newsletter-title">
-  <div class="container actualitat-newsletter-inner">
-    <div class="actualitat-newsletter-copy">
-      <h2 id="actualitat-newsletter-title">{{ pageContent.newsletter.title }}</h2>
-      <p>{{ pageContent.newsletter.text }}</p>
-    </div>
-    <form class="actualitat-newsletter-form">
-      <label class="sr-only" for="actualitat-newsletter-email">{{ pageContent.newsletter.inputLabel }}</label>
-      <input id="actualitat-newsletter-email" type="email" />
-      <button type="submit">{{ pageContent.newsletter.buttonLabel }}</button>
-    </form>
-  </div>
-</section>

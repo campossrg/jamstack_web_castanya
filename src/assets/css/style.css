@@ -1494,7 +1494,7 @@ body.page-blog .content-wrap {
 .actualitat-load-more {
   display: flex;
   justify-content: center;
-  margin-bottom: 66px;
+  margin-bottom: 0;
 }
 
 .actualitat-load-more button {
@@ -1886,7 +1886,7 @@ body.page-blog .content-wrap {
   grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
   gap: 72px;
   padding-top: 28px;
-  padding-bottom: 40px;
+  padding-bottom: 0;
 }
 
 .actualitat-post__content {
@@ -1957,7 +1957,7 @@ body.page-blog .content-wrap {
   display: flex;
   justify-content: space-between;
   gap: 24px;
-  padding-bottom: 78px;
+  padding-bottom: 0;
 }
 
 .actualitat-post__nav a {
@@ -3127,11 +3127,12 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-dropdown__link.i
   display: grid;
   grid-template-columns: minmax(320px, 0.95fr) minmax(360px, 1.05fr);
   gap: 48px;
-  align-items: start;
+  align-items: center;
   padding: 54px 28px 0;
 }
 
 .fusta-showcase__details-copy {
+  align-self: center;
   text-align: center;
   color: #7b6b43;
 }
@@ -3143,6 +3144,10 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-dropdown__link.i
   line-height: 1.05;
   text-transform: uppercase;
   color: #8b7445;
+}
+
+#fustaShowcaseDetailTitle {
+  font-family: var(--font-title);
 }
 
 .fusta-showcase__details-paragraph {
@@ -3645,7 +3650,7 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-dropdown__link.i
 .professionals-inspiration-card__title {
   margin: 0 0 20px;
   text-align: center;
-  font-family: var(--font-secondary);
+  font-family: var(--font-slider-title);
   font-size: clamp(25px, 2vw, 33px);
   line-height: 1;
   text-transform: uppercase;
@@ -4144,7 +4149,7 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-dropdown__link.i
 
 .projecte-process__title {
   margin: 0 0 18px;
-  font-family: var(--font-main);
+  font-family: var(--font-slider-title);
   font-size: clamp(1.7rem, 3vw, 2.3rem);
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -4581,6 +4586,7 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-dropdown__link.i
   margin: 0;
   color: #8b7445;
   font-size: clamp(28px, 2.4vw, 40px);
+  font-family: "Copperplate Castanya", Copperplate, "Copperplate Gothic Light", "Copperplate Gothic Bold", serif;
   font-weight: 700;
   line-height: 1.12;
   letter-spacing: 1.6px;
@@ -4829,6 +4835,7 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-dropdown__link.i
 .gastronomic-sensory__title {
   margin: 0;
   font-size: clamp(28px, 2.4vw, 38px);
+  font-family: "Copperplate Castanya", Copperplate, "Copperplate Gothic Light", "Copperplate Gothic Bold", serif;
   font-weight: 700;
   line-height: 1.14;
   letter-spacing: 1.5px;
@@ -5423,6 +5430,7 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-dropdown__link.i
   margin: 0;
   font-size: var(--type-banner-title-size);
   line-height: var(--type-banner-title-line-height);
+  font-family: "Copperplate Castanya", Copperplate, "Copperplate Gothic Light", "Copperplate Gothic Bold", serif;
 }
 
 .cta-text {
@@ -5434,6 +5442,7 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-dropdown__link.i
 .cta-text--professionals {
   max-width: 700px;
   font-size: var(--type-banner-text-size);
+  font-family: "Copperplate Castanya", Copperplate, "Copperplate Gothic Light", "Copperplate Gothic Bold", serif;
 }
 
 .btn-olive-transparent--professionals {
@@ -7005,7 +7014,7 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-dropdown__link.i
 .shop-page-products__title {
   margin: 0;
   color: #8b7445;
-  font-family: var(--font-main);
+  font-family: "Copperplate Castanya", Copperplate, "Copperplate Gothic Light", "Copperplate Gothic Bold", serif;
   font-size: clamp(22px, 2vw, 31px);
   font-weight: 700;
   letter-spacing: 1.7px;
@@ -9092,7 +9101,7 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-dropdown__link.i
   }
 
   .visit-activity-reviews__header {
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: 45px minmax(0, 1fr) 45px;
     align-items: center;
   }
 
@@ -9180,7 +9189,7 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-dropdown__link.i
   }
 
   .visit-activity-reviews__header {
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: 45px minmax(0, 1fr) 45px;
     gap: 10px;
   }
 
@@ -9298,6 +9307,7 @@ body.page-visit-activity .header-logo {
   width: min(100%, 1160px);
   margin: 0 auto;
   padding: 0 42px calc(88px + var(--visit-activity-nav-offset));
+  font-family: var(--font-main);
   color: #fff;
   text-align: center;
 }
@@ -9439,6 +9449,7 @@ body.page-visit-activity .header-logo {
   width: min(100%, 1160px);
   margin: 0 auto;
   padding: 0 42px;
+  font-family: var(--font-main);
 }
 
 .visit-activity-gallery__title {
@@ -9472,6 +9483,7 @@ body.page-visit-activity .header-logo {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 22px 44px;
+  font-family: var(--font-main);
   color: #7b6b43;
 }
 
@@ -9515,6 +9527,7 @@ body.page-visit-activity .header-logo {
   display: grid;
   grid-template-columns: minmax(0, 1.55fr) minmax(280px, 0.9fr);
   gap: 56px;
+  font-family: var(--font-main);
   color: #7b6b43;
 }
 
@@ -9744,6 +9757,11 @@ body.page-visit-activity .header-logo {
   margin-top: 40px;
 }
 
+.visit-activity-sidebar__section:first-child .visit-activity-sidebar__title,
+.visit-activity-timeline__time {
+  font-family: var(--font-slider-title);
+}
+
 .visit-activity-timeline {
   position: relative;
   margin-top: 18px;
@@ -9803,18 +9821,25 @@ body.page-visit-activity .header-logo {
 
 .visit-activity-pricing__row {
   display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: baseline;
+  grid-template-columns: 24px minmax(0, 1fr);
+  align-items: center;
   gap: 18px;
   padding: 8px 0;
   font-size: 15px;
 }
 
+.visit-activity-pricing__row span {
+  justify-self: start;
+}
+
 .visit-activity-pricing__row strong {
+  padding-left: 16px;
+  border-left: 1px solid rgba(139, 116, 69, 0.55);
   color: #8b7445;
   font-size: 34px;
   font-weight: 700;
   line-height: 1;
+  text-align: left;
 }
 
 .visit-activity-experience {
@@ -9828,6 +9853,7 @@ body.page-visit-activity .header-logo {
   width: min(100%, 1160px);
   margin: 0 auto;
   padding: 0 42px;
+  font-family: var(--font-main);
 }
 
 .visit-activity-experience__eyebrow,
@@ -9849,10 +9875,19 @@ body.page-visit-activity .header-logo {
   text-align: center;
 }
 
-.visit-activity-experience__title,
+.visit-activity-experience__title {
+  margin: 0;
+  font-family: var(--font-slider-title);
+  max-width: 560px;
+  font-size: clamp(28px, 3vw, 44px);
+  line-height: 1.04;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+}
+
 .visit-activity-reviews__title {
   margin: 0;
-  font-family: var(--font-secondary);
+  font-family: var(--font-slider-title);
   max-width: 560px;
   font-size: clamp(28px, 3vw, 44px);
   line-height: 1.04;
@@ -9935,9 +9970,12 @@ body.page-visit-activity .header-logo {
 
 .visit-activity-reviews__header {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  gap: 20px;
+  grid-template-columns: 45px minmax(0, 1fr) 45px;
+  grid-auto-rows: 45px;
+  gap: 28px;
   align-items: center;
+  justify-content: center;
+  min-height: 45px;
 }
 
 .visit-activity-reviews__heading {
@@ -9945,22 +9983,43 @@ body.page-visit-activity .header-logo {
 }
 
 .visit-activity-reviews__meta {
-  display: inline-flex;
-  align-items: center;
+  display: grid;
+  place-items: center;
   color: #7b6b43;
-  justify-self: center;
+  grid-column: 2;
+  grid-row: 1;
+  min-width: 0;
+  height: 45px;
+  align-self: center;
 }
 
 .visit-activity-reviews__rating-line {
   margin: 0;
-  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-family: var(--font-slider-title);
+  font-size: 20px;
   font-weight: 700;
+  line-height: 1;
   letter-spacing: 1.2px;
+  text-align: center;
   text-transform: uppercase;
 }
 
-.visit-activity-reviews__nav {
-  justify-self: end;
+.visit-activity-reviews__nav-button {
+  grid-row: 1;
+  justify-self: center;
+  align-self: center;
+}
+
+#visitActivityReviewsPrev {
+  grid-column: 1;
+}
+
+#visitActivityReviewsNext {
+  grid-column: 3;
 }
 
 .visit-activity-reviews__carousel-wrap {
@@ -9989,6 +10048,7 @@ body.page-visit-activity .header-logo {
   width: min(100%, 1160px);
   margin: 0 auto;
   padding: 0 42px;
+  font-family: var(--font-main);
 }
 
 .visit-activity-more__header {
@@ -10230,6 +10290,7 @@ body.internal.page-gastronomic-recipes {
 }
 
 .recipe-detail__related-products-title {
+  font-family: "Copperplate Castanya", Copperplate, "Copperplate Gothic Light", "Copperplate Gothic Bold", serif;
   font-size: clamp(28px, 2.8vw, 40px);
 }
 
