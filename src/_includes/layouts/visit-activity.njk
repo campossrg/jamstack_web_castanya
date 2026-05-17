@@ -21,15 +21,6 @@
               >
               <h1 class="visit-activity-hero__title">{{ title }}</h1>
 
-              {% if gallery and gallery.length %}
-              <div class="visit-activity-hero__gallery">
-                <a href="#visit-activity-gallery" class="visit-activity-hero__gallery-link">
-                  {{ galleryButtonLabel or "VEURE GALERIA DE FOTOS" }}
-                  <span aria-hidden="true">›</span>
-                </a>
-              </div>
-              {% endif %}
-
               <div class="visit-activity-hero__actions">
                 <p class="visit-activity-hero__reservation">{{ reservationPrompt }}</p>
 
@@ -240,26 +231,6 @@
         </section>
         {% endif %}
 
-        {% if gallery and gallery.length %}
-        <section class="visit-activity-gallery unified-bg" id="visit-activity-gallery" aria-label="Galeria de fotos">
-          <div class="visit-activity-gallery__inner">
-            <div class="visit-activity-gallery__header title-nav-wrapper">
-              <h2 class="visit-activity-gallery__title">GALERIA DE FOTOS</h2>
-            </div>
-
-            <div class="gallery-container visit-activity-gallery__wrap">
-              <div class="gallery-scroll visit-activity-gallery__scroll" id="visitActivityGalleryScroll">
-                {% for photo in gallery %}
-                <div class="gallery-item visit-activity-gallery__item">
-                  <img src="{{ photo.image }}" alt="{{ photo.alt }}" class="item-img visit-activity-gallery__image" />
-                </div>
-                {% endfor %}
-              </div>
-            </div>
-          </div>
-        </section>
-        {% endif %}
-
         {% if reviewsSection and reviewsSection.reviews and reviewsSection.reviews.length %}
         <section class="visit-activity-reviews unified-bg" aria-label="Ressenyes de la visita">
           <div class="visit-activity-reviews__inner">
@@ -277,14 +248,21 @@
                 <p class="visit-activity-reviews__rating-line">{{ reviewsSection.ratingLabel }}</p>
               </div>
 
-              <div class="visit-activity-reviews__nav title-nav-wrapper">
-                <button class="nav-arrow-inline left" id="visitActivityReviewsPrev" aria-label="Ressenya anterior">
-                  <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
-                </button>
-                <button class="nav-arrow-inline right" id="visitActivityReviewsNext" aria-label="Ressenya següent">
-                  <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                </button>
-              </div>
+              <button
+                class="nav-arrow-inline left visit-activity-reviews__nav-button"
+                id="visitActivityReviewsPrev"
+                aria-label="Ressenya anterior"
+              >
+                <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+              </button>
+
+              <button
+                class="nav-arrow-inline right visit-activity-reviews__nav-button"
+                id="visitActivityReviewsNext"
+                aria-label="Ressenya següent"
+              >
+                <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </button>
             </div>
 
             <div class="gallery-container visit-activity-reviews__carousel-wrap">
