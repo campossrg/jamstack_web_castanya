@@ -34,7 +34,7 @@ This project follows the JAMStack (JavaScript, APIs, Markup) architecture patter
 - **Netlify Functions** - Serverless functions for API endpoints
 
 ### Development Tools
-- **npm/Node.js** - Package management and build tools
+- **pnpm/Node.js** - Package management and build tools
 - **Webpack** - Asset bundling
 - **ESLint** - JavaScript linting
 - **Prettier** - Code formatting
@@ -171,7 +171,7 @@ This repo includes simple payment unit tests using Node's built-in test runner.
 Run them with:
 
 ```bash
-npm test
+pnpm test
 ```
 
 Current coverage is split into two groups:
@@ -185,7 +185,7 @@ These tests are unit-level and mock external services such as Supabase. They do 
 
 ### Prerequisites
 - Node.js (v16 or higher)
-- npm or yarn
+- pnpm
 - Git
 - Netlify account
 - GitHub account
@@ -201,7 +201,7 @@ These tests are unit-level and mock external services such as Supabase. They do 
 
 2. **Install dependencies**
    ```bash
-   npm install
+   pnpm install
    ```
 
 3. **Environment variables**
@@ -221,20 +221,20 @@ These tests are unit-level and mock external services such as Supabase. They do 
 
 4. **Start development server**
     ```bash
-    npm run dev
+    pnpm dev
     ```
 
     Notes:
-    - `npm run dev` runs Eleventy only.
-    - To run Netlify Functions locally (so `/.netlify/functions/*` works), use `npm run netlify:dev`.
+    - `pnpm dev` runs Eleventy only.
+    - To run Netlify Functions locally (so `/.netlify/functions/*` works), use `pnpm netlify:dev`.
 
     ```bash
-    npm run netlify:dev
+    pnpm netlify:dev
     ```
 
 5. **Start TinaCMS**
    ```bash
-   npm run tina:dev
+   pnpm tina:dev
    ```
 
 ### Deployment
@@ -248,7 +248,7 @@ These tests are unit-level and mock external services such as Supabase. They do 
 
 2. **Connect to Netlify**
    - Link GitHub repository
-   - Set build command: `npm run build`
+   - Set build command: `pnpm build`
    - Set publish directory: `_site`
    - Add environment variables
 
@@ -263,7 +263,7 @@ These tests are unit-level and mock external services such as Supabase. They do 
 {
   "dev": "eleventy --serve",
   "build": "eleventy",
-  "tina:dev": "tinacms dev -c \"npm run dev\"",
+  "tina:dev": "tinacms dev -c \"pnpm dev\"",
   "tina:build": "tinacms build",
   "lint": "eslint src/assets/js",
   "format": "prettier --write ."

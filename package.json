@@ -7,12 +7,12 @@
     "dev": "eleventy --serve",
     "netlify:dev": "netlify dev",
     "products:generate": "node scripts/generate-products-json.js",
-    "build": "npm run products:generate && npx @11ty/eleventy",
+    "build": "pnpm products:generate && pnpm exec eleventy",
     "test": "node --test",
-    "tina:dev": "tinacms dev -c \"npm run dev\"",
+    "tina:dev": "tinacms dev -c \"pnpm dev\"",
     "tina:build": "tinacms build",
     "format": "prettier --write .",
-    "deploy": "npm run build && netlify deploy --prod --dir=_site",
+    "deploy": "pnpm build && netlify deploy --prod --dir=_site",
     "clean": "rm -rf _site"
   },
   "keywords": [
@@ -54,6 +54,7 @@
   "engines": {
     "node": "^24.0.0"
   },
+  "packageManager": "pnpm@11.1.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/campossrg/jamstack_web_castanya.git"
