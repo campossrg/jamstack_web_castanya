@@ -111,10 +111,25 @@ export default defineConfig({
             required: true,
           },
           {
-            type: "string",
+            type: "number",
             name: "price",
             label: "Price",
             required: true,
+          },
+          {
+            type: "string",
+            name: "priceLabel",
+            label: "Price label",
+          },
+          {
+            type: "string",
+            name: "sku",
+            label: "Default SKU",
+          },
+          {
+            type: "string",
+            name: "currency",
+            label: "Currency",
           },
           {
             type: "string",
@@ -171,11 +186,31 @@ export default defineConfig({
             required: true,
           },
           {
-            type: "string",
+            type: "object",
             name: "formats",
             label: "Format options",
             list: true,
             required: true,
+            fields: [
+              {
+                type: "string",
+                name: "label",
+                label: "Label",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "sku",
+                label: "SKU",
+                required: true,
+              },
+              {
+                type: "number",
+                name: "price",
+                label: "Price",
+                required: true,
+              },
+            ],
           },
           {
             type: "string",
