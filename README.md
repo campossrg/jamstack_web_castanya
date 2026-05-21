@@ -204,11 +204,18 @@ These tests are unit-level and mock external services such as Supabase. They do 
    pnpm install
    ```
 
-3. **Environment variables**
+3. **Use the correct Node version**
+   ```bash
+   nvm use
+   ```
+
+   This repository targets Node `24`, matching `package.json`, Netlify, and TinaCMS support.
+
+4. **Environment variables**
    Create `.env` file:
    ```env
-     BREVO_API_KEY=your_brevo_api_key
-     EMAIL_SENDING_ENABLED=true
+      BREVO_API_KEY=your_brevo_api_key
+      EMAIL_SENDING_ENABLED=true
      FROM_EMAIL=no-reply@example.com
      FROM_NAME=Castanya de Viladrau
      ORDER_NOTIFICATION_EMAIL=orders@example.com
@@ -219,10 +226,10 @@ These tests are unit-level and mock external services such as Supabase. They do 
     TINA_TOKEN=your_tina_token
    ```
 
-4. **Start development server**
-    ```bash
-    pnpm dev
-    ```
+5. **Start development server**
+     ```bash
+     pnpm dev
+     ```
 
     Notes:
     - `pnpm dev` runs Eleventy only.
@@ -232,10 +239,10 @@ These tests are unit-level and mock external services such as Supabase. They do 
     pnpm netlify:dev
     ```
 
-5. **Start TinaCMS**
-   ```bash
-   pnpm tina:dev
-   ```
+6. **Start TinaCMS**
+    ```bash
+    pnpm tina:dev
+    ```
 
 ### Deployment
 

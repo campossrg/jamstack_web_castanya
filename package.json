@@ -58,5 +58,12 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/campossrg/jamstack_web_castanya.git"
+  },
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": "24",
+      "onFail": "download"
+    }
   }
 }
