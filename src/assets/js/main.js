@@ -581,6 +581,141 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
+  const setupVisitBooking = () => {
+    const modal = document.querySelector("[data-booking-modal]");
+    const triggers = document.querySelectorAll("[data-booking-trigger]");
+    const form = document.querySelector("[data-booking-form]");
+    const status = document.querySelector("[data-booking-status]");
+
+    if (!modal || !triggers.length || !form || !status) {
+      return;
+    }
+
+    const dialog = modal.querySelector(".visit-booking-modal__dialog");
+    const nameInput = form.querySelector('input[name="name"]');
+    const closeControlSelector = "[data-booking-close]";
+    const focusableSelector =
+      'button, [href], input, textarea, select, [tabindex]:not([tabindex="-1"])';
+    let previousActiveElement = null;
+
+    const getFocusableElements = () =>
+      Array.from(dialog.querySelectorAll(focusableSelector)).filter(
+        (element) => !element.disabled,
+      );
+
+    const openModal = () => {
+      previousActiveElement = document.activeElement;
+      modal.hidden = false;
+      document.body.classList.add("has-visit-booking-modal");
+
+      window.requestAnimationFrame(() => {
+        modal.classList.add("is-visible");
+        nameInput?.focus();
+      });
+    };
+
+    const closeModal = () => {
+      modal.classList.remove("is-visible");
+      document.body.classList.remove("has-visit-booking-modal");
+
+      window.setTimeout(() => {
+        modal.hidden = true;
+        previousActiveElement?.focus?.();
+      }, 180);
+    };
+
+    triggers.forEach((trigger) => {
+      trigger.addEventListener("click", openModal);
+    });
+
+    modal.addEventListener("click", (event) => {
+      if (event.target.closest(closeControlSelector)) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (modal.hidden) {
+        return;
+      }
+
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeModal();
+        return;
+      }
+
+      if (event.key !== "Tab") {
+        return;
+      }
+
+      const focusableElements = getFocusableElements();
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      if (!firstElement || !lastElement) {
+        return;
+      }
+
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      }
+
+      if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
+      }
+    });
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const submitButton = form.querySelector('button[type="submit"]');
+      const formData = new FormData(form);
+      const payload = {
+        type: "activity-booking",
+        to: formData.get("email"),
+        data: {
+          activityTitle: formData.get("activityTitle"),
+          activityUrl: formData.get("activityUrl"),
+          name: formData.get("name"),
+          email: formData.get("email"),
+          phone: formData.get("phone"),
+          preferredDate: formData.get("preferredDate"),
+          partySize: formData.get("partySize"),
+          message: formData.get("message"),
+        },
+      };
+
+      submitButton.disabled = true;
+      status.textContent = "Enviant solicitud...";
+
+      try {
+        const response = await fetch("/.netlify/functions/send-email", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+
+        if (!response.ok) {
+          throw new Error("Request failed");
+        }
+
+        form.reset();
+        status.textContent =
+          "Solicitud enviada correctament. Rebras un correu de confirmacio en breu.";
+      } catch (error) {
+        status.textContent =
+          "No hem pogut enviar la solicitud ara mateix. Torna-ho a provar en uns minuts.";
+      } finally {
+        submitButton.disabled = false;
+      }
+    });
+  };
+
   const setupCookieBanner = () => {
     const banner = document.getElementById("cookieBanner");
     const reopenControls = document.querySelectorAll(
@@ -1760,6 +1895,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupProjecteFireTextSlider();
   setupHeaderDropdown();
   setupContactForm();
+  setupVisitBooking();
   setupCookieBanner();
   setupConsentMaps();
   setupFustaShowcase();

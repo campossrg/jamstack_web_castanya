@@ -66,6 +66,16 @@
                   </svg>
                 </a>
                 {% endif %}
+
+                <button
+                  type="button"
+                  class="visit-activity-hero__booking-button"
+                  data-booking-trigger
+                  aria-haspopup="dialog"
+                  aria-controls="visitBookingModal"
+                >
+                  RESERVA
+                </button>
               </div>
             </div>
 
@@ -177,6 +187,28 @@
                   {{ additionalInfo | markdownify | safe }}
                 </div>
               </details>
+
+              <section class="visit-booking-cta" aria-labelledby="visitBookingTitle">
+                <div class="visit-booking-cta__copy">
+                  <p class="visit-booking-cta__eyebrow">RESERVA ARA</p>
+                  <h2 id="visitBookingTitle" class="visit-booking-cta__title">
+                    Sol.licita aquesta activitat
+                  </h2>
+                  <p class="visit-booking-cta__text">
+                    T'interessa <strong>{{ title }}</strong>? Envia una solicitud i et confirmarem la disponibilitat per correu.
+                  </p>
+                </div>
+
+                <button
+                  type="button"
+                  class="btn-olive visit-booking-cta__button"
+                  data-booking-trigger
+                  aria-haspopup="dialog"
+                  aria-controls="visitBookingModal"
+                >
+                  SOL.LICITAR RESERVA
+                </button>
+              </section>
             </div>
 
             <aside class="visit-activity-sidebar">
@@ -209,6 +241,83 @@
             </aside>
           </div>
         </section>
+
+        <div class="visit-booking-modal" id="visitBookingModal" data-booking-modal hidden>
+          <div class="visit-booking-modal__backdrop" data-booking-close="backdrop"></div>
+          <div
+            class="visit-booking-modal__dialog"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="visitBookingModalTitle"
+          >
+            <button
+              type="button"
+              class="visit-booking-modal__close"
+              data-booking-close="button"
+              aria-label="Tancar formulari"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+
+            <div class="visit-booking-modal__header">
+              <p class="visit-booking-cta__eyebrow">RESERVA ARA</p>
+              <h2 id="visitBookingModalTitle" class="visit-booking-cta__title">
+                Sol.licita aquesta activitat
+              </h2>
+              <p class="visit-booking-modal__text">
+                Ens has seleccionat <strong>{{ title }}</strong>. Completa el formulari i t'enviarem una confirmacio al teu correu.
+              </p>
+            </div>
+
+            <form class="contact-form visit-booking-modal__form" data-booking-form>
+              <input type="hidden" name="activityTitle" value="{{ title }}" />
+              <input type="hidden" name="activityUrl" value="{{ (page.url | absoluteUrl(site.url)) }}" />
+
+              <div class="contact-form__grid visit-booking-modal__grid">
+                <label class="contact-form__field">
+                  <span>Nom i cognoms</span>
+                  <input type="text" name="name" autocomplete="name" placeholder="Nom i cognoms" required />
+                </label>
+
+                <label class="contact-form__field">
+                  <span>Correu electronic</span>
+                  <input type="email" name="email" autocomplete="email" placeholder="correu@exemple.cat" required />
+                </label>
+
+                <label class="contact-form__field">
+                  <span>Telefon</span>
+                  <input type="tel" name="phone" autocomplete="tel" placeholder="600 123 456" />
+                </label>
+
+                <label class="contact-form__field">
+                  <span>Data preferida</span>
+                  <input type="text" name="preferredDate" placeholder="Per exemple, 14 de novembre" required />
+                </label>
+
+                <label class="contact-form__field">
+                  <span>Nombre de persones</span>
+                  <input type="number" name="partySize" min="1" step="1" placeholder="4" required />
+                </label>
+
+                <label class="contact-form__field">
+                  <span>Activitat</span>
+                  <input type="text" value="{{ title }}" readonly />
+                </label>
+              </div>
+
+              <label class="contact-form__field contact-form__field--full">
+                <span>Comentaris</span>
+                <textarea name="message" rows="5" placeholder="Explica'ns si prefereixes un horari concret o si hi ha alguna necessitat especial."></textarea>
+              </label>
+
+              <div class="contact-form__actions contact-form__actions--stacked visit-booking-modal__actions">
+                <button type="submit" class="btn-olive contact-form__submit">ENVIAR SOL.LICITUD</button>
+                <p class="visit-booking-modal__note">Et respondrem amb disponibilitat i detalls de reserva.</p>
+                <p class="contact-form__status" data-booking-status aria-live="polite"></p>
+              </div>
+            </form>
+          </div>
+        </div>
 
         {% if experienceHighlightsSection and experienceHighlightsSection.items and experienceHighlightsSection.items.length %}
         <section class="visit-activity-experience">

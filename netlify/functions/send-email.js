@@ -32,9 +32,11 @@ function getSender() {
 function getRequiredRecipient(type, to) {
   switch (type) {
     case "contact":
+    case "activity-booking-notification":
       return process.env.CONTACT_EMAIL;
     case "order-confirmation":
     case "newsletter":
+    case "activity-booking-confirmation":
       return to;
     case "order-notification":
       return process.env.ORDER_NOTIFICATION_EMAIL;
@@ -208,6 +210,45 @@ function buildContactEmail({ data }) {
   };
 }
 
+function buildActivityBookingNotificationEmail({ data }) {
+  return {
+    to: [{ email: getRequiredRecipient("activity-booking-notification") }],
+    sender: getSender(),
+    subject: `Nova solicitud de reserva: ${data.activityTitle}`,
+    htmlContent: `
+      <h2>Nova solicitud de reserva</h2>
+      <p><strong>Activitat:</strong> ${escapeHtml(data.activityTitle)}</p>
+      <p><strong>Enllac:</strong> <a href="${escapeHtml(data.activityUrl)}">${escapeHtml(data.activityUrl)}</a></p>
+      <p><strong>Nom:</strong> ${escapeHtml(data.name)}</p>
+      <p><strong>Email:</strong> ${escapeHtml(data.email)}</p>
+      <p><strong>Telefon:</strong> ${escapeHtml(data.phone || "No proporcionat")}</p>
+      <p><strong>Data preferida:</strong> ${escapeHtml(data.preferredDate)}</p>
+      <p><strong>Nombre de persones:</strong> ${escapeHtml(data.partySize)}</p>
+      <p><strong>Comentaris:</strong></p>
+      <p>${escapeHtml(data.message || "Sense comentaris addicionals")}</p>
+    `,
+  };
+}
+
+function buildActivityBookingConfirmationEmail({ to, data }) {
+  return {
+    to: [{ email: getRequiredRecipient("activity-booking-confirmation", to) }],
+    sender: getSender(),
+    subject: `Hem rebut la teva solicitud: ${data.activityTitle}`,
+    htmlContent: `
+      <h2>Hem rebut la teva solicitud</h2>
+      <p>Gracies, ${escapeHtml(data.name)}. Hem rebut la teva solicitud per a <strong>${escapeHtml(data.activityTitle)}</strong>.</p>
+      <p>Et respondrem al mes aviat possible amb la disponibilitat i els seguents passos.</p>
+      <ul>
+        <li><strong>Data preferida:</strong> ${escapeHtml(data.preferredDate)}</li>
+        <li><strong>Nombre de persones:</strong> ${escapeHtml(data.partySize)}</li>
+        <li><strong>Telefon:</strong> ${escapeHtml(data.phone || "No proporcionat")}</li>
+      </ul>
+      ${data.message ? `<p><strong>Comentaris:</strong> ${escapeHtml(data.message)}</p>` : ""}
+    `,
+  };
+}
+
 function buildNewsletterEmail({ to }) {
   return {
     to: [{ email: getRequiredRecipient("newsletter", to) }],
@@ -231,9 +272,27 @@ function buildEmailConfig({ type, to, data }) {
       return buildOrderNotificationEmail({ data });
     case "newsletter":
       return buildNewsletterEmail({ to });
+    case "activity-booking-notification":
+      return buildActivityBookingNotificationEmail({ data });
+    case "activity-booking-confirmation":
+      return buildActivityBookingConfirmationEmail({ to, data });
     default:
       throw new Error("Invalid email type");
   }
+}
+
+async function sendActivityBookingEmails({ to, data }) {
+  const notificationConfig = withEmailContent(
+    buildActivityBookingNotificationEmail({ data }),
+  );
+  const confirmationConfig = withEmailContent(
+    buildActivityBookingConfirmationEmail({ to, data }),
+  );
+
+  await sendBrevoEmail(notificationConfig);
+  await sendBrevoEmail(confirmationConfig);
+
+  return { success: true };
 }
 
 async function sendBrevoEmail(emailConfig) {
@@ -265,9 +324,21 @@ async function sendEmail({ type, to, data }) {
     throw new Error("Brevo environment is not configured");
   }
 
+  if (type === "activity-booking") {
+    if (!getRequiredRecipient("activity-booking-notification")) {
+      throw new Error("Contact email is not configured");
+    }
+
+    if (!to) {
+      throw new Error("Recipient email is required");
+    }
+
+    return sendActivityBookingEmails({ to, data });
+  }
+
   const recipient = getRequiredRecipient(type, to);
   if (!recipient) {
-    if (type === "contact") {
+    if (type === "contact" || type === "activity-booking-notification") {
       throw new Error("Contact email is not configured");
     }
 
