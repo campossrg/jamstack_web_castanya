@@ -212,6 +212,8 @@ async function sendOrderEmails(order) {
       name: order.customer_name,
       email: order.customer_email,
       phone: order.customer_phone,
+      fulfillmentMethod: order.fulfillment_method || "shipping",
+      pickupStore: order.pickup_store || "",
       address: shippingAddress.address_line_1 || "",
       city: shippingAddress.city || "",
       postalCode: shippingAddress.postal_code || "",

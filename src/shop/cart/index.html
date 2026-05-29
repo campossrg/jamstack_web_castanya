@@ -86,13 +86,79 @@ footerVariant: projecte-newsletter
 
         <form class="shop-cart-checkout__form" data-checkout-form novalidate>
           <div class="shop-cart-checkout__grid">
+            <div
+              class="shop-cart-checkout__pickup shop-cart-checkout__field--full"
+              data-pickup-section
+            >
+              <div class="shop-cart-checkout__pickup-header">
+                <span class="shop-cart__eyebrow">RECOLLIDA A BOTIGA</span>
+                <p class="shop-cart-checkout__pickup-text">
+                  Si prefereixes recollir la comanda en una de les nostres
+                  botigues, activa aquesta opcio. La facturacio no canvia.
+                </p>
+                <p class="shop-cart-checkout__pickup-note">
+                  Els enviaments requereixen una comanda minima de 50,00 EUR.
+                  Les comandes amb recollida a botiga es poden tramitar per sota
+                  d'aquest import.
+                </p>
+              </div>
+
+              <label
+                class="shop-cart-checkout__checkbox shop-cart-checkout__checkbox--pickup"
+              >
+                <input type="checkbox" name="isPickup" data-pickup-checkbox />
+                <span
+                  class="shop-cart-checkout__checkbox-mark"
+                  aria-hidden="true"
+                ></span>
+                <span class="shop-cart-checkout__checkbox-label"
+                  >Vull recollir la comanda a botiga</span
+                >
+              </label>
+
+              <div
+                class="shop-cart-checkout__grid shop-cart-checkout__pickup-fields"
+                data-pickup-fields
+                data-state="readonly"
+              >
+                <label
+                  class="shop-cart-checkout__field shop-cart-checkout__field--select shop-cart-checkout__field--full"
+                >
+                  <span>Botiga de recollida</span>
+                  <select name="pickupStore" data-pickup-store-select>
+                    <option value="">Selecciona una botiga</option>
+                    <option value="Viladrau">
+                      Viladrau - Carretera de les afores, s/n, 17406 Masvidal,
+                      Girona
+                    </option>
+                    <option value="Barcelona">
+                      Barcelona - Carrer de la Encarnacio 159, Guinardo 08025
+                      Barcelona
+                    </option>
+                  </select>
+                </label>
+              </div>
+            </div>
+
             <label class="shop-cart-checkout__field">
               <span>Nom i cognoms</span>
-              <input type="text" name="name" autocomplete="name" required />
+              <input
+                type="text"
+                name="name"
+                autocomplete="name"
+                placeholder="Nom i cognoms"
+                required
+              />
             </label>
             <label class="shop-cart-checkout__field">
               <span>Correu electronic</span>
-              <input type="email" name="email" autocomplete="email" required />
+              <input
+                type="email"
+                name="email"
+                autocomplete="email"
+                placeholder="nom@exemple.cat"
+                required
+              />
             </label>
             <label class="shop-cart-checkout__field">
               <span>Telefon</span>
@@ -101,76 +167,89 @@ footerVariant: projecte-newsletter
                 name="phone"
                 autocomplete="tel"
                 inputmode="tel"
-                placeholder="+34 600 123 123"
+                placeholder="Ex. +34 600 123 123"
                 required
               />
             </label>
-            <label
-              class="shop-cart-checkout__field shop-cart-checkout__field--select"
+            <div
+              class="shop-cart-checkout__shipping-fields shop-cart-checkout__field--full"
+              data-shipping-fields
+              data-state="editable"
             >
-              <span>Pais</span>
-              <select name="country" autocomplete="country-name" required>
-                <option value="Espanya" selected>Espanya</option>
-                <option value="Portugal">Portugal</option>
-                <option value="Franca">Franca</option>
-                <option value="Italia">Italia</option>
-                <option value="Alemanya">Alemanya</option>
-                <option value="Regne Unit">Regne Unit</option>
-                <option value="Irlanda">Irlanda</option>
-                <option value="Belgica">Belgica</option>
-                <option value="Paisos Baixos">Paisos Baixos</option>
-                <option value="Luxemburg">Luxemburg</option>
-                <option value="Suissa">Suissa</option>
-                <option value="Austria">Austria</option>
-                <option value="Dinamarca">Dinamarca</option>
-                <option value="Suecia">Suecia</option>
-                <option value="Noruega">Noruega</option>
-                <option value="Finlandia">Finlandia</option>
-                <option value="Polonia">Polonia</option>
-                <option value="Republica Txeca">Republica Txeca</option>
-                <option value="Eslovaquia">Eslovaquia</option>
-                <option value="Hongria">Hongria</option>
-                <option value="Eslovenia">Eslovenia</option>
-                <option value="Croacia">Croacia</option>
-                <option value="Grecia">Grecia</option>
-                <option value="Romania">Romania</option>
-                <option value="Bulgaria">Bulgaria</option>
-              </select>
-            </label>
-            <label
-              class="shop-cart-checkout__field shop-cart-checkout__field--full"
-            >
-              <span>Adreca</span>
-              <input
-                type="text"
-                name="address"
-                autocomplete="street-address"
-                required
-              />
-            </label>
-            <label class="shop-cart-checkout__field">
-              <span>Ciutat</span>
-              <input
-                type="text"
-                name="city"
-                autocomplete="address-level2"
-                required
-              />
-            </label>
-            <label class="shop-cart-checkout__field">
-              <span>Codi postal</span>
-              <input
-                type="text"
-                name="postalCode"
-                autocomplete="postal-code"
-                required
-              />
-            </label>
+              <label
+                class="shop-cart-checkout__field shop-cart-checkout__field--select"
+              >
+                <span>Pais</span>
+                <select name="country" autocomplete="country-name" required>
+                  <option value="Espanya" selected>Espanya</option>
+                  <option value="Portugal">Portugal</option>
+                  <option value="Franca">Franca</option>
+                  <option value="Italia">Italia</option>
+                  <option value="Alemanya">Alemanya</option>
+                  <option value="Regne Unit">Regne Unit</option>
+                  <option value="Irlanda">Irlanda</option>
+                  <option value="Belgica">Belgica</option>
+                  <option value="Paisos Baixos">Paisos Baixos</option>
+                  <option value="Luxemburg">Luxemburg</option>
+                  <option value="Suissa">Suissa</option>
+                  <option value="Austria">Austria</option>
+                  <option value="Dinamarca">Dinamarca</option>
+                  <option value="Suecia">Suecia</option>
+                  <option value="Noruega">Noruega</option>
+                  <option value="Finlandia">Finlandia</option>
+                  <option value="Polonia">Polonia</option>
+                  <option value="Republica Txeca">Republica Txeca</option>
+                  <option value="Eslovaquia">Eslovaquia</option>
+                  <option value="Hongria">Hongria</option>
+                  <option value="Eslovenia">Eslovenia</option>
+                  <option value="Croacia">Croacia</option>
+                  <option value="Grecia">Grecia</option>
+                  <option value="Romania">Romania</option>
+                  <option value="Bulgaria">Bulgaria</option>
+                </select>
+              </label>
+              <label
+                class="shop-cart-checkout__field shop-cart-checkout__field--full"
+              >
+                <span>Adreca</span>
+                <input
+                  type="text"
+                  name="address"
+                  autocomplete="street-address"
+                  placeholder="Carrer, numero i pis"
+                  required
+                />
+              </label>
+              <label class="shop-cart-checkout__field">
+                <span>Ciutat</span>
+                <input
+                  type="text"
+                  name="city"
+                  autocomplete="address-level2"
+                  placeholder="Poblacio"
+                  required
+                />
+              </label>
+              <label class="shop-cart-checkout__field">
+                <span>Codi postal</span>
+                <input
+                  type="text"
+                  name="postalCode"
+                  autocomplete="postal-code"
+                  placeholder="Ex. 17406"
+                  required
+                />
+              </label>
+            </div>
             <label
               class="shop-cart-checkout__field shop-cart-checkout__field--full"
             >
               <span>Notes de la comanda</span>
-              <textarea name="notes" rows="4"></textarea>
+              <textarea
+                name="notes"
+                rows="4"
+                placeholder="Indicacions per a la comanda, lliurament o recollida"
+              ></textarea>
             </label>
           </div>
 
@@ -261,6 +340,56 @@ footerVariant: projecte-newsletter
             hidden
           ></p>
 
+          <div class="shop-cart-checkout__compliance">
+            <p class="shop-cart-checkout__compliance-title">
+              Abans de continuar
+            </p>
+            <p class="shop-cart-checkout__compliance-text">
+              Revisa que les dades d'enviament siguin correctes. Si tries
+              recollida a botiga, avisarem al client i al punt de recollida
+              seleccionat en la confirmacio de la comanda.
+            </p>
+
+            <label class="shop-cart-checkout__checkbox">
+              <input type="checkbox" name="acceptLegal" />
+              <span
+                class="shop-cart-checkout__checkbox-mark"
+                aria-hidden="true"
+              ></span>
+              <span class="shop-cart-checkout__checkbox-label"
+                >He llegit i accepto l'<a href="/avis-legal/"
+                  >Avis legal</a
+                ></span
+              >
+            </label>
+
+            <label class="shop-cart-checkout__checkbox">
+              <input type="checkbox" name="acceptPrivacy" />
+              <span
+                class="shop-cart-checkout__checkbox-mark"
+                aria-hidden="true"
+              ></span>
+              <span class="shop-cart-checkout__checkbox-label"
+                >He llegit i accepto la
+                <a href="/politica-de-privacitat/"
+                  >Politica de privacitat</a
+                ></span
+              >
+            </label>
+
+            <label class="shop-cart-checkout__checkbox">
+              <input type="checkbox" name="acceptFulfillmentTerms" />
+              <span
+                class="shop-cart-checkout__checkbox-mark"
+                aria-hidden="true"
+              ></span>
+              <span class="shop-cart-checkout__checkbox-label"
+                >Entenc les condicions d'enviament i recollida de la
+                comanda</span
+              >
+            </label>
+          </div>
+
           <button type="submit" class="shop-cart-summary__cta">
             CONTINUAR CAP AL PAGAMENT
           </button>
@@ -293,6 +422,12 @@ footerVariant: projecte-newsletter
         <span>Total estimat</span>
         <strong data-cart-total>0,00 EUR</strong>
       </div>
+
+      <p
+        class="shop-cart-summary__warning"
+        data-cart-shipping-warning
+        hidden
+      ></p>
 
       <p class="shop-cart-summary__note" data-cart-summary-note>
         La cistella es guarda en aquest navegador. Quan confirmis, al proxim pas

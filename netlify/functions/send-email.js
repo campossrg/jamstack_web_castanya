@@ -71,6 +71,7 @@ function withEmailContent(emailConfig) {
 
 function buildOrderConfirmationEmail({ to, data }) {
   const orderTotal = data.items.reduce((sum, item) => sum + item.lineTotal, 0);
+  const isPickup = data.customer.fulfillmentMethod === "pickup";
   const itemsList = data.items
     .map(
       (item) =>
@@ -90,6 +91,22 @@ function buildOrderConfirmationEmail({ to, data }) {
       </p>`
     : "";
 
+  const fulfillmentBlock = isPickup
+    ? `
+      <h3>Recollida de la comanda</h3>
+      <p>
+        Has indicat que vindras a recollir la comanda a la botiga de
+        <strong>${escapeHtml(data.customer.pickupStore)}</strong>.
+      </p>`
+    : `
+      <h3>Dades d'enviament</h3>
+      <p>
+        ${escapeHtml(data.customer.name)}<br>
+        ${escapeHtml(data.customer.address)}<br>
+        ${escapeHtml(data.customer.city)}, ${escapeHtml(data.customer.postalCode)}<br>
+        ${escapeHtml(data.customer.country)}
+      </p>`;
+
   return {
     to: [{ email: to }],
     sender: getSender(),
@@ -103,13 +120,7 @@ function buildOrderConfirmationEmail({ to, data }) {
 
       <p><strong>Total: EUR ${orderTotal.toFixed(2)}</strong></p>
 
-      <h3>Dades d'enviament</h3>
-      <p>
-        ${escapeHtml(data.customer.name)}<br>
-        ${escapeHtml(data.customer.address)}<br>
-        ${escapeHtml(data.customer.city)}, ${escapeHtml(data.customer.postalCode)}<br>
-        ${escapeHtml(data.customer.country)}
-      </p>
+      ${fulfillmentBlock}
       ${billingBlock}
 
       <p>T'enviarem noves actualitzacions quan la comanda avanci.</p>
@@ -119,6 +130,7 @@ function buildOrderConfirmationEmail({ to, data }) {
 
 function buildOrderNotificationEmail({ data }) {
   const orderTotal = data.items.reduce((sum, item) => sum + item.lineTotal, 0);
+  const isPickup = data.customer.fulfillmentMethod === "pickup";
   const itemsList = data.items
     .map(
       (item) =>
@@ -138,6 +150,21 @@ function buildOrderNotificationEmail({ data }) {
       </p>`
     : "";
 
+  const fulfillmentBlock = isPickup
+    ? `
+      <h3>Recollida a botiga</h3>
+      <p>
+        <strong>Modalitat:</strong> Recollida a botiga<br>
+        <strong>Botiga:</strong> ${escapeHtml(data.customer.pickupStore)}
+      </p>`
+    : `
+      <h3>Adreca d'enviament</h3>
+      <p>
+        ${escapeHtml(data.customer.address)}<br>
+        ${escapeHtml(data.customer.city)}, ${escapeHtml(data.customer.postalCode)}<br>
+        ${escapeHtml(data.customer.country)}
+      </p>`;
+
   return {
     to: [{ email: getRequiredRecipient("order-notification") }],
     sender: getSender(),
@@ -153,12 +180,7 @@ function buildOrderNotificationEmail({ data }) {
         <strong>Telefon:</strong> ${escapeHtml(data.customer.phone || "")}
       </p>
 
-      <h3>Adreca d'enviament</h3>
-      <p>
-        ${escapeHtml(data.customer.address)}<br>
-        ${escapeHtml(data.customer.city)}, ${escapeHtml(data.customer.postalCode)}<br>
-        ${escapeHtml(data.customer.country)}
-      </p>
+      ${fulfillmentBlock}
       ${billingBlock}
 
       <h3>Detalls de la comanda</h3>

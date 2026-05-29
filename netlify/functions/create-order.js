@@ -5,6 +5,7 @@ const path = require("path");
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const MINIMUM_SHIPPING_ORDER_AMOUNT = 50;
 
 function jsonResponse(statusCode, body) {
   return {
@@ -55,6 +56,10 @@ function isValidInternationalPhone(value) {
   return plusCount === 0 || (plusCount === 1 && phone.startsWith("+"));
 }
 
+function isValidPickupStore(value) {
+  return ["Viladrau", "Barcelona"].includes(normalizeText(value));
+}
+
 function loadProductsIndex() {
   const filePath = path.join(process.cwd(), "src", "_data", "products.json");
   const raw = fs.readFileSync(filePath, "utf8");
@@ -85,6 +90,7 @@ function loadProductsIndex() {
 
 function validateCustomer(customer) {
   const payload = customer || {};
+  const isPickup = normalizeText(payload.isPickup) === "on";
   const requiredFields = [
     "name",
     "email",
@@ -110,6 +116,10 @@ function validateCustomer(customer) {
     throw new Error("Invalid customer phone");
   }
 
+  if (isPickup && !isValidPickupStore(payload.pickupStore)) {
+    throw new Error("Invalid pickup store");
+  }
+
   return {
     name: normalizeText(payload.name),
     email: normalizeText(payload.email).toLowerCase(),
@@ -119,6 +129,8 @@ function validateCustomer(customer) {
     city: normalizeText(payload.city),
     postalCode: normalizeText(payload.postalCode),
     notes: normalizeText(payload.notes),
+    fulfillmentMethod: isPickup ? "pickup" : "shipping",
+    pickupStore: isPickup ? normalizeText(payload.pickupStore) : "",
     billingSameAsShipping: normalizeText(payload.billingSameAsShipping),
     billingCompany: normalizeText(payload.billingCompany),
     billingVat: normalizeText(payload.billingVat),
@@ -229,6 +241,14 @@ exports.handler = async (event) => {
     const subtotalAmount = Number(
       validatedItems.reduce((sum, item) => sum + item.line_total, 0).toFixed(2),
     );
+
+    if (
+      validatedCustomer.fulfillmentMethod === "shipping" &&
+      subtotalAmount < MINIMUM_SHIPPING_ORDER_AMOUNT
+    ) {
+      throw new Error("Minimum shipping order amount is 50 EUR");
+    }
+
     const shippingAmount = 0;
     const totalAmount = Number((subtotalAmount + shippingAmount).toFixed(2));
     const publicOrderCode = createOrderCode();
@@ -245,6 +265,8 @@ exports.handler = async (event) => {
       customer_name: validatedCustomer.name,
       customer_email: validatedCustomer.email,
       customer_phone: validatedCustomer.phone,
+      fulfillment_method: validatedCustomer.fulfillmentMethod,
+      pickup_store: validatedCustomer.pickupStore || null,
       shipping_address_json: {
         address_line_1: validatedCustomer.address,
         city: validatedCustomer.city,
@@ -319,6 +341,8 @@ exports.handler = async (event) => {
       /^Missing customer field:/.test(error.message) ||
       error.message === "Invalid customer email" ||
       error.message === "Invalid customer phone" ||
+      error.message === "Invalid pickup store" ||
+      error.message === "Minimum shipping order amount is 50 EUR" ||
       error.message === "Cart is empty" ||
       error.message.startsWith("Invalid cart item") ||
       error.message.startsWith("Unknown SKU") ||

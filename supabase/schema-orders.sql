@@ -13,6 +13,8 @@ create table if not exists public.orders (
   customer_name text not null,
   customer_email text not null,
   customer_phone text,
+  fulfillment_method text not null default 'shipping',
+  pickup_store text,
   shipping_address_json jsonb not null,
   billing_address_json jsonb,
   notes text,
@@ -28,8 +30,14 @@ create table if not exists public.orders (
   constraint orders_payment_status_check check (
     payment_status in ('pending', 'paid', 'failed', 'refunded')
   ),
+  constraint orders_fulfillment_method_check check (
+    fulfillment_method in ('shipping', 'pickup')
+  ),
   constraint orders_fulfillment_status_check check (
     fulfillment_status in ('unfulfilled', 'preparing', 'shipped', 'delivered')
+  ),
+  constraint orders_pickup_store_check check (
+    pickup_store is null or pickup_store in ('Viladrau', 'Barcelona')
   ),
   constraint orders_subtotal_amount_check check (subtotal_amount >= 0),
   constraint orders_shipping_amount_check check (shipping_amount >= 0),

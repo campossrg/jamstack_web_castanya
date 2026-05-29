@@ -932,6 +932,13 @@ document.addEventListener("DOMContentLoaded", () => {
         city: String(payload.city || "").trim(),
         postalCode: String(payload.postalCode || "").trim(),
         notes: String(payload.notes || "").trim(),
+        isPickup: String(payload.isPickup || "").trim(),
+        pickupStore: String(payload.pickupStore || "").trim(),
+        acceptLegal: String(payload.acceptLegal || "").trim(),
+        acceptPrivacy: String(payload.acceptPrivacy || "").trim(),
+        acceptFulfillmentTerms: String(
+          payload.acceptFulfillmentTerms || "",
+        ).trim(),
         billingSameAsShipping: String(
           payload.billingSameAsShipping || "on",
         ).trim(),
@@ -973,6 +980,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "city",
         "postalCode",
       ];
+      const isPickup = payload.isPickup === "on";
       const missingField = requiredFields.find(
         (field) => !String(payload[field] || "").trim(),
       );
@@ -996,6 +1004,35 @@ document.addEventListener("DOMContentLoaded", () => {
           field: "phone",
           message:
             "Introdueix un telefon valid amb extensio internacional si cal.",
+        };
+      }
+
+      if (isPickup && !String(payload.pickupStore || "").trim()) {
+        return {
+          field: "pickupStore",
+          message: "Selecciona la botiga on vols recollir la comanda.",
+        };
+      }
+
+      if (payload.acceptLegal !== "on") {
+        return {
+          field: "acceptLegal",
+          message: "Has d'acceptar l'Avis legal per continuar.",
+        };
+      }
+
+      if (payload.acceptPrivacy !== "on") {
+        return {
+          field: "acceptPrivacy",
+          message: "Has d'acceptar la Politica de privacitat per continuar.",
+        };
+      }
+
+      if (payload.acceptFulfillmentTerms !== "on") {
+        return {
+          field: "acceptFulfillmentTerms",
+          message:
+            "Has de confirmar que entens les condicions d'enviament i recollida.",
         };
       }
 
@@ -1184,6 +1221,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const subtotalNode = document.querySelector("[data-cart-subtotal]");
       const totalNode = document.querySelector("[data-cart-total]");
       const noteNode = document.querySelector("[data-cart-summary-note]");
+      const shippingWarningNode = document.querySelector(
+        "[data-cart-shipping-warning]",
+      );
       const summaryLink = document.querySelector("[data-cart-summary-link]");
       const checkoutSection = document.querySelector("[data-checkout-section]");
       const checkoutForm = document.querySelector("[data-checkout-form]");
@@ -1191,6 +1231,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const checkoutSubmitButton = checkoutForm?.querySelector(
         'button[type="submit"]',
       );
+      const shippingMinimumAmount = 50;
 
       const fillCheckoutDraft = () => {
         if (!checkoutForm) {
@@ -1213,6 +1254,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const billingSameCheckbox = checkoutForm?.querySelector(
         "[data-billing-same-checkbox]",
+      );
+      const pickupCheckbox = checkoutForm?.querySelector(
+        "[data-pickup-checkbox]",
+      );
+      const pickupFieldsContainer = checkoutForm?.querySelector(
+        "[data-pickup-fields]",
+      );
+      const pickupStoreSelect = checkoutForm?.querySelector(
+        "[data-pickup-store-select]",
+      );
+      const shippingFieldsContainer = checkoutForm?.querySelector(
+        "[data-shipping-fields]",
       );
       const billingFieldsContainer = checkoutForm?.querySelector(
         "[data-billing-fields]",
@@ -1245,6 +1298,17 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       };
 
+      const setPickupInputsDisabled = (disabled) => {
+        if (!pickupFieldsContainer) {
+          return;
+        }
+
+        const inputs = pickupFieldsContainer.querySelectorAll("select, input");
+        inputs.forEach((input) => {
+          input.disabled = disabled;
+        });
+      };
+
       const clearBillingFields = () => {
         if (!checkoutForm) {
           return;
@@ -1256,6 +1320,12 @@ document.addEventListener("DOMContentLoaded", () => {
             input.value = "";
           }
         });
+      };
+
+      const clearPickupFields = () => {
+        if (pickupStoreSelect) {
+          pickupStoreSelect.value = "";
+        }
       };
 
       const syncBillingFields = () => {
@@ -1291,13 +1361,57 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       };
 
+      const applyPickupState = () => {
+        const isPickup = pickupCheckbox?.checked;
+
+        if (pickupFieldsContainer) {
+          pickupFieldsContainer.dataset.state = isPickup
+            ? "editable"
+            : "readonly";
+        }
+        setPickupInputsDisabled(!isPickup);
+        renderShippingMinimumWarning();
+      };
+
+      const renderShippingMinimumWarning = () => {
+        if (!shippingWarningNode) {
+          return;
+        }
+
+        const cart = readCart();
+        const subtotal = getCartSubtotal(cart);
+        const isPickup = pickupCheckbox?.checked;
+        const shippingMinimumAmount = 50;
+
+        if (
+          !cart.items.length ||
+          isPickup ||
+          subtotal >= shippingMinimumAmount
+        ) {
+          shippingWarningNode.hidden = true;
+          shippingWarningNode.textContent = "";
+          return;
+        }
+
+        shippingWarningNode.hidden = false;
+        shippingWarningNode.textContent =
+          "Per fer un enviament, la comanda ha d'arribar a 50,00 EUR. Pots afegir mes productes o seleccionar recollida a botiga.";
+      };
+
       billingSameCheckbox?.addEventListener("change", () => {
         if (billingSameCheckbox.checked) {
           syncBillingFields();
         } else {
-          clearBillingFields();
+          syncBillingFields();
         }
         applyBillingState();
+      });
+
+      pickupCheckbox?.addEventListener("change", () => {
+        if (!pickupCheckbox.checked) {
+          clearPickupFields();
+        }
+        applyPickupState();
       });
 
       // On successful return from payment, clear client-side cart/session.
@@ -1354,6 +1468,7 @@ document.addEventListener("DOMContentLoaded", () => {
             ? ""
             : "La cistella es guarda en aquest navegador fins que finalitzis la compra.";
         }
+        renderShippingMinimumWarning();
         if (summaryLink) {
           summaryLink.textContent = hasItems
             ? "TORNAR A LA BOTIGA"
@@ -1516,6 +1631,16 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
         }
 
+        const subtotal = getCartSubtotal(cart);
+        if (payload.isPickup !== "on" && subtotal < shippingMinimumAmount) {
+          if (checkoutMessage) {
+            checkoutMessage.dataset.state = "error";
+            checkoutMessage.textContent =
+              "L'import minim per a enviaments es de 50,00 EUR. Pots continuar amb recollida a botiga o afegir mes productes.";
+          }
+          return;
+        }
+
         const invalidItem = cart.items.find(
           (item) => !String(item.sku || "").trim(),
         );
@@ -1622,6 +1747,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       fillCheckoutDraft();
+      applyPickupState();
       renderCartPage();
     };
 
