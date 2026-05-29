@@ -25,7 +25,10 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addFilter("stripHtml", (content = "") => {
-    return String(content).replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+    return String(content)
+      .replace(/<[^>]*>/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
   });
 
   eleventyConfig.addFilter("slugify", (value = "") => {
@@ -133,7 +136,9 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addCollection("posts", (collectionApi) => {
-    return collectionApi.getFilteredByTag("posts").sort((a, b) => b.date - a.date);
+    return collectionApi
+      .getFilteredByTag("posts")
+      .sort((a, b) => b.date - a.date);
   });
 
   eleventyConfig.addCollection("indexablePages", (collectionApi) => {
@@ -147,6 +152,10 @@ module.exports = function (eleventyConfig) {
       }
 
       if (item.data.robots && String(item.data.robots).includes("noindex")) {
+        return false;
+      }
+
+      if (item.data.excludeFromSitemap) {
         return false;
       }
 
