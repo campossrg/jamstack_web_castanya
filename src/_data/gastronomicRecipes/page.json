@@ -39,15 +39,6 @@
         "ingredients": ["Castanya torrada", "Farina de castanya"]
       },
       {
-        "title": "COM HIDRATAR LA SECALLONA",
-        "image": "/assets/images/gallery/espai-gastronomic/cotxe.jpg",
-        "imageAlt": "Taller gastronomic amb castanya",
-        "time": "20 minuts",
-        "difficulty": "facil",
-        "ingredientsLabel": "INGREDIENTS",
-        "ingredients": ["Castanya torrada", "Farina de castanya"]
-      },
-      {
         "title": "BASE PER A CREMA FINA",
         "image": "/assets/images/gallery/espai-gastronomic/castanya_plat.jpg",
         "imageAlt": "Plat amb elaboracio de castanya",
@@ -126,15 +117,6 @@
         "difficulty": "facil",
         "ingredientsLabel": "INGREDIENTS",
         "ingredients": ["Castanya torrada", "Herbes fresques"]
-      },
-      {
-        "title": "RECEPTA D'APROFITAMENT",
-        "image": "/assets/images/gallery/espai-gastronomic/cotxe.jpg",
-        "imageAlt": "Entorn del bosc per a activitat gastronomica",
-        "time": "22 minuts",
-        "difficulty": "mitja",
-        "ingredientsLabel": "INGREDIENTS",
-        "ingredients": ["Castanya cuita", "Farina de castanya"]
       }
     ]
   },
@@ -312,15 +294,6 @@
         "difficulty": "mitja",
         "ingredientsLabel": "INGREDIENTS",
         "ingredients": ["Castanya bullida", "Llet"]
-      },
-      {
-        "title": "PASTISSERIA DE CASA",
-        "image": "/assets/images/gallery/espai-gastronomic/cake.jpg",
-        "imageAlt": "Preparacio casolana amb castanya",
-        "time": "40 minuts",
-        "difficulty": "mitja",
-        "ingredientsLabel": "INGREDIENTS",
-        "ingredients": ["Farina de castanya", "Mantega"]
       }
     ]
   },
