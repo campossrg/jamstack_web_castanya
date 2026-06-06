@@ -2769,6 +2769,12 @@ body.page-visits .site-header.is-scrolled .header-top {
     justify-content: space-between;
     gap: 0;
     flex: none;
+    /* Let clicks in the empty middle reach the centered logo link. */
+    pointer-events: none;
+  }
+
+  .utility-right > * {
+    pointer-events: auto;
   }
 
   .header-icon-button--cart {
@@ -2802,19 +2808,35 @@ body.page-visits .site-header.is-scrolled .header-top {
     display: none;
     height: 100dvh;
     overflow-y: auto;
-    padding: 110px 22px 24px;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    padding: 96px 22px 24px;
     background: #8d7748 !important;
     border-top: 0 !important;
     box-shadow: none;
   }
 
-  .site-header.is-menu-open .header-nav {
+  body .site-header.is-menu-open .header-nav,
+  body .site-header.is-scrolled.is-menu-open .header-nav {
     display: block;
+    /* Override the desktop ".is-scrolled .header-nav { position: relative }"
+       rule (mobile always has is-scrolled) so the menu is a fixed,
+       self-scrolling overlay and the last items stay reachable. */
+    position: fixed;
+    inset: 0;
+    bottom: 0;
+    height: 100dvh;
+    overflow-y: auto;
+    /* Restore the solid panel. The home/fusta/visits pages force a
+       transparent nav over the hero via "body.home .site-header.is-scrolled
+       .header-nav" (specificity 0,4,1), so the leading "body" here is
+       required to match it and win on source order. */
+    background: #8d7748 !important;
   }
 
   .nav-flex-container {
     display: flex;
-    min-height: calc(100dvh - 134px);
+    min-height: calc(100dvh - 120px);
     flex-direction: column;
     align-items: center;
     width: 100%;
@@ -2885,7 +2907,7 @@ body.page-visits .site-header.is-scrolled .header-top {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    gap: 6px;
+    gap: 2px;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -2914,7 +2936,7 @@ body.page-visits .site-header.is-scrolled .header-top {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 12px 10px;
+    padding: 8px 10px;
     color: #f7f1e3 !important;
     opacity: 1 !important;
     visibility: visible !important;
@@ -2956,17 +2978,28 @@ body.page-visits .site-header.is-scrolled .header-top {
   }
 
   .nav-item--shop {
-    margin-top: auto;
-    padding-top: 18px;
-    padding-bottom: 12px;
+    margin-top: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
   }
 
   .nav-item--shop a {
     min-height: 48px;
     border: 1px solid rgba(255, 248, 234, 0.55);
+    border-radius: 16px;
     background: #efe5d3;
     color: #8d7748 !important;
     letter-spacing: 0.06em;
+  }
+
+  /* Force the brown label on the cream BOTIGA box. The generic
+     "body.home .header-nav a" cream-text rule (specificity 0,2,2) would
+     otherwise win, so this needs the leading body + page classes. */
+  body.home .header-nav .nav-item--shop a,
+  body.page-fusta .header-nav .nav-item--shop a,
+  body.page-visits .header-nav .nav-item--shop a,
+  .header-nav .nav-item--shop a {
+    color: #8d7748 !important;
   }
 }
 
