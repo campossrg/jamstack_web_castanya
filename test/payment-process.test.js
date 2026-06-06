@@ -37,6 +37,16 @@ test('payment-process._test.createMerchantOrderCode returns 12 digits', () => {
   assert.match(code, /^\d{12}$/);
 });
 
+test('payment-process._test.normalizePaymentMethod defaults to card', () => {
+  const mod = freshRequire('../netlify/functions/payment-process.js');
+
+  assert.equal(mod._test.normalizePaymentMethod(), 'card');
+  assert.equal(mod._test.normalizePaymentMethod('card'), 'card');
+  assert.equal(mod._test.normalizePaymentMethod('CARD'), 'card');
+  assert.equal(mod._test.normalizePaymentMethod('bizum'), 'bizum');
+  assert.equal(mod._test.normalizePaymentMethod('anything-else'), 'card');
+});
+
 test('payment-process handler returns 404 when order is missing', async () => {
   process.env.SUPABASE_URL = 'https://example.supabase.co';
   process.env.SUPABASE_SERVICE_ROLE_KEY = 'service-role';
@@ -154,11 +164,82 @@ test('payment-process handler returns payment payload for valid order', async ()
     assert.equal(payload.success, true);
     assert.equal(payload.order.id, 'order-1');
     assert.equal(payload.order.paymentStatus, 'pending');
+    assert.equal(payload.order.paymentMethod, 'card');
     assert.equal(payload.payment.redsysUrl, 'https://example.com/.netlify/functions/redsys-mock');
     assert.equal(payload.payment.signatureVersion, 'HMAC_SHA256_V1');
     assert.equal(typeof payload.payment.parameters, 'string');
     assert.equal(typeof payload.payment.signature, 'string');
+    const merchantParameters = JSON.parse(
+      Buffer.from(payload.payment.parameters, 'base64').toString('utf8'),
+    );
+    assert.equal(merchantParameters.Ds_Merchant_PayMethods, undefined);
     assert.equal(fetchCalls.length, 2);
+  } finally {
+    global.fetch = originalFetch;
+    delete process.env.REDSYS_SECRET_KEY_DEV;
+  }
+});
+
+test('payment-process handler includes Bizum pay method when requested', async () => {
+  process.env.SUPABASE_URL = 'https://example.supabase.co';
+  process.env.SUPABASE_SERVICE_ROLE_KEY = 'service-role';
+  process.env.REDSYS_MERCHANT_CODE = 'merchant';
+  process.env.REDSYS_SECRET_KEY = Buffer.alloc(24, 16).toString('base64');
+  process.env.URL = 'https://example.com';
+  process.env.PAYMENT_PROVIDER = 'mock';
+  process.env.REDSYS_SECRET_KEY_DEV = Buffer.alloc(24, 16).toString('base64');
+
+  const originalFetch = global.fetch;
+  global.fetch = async (url) => {
+    if (String(url).includes('/rest/v1/orders?select=')) {
+      return {
+        ok: true,
+        json: async () => [
+          {
+            id: 'order-bizum',
+            public_order_code: 'CV-BIZUM-1',
+            total_amount: 18.75,
+            currency: 'EUR',
+            payment_status: 'pending',
+          },
+        ],
+      };
+    }
+
+    if (String(url).includes('/rest/v1/orders?id=eq.order-bizum')) {
+      return {
+        ok: true,
+        json: async () => [
+          {
+            id: 'order-bizum',
+            public_order_code: 'CV-BIZUM-1',
+            total_amount: 18.75,
+            currency: 'EUR',
+            status: 'pending_payment',
+            payment_status: 'pending',
+            payment_reference: '123456789012',
+          },
+        ],
+      };
+    }
+
+    throw new Error(`Unexpected fetch call: ${url}`);
+  };
+
+  try {
+    const mod = freshRequire('../netlify/functions/payment-process.js');
+    const response = await mod.handler({
+      httpMethod: 'POST',
+      body: JSON.stringify({ orderId: 'order-bizum', paymentMethod: 'bizum' }),
+    });
+    const payload = JSON.parse(response.body);
+    const merchantParameters = JSON.parse(
+      Buffer.from(payload.payment.parameters, 'base64').toString('utf8'),
+    );
+
+    assert.equal(response.statusCode, 200);
+    assert.equal(payload.order.paymentMethod, 'bizum');
+    assert.equal(merchantParameters.Ds_Merchant_PayMethods, 'z');
   } finally {
     global.fetch = originalFetch;
     delete process.env.REDSYS_SECRET_KEY_DEV;

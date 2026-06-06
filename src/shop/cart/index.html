@@ -334,6 +334,42 @@ footerVariant: projecte-newsletter
             </div>
           </div>
 
+          <div class="shop-cart-checkout__payment-methods">
+            <div class="shop-cart-checkout__divider">
+              <span class="shop-cart__eyebrow">METODE DE PAGAMENT</span>
+            </div>
+
+            <p class="shop-cart-checkout__intro">
+              Tria si vols continuar amb targeta bancaria o amb Bizum dins del
+              TPV segur de Redsys.
+            </p>
+
+            <label class="shop-cart-checkout__checkbox">
+              <input
+                type="radio"
+                name="paymentMethod"
+                value="card"
+                checked
+              />
+              <span
+                class="shop-cart-checkout__checkbox-mark"
+                aria-hidden="true"
+              ></span>
+              <span class="shop-cart-checkout__checkbox-label"
+                >Targeta bancaria</span
+              >
+            </label>
+
+            <label class="shop-cart-checkout__checkbox">
+              <input type="radio" name="paymentMethod" value="bizum" />
+              <span
+                class="shop-cart-checkout__checkbox-mark"
+                aria-hidden="true"
+              ></span>
+              <span class="shop-cart-checkout__checkbox-label">Bizum</span>
+            </label>
+          </div>
+
           <p
             class="shop-cart-checkout__message"
             data-checkout-message

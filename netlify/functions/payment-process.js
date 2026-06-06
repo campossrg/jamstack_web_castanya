@@ -89,6 +89,10 @@ function createMerchantOrderCode(order) {
   return padded.slice(0, 12);
 }
 
+function normalizePaymentMethod(value) {
+  return String(value || 'card').trim().toLowerCase() === 'bizum' ? 'bizum' : 'card';
+}
+
 function generateSignature(parameters, key) {
   const order = parameters.Ds_Merchant_Order;
   const keyBytes = Buffer.from(key, 'base64');
@@ -117,6 +121,7 @@ function generateSignature(parameters, key) {
 exports._test = {
   createMerchantOrderCode,
   generateSignature,
+  normalizePaymentMethod,
 };
 
 exports.handler = async (event, context) => {
@@ -158,7 +163,8 @@ exports.handler = async (event, context) => {
   }
 
   try {
-    const { orderId, publicOrderCode } = JSON.parse(event.body || '{}');
+    const { orderId, publicOrderCode, paymentMethod } = JSON.parse(event.body || '{}');
+    const normalizedPaymentMethod = normalizePaymentMethod(paymentMethod);
     const order = await fetchSupabaseOrder({ orderId, publicOrderCode });
 
     if (!order) {
@@ -198,6 +204,11 @@ exports.handler = async (event, context) => {
       Ds_Merchant_ConsumerLanguage: '001',
       Ds_Merchant_ProductDescription: `Pedido ${order.public_order_code}`,
       Ds_Merchant_MerchantName: 'Castanya de Viladrau',
+      ...(normalizedPaymentMethod === 'bizum'
+        ? {
+            Ds_Merchant_PayMethods: 'z',
+          }
+        : {}),
     };
 
     const signingKey = process.env.REDSYS_SECRET_KEY_DEV || SECRET_KEY;
@@ -211,6 +222,7 @@ exports.handler = async (event, context) => {
         initiated_at: new Date().toISOString(),
         merchant_order_code: merchantOrderCode,
         redsys_url: REDSYS_URL,
+        payment_method: normalizedPaymentMethod,
       },
     });
 
@@ -230,6 +242,7 @@ exports.handler = async (event, context) => {
         currency: order.currency,
         status: updatedOrder ? updatedOrder.status : order.status,
         paymentStatus: updatedOrder ? updatedOrder.payment_status : order.payment_status,
+        paymentMethod: normalizedPaymentMethod,
       },
     });
   } catch (error) {

@@ -1149,6 +1149,12 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const normalizeCheckoutPayload = (payload) => {
+      const normalizedPaymentMethod = String(
+        payload.paymentMethod || "card",
+      )
+        .trim()
+        .toLowerCase();
+
       return {
         name: String(payload.name || "").trim(),
         email: String(payload.email || "")
@@ -1162,6 +1168,8 @@ document.addEventListener("DOMContentLoaded", () => {
         notes: String(payload.notes || "").trim(),
         isPickup: String(payload.isPickup || "").trim(),
         pickupStore: String(payload.pickupStore || "").trim(),
+        paymentMethod:
+          normalizedPaymentMethod === "bizum" ? "bizum" : "card",
         acceptLegal: String(payload.acceptLegal || "").trim(),
         acceptPrivacy: String(payload.acceptPrivacy || "").trim(),
         acceptFulfillmentTerms: String(
@@ -1308,13 +1316,17 @@ document.addEventListener("DOMContentLoaded", () => {
       return data.order;
     };
 
-    const initiatePayment = async ({ orderId, publicOrderCode }) => {
+    const initiatePayment = async ({
+      orderId,
+      publicOrderCode,
+      paymentMethod,
+    }) => {
       const response = await fetch("/.netlify/functions/payment-process", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ orderId, publicOrderCode }),
+        body: JSON.stringify({ orderId, publicOrderCode, paymentMethod }),
       });
       const data = await response.json().catch(() => ({}));
 
@@ -1903,7 +1915,8 @@ document.addEventListener("DOMContentLoaded", () => {
             existingSession?.orderId &&
             existingSession?.publicOrderCode &&
             existingSession?.cartFingerprint === cartFingerprint &&
-            existingSession?.customerEmail === payload.email
+            existingSession?.customerEmail === payload.email &&
+            existingSession?.paymentMethod === payload.paymentMethod
           ) {
             order = {
               id: existingSession.orderId,
@@ -1923,6 +1936,7 @@ document.addEventListener("DOMContentLoaded", () => {
               orderId: order.id,
               publicOrderCode: order.publicOrderCode,
               customerEmail: payload.email,
+              paymentMethod: payload.paymentMethod,
               cartFingerprint,
               createdAt: new Date().toISOString(),
             });
@@ -1931,6 +1945,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const paymentResult = await initiatePayment({
             orderId: order.id,
             publicOrderCode: order.publicOrderCode,
+            paymentMethod: payload.paymentMethod,
           });
 
           if (
