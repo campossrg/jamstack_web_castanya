@@ -319,6 +319,16 @@ For the low-cost guest checkout flow, this repo now includes a minimal schema fo
 
 Run `supabase/schema-orders.sql` in the Supabase SQL Editor before implementing the backend checkout steps.
 
+The schema file now also includes explicit `GRANT` statements for `service_role` so these tables remain reachable through the Supabase Data API as platform defaults tighten for new tables.
+
+If this project already exists in Supabase and the tables were created earlier, run this patch in the SQL Editor for the current environment as well:
+
+```sql
+grant usage on schema public to anon, authenticated, service_role;
+grant all on table public.orders to service_role;
+grant all on table public.order_items to service_role;
+```
+
 This schema is intentionally small:
 
 - cart state stays in the browser with `localStorage`

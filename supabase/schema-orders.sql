@@ -83,6 +83,10 @@ before update on public.orders
 for each row
 execute function public.set_updated_at();
 
+grant usage on schema public to anon, authenticated, service_role;
+grant all on table public.orders to service_role;
+grant all on table public.order_items to service_role;
+
 alter table public.orders enable row level security;
 alter table public.order_items enable row level security;
 
