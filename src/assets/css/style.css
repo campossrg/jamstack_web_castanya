@@ -2639,10 +2639,10 @@ body.home .header-nav {
 body.home .header-nav,
 body.page-fusta .header-nav,
 body.page-visits .header-nav {
-  background-color: rgba(0, 0, 0, 0.2) !important;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-top: none !important; /* Final check to ensure no line exists */
+  background-color: transparent !important;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-top: none !important;
 }
 
 body.home .header-nav a,
