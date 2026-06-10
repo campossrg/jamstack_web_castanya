@@ -1997,9 +1997,9 @@ body.page-blog .content-wrap {
 }
 
 .hero-central-logo {
-  height: clamp(260px, 20vw, 340px);
+  width: clamp(320px, 45vw, 520px);
+  height: auto;
   margin-bottom: 10px;
-  width: auto;
   object-fit: contain;
 }
 
@@ -2269,6 +2269,7 @@ body:not(.home) .header-logo img {
   font-family: inherit;
   cursor: pointer;
   text-align: center;
+  position: relative;
 }
 
 .nav-item.highlight-shop {
@@ -2283,8 +2284,11 @@ body:not(.home) .header-logo img {
 .has-dropdown > a::after,
 .has-dropdown > .nav-link-button::after {
   content: "⌄";
-  font-size: 20px;
-  margin-top: -5px;
+  position: absolute;
+  top: 10px;
+  right: 8px;
+  font-size: 14px;
+  line-height: 1;
   font-weight: 400;
 }
 
