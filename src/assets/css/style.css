@@ -2269,7 +2269,7 @@ body:not(.home) .header-logo img {
   font-family: inherit;
   cursor: pointer;
   text-align: center;
-  position: relative;
+  align-items: center;
 }
 
 .nav-item.highlight-shop {
@@ -2283,10 +2283,20 @@ body:not(.home) .header-logo img {
 
 .has-dropdown > a::after,
 .has-dropdown > .nav-link-button::after {
+  content: none;
+}
+
+.nav-btn-text {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+}
+
+.nav-btn-text::after {
   content: "⌄";
   position: absolute;
-  top: 10px;
-  right: 8px;
+  top: 0;
+  left: calc(100% + 4px);
   font-size: 14px;
   line-height: 1;
   font-weight: 400;
@@ -2427,7 +2437,7 @@ body:not(.home):not(.page-fusta):not(.page-visits) main {
 .icon {
   width: 22px;
   height: 22px;
-  stroke: white;
+  stroke: #f5f0e8;
   fill: none;
   stroke-width: 2;
 }
@@ -2548,7 +2558,7 @@ body.home .header-icon-button--whatsapp {
   left: 20px;
   z-index: 2001;
   align-items: center;
-  color: white;
+  color: #f5f0e8;
   font-family: "Gotham-Medium", "Gotham Medium", sans-serif;
 }
 
@@ -4289,8 +4299,18 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-dropdown__link.i
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 40px; /* Space between arrows and title */
+  position: relative;
   margin: 10px 0;
+}
+
+.title-nav-wrapper .nav-arrow-inline.left {
+  position: absolute;
+  left: 20px;
+}
+
+.title-nav-wrapper .nav-arrow-inline.right {
+  position: absolute;
+  right: 20px;
 }
 
 .label-small {
