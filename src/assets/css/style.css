@@ -11484,9 +11484,7 @@ body.has-mobile-menu-open {
 
   .nav-item,
   .nav-item:first-child {
-    border-right: 0;
-    border-left: 0;
-    border-top: 1px solid rgba(247, 241, 227, 0.18);
+    border: 0 !important;
     min-height: auto;
   }
 
@@ -11616,5 +11614,13 @@ body.has-mobile-menu-open {
 
   .site-header:not(.is-menu-open) .nav-dropdown {
     display: none !important;
+  }
+
+  .nav-item--shop a,
+  body.home .header-nav .nav-item--shop a,
+  body.page-fusta .header-nav .nav-item--shop a,
+  body.page-visits .header-nav .nav-item--shop a {
+    background: #efe5d3;
+    color: #8d7748 !important;
   }
 }
