@@ -2680,7 +2680,7 @@ body.page-visits .header-nav .nav-dropdown a.is-active {
 body.home .header-nav li:not(:last-child),
 body.page-fusta .header-nav li:not(:last-child),
 body.page-visits .header-nav li:not(:last-child) {
-  border-right: 1px solid rgba(255, 255, 255, 0.3);
+  border-right: 2px solid rgba(245, 240, 232, 0.6);
 }
 
 body.home .site-header.is-scrolled,
