@@ -25,6 +25,10 @@
 [functions]
   node_bundler = "esbuild"
   directory = "netlify/functions/"
+  included_files = [
+    "src/_data/products.json",
+    "src/gastronomic/receptes/recipes/**/*.md"
+  ]
 
 # Headers for security and performance
 [[headers]]
