@@ -8,7 +8,7 @@ const SECRET_KEY = process.env.REDSYS_SECRET_KEY;
 const REDSYS_URL = process.env.REDSYS_URL || 'https://sis-t.redsys.es:25443/sis/realizarPago';
 const SITE_URL = process.env.URL;
 const PAYMENT_PROVIDER = String(process.env.PAYMENT_PROVIDER || '').trim().toLowerCase();
-const TERMINAL = '001';
+const TERMINAL = '1';
 const CURRENCY = '978'; // EUR
 
 function jsonResponse(statusCode, body) {

@@ -17,7 +17,7 @@ test('payment-process._test.generateSignature produces stable signature', () => 
     Ds_Merchant_MerchantCode: 'MOCK',
     Ds_Merchant_Currency: '978',
     Ds_Merchant_TransactionType: '0',
-    Ds_Merchant_Terminal: '001',
+    Ds_Merchant_Terminal: '1',
   };
 
   const sig1 = mod._test.generateSignature(params, secretKey);
