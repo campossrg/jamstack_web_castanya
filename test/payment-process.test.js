@@ -1,5 +1,9 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
+const {
+  decodeMerchantParameters,
+  verifyMerchantParametersSignature,
+} = require('../netlify/functions/redsys-signature.js');
 
 function freshRequire(modulePath) {
   // Ensure env var reads at module top-level are re-evaluated.
@@ -7,17 +11,21 @@ function freshRequire(modulePath) {
   return require(modulePath);
 }
 
+function testKey(char = 'a') {
+  return String(char).repeat(32);
+}
+
 test('payment-process._test.generateSignature produces stable signature', () => {
-  const secretKey = Buffer.alloc(24, 7).toString('base64');
+  const secretKey = testKey('7');
   const mod = freshRequire('../netlify/functions/payment-process.js');
 
   const params = {
-    Ds_Merchant_Amount: '100',
-    Ds_Merchant_Order: '123456789012',
-    Ds_Merchant_MerchantCode: 'MOCK',
-    Ds_Merchant_Currency: '978',
-    Ds_Merchant_TransactionType: '0',
-    Ds_Merchant_Terminal: '1',
+    DS_MERCHANT_AMOUNT: '100',
+    DS_MERCHANT_ORDER: '123456789012',
+    DS_MERCHANT_MERCHANTCODE: 'MOCK',
+    DS_MERCHANT_CURRENCY: '978',
+    DS_MERCHANT_TRANSACTIONTYPE: '0',
+    DS_MERCHANT_TERMINAL: '001',
   };
 
   const sig1 = mod._test.generateSignature(params, secretKey);
@@ -51,7 +59,7 @@ test('payment-process handler returns 404 when order is missing', async () => {
   process.env.SUPABASE_URL = 'https://example.supabase.co';
   process.env.SUPABASE_SERVICE_ROLE_KEY = 'service-role';
   process.env.REDSYS_MERCHANT_CODE = 'merchant';
-  process.env.REDSYS_SECRET_KEY = Buffer.alloc(24, 5).toString('base64');
+  process.env.REDSYS_SECRET_KEY = testKey('5');
   process.env.URL = 'https://example.com';
   process.env.PAYMENT_PROVIDER = '';
 
@@ -79,7 +87,7 @@ test('payment-process handler returns 400 when order total is invalid', async ()
   process.env.SUPABASE_URL = 'https://example.supabase.co';
   process.env.SUPABASE_SERVICE_ROLE_KEY = 'service-role';
   process.env.REDSYS_MERCHANT_CODE = 'merchant';
-  process.env.REDSYS_SECRET_KEY = Buffer.alloc(24, 5).toString('base64');
+  process.env.REDSYS_SECRET_KEY = testKey('5');
   process.env.URL = 'https://example.com';
   process.env.PAYMENT_PROVIDER = '';
 
@@ -107,10 +115,10 @@ test('payment-process handler returns payment payload for valid order', async ()
   process.env.SUPABASE_URL = 'https://example.supabase.co';
   process.env.SUPABASE_SERVICE_ROLE_KEY = 'service-role';
   process.env.REDSYS_MERCHANT_CODE = 'merchant';
-  process.env.REDSYS_SECRET_KEY = Buffer.alloc(24, 6).toString('base64');
+  process.env.REDSYS_SECRET_KEY = testKey('6');
   process.env.URL = 'https://example.com';
   process.env.PAYMENT_PROVIDER = 'mock';
-  process.env.REDSYS_SECRET_KEY_DEV = Buffer.alloc(24, 6).toString('base64');
+  process.env.REDSYS_SECRET_KEY_DEV = testKey('6');
 
   const originalFetch = global.fetch;
   const fetchCalls = [];
@@ -166,13 +174,20 @@ test('payment-process handler returns payment payload for valid order', async ()
     assert.equal(payload.order.paymentStatus, 'pending');
     assert.equal(payload.order.paymentMethod, 'card');
     assert.equal(payload.payment.redsysUrl, 'https://example.com/.netlify/functions/redsys-mock');
-    assert.equal(payload.payment.signatureVersion, 'HMAC_SHA256_V1');
+    assert.equal(payload.payment.signatureVersion, 'HMAC_SHA512_V2');
     assert.equal(typeof payload.payment.parameters, 'string');
     assert.equal(typeof payload.payment.signature, 'string');
-    const merchantParameters = JSON.parse(
-      Buffer.from(payload.payment.parameters, 'base64').toString('utf8'),
+
+    const merchantParameters = decodeMerchantParameters(payload.payment.parameters);
+    assert.equal(merchantParameters.DS_MERCHANT_PAYMETHODS, undefined);
+    assert.equal(merchantParameters.DS_MERCHANT_TERMINAL, '001');
+
+    const verification = verifyMerchantParametersSignature(
+      payload.payment.parameters,
+      payload.payment.signature,
+      process.env.REDSYS_SECRET_KEY_DEV,
     );
-    assert.equal(merchantParameters.Ds_Merchant_PayMethods, undefined);
+    assert.equal(verification.isValid, true);
     assert.equal(fetchCalls.length, 2);
   } finally {
     global.fetch = originalFetch;
@@ -184,10 +199,10 @@ test('payment-process handler includes Bizum pay method when requested', async (
   process.env.SUPABASE_URL = 'https://example.supabase.co';
   process.env.SUPABASE_SERVICE_ROLE_KEY = 'service-role';
   process.env.REDSYS_MERCHANT_CODE = 'merchant';
-  process.env.REDSYS_SECRET_KEY = Buffer.alloc(24, 16).toString('base64');
+  process.env.REDSYS_SECRET_KEY = testKey('b');
   process.env.URL = 'https://example.com';
   process.env.PAYMENT_PROVIDER = 'mock';
-  process.env.REDSYS_SECRET_KEY_DEV = Buffer.alloc(24, 16).toString('base64');
+  process.env.REDSYS_SECRET_KEY_DEV = testKey('b');
 
   const originalFetch = global.fetch;
   global.fetch = async (url) => {
@@ -233,13 +248,11 @@ test('payment-process handler includes Bizum pay method when requested', async (
       body: JSON.stringify({ orderId: 'order-bizum', paymentMethod: 'bizum' }),
     });
     const payload = JSON.parse(response.body);
-    const merchantParameters = JSON.parse(
-      Buffer.from(payload.payment.parameters, 'base64').toString('utf8'),
-    );
+    const merchantParameters = decodeMerchantParameters(payload.payment.parameters);
 
     assert.equal(response.statusCode, 200);
     assert.equal(payload.order.paymentMethod, 'bizum');
-    assert.equal(merchantParameters.Ds_Merchant_PayMethods, 'z');
+    assert.equal(merchantParameters.DS_MERCHANT_PAYMETHODS, 'z');
   } finally {
     global.fetch = originalFetch;
     delete process.env.REDSYS_SECRET_KEY_DEV;
@@ -250,7 +263,7 @@ test('payment-process handler returns 409 when order is already paid', async () 
   process.env.SUPABASE_URL = 'https://example.supabase.co';
   process.env.SUPABASE_SERVICE_ROLE_KEY = 'service-role';
   process.env.REDSYS_MERCHANT_CODE = 'merchant';
-  process.env.REDSYS_SECRET_KEY = Buffer.alloc(24, 11).toString('base64');
+  process.env.REDSYS_SECRET_KEY = testKey('c');
   process.env.URL = 'https://example.com';
   process.env.PAYMENT_PROVIDER = '';
 

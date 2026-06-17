@@ -220,7 +220,7 @@ These tests are unit-level and mock external services such as Supabase. They do 
      FROM_NAME=Castanya de Viladrau
      ORDER_NOTIFICATION_EMAIL=orders@example.com
     REDSYS_MERCHANT_CODE=your_merchant_code
-    REDSYS_SECRET_KEY=your_secret_key
+    REDSYS_SECRET_KEY=your_redsys_terminal_signing_key
     SUPABASE_URL=your_supabase_project_url
     SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
     TINA_CLIENT_ID=your_tina_client_id
@@ -395,6 +395,8 @@ Important behavior:
 - the function loads the order from Supabase
 - the charged amount comes from `orders.total_amount`
 - a 12-digit `payment_reference` is generated and stored for RedSys callback matching
+- the request is signed using the RedSys `HMAC_SHA512_V2` flow
+- `REDSYS_SECRET_KEY` should be the terminal signing key from the RedSys admin portal
 - if RedSys env vars are missing, the function returns a controlled `Payment provider not configured` error
 - `REDSYS_URL` is optional and defaults to the RedSys test URL
 

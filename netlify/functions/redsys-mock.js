@@ -1,11 +1,16 @@
-const crypto = require('crypto');
 const querystring = require('querystring');
 require('dotenv').config();
+const {
+  createSignature,
+  decodeMerchantParameters,
+  getOrderValue,
+} = require('./redsys-signature');
 
 const SECRET_KEY =
   process.env.REDSYS_SECRET_KEY_DEV ||
   process.env.REDSYS_SECRET_KEY ||
   null;
+const SIGNATURE_VERSION = 'HMAC_SHA512_V2';
 
 function response(statusCode, body, contentType = 'text/html') {
   return {
@@ -43,39 +48,6 @@ function parseEventBody(event) {
   }
 }
 
-function normalizeSignature(signature) {
-  return String(signature || '').replace(/-/g, '+').replace(/_/g, '/').trim();
-}
-
-function encryptOrder(order, key) {
-  const keyBytes = Buffer.from(key, 'base64');
-
-  if (keyBytes.length !== 24) {
-    throw new Error(
-      `Invalid RedSys secret key length. Expected 24 bytes after base64 decode, got ${keyBytes.length}.`,
-    );
-  }
-
-  const iv = Buffer.alloc(8, 0);
-  const cipher = crypto.createCipheriv('des-ede3-cbc', keyBytes, iv);
-  return Buffer.concat([cipher.update(order, 'utf8'), cipher.final()]).toString('base64');
-}
-
-function signCallbackParameters(merchantParametersBase64, secretKey) {
-  const parametersJson = Buffer.from(merchantParametersBase64, 'base64').toString('utf8');
-  const parameters = JSON.parse(parametersJson);
-  const order = String(parameters.Ds_Order || parameters.Ds_Merchant_Order || '').trim();
-
-  if (!order) {
-    throw new Error('Missing Ds_Order in callback parameters');
-  }
-
-  const encrypted = encryptOrder(order, secretKey);
-  const hmac = crypto.createHmac('sha256', Buffer.from(encrypted, 'base64'));
-  hmac.update(merchantParametersBase64);
-  return hmac.digest('base64');
-}
-
 function escapeHtml(value) {
   return String(value || '')
     .replace(/&/g, '&amp;')
@@ -88,7 +60,7 @@ function escapeHtml(value) {
 function renderChoicePage({ order, amount, rawParameters, rawSignature, signatureVersion }) {
   const safeOrder = escapeHtml(order);
   const safeAmount = escapeHtml(amount);
-  const safeSigVersion = escapeHtml(signatureVersion || 'HMAC_SHA256_V1');
+  const safeSigVersion = escapeHtml(signatureVersion || SIGNATURE_VERSION);
   const safeParams = escapeHtml(rawParameters);
   const safeSignature = escapeHtml(rawSignature);
 
@@ -147,11 +119,11 @@ function renderChoicePage({ order, amount, rawParameters, rawSignature, signatur
 </html>`;
 }
 
-async function postCallback({ baseUrl, merchantParametersBase64, signature }) {
+async function postCallback({ baseUrl, merchantParametersBase64Url, signature }) {
   const callbackUrl = `${baseUrl}/.netlify/functions/payment-callback`;
   const payload = querystring.stringify({
-    Ds_SignatureVersion: 'HMAC_SHA256_V1',
-    Ds_MerchantParameters: merchantParametersBase64,
+    Ds_SignatureVersion: SIGNATURE_VERSION,
+    Ds_MerchantParameters: merchantParametersBase64Url,
     Ds_Signature: signature,
   });
 
@@ -199,16 +171,15 @@ exports.handler = async (event) => {
     const action = String(body.action || '').trim().toLowerCase();
     const merchantParameters = String(body.Ds_MerchantParameters || '').trim();
     const incomingSignature = String(body.Ds_Signature || '').trim();
-    const signatureVersion = String(body.Ds_SignatureVersion || 'HMAC_SHA256_V1').trim();
+    const signatureVersion = String(body.Ds_SignatureVersion || SIGNATURE_VERSION).trim();
 
     if (!merchantParameters || !incomingSignature) {
       return response(400, 'Missing payload', 'text/plain');
     }
 
-    const decodedJson = Buffer.from(merchantParameters, 'base64').toString('utf8');
-    const initParams = JSON.parse(decodedJson);
-    const order = String(initParams.Ds_Merchant_Order || '').trim();
-    const amount = String(initParams.Ds_Merchant_Amount || '').trim();
+    const initParams = decodeMerchantParameters(merchantParameters);
+    const order = getOrderValue(initParams);
+    const amount = String(initParams.DS_MERCHANT_AMOUNT || initParams.Ds_Merchant_Amount || '').trim();
 
     if (!action) {
       return response(200, renderChoicePage({
@@ -225,14 +196,16 @@ exports.handler = async (event) => {
       Ds_Order: order,
       Ds_Response: dsResponse,
     };
-    const callbackMerchantParameters = Buffer.from(JSON.stringify(callbackParameters), 'utf8').toString('base64');
-    const callbackSignature = normalizeSignature(
-      signCallbackParameters(callbackMerchantParameters, SECRET_KEY),
+    const callbackMerchantParameters = Buffer.from(JSON.stringify(callbackParameters), 'utf8').toString('base64url');
+    const callbackSignature = createSignature(
+      callbackMerchantParameters,
+      callbackParameters.Ds_Order,
+      SECRET_KEY,
     );
 
     await postCallback({
       baseUrl,
-      merchantParametersBase64: callbackMerchantParameters,
+      merchantParametersBase64Url: callbackMerchantParameters,
       signature: callbackSignature,
     });
 

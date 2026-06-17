@@ -1,4 +1,8 @@
-const crypto = require('crypto');
+const {
+  createSignature,
+  encodeMerchantParameters,
+  getOrderValue,
+} = require('./redsys-signature');
 require('dotenv').config();
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
@@ -8,8 +12,9 @@ const SECRET_KEY = process.env.REDSYS_SECRET_KEY;
 const REDSYS_URL = process.env.REDSYS_URL || 'https://sis-t.redsys.es:25443/sis/realizarPago';
 const SITE_URL = process.env.URL;
 const PAYMENT_PROVIDER = String(process.env.PAYMENT_PROVIDER || '').trim().toLowerCase();
-const TERMINAL = '1';
+const TERMINAL = '001';
 const CURRENCY = '978'; // EUR
+const SIGNATURE_VERSION = 'HMAC_SHA512_V2';
 
 function jsonResponse(statusCode, body) {
   return {
@@ -93,38 +98,52 @@ function normalizePaymentMethod(value) {
   return String(value || 'card').trim().toLowerCase() === 'bizum' ? 'bizum' : 'card';
 }
 
-function generateSignature(parameters, key) {
-  const order = parameters.Ds_Merchant_Order;
-  const keyBytes = Buffer.from(key, 'base64');
-
-  if (keyBytes.length !== 24) {
-    throw new Error(
-      `Invalid RedSys secret key length. Expected 24 bytes after base64 decode, got ${keyBytes.length}.`,
-    );
-  }
-  const iv = Buffer.alloc(8, 0);
-  
-  // Encrypt order with 3DES
-  const cipher = crypto.createCipheriv('des-ede3-cbc', keyBytes, iv);
-  const encrypted = Buffer.concat([cipher.update(order, 'utf8'), cipher.final()]).toString('base64');
-  
-  // Create HMAC with encrypted key
-  const hmac = crypto.createHmac('sha256', Buffer.from(encrypted, 'base64'));
-  hmac.update(Buffer.from(JSON.stringify(parameters), 'utf8').toString('base64'));
-  
-  return hmac.digest('base64');
+function buildMerchantParameters({
+  amountInCents,
+  merchantOrderCode,
+  normalizedPaymentMethod,
+  order,
+}) {
+  return {
+    DS_MERCHANT_AMOUNT: amountInCents.toString(),
+    DS_MERCHANT_ORDER: merchantOrderCode,
+    DS_MERCHANT_MERCHANTCODE: MERCHANT_CODE || 'MOCK',
+    DS_MERCHANT_CURRENCY: CURRENCY,
+    DS_MERCHANT_TRANSACTIONTYPE: '0',
+    DS_MERCHANT_TERMINAL: TERMINAL,
+    DS_MERCHANT_MERCHANTURL: `${SITE_URL}/.netlify/functions/payment-callback`,
+    DS_MERCHANT_URLOK: `${SITE_URL}/payment/success`,
+    DS_MERCHANT_URLKO: `${SITE_URL}/payment/error`,
+    DS_MERCHANT_CONSUMERLANGUAGE: '001',
+    DS_MERCHANT_PRODUCTDESCRIPTION: `Pedido ${order.public_order_code}`,
+    DS_MERCHANT_MERCHANTNAME: 'Castanya de Viladrau',
+    ...(normalizedPaymentMethod === 'bizum'
+      ? {
+          DS_MERCHANT_PAYMETHODS: 'z',
+        }
+      : {}),
+  };
 }
 
-// Expose a small, explicit surface for unit tests.
-// This keeps the handler behavior unchanged while allowing node:test to exercise
-// signature generation and deterministic helpers without adding deps.
+function generateSignature(parameters, key) {
+  const order = getOrderValue(parameters);
+
+  if (!order) {
+    throw new Error('Missing DS_MERCHANT_ORDER for RedSys signature generation');
+  }
+
+  const merchantParameters = encodeMerchantParameters(parameters);
+  return createSignature(merchantParameters, order, key);
+}
+
 exports._test = {
+  buildMerchantParameters,
   createMerchantOrderCode,
   generateSignature,
   normalizePaymentMethod,
 };
 
-exports.handler = async (event, context) => {
+exports.handler = async (event) => {
   if (event.httpMethod === 'OPTIONS') {
     return jsonResponse(200, { ok: true });
   }
@@ -146,9 +165,6 @@ exports.handler = async (event, context) => {
 
   const isMockProvider = PAYMENT_PROVIDER === 'mock';
   if (isMockProvider) {
-    // TODO: Remove this mock payment-provider path before production hardening to avoid keeping a fake RedSys flow available long-term.
-    // In mock mode we still generate signatures so callback verification stays meaningful.
-    // Allow a dedicated dev key, falling back to the standard key.
     if (!process.env.REDSYS_SECRET_KEY_DEV && !SECRET_KEY) {
       return jsonResponse(503, {
         error: 'Payment provider not configured',
@@ -190,30 +206,16 @@ exports.handler = async (event, context) => {
     }
 
     const merchantOrderCode = order.payment_reference || createMerchantOrderCode(order);
+    const parameters = buildMerchantParameters({
+      amountInCents,
+      merchantOrderCode,
+      normalizedPaymentMethod,
+      order,
+    });
 
-    const parameters = {
-      Ds_Merchant_Amount: amountInCents.toString(),
-      Ds_Merchant_Order: merchantOrderCode,
-      Ds_Merchant_MerchantCode: MERCHANT_CODE || 'MOCK',
-      Ds_Merchant_Currency: CURRENCY,
-      Ds_Merchant_TransactionType: '0',
-      Ds_Merchant_Terminal: TERMINAL,
-      Ds_Merchant_MerchantURL: `${SITE_URL}/.netlify/functions/payment-callback`,
-      Ds_Merchant_UrlOK: `${SITE_URL}/payment/success`,
-      Ds_Merchant_UrlKO: `${SITE_URL}/payment/error`,
-      Ds_Merchant_ConsumerLanguage: '001',
-      Ds_Merchant_ProductDescription: `Pedido ${order.public_order_code}`,
-      Ds_Merchant_MerchantName: 'Castanya de Viladrau',
-      ...(normalizedPaymentMethod === 'bizum'
-        ? {
-            Ds_Merchant_PayMethods: 'z',
-          }
-        : {}),
-    };
-
+    const parametersBase64Url = encodeMerchantParameters(parameters);
     const signingKey = process.env.REDSYS_SECRET_KEY_DEV || SECRET_KEY;
-    const signature = generateSignature(parameters, signingKey);
-    const parametersBase64 = Buffer.from(JSON.stringify(parameters)).toString('base64');
+    const signature = createSignature(parametersBase64Url, merchantOrderCode, signingKey);
     const updatedOrder = await updateSupabaseOrder(order.id, {
       status: 'pending_payment',
       payment_status: 'pending',
@@ -223,6 +225,7 @@ exports.handler = async (event, context) => {
         merchant_order_code: merchantOrderCode,
         redsys_url: REDSYS_URL,
         payment_method: normalizedPaymentMethod,
+        signature_version: SIGNATURE_VERSION,
       },
     });
 
@@ -230,9 +233,9 @@ exports.handler = async (event, context) => {
       success: true,
       payment: {
         redsysUrl: isMockProvider ? `${SITE_URL}/.netlify/functions/redsys-mock` : REDSYS_URL,
-        parameters: parametersBase64,
+        parameters: parametersBase64Url,
         signature,
-        signatureVersion: 'HMAC_SHA256_V1',
+        signatureVersion: SIGNATURE_VERSION,
       },
       order: {
         id: order.id,
