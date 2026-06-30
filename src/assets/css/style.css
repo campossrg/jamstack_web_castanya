@@ -5633,12 +5633,11 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-dropdown__link.i
   padding: 18px 18px 0;
 }
 
-.gastronomic-page-restaurant-card__city {
-  margin: 0 0 12px;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+.gastronomic-page-restaurant-card__subtitle {
+  margin: 14px 0 0;
+  font-size: 18px;
+  font-style: italic;
+  line-height: 1.35;
 }
 
 .gastronomic-page-restaurant-card__title {
