@@ -4,12 +4,32 @@ footerVariant: home
 title: "Castanya de Viladrau"
 seoTitle: "Castanya de Viladrau | Productes artesans, visites guiades i gastronomia al Montseny"
 description: "Descobreix Castanya de Viladrau: productes artesans de castanya, visites guiades al Montseny i propostes gastronomiques arrelades al territori."
-seoImage: /assets/images/gallery/index_background.png
+seoImage: /assets/images/gallery/index_background-1920.jpg
 name: home
 ---
 
 <section class="hero-wrapper">
-  <img src="/assets/images/gallery/index_background.png" alt="Montseny" class="hero-img">
+  <picture>
+    <source
+      type="image/webp"
+      srcset="
+        /assets/images/gallery/index_background-640.webp   640w,
+        /assets/images/gallery/index_background-1024.webp 1024w,
+        /assets/images/gallery/index_background-1920.webp 1920w,
+        /assets/images/gallery/index_background-2560.webp 2560w
+      "
+      sizes="100vw"
+    >
+    <img
+      src="/assets/images/gallery/index_background-1920.jpg"
+      alt="Montseny"
+      class="hero-img"
+      width="1920"
+      height="1249"
+      fetchpriority="high"
+      decoding="async"
+    >
+  </picture>
   
   <div class="hero-content-overlay">
     <div class="hero-center-branding">
@@ -54,6 +74,10 @@ name: home
             src="{{ product.data.image }}"
             alt="{{ product.data.imageAlt or product.data.title }}"
             class="item-img"
+            width="322"
+            height="372"
+            loading="lazy"
+            decoding="async"
           >
           <span class="item-name">{{ product.data.title }}</span>
         </a>
@@ -80,7 +104,26 @@ name: home
 </section>
 
 <section class="visites-guiades-hero">
-  <img src="/assets/images/gallery/banner-parc-natural.png" alt="Bosc del Montseny" class="hero-bg-img">
+  <picture>
+    <source
+      type="image/webp"
+      srcset="
+        /assets/images/gallery/banner-parc-natural-640.webp   640w,
+        /assets/images/gallery/banner-parc-natural-1024.webp 1024w,
+        /assets/images/gallery/banner-parc-natural-1920.webp 1920w
+      "
+      sizes="100vw"
+    >
+    <img
+      src="/assets/images/gallery/banner-parc-natural-1920.jpg"
+      alt="Bosc del Montseny"
+      class="hero-bg-img"
+      width="1920"
+      height="813"
+      loading="lazy"
+      decoding="async"
+    >
+  </picture>
   <div class="hero-dark-overlay"></div>
   <div class="hero-overlay-content">
     <span class="label-small light">VISITES GUIADES</span>
@@ -92,7 +135,14 @@ name: home
 
 <section class="gastronomic-split unified-bg">
   <div class="split-image">
-    <img src="/assets/images/gallery/chalet_coromina_dish.jpg" alt="Plat de risotto amb castanyes">
+    <img
+      src="/assets/images/gallery/chalet_coromina_dish.jpg"
+      alt="Plat de risotto amb castanyes"
+      width="1122"
+      height="1402"
+      loading="lazy"
+      decoding="async"
+    >
   </div>
   <div class="split-text-content">
     <span class="label-small">ESPAI GASTRONÒMIC</span>
@@ -119,6 +169,8 @@ name: home
             src="{{ post.data.image or site.defaultOgImage }}"
             alt="{{ post.data.imageAlt or post.data.title }}"
             class="fit-img"
+            loading="lazy"
+            decoding="async"
           />
         </div>
 
