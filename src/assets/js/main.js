@@ -297,33 +297,43 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const setupRecipeResultsFilter = () => {
-    const grid = document.querySelector("[data-recipe-results-grid]");
     const form = document.querySelector("[data-recipe-filter-form]");
 
-    if (!grid || !form) {
-      // Only the results page carries a results grid; other pages that
-      // reuse the same filter form (e.g. the recipes index) should keep
-      // the form's default GET navigation instead of being intercepted here.
+    if (!form) {
       return;
     }
 
-    const cards = Array.from(grid.querySelectorAll("[data-recipe-card]"));
+    // The results page carries a results grid and filters cards live; the
+    // recipes index reuses the same dropdown menus (shop-page-filter-menu
+    // style) just to build the query string for its normal GET navigation.
+    const grid = document.querySelector("[data-recipe-results-grid]");
+    const cards = grid ? Array.from(grid.querySelectorAll("[data-recipe-card]")) : [];
     const status = document.querySelector("[data-recipe-results-status]");
     const resetBtn = document.querySelector("[data-recipe-results-reset]");
     const emptyMessage = document.querySelector("[data-recipe-results-empty]");
 
-    if (!cards.length) {
+    const groups = Array.from(
+      form.querySelectorAll("[data-recipe-filter-menu]"),
+    ).map((menu) => ({
+      menu,
+      key: menu.dataset.recipeFilterMenu,
+      input: menu.querySelector("[data-recipe-filter-input]"),
+      summaryLabel: menu.querySelector("[data-recipe-filter-summary-label]"),
+      defaultLabel:
+        menu.querySelector("[data-recipe-filter-summary]")?.dataset
+          .defaultLabel || "",
+      options: Array.from(menu.querySelectorAll("[data-recipe-filter-option]")),
+    }));
+
+    if (!groups.length) {
       return;
     }
 
-    const selects = Array.from(form.querySelectorAll("[data-recipe-filter]"));
-    const filterKeys = selects.map((select) => select.dataset.recipeFilter);
-
     const getFilters = () => {
       const filters = {};
-      selects.forEach((select) => {
-        if (select.value) {
-          filters[select.dataset.recipeFilter] = select.value;
+      groups.forEach((group) => {
+        if (group.input && group.input.value) {
+          filters[group.key] = group.input.value;
         }
       });
       return filters;
@@ -347,7 +357,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const updateUrl = (filters) => {
       const url = new URL(window.location.href);
-      filterKeys.forEach((key) => {
+      groups.forEach(({ key }) => {
         if (filters[key]) {
           url.searchParams.set(key, filters[key]);
         } else {
@@ -359,63 +369,95 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const applyFilters = (options = {}) => {
       const filters = getFilters();
-      const hasFilters = Object.keys(filters).length > 0;
-      let visibleCount = 0;
 
-      cards.forEach((card) => {
-        const isVisible = cardMatches(card, filters);
-        card.hidden = !isVisible;
-        if (isVisible) {
-          visibleCount += 1;
+      if (grid) {
+        const hasFilters = Object.keys(filters).length > 0;
+        let visibleCount = 0;
+
+        cards.forEach((card) => {
+          const isVisible = cardMatches(card, filters);
+          card.hidden = !isVisible;
+          if (isVisible) {
+            visibleCount += 1;
+          }
+        });
+
+        if (status) {
+          const recipeLabel = visibleCount === 1 ? "recepta" : "receptes";
+          status.textContent = hasFilters
+            ? `${visibleCount} ${recipeLabel} trobades amb aquests filtres.`
+            : "Explora totes les receptes o afina la cerca amb els filtres.";
         }
-      });
 
-      if (status) {
-        const recipeLabel = visibleCount === 1 ? "recepta" : "receptes";
-        status.textContent = hasFilters
-          ? `${visibleCount} ${recipeLabel} trobades amb aquests filtres.`
-          : "Explora totes les receptes o afina la cerca amb els filtres.";
+        if (resetBtn) {
+          resetBtn.hidden = !hasFilters;
+        }
+
+        if (emptyMessage) {
+          emptyMessage.hidden = visibleCount !== 0;
+        }
       }
 
-      if (resetBtn) {
-        resetBtn.hidden = !hasFilters;
-      }
-
-      if (emptyMessage) {
-        emptyMessage.hidden = visibleCount !== 0;
-      }
-
-      if (options.updateUrl) {
+      if (options.updateUrl && grid) {
         updateUrl(filters);
       }
     };
 
-    selects.forEach((select) => {
-      select.addEventListener("change", () => applyFilters({ updateUrl: true }));
+    const setGroupValue = (group, value, label) => {
+      if (group.input) {
+        group.input.value = value || "";
+      }
+
+      group.options.forEach((option) => {
+        const isActive = (option.dataset.recipeFilterValue || "") === (value || "");
+        option.setAttribute("aria-current", isActive ? "true" : "false");
+      });
+
+      if (group.summaryLabel) {
+        group.summaryLabel.textContent = value ? label : group.defaultLabel;
+      }
+
+      group.menu.removeAttribute("open");
+    };
+
+    groups.forEach((group) => {
+      group.options.forEach((option) => {
+        option.addEventListener("click", () => {
+          const value = option.dataset.recipeFilterValue || "";
+          const label = option.dataset.recipeFilterLabel || option.textContent.trim();
+          setGroupValue(group, value, label);
+          applyFilters({ updateUrl: true });
+        });
+      });
     });
 
     form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      applyFilters({ updateUrl: true });
+      if (grid) {
+        event.preventDefault();
+        applyFilters({ updateUrl: true });
+      }
+      // On pages without a results grid (the recipes index), let the form
+      // submit normally: it's a real GET to /gastronomic/receptes/resultats/
+      // carrying whatever hidden filter values were just set above.
     });
 
     resetBtn?.addEventListener("click", () => {
-      selects.forEach((select) => {
-        select.value = "";
-      });
+      groups.forEach((group) => setGroupValue(group, "", ""));
       applyFilters({ updateUrl: true });
     });
 
-    const params = new URLSearchParams(window.location.search);
-    selects.forEach((select) => {
-      const value = params.get(select.dataset.recipeFilter);
-      const optionExists = Array.from(select.options).some(
-        (option) => option.value === value,
-      );
-      if (value && optionExists) {
-        select.value = value;
-      }
-    });
+    if (grid) {
+      const params = new URLSearchParams(window.location.search);
+      groups.forEach((group) => {
+        const value = params.get(group.key);
+        const matchedOption = group.options.find(
+          (option) => option.dataset.recipeFilterValue === value,
+        );
+        if (value && matchedOption) {
+          setGroupValue(group, value, matchedOption.dataset.recipeFilterLabel);
+        }
+      });
+    }
 
     applyFilters();
   };

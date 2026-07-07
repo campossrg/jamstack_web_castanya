@@ -10,9 +10,9 @@ robots: noindex
 {% set difficultyOptions = collections.recipes | uniqueByField("difficulty", ["facil", "mitja", "dificil"]) %}
 {% set dishTypeOptions = collections.recipes | uniqueByField("listingSections", ["foundations", "sweet", "homeTraditions", "classics", "healthy"]) %}
 
-<section class="gastronomic-recipes-filters gastronomic-recipes-filters--results">
+<nav class="shop-page-filters" aria-label="Filtres de receptes">
   {{ recipeFiltersBar("/gastronomic/receptes/resultats/", difficultyOptions, dishTypeOptions, "CERCAR", true) }}
-</section>
+</nav>
 
 <section class="shop-page-catalog gastronomic-recipes-results" id="recipeResultsCatalog">
   <div class="shop-page-catalog__header">

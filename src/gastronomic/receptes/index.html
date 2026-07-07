@@ -78,9 +78,9 @@ collections.recipes %} {% if recipe.data.title == slide.title and recipe.url %}
   </div>
 </section>
 
-<section class="gastronomic-recipes-filters">
+<nav class="shop-page-filters" aria-label="Filtres de receptes">
   {{ recipeFiltersBar("/gastronomic/receptes/resultats/", difficultyOptions, dishTypeOptions, pageContent.filtersBar.searchLabel, false) }}
-</section>
+</nav>
 
 <section
   class="professionals-inspiration-recipes professionals-inspiration-recipes--stacked gastronomic-recipes-section"

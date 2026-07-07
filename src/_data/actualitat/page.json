@@ -22,10 +22,40 @@
   },
   "filtersBar": {
     "items": [
-      "Més nou primer",
-      "Per temàtica",
-      "Tipus de plat",
-      "Per temps de lectura"
+      {
+        "label": "Més nou primer",
+        "options": [
+          "Més nou primer",
+          "Més antic primer"
+        ]
+      },
+      {
+        "label": "Per temàtica",
+        "options": [
+          "Gastronomia",
+          "Patrimoni",
+          "Natura",
+          "Territori",
+          "Tradició"
+        ]
+      },
+      {
+        "label": "Tipus de plat",
+        "options": [
+          "Entrants",
+          "Plats principals",
+          "Postres",
+          "Tècniques"
+        ]
+      },
+      {
+        "label": "Per temps de lectura",
+        "options": [
+          "Menys de 3 minuts",
+          "3-5 minuts",
+          "Més de 5 minuts"
+        ]
+      }
     ]
   },
   "loadMoreLabel": "CARREGAR MÉS",
