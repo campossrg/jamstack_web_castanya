@@ -201,8 +201,8 @@ name: home
 
     <a href="/blog" class="btn-olive">VEURE L'ACTUALITAT</a>
 
-    <div class="home-carousel-section">
-      <div class="title-nav-wrapper">
+    <div class="home-carousel-section home-carousel-section--testimonials">
+      <div class="title-nav-wrapper title-nav-wrapper--testimonials">
         <button class="nav-arrow-inline left" id="prevTestimonial" aria-label="Previous">
           <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
         </button>
@@ -259,8 +259,8 @@ name: home
         }
       ] %}
 
-      <div class="home-inline-carousel-wrap" aria-label="Testimonis">
-        <div class="home-inline-carousel" id="testimonialScroll">
+      <div class="home-inline-carousel-wrap home-inline-carousel-wrap--testimonials" aria-label="Testimonis">
+        <div class="home-inline-carousel home-inline-carousel--testimonials" id="testimonialScroll">
           {% for item in testimonials %}
           <article class="review-card">
             <img src="/assets/images/logo-google.png" alt="Google" class="google-logo" />
@@ -274,39 +274,6 @@ name: home
           {% endfor %}
         </div>
       </div>
-    </div>
-
-    <div class="home-carousel-section home-carousel-section--partners">
-      <span class="label-small">{{ home.partnersSection.labelSmall }}</span>
-
-      <div class="title-nav-wrapper">
-        <button class="nav-arrow-inline left" id="prevPartner" aria-label="Previous">
-          <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
-        </button>
-
-        <h2 class="section-title-main">
-          {{ home.partnersSection.titleLine1 }}<br />
-          {{ home.partnersSection.titleLine2 }}
-        </h2>
-
-        <button class="nav-arrow-inline right" id="nextPartner" aria-label="Next">
-          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
-        </button>
-      </div>
-
-{% set partners = home.partnersSection.partners %}
-
-      <div class="home-inline-carousel-wrap" aria-label="Botigues i restaurants">
-        <div class="home-inline-carousel home-inline-carousel--partners" id="partnerScroll">
-          {% for item in partners %}
-          <div class="partner-card">
-            <img src="{{ item.src }}" alt="{{ item.alt }}" class="partner-logo" loading="lazy" />
-          </div>
-          {% endfor %}
-        </div>
-      </div>
-
-      <a href="{{ home.partnersSection.ctaHref }}" class="btn-olive">{{ home.partnersSection.ctaLabel }}</a>
     </div>
   </div>
 </section>

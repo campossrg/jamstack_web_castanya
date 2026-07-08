@@ -691,7 +691,6 @@ document.addEventListener("DOMContentLoaded", () => {
     "nextTestimonial",
     ".review-card",
   );
-  setupCarousel("partnerScroll", "prevPartner", "nextPartner", ".partner-card");
   setupCarousel(
     "visitActivityReviewsScroll",
     "visitActivityReviewsPrev",
