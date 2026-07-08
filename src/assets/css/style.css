@@ -2446,9 +2446,23 @@ body.page-visits .header-nav .nav-dropdown .nav-dropdown__link {
   background: transparent;
 }
 
+/* Body-scoped variants are required for the same reason as the base rule
+   above: the (0,4,1) `background: transparent` set there would otherwise beat
+   a plain `.nav-dropdown__link:hover` (0,2,0) on the home/fusta/visits pages
+   and suppress the hover highlight. Matching the body + page classes (0,5,1)
+   lets the highlight win everywhere. */
 .nav-dropdown__link:hover,
 .nav-dropdown__link:focus-visible,
-.nav-dropdown__link.is-active {
+.nav-dropdown__link.is-active,
+body.home .header-nav .nav-dropdown .nav-dropdown__link:hover,
+body.home .header-nav .nav-dropdown .nav-dropdown__link:focus-visible,
+body.home .header-nav .nav-dropdown .nav-dropdown__link.is-active,
+body.page-fusta .header-nav .nav-dropdown .nav-dropdown__link:hover,
+body.page-fusta .header-nav .nav-dropdown .nav-dropdown__link:focus-visible,
+body.page-fusta .header-nav .nav-dropdown .nav-dropdown__link.is-active,
+body.page-visits .header-nav .nav-dropdown .nav-dropdown__link:hover,
+body.page-visits .header-nav .nav-dropdown .nav-dropdown__link:focus-visible,
+body.page-visits .header-nav .nav-dropdown .nav-dropdown__link.is-active {
   background: #a0885a;
   color: #f5f0e8 !important;
 }
@@ -2775,7 +2789,8 @@ body.page-visits .header-nav .menu-item {
 
 body.home .header-nav .nav-dropdown a,
 body.page-fusta .header-nav .nav-dropdown a,
-body.page-visits .header-nav .nav-dropdown a {
+body.page-visits .header-nav .nav-dropdown a,
+body.page-gastronomic .header-nav .nav-dropdown a {
   color: #f5f0e8 !important;
 }
 
@@ -2787,7 +2802,10 @@ body.page-fusta .header-nav .nav-dropdown a:focus-visible,
 body.page-fusta .header-nav .nav-dropdown a.is-active,
 body.page-visits .header-nav .nav-dropdown a:hover,
 body.page-visits .header-nav .nav-dropdown a:focus-visible,
-body.page-visits .header-nav .nav-dropdown a.is-active {
+body.page-visits .header-nav .nav-dropdown a.is-active,
+body.page-gastronomic .header-nav .nav-dropdown a:hover,
+body.page-gastronomic .header-nav .nav-dropdown a:focus-visible,
+body.page-gastronomic .header-nav .nav-dropdown a.is-active {
   color: #f5f0e8 !important;
 }
 
@@ -3229,7 +3247,8 @@ body.page-visits .nav-link-button {
 
 body.home .nav-dropdown__link,
 body.page-fusta .nav-dropdown__link,
-body.page-visits .nav-dropdown__link {
+body.page-visits .nav-dropdown__link,
+body.page-gastronomic .nav-dropdown__link {
   color: #f5f0e8 !important;
 }
 
@@ -3241,7 +3260,10 @@ body.page-fusta .nav-dropdown__link:focus-visible,
 body.page-fusta .nav-dropdown__link.is-active,
 body.page-visits .nav-dropdown__link:hover,
 body.page-visits .nav-dropdown__link:focus-visible,
-body.page-visits .nav-dropdown__link.is-active {
+body.page-visits .nav-dropdown__link.is-active,
+body.page-gastronomic .nav-dropdown__link:hover,
+body.page-gastronomic .nav-dropdown__link:focus-visible,
+body.page-gastronomic .nav-dropdown__link.is-active {
   color: #f5f0e8 !important;
 }
 
@@ -3782,8 +3804,8 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-dropdown__link.i
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
-  gap: 28px;
-  padding: 0 28px;
+  gap: 20px;
+  padding: 0 20px;
 }
 
 .fusta-projects__intro {
@@ -12198,7 +12220,8 @@ body.has-mobile-menu-open {
   .nav-dropdown .nav-dropdown__link,
   body.home .header-nav .nav-dropdown .nav-dropdown__link,
   body.page-fusta .header-nav .nav-dropdown .nav-dropdown__link,
-  body.page-visits .header-nav .nav-dropdown .nav-dropdown__link {
+  body.page-visits .header-nav .nav-dropdown .nav-dropdown__link,
+  body.page-gastronomic .header-nav .nav-dropdown .nav-dropdown__link {
     display: block;
     width: max-content;
     max-width: min(100%, 280px);
@@ -12224,7 +12247,10 @@ body.has-mobile-menu-open {
   body.page-fusta .header-nav .nav-dropdown__link.is-active,
   body.page-visits .header-nav .nav-dropdown__link:hover,
   body.page-visits .header-nav .nav-dropdown__link:focus-visible,
-  body.page-visits .header-nav .nav-dropdown__link.is-active {
+  body.page-visits .header-nav .nav-dropdown__link.is-active,
+  body.page-gastronomic .header-nav .nav-dropdown__link:hover,
+  body.page-gastronomic .header-nav .nav-dropdown__link:focus-visible,
+  body.page-gastronomic .header-nav .nav-dropdown__link.is-active {
     color: #f5f0e8 !important;
     background: transparent !important;
   }
