@@ -9,6 +9,8 @@ consumptionMoments:
   - regals-detalls
 dietTags:
   - sense-gluten
+homepageTags:
+  - pack-regalo
 sku: lot-5
 currency: EUR
 price: 19.0

@@ -114,6 +114,7 @@ export default defineConfig({
             category: "elaborats-de-castanyes",
             consumptionMoments: ["cuinar"],
             dietTags: [],
+            homepageTags: [],
             featured: false,
           }),
         },
@@ -147,7 +148,10 @@ export default defineConfig({
             required: true,
             options: [
               { label: "Castanyes", value: "castanyes" },
-              { label: "Elaborats de castanyes", value: "elaborats-de-castanyes" },
+              {
+                label: "Elaborats de castanyes",
+                value: "elaborats-de-castanyes",
+              },
               { label: "Cremes", value: "cremes" },
               { label: "Dolços", value: "dolcos" },
               { label: "Begudes", value: "begudes" },
@@ -176,6 +180,16 @@ export default defineConfig({
               { label: "Vegà", value: "vega" },
               { label: "Sense gluten", value: "sense-gluten" },
               { label: "Sense sucres afegits", value: "sense-sucres-afegits" },
+            ],
+          },
+          {
+            type: "string",
+            name: "homepageTags",
+            label: "Homepage tags",
+            list: true,
+            options: [
+              { label: "Estrella", value: "estrella" },
+              { label: "Pack regalo", value: "pack-regalo" },
             ],
           },
           {
@@ -245,7 +259,9 @@ export default defineConfig({
             name: "gallery",
             label: "Thumbnail gallery",
             list: true,
-            fields: [{ type: "image", name: "image", label: "Image", required: true }],
+            fields: [
+              { type: "image", name: "image", label: "Image", required: true },
+            ],
           },
           {
             type: "string",
@@ -306,7 +322,9 @@ export default defineConfig({
             name: "detailNotes",
             label: "Detail notes",
             list: true,
-            fields: [{ type: "string", name: "text", label: "Text", required: true }],
+            fields: [
+              { type: "string", name: "text", label: "Text", required: true },
+            ],
           },
           {
             type: "string",
@@ -1017,7 +1035,8 @@ export default defineConfig({
         ],
         ui: {
           router: ({ document }) =>
-            document?.permalink || `/gastronomic/receptes/${document._sys.filename}/`,
+            document?.permalink ||
+            `/gastronomic/receptes/${document._sys.filename}/`,
         },
       },
       {
@@ -2046,19 +2065,54 @@ export default defineConfig({
             name: "partnersSection",
             label: "Partners Slider",
             fields: [
-              { type: "string", name: "labelSmall", label: "Small Label", required: true },
-              { type: "string", name: "titleLine1", label: "Title Line 1", required: true },
-              { type: "string", name: "titleLine2", label: "Title Line 2", required: true },
-              { type: "string", name: "ctaLabel", label: "Button Label", required: true },
-              { type: "string", name: "ctaHref", label: "Button Link", required: true },
+              {
+                type: "string",
+                name: "labelSmall",
+                label: "Small Label",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "titleLine1",
+                label: "Title Line 1",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "titleLine2",
+                label: "Title Line 2",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "ctaLabel",
+                label: "Button Label",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "ctaHref",
+                label: "Button Link",
+                required: true,
+              },
               {
                 type: "object",
                 name: "partners",
                 label: "Partner Logos",
                 list: true,
                 fields: [
-                  { type: "image", name: "src", label: "Logo Image", required: true },
-                  { type: "string", name: "alt", label: "Alt Text", required: true },
+                  {
+                    type: "image",
+                    name: "src",
+                    label: "Logo Image",
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "alt",
+                    label: "Alt Text",
+                    required: true,
+                  },
                 ],
               },
             ],

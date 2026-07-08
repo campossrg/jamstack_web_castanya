@@ -8,6 +8,8 @@ name: botiga
 footerVariant: projecte-newsletter
 ---
 
+{% set productsList = collections.products | default([]) %}
+
 <section class="shop-page-hero">
   <img
     src="/assets/images/gallery/elaborats.jpg"
@@ -76,7 +78,9 @@ footerVariant: projecte-newsletter
       </span>
       <span class="shop-page-category-card__content">
         <span class="shop-page-category-card__title">{{ category.title }}</span>
-        <span class="shop-page-category-card__description">{{ category.description }}</span>
+        <span class="shop-page-category-card__description"
+          >{{ category.description }}</span
+        >
         <span class="shop-page-category-card__cta">Veure productes</span>
       </span>
     </a>
@@ -116,19 +120,28 @@ footerVariant: projecte-newsletter
       <div class="shop-page-commitment__grid">
         <article class="shop-page-commitment-card">
           <div class="shop-page-commitment-card__icon">
-            <img src="/assets/images/gallery/botiga/botiga_location.png" alt="Directe del productor" />
+            <img
+              src="/assets/images/gallery/botiga/botiga_location.png"
+              alt="Directe del productor"
+            />
           </div>
         </article>
 
         <article class="shop-page-commitment-card">
           <div class="shop-page-commitment-card__icon">
-            <img src="/assets/images/gallery/botiga/botiga_natural.png" alt="100% natural" />
+            <img
+              src="/assets/images/gallery/botiga/botiga_natural.png"
+              alt="100% natural"
+            />
           </div>
         </article>
 
         <article class="shop-page-commitment-card">
           <div class="shop-page-commitment-card__icon">
-            <img src="/assets/images/gallery/botiga/botiga_gestió.png" alt="Gestio sostenible" />
+            <img
+              src="/assets/images/gallery/botiga/botiga_gestió.png"
+              alt="Gestio sostenible"
+            />
           </div>
         </article>
       </div>
@@ -150,7 +163,9 @@ footerVariant: projecte-newsletter
       <h2 id="shop-featured-title" class="shop-page-products__title">
         PRODUCTES ESTRELLA
       </h2>
-      <p class="shop-page-products__subtitle">Els que productes que mes agraden</p>
+      <p class="shop-page-products__subtitle">
+        Els que productes que mes agraden
+      </p>
     </div>
     <button
       type="button"
@@ -163,18 +178,31 @@ footerVariant: projecte-newsletter
   </div>
 
   <div class="shop-page-featured__scroller" id="shopFeaturedCarousel">
-    {% for product in productsList %}
+    {% for product in productsList %} {% set homepageTags =
+    product.data.homepageTags | default([]) %} {% if 'estrella' in homepageTags
+    %} {% set productImage = product.data.image or '' %} {% if not productImage
+    or 'pending-product-image.svg' in productImage %} {% if
+    product.data.category == 'packs' %} {% set productImage =
+    '/assets/images/gallery/botiga/botiga_productes.png' %} {% else %} {% set
+    productImage = '/assets/images/gallery/elaborats.jpg' %} {% endif %} {%
+    endif %}
     <a href="{{ product.url }}" class="shop-page-featured-product gallery-item">
       <img
-        src="{{ product.data.image }}"
+        src="{{ productImage }}"
         alt="{{ product.data.title }}"
         class="shop-page-featured-product__image"
       />
-      <h3 class="shop-page-featured-product__title">{{ product.data.title | replace(' ', '<br />') | safe }}</h3>
-      <p class="shop-page-featured-product__meta">{{ product.data.availability }}</p>
-      <p class="shop-page-featured-product__price">{{ product.data.price }}</p>
+      <h3 class="shop-page-featured-product__title">
+        {{ product.data.title | replace(' ', '<br />') | safe }}
+      </h3>
+      <p class="shop-page-featured-product__meta">
+        {{ product.data.availability }}
+      </p>
+      <p class="shop-page-featured-product__price">
+        {{ product.data.priceLabel or product.data.price }}
+      </p>
     </a>
-    {% endfor %}
+    {% endif %} {% endfor %}
   </div>
 
   <a href="/contact/" class="shop-page-featured__cta">VEURE TOTES</a>
@@ -196,8 +224,8 @@ footerVariant: projecte-newsletter
           QUAN TU VULGUIS.
         </h2>
         <p class="shop-page-editorial-card__text">
-          Gaudeix del gust autentic de la castanya acabada de torrar els 365 dies
-          de l'any. Obrir, escalfar i sentir el Montseny a casa.
+          Gaudeix del gust autentic de la castanya acabada de torrar els 365
+          dies de l'any. Obrir, escalfar i sentir el Montseny a casa.
         </p>
         <a href="/contact/" class="shop-page-seasonal__cta">COMPRAR</a>
       </div>
@@ -217,8 +245,8 @@ footerVariant: projecte-newsletter
           DE LA BIOSFERA
         </h2>
         <p class="shop-page-editorial-card__text">
-          Descobreix els arbres centenaris del Montseny. Viu el turisme conscient i
-          ajuda a preservar la natura mentre respires aire pur.
+          Descobreix els arbres centenaris del Montseny. Viu el turisme
+          conscient i ajuda a preservar la natura mentre respires aire pur.
         </p>
         <a href="/contact/" class="shop-page-seasonal__cta">COMPRAR</a>
       </div>
@@ -237,10 +265,12 @@ footerVariant: projecte-newsletter
       &lsaquo;
     </button>
     <div>
-      <h2 id="shop-gifts-title" class="shop-page-products__title">PACKS I REGALS</h2>
+      <h2 id="shop-gifts-title" class="shop-page-products__title">
+        PACKS I REGALS
+      </h2>
       <p class="shop-page-products__subtitle">
-        Lots i packs de regal de la Castanya de Viladrau: l'essencia artesana del
-        Montseny a casa teva.
+        Lots i packs de regal de la Castanya de Viladrau: l'essencia artesana
+        del Montseny a casa teva.
       </p>
     </div>
     <button
@@ -254,81 +284,40 @@ footerVariant: projecte-newsletter
   </div>
 
   <div class="shop-page-gifts__scroller" id="shopGiftsCarousel">
-    <a href="/shop/products/castanya-torrada/" class="shop-page-featured-product gallery-item">
+    {% for product in productsList %} {% set homepageTags =
+    product.data.homepageTags | default([]) %} {% if 'pack-regalo' in
+    homepageTags %} {% set productImage = product.data.image or '' %} {% if not
+    productImage or 'pending-product-image.svg' in productImage %} {% if
+    product.data.category == 'packs' %} {% set productImage =
+    '/assets/images/gallery/botiga/botiga_productes.png' %} {% else %} {% set
+    productImage = '/assets/images/gallery/elaborats.jpg' %} {% endif %} {%
+    endif %}
+    <a href="{{ product.url }}" class="shop-page-featured-product gallery-item">
       <img
-        src="/assets/images/gallery/product_castanya_torrada.png"
-        alt="Pack de castanya torrada"
+        src="{{ productImage }}"
+        alt="{{ product.data.title }}"
         class="shop-page-featured-product__image"
       />
       <h3 class="shop-page-featured-product__title">
-        CASTANYA<br />
-        TORRADA
+        {{ product.data.title | replace(' ', '<br />') | safe }}
       </h3>
-      <p class="shop-page-featured-product__meta">Disponible 365 l'any</p>
-      <p class="shop-page-featured-product__price">24&euro;</p>
+      <p class="shop-page-featured-product__meta">
+        {{ product.data.availability }}
+      </p>
+      <p class="shop-page-featured-product__price">
+        {{ product.data.priceLabel or product.data.price }}
+      </p>
     </a>
-
-    <a href="/shop/products/castanya-torrada/" class="shop-page-featured-product gallery-item">
-      <img
-        src="/assets/images/gallery/product_castanya_torrada.png"
-        alt="Pack de castanya torrada"
-        class="shop-page-featured-product__image"
-      />
-      <h3 class="shop-page-featured-product__title">
-        CASTANYA<br />
-        TORRADA
-      </h3>
-      <p class="shop-page-featured-product__meta">Disponible 365 l'any</p>
-      <p class="shop-page-featured-product__price">24&euro;</p>
-    </a>
-
-    <a href="/shop/products/castanya-torrada/" class="shop-page-featured-product gallery-item">
-      <img
-        src="/assets/images/gallery/product_castanya_torrada.png"
-        alt="Pack de castanya torrada"
-        class="shop-page-featured-product__image"
-      />
-      <h3 class="shop-page-featured-product__title">
-        CASTANYA<br />
-        TORRADA
-      </h3>
-      <p class="shop-page-featured-product__meta">Disponible 365 l'any</p>
-      <p class="shop-page-featured-product__price">24&euro;</p>
-    </a>
-
-    <a href="/shop/products/castanya-torrada/" class="shop-page-featured-product gallery-item">
-      <img
-        src="/assets/images/gallery/product_castanya_torrada.png"
-        alt="Pack de castanya torrada"
-        class="shop-page-featured-product__image"
-      />
-      <h3 class="shop-page-featured-product__title">
-        CASTANYA<br />
-        TORRADA
-      </h3>
-      <p class="shop-page-featured-product__meta">Disponible 365 l'any</p>
-      <p class="shop-page-featured-product__price">24&euro;</p>
-    </a>
-
-    <a href="/shop/products/castanya-torrada/" class="shop-page-featured-product gallery-item">
-      <img
-        src="/assets/images/gallery/product_castanya_torrada.png"
-        alt="Pack de castanya torrada"
-        class="shop-page-featured-product__image"
-      />
-      <h3 class="shop-page-featured-product__title">
-        CASTANYA<br />
-        TORRADA
-      </h3>
-      <p class="shop-page-featured-product__meta">Disponible 365 l'any</p>
-      <p class="shop-page-featured-product__price">24&euro;</p>
-    </a>
+    {% endif %} {% endfor %}
   </div>
 
   <a href="/contact/" class="shop-page-featured__cta">VEURE TOTES</a>
 </section>
 
-<section class="shop-page-professionals" aria-labelledby="shop-professionals-title">
+<section
+  class="shop-page-professionals"
+  aria-labelledby="shop-professionals-title"
+>
   <img
     src="/assets/images/gallery/botiga/botiga_productes.png"
     alt="Tarifes per a professionals"
