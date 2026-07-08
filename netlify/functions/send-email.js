@@ -15,13 +15,6 @@ function isBrevoConfigured() {
   return Boolean(process.env.BREVO_API_KEY && process.env.FROM_EMAIL);
 }
 
-function isEmailSendingEnabled() {
-  const value = String(process.env.EMAIL_SENDING_ENABLED || "true")
-    .trim()
-    .toLowerCase();
-  return !["0", "false", "no", "off"].includes(value);
-}
-
 function getSender() {
   return {
     email: process.env.FROM_EMAIL,
@@ -315,11 +308,6 @@ async function sendBrevoEmail(emailConfig) {
 }
 
 async function sendEmail({ type, to, data }) {
-  // TODO: Remove this env-based email kill switch in the next phase when email sending is retired.
-  if (!isEmailSendingEnabled()) {
-    return { success: true, skipped: true, reason: "disabled_by_env" };
-  }
-
   if (!isBrevoConfigured()) {
     throw new Error("Brevo environment is not configured");
   }
@@ -356,7 +344,6 @@ async function sendEmail({ type, to, data }) {
 
 exports.sendEmail = sendEmail;
 exports.isBrevoConfigured = isBrevoConfigured;
-exports.isEmailSendingEnabled = isEmailSendingEnabled;
 
 exports.handler = async (event) => {
   if (event.httpMethod !== "POST") {
@@ -365,14 +352,11 @@ exports.handler = async (event) => {
 
   try {
     const { type, to, data } = JSON.parse(event.body || "{}");
-    const result = await sendEmail({ type, to, data });
+    await sendEmail({ type, to, data });
 
     return jsonResponse(200, {
       success: true,
-      message: result.skipped
-        ? "Email sending skipped"
-        : "Email sent successfully",
-      ...(result.skipped ? { skipped: true, reason: result.reason } : {}),
+      message: "Email sent successfully",
     });
   } catch (error) {
     console.error("Email sending error:", error);

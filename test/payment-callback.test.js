@@ -101,7 +101,6 @@ test('payment-callback handler returns 400 for invalid signature', async () => {
 });
 
 test('payment-callback handler marks order as paid on successful response', async () => {
-  process.env.EMAIL_SENDING_ENABLED = 'true';
   process.env.SUPABASE_URL = 'https://example.supabase.co';
   process.env.SUPABASE_SERVICE_ROLE_KEY = 'service-role';
   process.env.REDSYS_SECRET_KEY = testKey('9');
@@ -190,7 +189,6 @@ test('payment-callback handler marks order as paid on successful response', asyn
 });
 
 test('payment-callback handler marks order as failed on unsuccessful response', async () => {
-  process.env.EMAIL_SENDING_ENABLED = 'true';
   process.env.SUPABASE_URL = 'https://example.supabase.co';
   process.env.SUPABASE_SERVICE_ROLE_KEY = 'service-role';
   process.env.REDSYS_SECRET_KEY = testKey('f');
@@ -260,7 +258,6 @@ test('payment-callback handler marks order as failed on unsuccessful response', 
 });
 
 test('payment-callback handler returns 400 when callback payload is missing', async () => {
-  process.env.EMAIL_SENDING_ENABLED = 'true';
   process.env.SUPABASE_URL = 'https://example.supabase.co';
   process.env.SUPABASE_SERVICE_ROLE_KEY = 'service-role';
   process.env.REDSYS_SECRET_KEY = testKey('g');
@@ -278,7 +275,6 @@ test('payment-callback handler returns 400 when callback payload is missing', as
 });
 
 test('payment-callback handler returns 503 when secret key is missing', async () => {
-  process.env.EMAIL_SENDING_ENABLED = 'true';
   process.env.SUPABASE_URL = 'https://example.supabase.co';
   process.env.SUPABASE_SERVICE_ROLE_KEY = 'service-role';
   process.env.REDSYS_SECRET_KEY = '';
@@ -297,7 +293,6 @@ test('payment-callback handler returns 503 when secret key is missing', async ()
 });
 
 test('payment-callback handler is idempotent when order is already paid', async () => {
-  process.env.EMAIL_SENDING_ENABLED = 'true';
   process.env.SUPABASE_URL = 'https://example.supabase.co';
   process.env.SUPABASE_SERVICE_ROLE_KEY = 'service-role';
   process.env.REDSYS_SECRET_KEY = testKey('h');
@@ -350,7 +345,6 @@ test('payment-callback handler is idempotent when order is already paid', async 
 });
 
 test('payment-callback handler sends customer and provider emails when Brevo is configured', async () => {
-  process.env.EMAIL_SENDING_ENABLED = 'true';
   process.env.SUPABASE_URL = 'https://example.supabase.co';
   process.env.SUPABASE_SERVICE_ROLE_KEY = 'service-role';
   process.env.REDSYS_SECRET_KEY = testKey('i');
@@ -482,7 +476,7 @@ test('payment-callback handler sends customer and provider emails when Brevo is 
   }
 });
 
-test('payment-callback handler skips order emails when EMAIL_SENDING_ENABLED is false', async () => {
+test('payment-callback handler ignores EMAIL_SENDING_ENABLED and still sends order emails', async () => {
   process.env.EMAIL_SENDING_ENABLED = 'false';
   process.env.SUPABASE_URL = 'https://example.supabase.co';
   process.env.SUPABASE_SERVICE_ROLE_KEY = 'service-role';
@@ -530,10 +524,20 @@ test('payment-callback handler skips order emails when EMAIL_SENDING_ENABLED is 
       };
     }
 
+    if (
+      String(url).includes('/rest/v1/order_items?select=*&order_id=eq.order-4')
+    ) {
+      return {
+        ok: true,
+        json: async () => [],
+      };
+    }
+
     if (String(url) === 'https://api.brevo.com/v3/smtp/email') {
-      throw new Error(
-        'Brevo should not be called when email sending is disabled',
-      );
+      return {
+        ok: true,
+        json: async () => ({ messageId: 'brevo-message' }),
+      };
     }
 
     throw new Error(`Unexpected fetch call: ${url}`);
@@ -557,7 +561,11 @@ test('payment-callback handler skips order emails when EMAIL_SENDING_ENABLED is 
 
     assert.equal(response.statusCode, 200);
     assert.equal(response.body, 'OK');
-    assert.equal(fetchCalls.length, 2);
+
+    const brevoCalls = fetchCalls.filter(
+      (call) => String(call.url) === 'https://api.brevo.com/v3/smtp/email',
+    );
+    assert.equal(brevoCalls.length, 2);
   } finally {
     global.fetch = originalFetch;
   }

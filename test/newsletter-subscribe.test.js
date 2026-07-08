@@ -30,7 +30,6 @@ test('newsletter-subscribe handler returns 400 for invalid email', async () => {
 });
 
 test('newsletter-subscribe handler sends newsletter email through Brevo', async () => {
-  process.env.EMAIL_SENDING_ENABLED = 'true';
   process.env.BREVO_API_KEY = 'brevo-key';
   process.env.FROM_EMAIL = 'no-reply@example.com';
   process.env.FROM_NAME = 'Castanya de Viladrau';
@@ -75,7 +74,6 @@ test('newsletter-subscribe handler sends newsletter email through Brevo', async 
 });
 
 test('newsletter-subscribe handler returns 500 when Brevo is not configured', async () => {
-  process.env.EMAIL_SENDING_ENABLED = 'true';
   process.env.BREVO_API_KEY = '';
   process.env.FROM_EMAIL = '';
 
@@ -92,16 +90,25 @@ test('newsletter-subscribe handler returns 500 when Brevo is not configured', as
   });
 });
 
-test('newsletter-subscribe handler succeeds without sending when EMAIL_SENDING_ENABLED is false', async () => {
+test('newsletter-subscribe handler ignores EMAIL_SENDING_ENABLED and still sends', async () => {
   process.env.EMAIL_SENDING_ENABLED = 'false';
   process.env.BREVO_API_KEY = 'brevo-key';
   process.env.FROM_EMAIL = 'no-reply@example.com';
+  process.env.URL = 'https://example.com';
 
   const originalFetch = global.fetch;
-  let fetchCalled = false;
-  global.fetch = async () => {
-    fetchCalled = true;
-    throw new Error('fetch should not be called');
+  const fetchCalls = [];
+  global.fetch = async (url, options = {}) => {
+    fetchCalls.push({ url, options });
+
+    if (String(url) === 'https://api.brevo.com/v3/smtp/email') {
+      return {
+        ok: true,
+        json: async () => ({ messageId: 'newsletter-message' }),
+      };
+    }
+
+    throw new Error(`Unexpected fetch call: ${url}`);
   };
 
   try {
@@ -112,7 +119,7 @@ test('newsletter-subscribe handler succeeds without sending when EMAIL_SENDING_E
     });
 
     assert.equal(response.statusCode, 200);
-    assert.equal(fetchCalled, false);
+    assert.equal(fetchCalls.length, 1);
     assert.deepEqual(JSON.parse(response.body), {
       success: true,
       message: 'Successfully subscribed to newsletter',
