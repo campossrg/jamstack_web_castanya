@@ -3801,14 +3801,17 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-dropdown__link.i
 }
 
 .fusta-projects__header {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
+  position: relative;
+  display: flex;
   align-items: center;
-  gap: 20px;
+  justify-content: center;
+  max-width: 1000px;
+  margin: 0 auto;
   padding: 0 20px;
 }
 
 .fusta-projects__intro {
+  width: 100%;
   max-width: 760px;
   margin: 0 auto;
   text-align: center;
@@ -3833,8 +3836,19 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-dropdown__link.i
 }
 
 .fusta-projects__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   background: rgba(186, 154, 91, 0.95);
   box-shadow: none;
+}
+
+.fusta-projects__arrow:first-child {
+  left: 20px;
+}
+
+.fusta-projects__arrow:last-child {
+  right: 20px;
 }
 
 .fusta-projects__arrow svg {
@@ -4096,12 +4110,18 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-dropdown__link.i
   }
 
   .fusta-projects__header {
+    display: grid;
     grid-template-columns: 1fr;
     gap: 16px;
     padding: 0 20px;
   }
 
   .fusta-projects__arrow {
+    position: static;
+    top: auto;
+    left: auto;
+    right: auto;
+    transform: none;
     justify-self: center;
   }
 
