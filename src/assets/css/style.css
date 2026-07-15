@@ -3372,8 +3372,7 @@ body.page-visits
   color: #f5f0e8 !important;
 }
 
-body.page-fusta .site-header:not(.is-scrolled) .nav-item.active .nav-dropdown__link,
-body.page-visits .site-header:not(.is-scrolled) .nav-item.active .nav-dropdown__link {
+body.page-fusta .site-header:not(.is-scrolled) .nav-item.active .nav-dropdown__link {
   color: #7b6b43 !important;
 }
 
@@ -6611,6 +6610,11 @@ body.home .actualitat-content-centered.block-content-style .home-section-descrip
 .main-footer :where(h1, h2, h3, h4, h5, h6, p, a, button, span, label, input, textarea, li) {
   font-family: var(--font-main) !important;
   font-weight: 500 !important;
+}
+
+.footer-cta-section .cta-title,
+.footer-cta-section .cta-title-line {
+  font-family: var(--font-title) !important;
 }
 
 .newsletter-bar .newsletter-heading {
