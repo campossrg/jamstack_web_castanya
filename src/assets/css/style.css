@@ -2441,7 +2441,16 @@ body:not(.home) .header-logo img {
 .nav-item--dropdown .nav-link-button {
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.nav-item--dropdown.nav-item--gastronomic > .nav-link-button,
+.nav-item--dropdown.nav-item--visits > .nav-link-button,
+.nav-item--gastronomic .nav-btn-text,
+.nav-item--visits .nav-btn-text {
+  justify-content: flex-start;
   text-align: left;
 }
 
@@ -12481,6 +12490,16 @@ input[type="reset"] {
     width: auto;
     padding: 10px 15px;
     background-color: #f5f2e8;
+  }
+
+  .header-nav .nav-item > a,
+  .header-nav .nav-link-button {
+    justify-content: flex-start;
+    padding-top: 0;
+  }
+
+  .header-nav .nav-item--dropdown .nav-link-button {
+    align-items: flex-start;
   }
 }
 

@@ -76,7 +76,7 @@
       </div>
       <ul class="nav-list">
         <li
-          class="nav-item {% if '/visits' in page.url %}active{% endif %} has-dropdown nav-item--dropdown"
+          class="nav-item {% if '/visits' in page.url %}active{% endif %} has-dropdown nav-item--dropdown nav-item--visits"
         >
           <button
             type="button"
@@ -84,7 +84,7 @@
             aria-expanded="{% if '/visits' in page.url %}true{% else %}false{% endif %}"
             aria-controls="visits-submenu"
           >
-            <span class="nav-btn-text">VISITES GUIADES</span>
+            <span class="nav-btn-text">VISITES<br>GUIADES</span>
             <img class="nav-drop-arrow" src="/assets/images/arrow_vector.svg" alt="" aria-hidden="true">
           </button>
           <div class="nav-dropdown" id="visits-submenu">
@@ -108,10 +108,10 @@
         <li
           class="nav-item {% if '/professionals' in page.url %}active{% endif %}"
         >
-          <a href="/professionals">ESPAI PROFESSIONALS</a>
+          <a href="/professionals">ESPAI<br>PROFESSIONALS</a>
         </li>
         <li
-          class="nav-item {% if '/gastronomic' in page.url %}active{% endif %} has-dropdown nav-item--dropdown"
+          class="nav-item {% if '/gastronomic' in page.url %}active{% endif %} has-dropdown nav-item--dropdown nav-item--gastronomic"
         >
           <button
             type="button"
@@ -119,7 +119,7 @@
             aria-expanded="{% if '/gastronomic' in page.url %}true{% else %}false{% endif %}"
             aria-controls="gastronomic-submenu"
           >
-            <span class="nav-btn-text">ESPAI GASTRONÒMIC</span>
+            <span class="nav-btn-text">ESPAI<br>GASTRONÒMIC</span>
             <img class="nav-drop-arrow" src="/assets/images/arrow_vector.svg" alt="" aria-hidden="true">
           </button>
           <div class="nav-dropdown" id="gastronomic-submenu">
@@ -143,7 +143,7 @@
           </div>
         </li>
         <li class="nav-item {% if '/projecte' in page.url %}active{% endif %}">
-          <a href="/projecte">SOBRE EL PROJECTE</a>
+          <a href="/projecte">SOBRE EL<br>PROJECTE</a>
         </li>
         <li
           class="nav-item {% if '/trobar-nos' in page.url %}active{% endif %}"
