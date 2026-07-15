@@ -175,6 +175,39 @@ table {
   font-family: var(--font-title) !important;
 }
 
+/* Shared hook for editorial content blocks across the site. */
+.block-content-style {
+  --block-content-eyebrow-color: currentColor;
+  --block-content-title-color: currentColor;
+  --block-content-copy-color: currentColor;
+}
+
+body.home .block-content-style .label-small {
+  font-family: var(--font-subtitle);
+  font-size: var(--type-label-size);
+  font-weight: var(--type-label-weight);
+  letter-spacing: var(--type-label-letter-spacing);
+}
+
+body.home .block-content-style .home-section-title {
+  font-family: var(--font-title) !important;
+  font-size: clamp(30px, 3vw, 40px);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: 0;
+  -webkit-text-stroke: 0;
+  text-shadow: none;
+}
+
+body.home .block-content-style .home-section-description {
+  font-family: var(--font-main);
+  font-size: clamp(16px, 1.35vw, 18px);
+  font-weight: 500;
+  font-style: normal;
+  line-height: 1.55;
+  letter-spacing: 0;
+}
+
 button,
 input[type="button"],
 input[type="submit"],
@@ -5910,6 +5943,15 @@ body.home .home-section-description {
   min-height: inherit;
 }
 
+@media (min-width: 769px) {
+  body.home .gastronomic-split.home-banner-section .split-image {
+    align-self: flex-start;
+    min-height: 0;
+    aspect-ratio: 1.17 / 1;
+    padding-top: 2px;
+  }
+}
+
 .visites-guiades-hero.home-banner-section {
   padding: clamp(56px, 7vw, 88px) 20px;
 }
@@ -5997,6 +6039,11 @@ body.home .home-section-description {
 .actualitat-section-updated .section-subtitle-italic {
   color: #7b6b43;
   font-style: italic;
+  font-size: 18px;
+}
+
+/* Keep the homepage latest-news subtitle at its intentionally smaller size. */
+body.home .actualitat-content-centered.block-content-style .home-section-description {
   font-size: 18px;
 }
 
@@ -12431,5 +12478,30 @@ input[type="reset"] {
     padding: 10px 15px;
     background-color: #f5f2e8;
   }
+}
+
+/* Match all textual controls to the homepage project button. */
+a[class*="btn"],
+a[class*="button"]:not(.header-contact-button):not(.header-icon-button),
+a[class$="__button"],
+a[class*="cta"],
+button:not([aria-label]),
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+summary,
+.shop-page-filter,
+.header-mobile-actions__link,
+.site-header .nav-item > a,
+.site-header .nav-link-button,
+.site-header .nav-dropdown__link {
+  font-family: var(--font-button) !important;
+  font-size: 15px !important;
+  font-weight: 400 !important;
+}
+
+/* Keep a minimal visual break between the consecutive homepage banners. */
+body.home .gastronomic-split.home-banner-section {
+  margin-top: 8px;
 }
 
