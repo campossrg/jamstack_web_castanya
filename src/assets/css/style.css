@@ -1332,7 +1332,7 @@ body.page-blog .content-wrap {
 
 .blog-hero-copy {
   width: min(100%, 490px);
-  margin-left: 155px;
+  margin: 0 auto;
 }
 
 .blog-hero-title {
@@ -3363,7 +3363,7 @@ body.home .nav-item.highlight-shop a {
 }
 
 .visits-hero__title {
-  margin: 0 0 20px;
+  margin: 0 0 12px;
   font-family: var(--font-main);
   font-size: clamp(2.2rem, 4.8vw, 4rem);
   font-weight: 800;
@@ -4464,6 +4464,16 @@ body.home .home-carousel-section--testimonials .section-title-main.block_title_s
   font-size: clamp(25px, 2.35vw, 34px) !important;
   font-weight: 400 !important;
   line-height: 1.08 !important;
+}
+
+.block_title_content {
+  font-family: var(--font-main) !important;
+  font-size: 18px !important;
+  font-weight: 500 !important;
+  font-style: normal;
+  line-height: 1.4 !important;
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 .block_title_style.block_title_style--copy {
@@ -7339,6 +7349,7 @@ body.home .actualitat-content-centered.block-content-style .home-section-descrip
 
 .professionals-hero__content {
   max-width: 760px;
+  margin: 0 auto;
   text-align: center;
   color: #f5f0e8;
 }
@@ -10505,13 +10516,17 @@ body.home .actualitat-content-centered.block-content-style .home-section-descrip
 
 .visits-card__meta-item {
   display: inline-flex;
-  align-items: center;
-  gap: 8px;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.visits-card__meta-item span {
+  text-align: left;
 }
 
 .visits-card__meta-item svg {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   stroke: #7b6b43;
   stroke-width: 1.8;
   fill: none;
@@ -12427,5 +12442,137 @@ summary,
 /* Keep a minimal visual break between the consecutive homepage banners. */
 body.home .gastronomic-split.home-banner-section {
   margin-top: 8px;
+}
+
+/* Keep Visits and Fusta hero banners aligned with the Professionals hero. */
+.fusta-hero,
+.visits-hero {
+  height: auto;
+  min-height: var(--section-banner-min-height);
+}
+
+.fusta-hero__overlay,
+.visits-hero__overlay {
+  min-height: var(--section-banner-min-height);
+  padding: clamp(56px, 7vw, 88px) 20px;
+}
+
+@media (max-width: 768px) {
+  .fusta-hero,
+  .visits-hero {
+    min-height: var(--section-banner-min-height-mobile);
+  }
+
+  .fusta-hero__overlay,
+  .visits-hero__overlay {
+    min-height: var(--section-banner-min-height-mobile);
+    padding: 48px 20px;
+  }
+}
+
+/* Match guided-visit cards to the homepage news-card interaction and typography. */
+.visits-card {
+  background-color: #f6f0e4;
+  color: #8b7441;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.visits-card-link:hover .visits-card,
+.visits-card-link:focus-visible .visits-card {
+  background-color: #ceb98f;
+  box-shadow: none;
+  transform: none;
+}
+
+.visits-card-link:focus-visible .visits-card {
+  outline: 2px solid #8f7846;
+  outline-offset: 4px;
+}
+
+.visits-card-link:hover .visits-card::after,
+.visits-card-link:focus-visible .visits-card::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 1;
+  height: clamp(200px, 18vw, 260px);
+  background: rgba(120, 97, 54, 0.28);
+  pointer-events: none;
+}
+
+.visits-card__arrow {
+  position: absolute;
+  top: clamp(200px, 18vw, 260px);
+  left: 50%;
+  z-index: 2;
+  display: grid;
+  width: 72px;
+  height: 72px;
+  place-items: center;
+  border-radius: 50%;
+  background: #827043;
+  color: #f6f0e4;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.85);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.visits-card__arrow svg {
+  width: 32px;
+  height: 32px;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.25;
+}
+
+.visits-card-link:hover .visits-card__arrow,
+.visits-card-link:focus-visible .visits-card__arrow {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.visits-card__content {
+  padding: 20px 18px 18px;
+}
+
+.visits-card__title {
+  margin: 0 0 16px;
+  font-family: var(--font-secondary);
+  font-size: clamp(20px, 2.15vw, 30px);
+  font-weight: 500;
+  line-height: 1.04;
+}
+
+.visits-card__text {
+  max-width: 30ch;
+  margin: 0 auto 18px;
+  font-size: 15px;
+  line-height: 1.45;
+  color: #7f6f4b;
+}
+
+.visits-card__meta {
+  font-family: var(--font-main);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #7f6f4b;
+}
+
+.visits-card__meta-item svg {
+  stroke: #7f6f4b;
+}
+
+/* Use Gotham Medium for the tag fields in homepage and news-page cards. */
+.actualitat-card-tags,
+.featured-news-tags {
+  font-family: "Gotham-Medium", "Gotham Medium", sans-serif;
+  font-weight: 500;
 }
 

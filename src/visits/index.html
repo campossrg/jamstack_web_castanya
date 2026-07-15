@@ -17,8 +17,10 @@ footerVariant: visits
 
   <div class="hero-content-overlay visits-hero__overlay">
     <div class="visits-hero__content">
-      <h1 class="visits-hero__title">{{ visits.hero.title }}</h1>
-      <p class="visits-hero__text">{{ visits.hero.text }}</p>
+      <h1 class="visits-hero__title block_title_style">{{ visits.hero.title }}</h1>
+      <p class="visits-hero__text block_title_content">
+        {{ visits.hero.text }}
+      </p>
       <a href="{{ visits.hero.ctaHref }}" class="btn-olive visits-hero__cta"
         >{{ visits.hero.ctaLabel }}</a
       >
@@ -38,6 +40,11 @@ footerVariant: visits
             alt="{{ activity.data.cardImageAlt }}"
             class="visits-card__image"
           />
+          <span class="visits-card__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M5 19 19 5M8 5h11v11" />
+            </svg>
+          </span>
           <div class="visits-card__content">
             <h3 class="visits-card__title">{{ activity.data.title }}</h3>
             <p class="visits-card__text">{{ activity.data.cardDescription }}</p>

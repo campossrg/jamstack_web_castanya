@@ -70,10 +70,10 @@ collections.recipes %} {% if recipe.data.title == slide.title and recipe.url %}
 
   <div class="gastronomic-recipes-hero__overlay">
     <div class="gastronomic-recipes-hero__content">
-      <h1 class="gastronomic-recipes-hero__title">
+      <h1 class="gastronomic-recipes-hero__title block_title_style">
         {{ pageContent.hero.title | replace("\n", "<br />") | safe }}
       </h1>
-      <p class="gastronomic-recipes-hero__text">{{ pageContent.hero.text }}</p>
+      <p class="gastronomic-recipes-hero__text block_title_content">{{ pageContent.hero.text }}</p>
     </div>
   </div>
 </section>

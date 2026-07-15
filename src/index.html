@@ -63,7 +63,7 @@ name: home
       </button>
     </div>
 
-    <p class="section-subtitle-italic home-section-description">Castanyes pels 365 díes de l’any</p>
+    <p class="section-subtitle-italic home-section-description block_title_content">Castanyes pels 365 díes de l’any</p>
   </div>
 
   <div class="gallery-container">
@@ -185,7 +185,7 @@ name: home
               <strong>Temps de lectura</strong><br />
               {% if post.data.readingTimeValue %}{{ post.data.readingTimeValue }}{% else %}{{ post.templateContent | readingTime }} minuts{% endif %}
             </p>
-            <p>
+            <p class="actualitat-card-tags">
               <strong>Etiquetes</strong><br />
               {% if post.data.tags %}
                 {% for tag in post.data.tags %}{% if tag != 'posts' %}{{ tag }} {% endif %}{% endfor %}

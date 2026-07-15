@@ -24,10 +24,10 @@ footerVariant: home-newsletter
 
     <div class="container blog-hero-inner">
       <div class="blog-hero-copy">
-        <h1 class="blog-hero-title">
+        <h1 class="blog-hero-title block_title_style">
           {{ pageContent.hero.title | replace("\n", "<br />") | safe }}
         </h1>
-        <p class="blog-hero-subtitle">{{ pageContent.hero.text }}</p>
+        <p class="blog-hero-subtitle block_title_content">{{ pageContent.hero.text }}</p>
 
         <div class="blog-tag-cloud" aria-label="Etiquetes destacades">
           <span class="blog-tag-cloud-title">{{ pageContent.hero.tagsTitle }}</span>
@@ -91,7 +91,7 @@ footerVariant: home-newsletter
           <strong>Temps de lectura</strong><br />
           {% if featuredPost.data.readingTimeValue %}{{ featuredPost.data.readingTimeValue }}{% else %}{{ featuredPost.templateContent | readingTime }} minuts{% endif %}
         </p>
-        <p>
+        <p class="featured-news-tags">
           <strong>Etiquetes</strong><br />
           {% if featuredPost.data.tags %}
             {% for tag in featuredPost.data.tags %}{% if tag != 'posts' %}{{ tag }} {% endif %}{% endfor %}
@@ -149,7 +149,7 @@ footerVariant: home-newsletter
             <strong>Temps de lectura</strong><br />
             {% if post.data.readingTimeValue %}{{ post.data.readingTimeValue }}{% else %}{{ post.templateContent | readingTime }} minuts{% endif %}
           </p>
-          <p>
+          <p class="actualitat-card-tags">
             <strong>Etiquetes</strong><br />
             {% if post.data.tags %}
               {% for tag in post.data.tags %}{% if tag != 'posts' %}{{ tag }} {% endif %}{% endfor %}

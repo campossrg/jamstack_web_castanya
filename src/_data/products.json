@@ -198,6 +198,58 @@
       ]
     },
     {
+      "slug": "lot-begudes-del-montseny",
+      "name": "\"Lot Begudes del Montseny\"",
+      "currency": "EUR",
+      "image": "\"/assets/images/products/packs/lot-begudes-del-montseny.png\"",
+      "variants": [
+        {
+          "sku": "lot-begudes-01",
+          "label": "\"Lot de begudes artesanes\"",
+          "price": 29
+        }
+      ]
+    },
+    {
+      "slug": "lot-castanyes-essencials",
+      "name": "\"Lot Castanyes Essencials\"",
+      "currency": "EUR",
+      "image": "\"/assets/images/products/packs/lot-castanyes-essencials.png\"",
+      "variants": [
+        {
+          "sku": "lot-castanyes-01",
+          "label": "\"Lot de 3 elaborats de castanya\"",
+          "price": 18
+        }
+      ]
+    },
+    {
+      "slug": "lot-cremes-del-bosc",
+      "name": "\"Lot Cremes del Bosc\"",
+      "currency": "EUR",
+      "image": "\"/assets/images/products/packs/lot-cremes-del-bosc.png\"",
+      "variants": [
+        {
+          "sku": "lot-cremes-01",
+          "label": "\"Lot de cremes de castanya\"",
+          "price": 21
+        }
+      ]
+    },
+    {
+      "slug": "lot-dolcos-de-castanya",
+      "name": "\"Lot Dolç de Castanya\"",
+      "currency": "EUR",
+      "image": "\"/assets/images/products/packs/lot-dolcos-de-castanya.png\"",
+      "variants": [
+        {
+          "sku": "lot-dolcos-01",
+          "label": "\"Lot dolç de productes de castanya\"",
+          "price": 27
+        }
+      ]
+    },
+    {
       "slug": "lot-essencia-crema-infusio-i-melmelada",
       "name": "\"Lot Essència: crema, infusió i melmelada\"",
       "currency": "EUR",
@@ -211,6 +263,19 @@
       ]
     },
     {
+      "slug": "lot-mels-del-territori",
+      "name": "\"Lot Mels del Territori\"",
+      "currency": "EUR",
+      "image": "\"/assets/images/products/packs/lot-mels-del-territori.png\"",
+      "variants": [
+        {
+          "sku": "lot-mels-01",
+          "label": "\"Lot de mels del territori\"",
+          "price": 24
+        }
+      ]
+    },
+    {
       "slug": "lot-que-castanyazo",
       "name": "\"Lot “Que Castanyazo!”\"",
       "currency": "EUR",
@@ -220,6 +285,19 @@
           "sku": "\"lot-1\"",
           "label": "\"Lot de 5 productes\"",
           "price": 22
+        }
+      ]
+    },
+    {
+      "slug": "lot-sabors-del-montseny",
+      "name": "\"Lot Sabors del Montseny\"",
+      "currency": "EUR",
+      "image": "\"/assets/images/products/packs/lot-sabors-del-montseny.png\"",
+      "variants": [
+        {
+          "sku": "lot-sabors-01",
+          "label": "\"Lot de sabors del Montseny\"",
+          "price": 34
         }
       ]
     },
