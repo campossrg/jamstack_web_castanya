@@ -682,6 +682,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "shopCategoriesNext",
   );
   setupCarousel("shopFeaturedCarousel", "shopFeaturedPrev", "shopFeaturedNext");
+  setupCarousel("shopGiftsCarousel", "shopGiftsPrev", "shopGiftsNext");
   setupShopCatalogFiltering();
   setupNewsFiltering();
   setupRecipeResultsFilter();

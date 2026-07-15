@@ -2408,11 +2408,6 @@ body:not(.home) .header-logo img {
   border-left: 1px solid var(--header-border);
 }
 
-.nav-item:first-child .nav-link-button {
-  font-size: 12px;
-  line-height: 1.15;
-}
-
 .nav-item a,
 .nav-link-button {
   display: flex;
@@ -2558,8 +2553,8 @@ body.page-visits .header-nav .nav-dropdown .nav-dropdown__link.is-active {
   background-color: #f5f2e8;
 }
 
-.nav-item.active a,
-.nav-item.active .nav-link-button {
+.nav-item.active > a,
+.nav-item.active > .nav-link-button {
   color: #7b6b43 !important;
 }
 
@@ -2746,6 +2741,11 @@ body:not(.home):not(.page-fusta):not(.page-visits) main {
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+.header-icon-button--cart .header-icon-image {
+  width: 29px;
+  height: 22px;
 }
 
 /* WhatsApp is provided by the fixed utility overlay. */
@@ -4590,6 +4590,51 @@ body.page-visits .site-header.is-scrolled .nav-item.active .nav-dropdown__link.i
   text-shadow: 0 0 0 currentColor;
 }
 
+body.home .botiga-section-updated .section-title-main--products {
+  font-family: "Copperplate Gothic Castanya", "Copperplate Gothic", serif !important;
+  font-weight: 400;
+  font-style: normal;
+  font-synthesis: none;
+}
+
+.block_title_style {
+  font-family: "Copperplate Gothic Castanya", "Copperplate Gothic", serif !important;
+  font-size: clamp(25px, 2.35vw, 34px) !important;
+  font-weight: 400 !important;
+  font-style: normal;
+  line-height: 1.08 !important;
+  letter-spacing: 1.05px;
+  text-transform: uppercase;
+  font-synthesis: none;
+}
+
+body.home .home-carousel-section--testimonials .section-title-main.block_title_style {
+  font-family: "Copperplate Gothic Castanya", "Copperplate Gothic", serif !important;
+  font-size: clamp(25px, 2.35vw, 34px) !important;
+  font-weight: 400 !important;
+  line-height: 1.08 !important;
+}
+
+.block_title_style.block_title_style--copy {
+  font-family: var(--font-main) !important;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  font-style: normal;
+  line-height: 1.4 !important;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.block_title_style.block_title_style--label {
+  font-family: var(--font-main) !important;
+  font-size: var(--type-label-size) !important;
+  font-weight: var(--type-label-weight) !important;
+  font-style: normal;
+  line-height: 1.2 !important;
+  letter-spacing: var(--type-label-letter-spacing);
+  text-transform: uppercase;
+}
+
 .botiga-section-updated .section-subtitle-italic {
   margin-top: 8px;
   font-size: 16px;
@@ -6058,7 +6103,7 @@ body.home .actualitat-content-centered.block-content-style .home-section-descrip
 .actualitat-home-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 34px;
+  gap: 8px;
   width: min(1180px, 100%);
   margin: 34px auto 42px;
   align-items: start;
@@ -6105,6 +6150,14 @@ body.home .actualitat-content-centered.block-content-style .home-section-descrip
   font-weight: 700;
 }
 
+.actualitat-card--home .actualitat-card-date,
+.actualitat-card--home .actualitat-card-excerpt,
+.actualitat-card--home .actualitat-card-meta {
+  font-family: var(--font-main);
+  font-size: 15px;
+  font-weight: 400;
+}
+
 /* Home Inline Carousels (Testimonials / Partners) */
 .home-inline-carousel-wrap {
   width: 100%;
@@ -6140,6 +6193,19 @@ body.home .actualitat-content-centered.block-content-style .home-section-descrip
   margin: 0;
 }
 
+@media (min-width: 981px) {
+  .title-nav-wrapper--testimonials {
+    width: 100vw;
+    max-width: none;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .home-inline-carousel-wrap--testimonials {
+    width: 100vw;
+  }
+}
+
 .home-inline-carousel::-webkit-scrollbar {
   display: none;
 }
@@ -6156,20 +6222,6 @@ body.home .actualitat-content-centered.block-content-style .home-section-descrip
 
 .actualitat-section-updated .home-carousel-section .section-title-main {
   font-size: clamp(22px, 2.8vw, 30px);
-}
-
-.reviewer-avatar-placeholder {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background: #f4f1e6;
-  border: 1px solid rgba(123, 107, 67, 0.22);
-  color: #7b6b43;
-  font-family: var(--font-secondary);
-  font-weight: 700;
-  font-size: 14px;
 }
 
 /* Review Card Styling */
@@ -6216,10 +6268,12 @@ body.home .actualitat-content-centered.block-content-style .home-section-descrip
 }
 
 .review-text {
+  font-family: var(--font-button);
   font-size: 14px;
-  line-height: 1.6;
+  font-weight: 400;
+  line-height: 1.35;
   margin-bottom: 20px;
-  font-style: italic;
+  font-style: normal;
 }
 
 .reviewer-info {
@@ -6230,9 +6284,17 @@ body.home .actualitat-content-centered.block-content-style .home-section-descrip
 }
 
 .reviewer-name {
+  font-family: var(--font-main);
   font-weight: 800;
   font-size: 15px;
 }
+
+.reviewer-name a,
+.reviewer-name a:visited {
+  color: #7b6b43;
+  text-decoration: none;
+}
+
 .review-date {
   font-size: 12px;
   opacity: 0.7;
@@ -9102,7 +9164,7 @@ body.home .actualitat-content-centered.block-content-style .home-section-descrip
   overflow-x: auto;
   scroll-behavior: smooth;
   scrollbar-width: none;
-  padding: 0 max(0px, calc((100vw - 1040px) / 2)) 18px;
+  padding: 0 0 18px;
 }
 
 .shop-page-gifts__scroller::-webkit-scrollbar {
@@ -12500,6 +12562,10 @@ input[type="reset"] {
 
   .header-nav .nav-item--dropdown .nav-link-button {
     align-items: flex-start;
+  }
+
+  .header-nav .nav-item--shop > a {
+    justify-content: center;
   }
 }
 

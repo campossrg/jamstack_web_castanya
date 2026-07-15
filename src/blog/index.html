@@ -33,7 +33,7 @@ footerVariant: home-newsletter
           <span class="blog-tag-cloud-title">{{ pageContent.hero.tagsTitle }}</span>
           <div class="blog-tag-cloud-list">
             {% for tag in pageContent.hero.tags %}
-            <span class="filter-btn">{{ tag }}</span>
+            <a href="/blog/?topic={{ tag | slugify }}#news-list" class="filter-btn">{{ tag }}</a>
             {% endfor %}
           </div>
         </div>
@@ -121,7 +121,7 @@ footerVariant: home-newsletter
   </div>
   <p class="actualitat-filter-empty" data-news-filter-empty hidden>{{ pageContent.filtersBar.emptyLabel }}</p>
 
-  <section class="actualitat-grid" aria-label="Més articles" data-news-grid>
+  <section id="news-list" class="actualitat-grid" aria-label="Més articles" data-news-grid>
     {% for post in posts %}
     <a
       class="actualitat-card"
