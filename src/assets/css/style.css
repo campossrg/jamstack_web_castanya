@@ -3556,8 +3556,8 @@ body.home .nav-item.highlight-shop a {
   line-height: 1.35;
 }
 
-.fusta-intro {
-  padding-top: 80px;
+.project-highlight-section.fusta-intro {
+  padding: 46px 24px 70px;
 }
 
 .fusta-benefits__content {
@@ -3606,6 +3606,18 @@ body.home .nav-item.highlight-shop a {
   max-width: 520px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.fusta-benefits__content .fusta-benefits__title--montseny {
+  font-family: "PP Neue World", serif !important;
+  font-size: 30px !important;
+  line-height: 1.04;
+}
+
+.fusta-benefits__content .fusta-benefits__text--montseny {
+  font-family: "Gotham-Medium", "Gotham Medium", sans-serif !important;
+  font-size: 17px !important;
+  line-height: 1.35;
 }
 
 .fusta-showcase {
@@ -4007,8 +4019,8 @@ body.home .nav-item.highlight-shop a {
     font-size: 1rem;
   }
 
-  .fusta-intro {
-    padding-top: 56px;
+  .project-highlight-section.fusta-intro {
+    padding: 38px 20px 58px;
   }
 
   .fusta-benefits {
