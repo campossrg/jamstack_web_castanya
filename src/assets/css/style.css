@@ -204,7 +204,46 @@ body.home .block-content-style .home-section-title {
 body.home .block-content-style .home-section-description {
   font-family: var(--font-main);
   font-size: clamp(16px, 1.35vw, 18px);
-  font-weight: 500;
+  font-style: normal;
+  line-height: 1.55;
+  letter-spacing: 0;
+}
+
+/* Reusable homepage project-block typography. */
+.block_content_style {
+  color: #7b6b43;
+  text-align: center;
+}
+
+.block_content_style .block_content_style__eyebrow {
+  display: block;
+  width: 100%;
+  margin-bottom: 15px;
+  color: #7b6b43;
+  font-family: var(--font-subtitle);
+  font-size: var(--type-label-size);
+  letter-spacing: var(--type-label-letter-spacing);
+  text-transform: uppercase;
+}
+
+.block_content_style .block_content_style__title {
+  margin: 25px 0;
+  color: #7b6b43;
+  font-family: var(--font-title) !important;
+  font-size: clamp(30px, 3vw, 40px);
+  line-height: 1.08;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  -webkit-text-stroke: 0;
+  text-shadow: none;
+}
+
+.block_content_style .block_content_style__description {
+  max-width: 760px;
+  margin: 0 auto 40px;
+  color: #7b6b43;
+  font-family: var(--font-main);
+  font-size: clamp(16px, 1.35vw, 18px);
   font-style: normal;
   line-height: 1.55;
   letter-spacing: 0;
@@ -3415,6 +3454,10 @@ body.home .nav-item.highlight-shop a {
   background: rgba(177, 150, 96, 0.94);
 }
 
+.visits-montseny-hero__cta.visits-montseny-hero__cta--store {
+  background: #9a8453;
+}
+
 .visits-montseny-intro {
   padding: 46px 24px 70px;
 }
@@ -3440,12 +3483,11 @@ body.home .nav-item.highlight-shop a {
   max-width: 940px;
   margin: 22px auto 0;
   font-size: clamp(1.3rem, 1.8vw, 1.95rem);
-  font-weight: 700;
   line-height: 1.32;
 }
 
-.visits-montseny-story {
-  padding: 0 24px 86px;
+.visits-montseny-story.unified-bg {
+  padding: 0 24px;
 }
 
 .visits-montseny-story__inner {
@@ -3470,6 +3512,10 @@ body.home .nav-item.highlight-shop a {
   height: 100%;
   min-height: 350px;
   object-fit: cover;
+}
+
+.visits-montseny-story__image--bottom {
+  object-position: center bottom;
 }
 
 .visits-montseny-story__text {
@@ -3499,6 +3545,16 @@ body.home .nav-item.highlight-shop a {
 
 .visits-montseny-story__text p + p {
   margin-top: 18px;
+}
+
+.visits-montseny-story__title.block_func_content_style {
+  font-family: "PP Neue World", serif !important;
+  font-size: 26px !important;
+}
+
+.visits-montseny-story__text p.block_func_content_style {
+  font-family: "Gotham-Medium", "Gotham Medium", sans-serif !important;
+  font-size: 17px !important;
 }
 
 .visits-montseny-story__list {
@@ -3940,8 +3996,8 @@ body.home .nav-item.highlight-shop a {
     line-height: 1.45;
   }
 
-  .visits-montseny-story {
-    padding: 0 20px 60px;
+  .visits-montseny-story.unified-bg {
+    padding: 0 20px;
   }
 
   .visits-montseny-story__row,
@@ -4447,6 +4503,7 @@ body.home .home-carousel-section--testimonials .section-title-main.block_title_s
 
 .block_heavy_content_style {
   font-family: var(--font-main) !important;
+  font-size: 15px !important;
 }
 
 .block_title_content {
@@ -4621,7 +4678,6 @@ body.home .home-carousel-section--testimonials .section-title-main.block_title_s
 
 .info-text-body-centered p {
   font-family: 'Gotham Medium', sans-serif;
-  font-weight: 500;
   font-size: 20px;
   line-height: 1.3;
   letter-spacing: 0;
@@ -11736,7 +11792,7 @@ body.home .actualitat-content-centered.block-content-style .home-section-descrip
 .visit-activity-experience__grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 18px;
+  gap: 4px;
   margin-top: 40px;
 }
 
@@ -12840,7 +12896,7 @@ body.home .gastronomic-split.home-banner-section {
 .visits-card__title {
   margin: 0 0 16px;
   font-family: var(--font-secondary);
-  font-size: clamp(20px, 2.15vw, 30px);
+  font-size: 30px;
   font-weight: 500;
   line-height: 1.04;
 }
