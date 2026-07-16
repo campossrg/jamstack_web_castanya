@@ -5357,6 +5357,10 @@ body.home .home-section-description {
   min-height: var(--section-banner-min-height);
 }
 
+.gastronomic-page-hero .hero-bg-img {
+  object-position: center bottom;
+}
+
 .gastronomic-page-hero__overlay {
   position: relative;
   z-index: 2;
@@ -5373,23 +5377,34 @@ body.home .home-section-description {
   color: #f5f0e8;
 }
 
+.gastronomic-page-hero__content .label-small {
+  font-family: "Copperplate Gothic Castanya", "Copperplate Gothic", serif;
+  font-size: clamp(25px, 2.35vw, 34px);
+  font-weight: normal;
+}
+
+.gastronomic-page-hero .hero-dark-overlay {
+  background: none;
+}
+
 .gastronomic-page-hero__title {
-  margin: 0;
+  margin: 0 0 20px;
   font-family: var(--font-main);
   font-size: clamp(28px, 2.6vw, 40px);
   font-weight: 700;
   line-height: 1.15;
-  letter-spacing: 1.8px;
+  letter-spacing: 1px;
   text-transform: uppercase;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.28);
 }
 
 .gastronomic-page-hero__text {
-  margin: 18px auto 0;
-  max-width: 640px;
+  margin: 0 auto 28px;
+  max-width: 700px;
   font-family: var(--font-main);
   font-size: clamp(17px, 1.3vw, 21px);
   line-height: 1.45;
-  color: #f5f0e8;
+  color: rgba(var(--color-beige-rgb), 0.92);
 }
 
 .gastronomic-page-ambassador {
@@ -5427,9 +5442,10 @@ body.home .home-section-description {
 .gastronomic-page-ambassador__eyebrow {
   display: block;
   margin-bottom: 18px;
-  font-size: 18px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+  font-size: 15px;
+  line-height: 1.35;
+  letter-spacing: normal;
+  text-transform: none;
 }
 
 .gastronomic-page-ambassador__title {
@@ -5443,7 +5459,8 @@ body.home .home-section-description {
 
 .gastronomic-page-ambassador__quote {
   margin: 18px 0 0;
-  font-size: 28px;
+  font-family: "Gotham-Medium", "Gotham Medium", sans-serif;
+  font-size: 17px;
   font-weight: 700;
   line-height: 1.2;
 }
@@ -5454,10 +5471,29 @@ body.home .home-section-description {
   line-height: 1.6;
 }
 
+.gastronomic-page-ambassador__content .gastronomic-page-ambassador__title {
+  font-family: "PP Neue World", serif;
+  font-size: 30px;
+  line-height: 1.04;
+  color: #7b6b43;
+}
+
+.gastronomic-page-ambassador__content .gastronomic-page-ambassador__text {
+  font-family: "Gotham-Medium", "Gotham Medium", sans-serif;
+  font-size: 17px;
+  line-height: 1.35;
+  color: #7b6b43;
+}
+
 .gastronomic-page-ambassador__details {
   margin-top: 28px;
+  font-family: "Gotham-Medium", "Gotham Medium", sans-serif;
   font-size: 17px;
   line-height: 1.55;
+}
+
+.gastronomic-page-ambassador__details strong {
+  font-weight: 700;
 }
 
 .gastronomic-page-ambassador__details p {
@@ -5498,7 +5534,7 @@ body.home .home-section-description {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: start;
-  gap: 14px;
+  gap: 4px;
 }
 
 .gastronomic-page-restaurants__grid--partner-list {
@@ -5910,30 +5946,35 @@ body.home .home-section-description {
 
 .gastronomic-page-restaurant-card__subtitle {
   margin: 14px 0 0;
-  font-size: 18px;
+  font-size: 15px;
   font-style: italic;
   line-height: 1.35;
 }
 
 .gastronomic-page-restaurant-card__title {
   margin: 0;
-  font-family: var(--font-secondary);
-  font-size: clamp(32px, 3vw, 44px);
+  font-family: "PP Neue World", serif;
+  font-size: 30px;
   font-weight: 400;
-  line-height: 0.98;
+  line-height: 1.04;
   text-transform: uppercase;
+  color: #7b6b43;
 }
 
 .gastronomic-page-restaurant-card__text {
   margin: 16px 0 0;
-  font-size: 16px;
-  line-height: 1.45;
+  font-family: "Gotham-Medium", "Gotham Medium", sans-serif;
+  font-size: 15px;
+  line-height: 1.35;
+  color: #7b6b43;
 }
 
 .gastronomic-page-restaurant-card__details {
   margin-top: 18px;
+  font-family: "Gotham-Medium", "Gotham Medium", sans-serif;
   font-size: 15px;
   line-height: 1.55;
+  color: #7b6b43;
 }
 
 .gastronomic-page-restaurant-card__details p {
@@ -5942,6 +5983,10 @@ body.home .home-section-description {
 
 .gastronomic-page-restaurant-card__details p + p {
   margin-top: 8px;
+}
+
+.gastronomic-page-restaurant-card__details strong {
+  font-weight: 700;
 }
 
 .gastronomic-page-restaurant-card__actions {
@@ -6469,19 +6514,26 @@ body.home .actualitat-content-centered.block-content-style .home-section-descrip
 
 .cta-title--gastronomic {
   margin: 0;
-  font-size: var(--type-banner-title-size);
-  line-height: var(--type-banner-title-line-height);
+  max-width: 700px;
+  font-size: clamp(30px, 3vw, 40px);
+  line-height: 1.08;
+  letter-spacing: 0;
+  -webkit-text-stroke: 0;
+  text-shadow: none;
 }
 
 .cta-text--gastronomic {
-  max-width: 840px;
-  font-size: var(--type-banner-text-size);
-  line-height: 1.34;
+  max-width: 700px;
+  margin: 14px auto 30px;
+  font-family: var(--font-main);
+  font-size: clamp(16px, 1.35vw, 18px);
+  font-style: normal;
+  line-height: 1.55;
+  letter-spacing: 0;
 }
 
 .cta-text--gastronomic-lead {
   margin-top: 18px;
-  font-weight: 600;
 }
 
 .btn-olive-transparent--gastronomic {
@@ -10513,10 +10565,6 @@ body.home .actualitat-content-centered.block-content-style .home-section-descrip
     font-size: clamp(28px, 8vw, 40px);
   }
 
-  .cta-title--gastronomic {
-    font-size: clamp(28px, 7.8vw, 42px);
-  }
-
   .btn-olive-transparent--professionals {
     width: 100%;
     max-width: 290px;
@@ -13011,7 +13059,7 @@ body.home .gastronomic-split.home-banner-section {
 .visits-card__title {
   margin: 0 0 16px;
   font-family: var(--font-secondary);
-  font-size: 30px;
+  font-size: clamp(20px, 2.15vw, 30px);
   font-weight: 500;
   line-height: 1.04;
 }
