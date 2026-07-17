@@ -1695,7 +1695,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const text = document.getElementById("fustaShowcaseText");
     const slideNodes = document.querySelectorAll(".fusta-showcase-slide-data");
     const slideSelectors = document.querySelectorAll("[data-fusta-showcase-slide]");
-    const showcaseHero = heroImage.closest(".fusta-showcase__hero");
 
     if (
       !prev ||
@@ -1708,6 +1707,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    const showcaseHero = heroImage.closest(".fusta-showcase__hero");
     const slides = Array.from(slideNodes).map((slide) => slide.dataset);
     let index = 0;
     let autoAdvanceTimer;

@@ -8602,11 +8602,12 @@ body.page-professionals .professionals-value-feature__cta {
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 38px 28px;
+  gap: 4px;
 }
 
 .shop-page-product {
   display: block;
+  min-width: 0;
   text-align: center;
   color: #7b6b43;
   text-decoration: none;
@@ -8661,7 +8662,7 @@ body.page-professionals .professionals-value-feature__cta {
 
   .shop-page-products__grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 30px 22px;
+    gap: 4px;
   }
 }
 
@@ -8738,7 +8739,7 @@ body.page-professionals .professionals-value-feature__cta {
   .shop-page-products__grid {
     width: calc(100% - 32px);
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 24px 16px;
+    gap: 4px;
   }
 }
 
