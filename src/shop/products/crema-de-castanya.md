@@ -5,6 +5,8 @@ title: "Crema de castanya"
 description: "Ideal per acompanyar carns, sofregits i torrades. Sense sucre; la seva dolçor és suau i similar a la del moniato al forn."
 tagline: "Elaboració dolça i artesana per gaudir la castanya tot l’any."
 category: cremes
+homepageTags:
+  - estrella
 consumptionMoments:
   - cuinar
   - moments-dolcos

@@ -5,6 +5,8 @@ title: "Marron glacé"
 description: "Castanya confitada de textura suau i ensucrada. Un dels productes més gurmet de la castanya pel seu gust i la seva delicada elaboració. Ideal per a paladars selectes."
 tagline: "Elaboració dolça i artesana per gaudir la castanya tot l’any."
 category: dolcos
+homepageTags:
+  - estrella
 consumptionMoments:
   - moments-dolcos
   - regals-detalls

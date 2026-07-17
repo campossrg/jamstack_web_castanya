@@ -26,7 +26,7 @@ collections.recipes %} {% if recipe.data.title == slide.title and recipe.url %}
   data-dish-type="{{ dishType }}"
   data-remedy="{{ remedyFlag }}"
 >
-  <h3 class="professionals-inspiration-card__title">{{ slide.title }}</h3>
+  <h3 class="professionals-inspiration-card__title"><span>{{ slide.title }}</span></h3>
   <img
     src="{{ slide.image }}"
     alt="{{ slide.imageAlt }}"
@@ -79,7 +79,7 @@ collections.recipes %} {% if recipe.data.title == slide.title and recipe.url %}
 </section>
 
 <nav class="shop-page-filters" aria-label="Filtres de receptes">
-  {{ recipeFiltersBar("/gastronomic/receptes/resultats/", difficultyOptions, dishTypeOptions, pageContent.filtersBar.searchLabel, false) }}
+  {{ recipeFiltersBar("/gastronomic/receptes/resultats/", difficultyOptions, dishTypeOptions, pageContent.filtersBar.searchLabel, false, collections.recipes) }}
 </nav>
 
 <section

@@ -4347,6 +4347,10 @@ body.home .nav-item.highlight-shop a {
   color: #7b6b43;
 }
 
+.professionals-inspiration-recipes__intro.section-subtitle-italic {
+  font-style: normal;
+}
+
 .professionals-inspiration-recipes__track {
   display: grid;
   grid-auto-flow: column;
@@ -5745,25 +5749,12 @@ body.home .home-section-description {
 
 .gastronomic-sensory__title {
   margin: 0;
-  font-family: "Copperplate Gothic Castanya", "Copperplate Gothic", serif;
-  font-size: clamp(25px, 2.35vw, 34px);
-  font-weight: 400;
-  font-style: normal;
-  line-height: 1.08;
-  letter-spacing: 1.05px;
-  text-transform: uppercase;
   color: #7b6b43;
 }
 
 .gastronomic-sensory__intro {
   max-width: 720px;
   margin: 18px auto 34px;
-  font-family: var(--font-main);
-  font-size: 18px;
-  font-weight: 500;
-  font-style: italic;
-  line-height: 1.4;
-  letter-spacing: 0;
   color: #7b6b43;
 }
 
@@ -5887,6 +5878,34 @@ body.home .home-section-description {
 .gastronomic-recipes-card .professionals-inspiration-card__label,
 .gastronomic-recipes-card .professionals-inspiration-card__ingredients {
   text-align: left;
+}
+
+.gastronomic-recipes-card .professionals-inspiration-card__title {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: 2.2em;
+  line-height: 1.1;
+}
+
+.gastronomic-recipes-card .professionals-inspiration-card__title span {
+  width: 100%;
+}
+
+.gastronomic-recipes-card .professionals-inspiration-card__meta {
+  gap: 25px;
+  color: #7f6f4b;
+}
+
+.gastronomic-recipes-card .professionals-inspiration-card__meta-item {
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.gastronomic-recipes-card .professionals-inspiration-card__meta-item svg,
+.gastronomic-recipes-card .professionals-inspiration-card__meta-item img {
+  width: 30px;
+  height: 30px;
 }
 
 .gastronomic-recipes-card--link {
@@ -8233,6 +8252,108 @@ body.page-professionals .professionals-value-feature__cta {
   color: #241f17;
 }
 
+/* Recipe filters bar (receptes page + results page) */
+[data-recipe-filter-form] .shop-page-filter {
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-family: var(--font-main) !important;
+  font-size: clamp(16px, 1.15vw, 18px) !important;
+  line-height: 1.45;
+  color: #f5f0e8;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+[data-recipe-filter-form] .shop-page-filter:hover {
+  background-color: #8b7445;
+  color: #f5f0e8;
+}
+
+[data-recipe-filter-form] .shop-page-filter-menu[open] > .shop-page-filter {
+  background-color: #3f3520;
+  color: #f5f0e8;
+}
+
+.shop-page-filter__arrow {
+  width: 10px;
+  height: auto;
+  margin-left: 6px;
+  transition: transform 0.2s ease;
+}
+
+[data-recipe-filter-form] .shop-page-filter-menu[open] .shop-page-filter__arrow {
+  transform: rotate(180deg);
+}
+
+[data-recipe-filter-form] .shop-page-search {
+  background: #7b6b43;
+}
+
+[data-recipe-filter-form] .shop-page-search:hover {
+  background: #5e5233;
+}
+
+[data-recipe-filter-form] .shop-page-search-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+[data-recipe-filter-form] .shop-page-search-input {
+  padding: 8px 16px;
+  min-width: 220px;
+  border: 0;
+  border-radius: 999px;
+  background: #7b6b43;
+  color: #f5f0e8;
+  font-family: var(--font-main);
+  font-size: 13px;
+}
+
+[data-recipe-filter-form] .shop-page-search-input::placeholder {
+  color: rgba(245, 240, 232, 0.7);
+}
+
+[data-recipe-filter-form] .shop-page-search-input:focus {
+  outline: 2px solid #f5f0e8;
+  outline-offset: 2px;
+}
+
+[data-recipe-filter-form] .shop-page-search-results {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  z-index: 100;
+  min-width: 260px;
+  max-height: 320px;
+  overflow-y: auto;
+  padding: 12px 0;
+  background: #b6a06e;
+  box-shadow: 0 18px 35px rgba(47, 39, 22, 0.2);
+}
+
+[data-recipe-filter-form] .shop-page-search-results__item {
+  display: block;
+  padding: 10px 22px;
+  color: #241f17;
+  font-family: var(--font-main);
+  font-size: 13px;
+  line-height: 1.25;
+  text-align: center;
+  text-decoration: none;
+}
+
+[data-recipe-filter-form] .shop-page-search-results__item:hover {
+  background: rgba(139, 116, 69, 0.24);
+}
+
+[data-recipe-filter-form] .shop-page-search-results__empty {
+  margin: 0;
+  padding: 10px 22px;
+  color: #241f17;
+  font-size: 13px;
+  text-align: center;
+}
+
 .shop-page-categories {
   position: relative;
   z-index: 1;
@@ -8562,6 +8683,21 @@ body.page-professionals .professionals-value-feature__cta {
   .shop-page-search {
     width: 100%;
     text-align: center;
+  }
+
+  [data-recipe-filter-form] .shop-page-search-wrap {
+    width: 100%;
+  }
+
+  [data-recipe-filter-form] .shop-page-search-input {
+    width: 100%;
+    min-width: 0;
+  }
+
+  [data-recipe-filter-form] .shop-page-search-results {
+    left: 0;
+    right: 0;
+    min-width: 0;
   }
 
   .shop-page-filter-menu__list {
@@ -12381,8 +12517,13 @@ body.page-professionals .professionals-value-feature__cta {
   }
 }
 
+.gastronomic-recipes-section .professionals-inspiration-recipes__header {
+  max-width: 1120px;
+}
+
 .gastronomic-recipes-section .professionals-inspiration-recipes__grid {
-  grid-auto-columns: calc((100% - 56px) / 3);
+  grid-auto-columns: calc((100% - 8px) / 3);
+  gap: 4px;
 }
 
 body.internal.page-gastronomic-recipes {
@@ -12684,13 +12825,15 @@ body.internal.page-gastronomic-recipes {
 
 @media screen and (max-width: 900px) {
   .gastronomic-recipes-section .professionals-inspiration-recipes__grid {
-    grid-auto-columns: calc((100% - 28px) / 2);
+    grid-auto-columns: calc((100% - 4px) / 2);
+    gap: 4px;
   }
 }
 
 @media screen and (max-width: 560px) {
   .gastronomic-recipes-section .professionals-inspiration-recipes__grid {
     grid-auto-columns: 100%;
+    gap: 4px;
   }
 
   .professionals-value-feature__grid {

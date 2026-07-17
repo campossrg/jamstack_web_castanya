@@ -11,7 +11,7 @@ robots: noindex
 {% set dishTypeOptions = collections.recipes | uniqueByField("listingSections", ["foundations", "sweet", "homeTraditions", "classics", "healthy"]) %}
 
 <nav class="shop-page-filters" aria-label="Filtres de receptes">
-  {{ recipeFiltersBar("/gastronomic/receptes/resultats/", difficultyOptions, dishTypeOptions, "CERCAR", true) }}
+  {{ recipeFiltersBar("/gastronomic/receptes/resultats/", difficultyOptions, dishTypeOptions, "CERCAR", true, collections.recipes) }}
 </nav>
 
 <section class="shop-page-catalog gastronomic-recipes-results" id="recipeResultsCatalog">
@@ -42,7 +42,7 @@ robots: noindex
       data-time="{{ recipe.data.time | timeBucket }}"
       data-dish-type="{{ recipe.data.listingSections | join(' ') }}"
     >
-      <h3 class="professionals-inspiration-card__title">{{ recipe.data.title }}</h3>
+      <h3 class="professionals-inspiration-card__title"><span>{{ recipe.data.title }}</span></h3>
       <img
         src="{{ recipe.data.image }}"
         alt="{{ recipe.data.imageAlt }}"

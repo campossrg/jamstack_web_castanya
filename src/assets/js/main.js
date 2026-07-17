@@ -671,6 +671,142 @@ document.addEventListener("DOMContentLoaded", () => {
     applyFilters();
   };
 
+  const setupRecipeFilterMenus = () => {
+    const menus = Array.from(
+      document.querySelectorAll("[data-recipe-filter-menu]"),
+    );
+
+    if (!menus.length) {
+      return;
+    }
+
+    menus.forEach((menu) => {
+      menu.addEventListener("toggle", () => {
+        if (menu.open) {
+          menus.forEach((other) => {
+            if (other !== menu) {
+              other.removeAttribute("open");
+            }
+          });
+        }
+      });
+    });
+
+    document.addEventListener("click", (event) => {
+      menus.forEach((menu) => {
+        if (menu.open && !menu.contains(event.target)) {
+          menu.removeAttribute("open");
+        }
+      });
+    });
+  };
+
+  const escapeHtml = (value = "") =>
+    value.replace(/[&<>"']/g, (char) => {
+      const entities = {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;",
+      };
+      return entities[char];
+    });
+
+  const setupRecipeSearch = () => {
+    const wrap = document.querySelector("[data-recipe-search]");
+
+    if (!wrap) {
+      return;
+    }
+
+    const toggle = wrap.querySelector("[data-recipe-search-toggle]");
+    const input = wrap.querySelector("[data-recipe-search-input]");
+    const results = wrap.querySelector("[data-recipe-search-results]");
+    const dataScript = document.querySelector("[data-recipe-search-data]");
+
+    if (!toggle || !input || !results) {
+      return;
+    }
+
+    let recipes = [];
+    try {
+      recipes = dataScript ? JSON.parse(dataScript.textContent || "[]") : [];
+    } catch (error) {
+      recipes = [];
+    }
+
+    const closeSearch = () => {
+      input.hidden = true;
+      toggle.hidden = false;
+      results.hidden = true;
+      results.innerHTML = "";
+      input.value = "";
+    };
+
+    const renderResults = (query) => {
+      const q = query.trim().toLocaleLowerCase("ca-ES");
+
+      if (!q) {
+        results.hidden = true;
+        results.innerHTML = "";
+        return;
+      }
+
+      const matches = recipes
+        .filter((recipe) =>
+          (recipe.title || "").toLocaleLowerCase("ca-ES").includes(q),
+        )
+        .slice(0, 8);
+
+      if (!matches.length) {
+        results.innerHTML =
+          '<p class="shop-page-search-results__empty">No hem trobat cap recepta.</p>';
+        results.hidden = false;
+        return;
+      }
+
+      results.innerHTML = matches
+        .map(
+          (recipe) =>
+            `<a href="${escapeHtml(recipe.url)}" class="shop-page-search-results__item">${escapeHtml(recipe.title)}</a>`,
+        )
+        .join("");
+      results.hidden = false;
+    };
+
+    toggle.addEventListener("click", (event) => {
+      event.preventDefault();
+      toggle.hidden = true;
+      input.hidden = false;
+      input.focus();
+    });
+
+    input.addEventListener("input", () => {
+      renderResults(input.value);
+    });
+
+    input.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeSearch();
+      } else if (event.key === "Enter") {
+        event.preventDefault();
+        const firstResult = results.querySelector(
+          ".shop-page-search-results__item",
+        );
+        if (firstResult) {
+          window.location.href = firstResult.getAttribute("href");
+        }
+      }
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!wrap.contains(event.target)) {
+        closeSearch();
+      }
+    });
+  };
+
   // Initialize all carousels
   setupCarousel("galleryScroll", "prevBtn", "nextBtn");
   setupCarousel(
@@ -689,6 +825,8 @@ document.addEventListener("DOMContentLoaded", () => {
   setupShopCatalogFiltering();
   setupNewsFiltering();
   setupRecipeResultsFilter();
+  setupRecipeFilterMenus();
+  setupRecipeSearch();
   setupCarousel(
     "testimonialScroll",
     "prevTestimonial",
