@@ -27,11 +27,18 @@ collections.recipes %} {% if recipe.data.title == slide.title and recipe.url %}
   data-remedy="{{ remedyFlag }}"
 >
   <h3 class="professionals-inspiration-card__title"><span>{{ slide.title }}</span></h3>
-  <img
-    src="{{ slide.image }}"
-    alt="{{ slide.imageAlt }}"
-    class="professionals-inspiration-card__image"
-  />
+  <div class="gastronomic-recipes-card__media">
+    <img
+      src="{{ slide.image }}"
+      alt="{{ slide.imageAlt }}"
+      class="professionals-inspiration-card__image"
+    />
+    <span class="gastronomic-recipes-card__arrow" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M5 19 19 5M8 5h11v11" />
+      </svg>
+    </span>
+  </div>
   <div class="professionals-inspiration-card__meta">
     <span class="professionals-inspiration-card__meta-item"
       ><svg viewBox="0 0 24 24" aria-hidden="true">

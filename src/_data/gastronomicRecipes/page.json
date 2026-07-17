@@ -12,7 +12,7 @@
     "title": "ENTRANTS AMB CASTANYA DE VILADRAU",
     "intro": "Entrants elegants i plens de sabor per iniciar qualsevol àpat de tardor. La castanya de Viladrau com a protagonista de primer plat.",
     "ctaLabel": "VEURE TOTES",
-    "ctaHref": "/contact/",
+    "ctaHref": "/gastronomic/receptes/resultats/?dishType=foundations",
     "slides": [
       {
         "title": "CREMA DE CASTANYES",
@@ -56,7 +56,7 @@
     "title": "PLATS PRINCIPALS AMB CASTANYA DE VILADRAU",
     "intro": "Plats de resistencia i cuina de mercat que converteixen la castanya en l'anima de cada apat. Del camp a la taula, amb tot el sabor del Montseny.",
     "ctaLabel": "VEURE TOTES",
-    "ctaHref": "/contact/",
+    "ctaHref": "/gastronomic/receptes/resultats/?dishType=homeTraditions",
     "slides": [
       {
         "title": "CARN AMB SALSA DE CASTANYES",
@@ -215,7 +215,7 @@
     "title": "MOMENT DOLC (REBOSTERIA FACIL)",
     "intro": "Capritxos irresistibles i postres artesanes per endolcir els teus moments especials.",
     "ctaLabel": "VEURE TOTES",
-    "ctaHref": "/contact/",
+    "ctaHref": "/gastronomic/receptes/resultats/?dishType=sweet",
     "slides": [
       {
         "title": "CASTANYES CARAMEL·LITZADES",

@@ -9,7 +9,7 @@ order: 4
 permalink: /gastronomic/receptes/castanya-per-a-guarnicio/
 listingSections:
   - foundations
-image: /assets/images/gallery/espai-gastronomic/castanya_camp.jpg
+image: /assets/images/gallery/espai-gastronomic/castanya_plat.jpg
 imageAlt: Castanya al paisatge del Montseny
 summary: Una guarnicio simple i efectiva per acompanyar carns, verdures rostides o plats de cullera amb un toc de bosc i temporada.
 author: Joan Xalet

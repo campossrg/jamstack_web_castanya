@@ -11,7 +11,7 @@
     "price": "24€",
     "image": "/assets/images/gallery/product_castanya_torrada.png",
     "imageAlt": "Castanya torrada",
-    "href": "/contact/"
+    "href": "/shop/products/castanya-torrada/"
   },
   "farina-castanya": {
     "title": "FARINA DE CASTANYA",
@@ -19,7 +19,7 @@
     "price": "18€",
     "image": "/assets/images/gallery/product_castanya_farina.png",
     "imageAlt": "Farina de castanya",
-    "href": "/contact/"
+    "href": "/shop/products/farina-de-castanya/"
   },
   "secallona": {
     "title": "SECALLONA",
@@ -27,7 +27,7 @@
     "price": "22€",
     "image": "/assets/images/gallery/product_castanya_seca.png",
     "imageAlt": "Secallona de castanya",
-    "href": "/contact/"
+    "href": "/shop/products/castanya-pilonga-deshidratada/"
   },
   "flocs-castanya": {
     "title": "FLOCS DE CASTANYA",
@@ -35,6 +35,6 @@
     "price": "16€",
     "image": "/assets/images/gallery/product_castanya_flocs.png",
     "imageAlt": "Flocs de castanya",
-    "href": "/contact/"
+    "href": "/shop/products/flocs-de-castanya/"
   }
 }

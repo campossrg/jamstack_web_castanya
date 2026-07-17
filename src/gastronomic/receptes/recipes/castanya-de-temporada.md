@@ -10,7 +10,7 @@ permalink: /gastronomic/receptes/castanya-de-temporada/
 listingSections:
   - homeTraditions
   - healthy
-image: /assets/images/gallery/espai-gastronomic/castanya_camp.jpg
+image: /assets/images/gallery/espai-gastronomic/castanya_plat.jpg
 imageAlt: Castanya al paisatge del Montseny
 summary: Una elaboracio minima que respecta la temporada i permet gaudir la castanya amb tota la seva puresa.
 author: Joan Xalet

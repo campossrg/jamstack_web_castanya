@@ -15,6 +15,9 @@ robots: noindex
 </nav>
 
 <section class="shop-page-catalog gastronomic-recipes-results" id="recipeResultsCatalog">
+  <div class="gastronomic-recipes-results__back-wrap">
+    <a href="/gastronomic/receptes/" class="recipe-detail__back">&larr; Tornar</a>
+  </div>
   <div class="shop-page-catalog__header">
     <div class="shop-page-products__heading">
       <p class="shop-page-products__kicker">RECEPTES AMB CASTANYA</p>
@@ -43,11 +46,18 @@ robots: noindex
       data-dish-type="{{ recipe.data.listingSections | join(' ') }}"
     >
       <h3 class="professionals-inspiration-card__title"><span>{{ recipe.data.title }}</span></h3>
-      <img
-        src="{{ recipe.data.image }}"
-        alt="{{ recipe.data.imageAlt }}"
-        class="professionals-inspiration-card__image"
-      />
+      <div class="gastronomic-recipes-card__media">
+        <img
+          src="{{ recipe.data.image }}"
+          alt="{{ recipe.data.imageAlt }}"
+          class="professionals-inspiration-card__image"
+        />
+        <span class="gastronomic-recipes-card__arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M5 19 19 5M8 5h11v11" />
+          </svg>
+        </span>
+      </div>
       <div class="professionals-inspiration-card__meta">
         <span class="professionals-inspiration-card__meta-item"
           ><svg viewBox="0 0 24 24" aria-hidden="true">

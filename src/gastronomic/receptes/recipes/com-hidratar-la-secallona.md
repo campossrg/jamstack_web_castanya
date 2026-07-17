@@ -11,7 +11,7 @@ listingSections:
   - foundations
   - classics
   - healthy
-image: /assets/images/gallery/espai-gastronomic/cotxe.jpg
+image: /assets/images/gallery/espai-gastronomic/castanya_plat.jpg
 imageAlt: Grup a l'entorn del bosc de castanyers
 summary: Una preparacio base per recuperar textura i sabor en elaboracions seques amb castanya, perfecta per a receptes tradicionals i aprofitament de rebost.
 author: Joan Xalet

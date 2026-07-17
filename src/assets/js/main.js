@@ -173,6 +173,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const toggleButtons = () => {
       const maxScroll = container.scrollWidth - container.clientWidth;
+      const hasOverflow = maxScroll > 5;
+
+      prev.hidden = !hasOverflow;
+      next.hidden = !hasOverflow;
+
+      if (!hasOverflow) {
+        return;
+      }
+
       const atStart = container.scrollLeft <= 5;
       const atEnd = container.scrollLeft >= maxScroll - 5;
 

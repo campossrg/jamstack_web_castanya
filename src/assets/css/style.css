@@ -4676,6 +4676,10 @@ body.home .home-carousel-section--testimonials .section-title-main.block_title_s
   stroke: #7b6b43;
 }
 
+.nav-arrow-inline[hidden] {
+  display: none;
+}
+
 .section-subtitle-italic {
   font-style: italic;
   font-size: 18px;
@@ -4875,7 +4879,7 @@ body.home .home-section-description {
 
 .projecte-page__hero {
   position: relative;
-  min-height: 520px;
+  min-height: var(--section-banner-min-height);
   overflow: hidden;
 }
 
@@ -4889,37 +4893,41 @@ body.home .home-section-description {
 .projecte-page__hero-image {
   width: 100%;
   height: 100%;
-  min-height: 520px;
+  min-height: var(--section-banner-min-height);
   object-fit: cover;
   display: block;
 }
 
 .projecte-page__hero-overlay {
   position: absolute;
-  inset: auto 0 54px;
+  inset: 0;
   z-index: 1;
-  display: grid;
-  gap: 12px;
-  justify-items: center;
-  padding: 0 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 52px 32px;
   text-align: center;
   color: #f8f4ea;
 }
 
 .projecte-page__hero-kicker {
   font-family: var(--font-main);
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: 700;
-  letter-spacing: 0.26em;
+  letter-spacing: 0.18em;
 }
 
 .projecte-page__hero-title {
-  font-family: var(--font-slider-title);
+  margin: 0;
+  font-family: var(--font-main);
   color: #f5f0e8;
   text-transform: uppercase;
   max-width: 720px;
-  font-size: clamp(2rem, 4vw, 3rem);
-  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.28);
 }
 
 .projecte-page__heading {
@@ -4929,10 +4937,10 @@ body.home .home-section-description {
 }
 
 .projecte-page__hero-copy {
-  max-width: 620px;
+  max-width: 700px;
+  margin: 8px auto 0;
   font-family: var(--font-main);
-  font-size: 1.2rem;
-  line-height: 1.45;
+  color: rgba(var(--color-beige-rgb), 0.92);
 }
 
 .projecte-page__grid {
@@ -4950,13 +4958,15 @@ body.home .home-section-description {
 .projecte-page__panel--image {
   position: relative;
   overflow: hidden;
+  align-self: center;
+  min-height: 0;
   background: #ddd6c5;
 }
 
 .projecte-page__image {
   width: 100%;
-  height: 100%;
-  min-height: 620px;
+  height: auto;
+  aspect-ratio: 1 / 1;
   display: block;
   object-fit: cover;
 }
@@ -5020,19 +5030,14 @@ body.home .home-section-description {
 
 .projecte-process__title {
   margin: 0 0 18px;
-  font-family: var(--font-slider-title);
-  font-size: clamp(1.7rem, 3vw, 2.3rem);
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
 }
 
 .projecte-process__copy {
   margin: 0 auto;
   max-width: 680px;
   font-family: var(--font-main);
-  font-size: 1.08rem;
-  line-height: 1.55;
+  font-size: 17px;
+  line-height: 1.35;
 }
 
 .projecte-process__diagram {
@@ -5096,36 +5101,6 @@ body.home .home-section-description {
   color: #f5f0e8;
 }
 
-.projecte-feature__content--slider .projecte-feature__text {
-  transition:
-    opacity 0.22s ease,
-    transform 0.28s ease;
-}
-
-.projecte-feature__content--slider .projecte-feature__text.is-switching {
-  opacity: 0;
-}
-
-.projecte-feature__content--slider .projecte-feature__text.is-switching-left {
-  transform: translateX(-34px);
-}
-
-.projecte-feature__content--slider .projecte-feature__text.is-switching-right {
-  transform: translateX(34px);
-}
-
-.projecte-feature__content--slider .projecte-feature__text.is-entering {
-  opacity: 0;
-}
-
-.projecte-feature__content--slider .projecte-feature__text.is-entering-left {
-  transform: translateX(34px);
-}
-
-.projecte-feature__content--slider .projecte-feature__text.is-entering-right {
-  transform: translateX(-34px);
-}
-
 .projecte-feature__text--narrow {
   display: grid;
   align-content: center;
@@ -5135,69 +5110,27 @@ body.home .home-section-description {
 }
 
 .projecte-feature__title {
-  margin: 0 0 18px;
+  margin: 0 auto;
+  max-width: 700px;
   font-family: var(--font-title);
-  font-size: clamp(28px, 4vw, 48px);
-  line-height: 1.1;
+  font-size: clamp(30px, 3vw, 40px);
+  line-height: 1.08;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 
 .projecte-feature__copy {
-  max-width: 760px;
-  margin: 0 auto;
+  max-width: 780px;
+  margin: 14px auto 0;
   font-family: var(--font-main);
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 1.6;
+  font-size: clamp(16px, 1.35vw, 18px);
+  font-style: normal;
+  line-height: 1.55;
+  letter-spacing: 0;
 }
 
 .projecte-feature__copy + .projecte-feature__copy {
   margin-top: 14px;
-}
-
-.projecte-feature__nav {
-  position: absolute;
-  top: 50%;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background: rgba(176, 147, 87, 0.92);
-  color: #fff9ec;
-  font-size: 1.7rem;
-  line-height: 1;
-  transform: translateY(-50%);
-}
-
-.projecte-feature__nav {
-  border: none;
-  cursor: pointer;
-  transition:
-    transform 0.25s ease,
-    background-color 0.25s ease,
-    opacity 0.2s ease;
-}
-
-.projecte-feature__nav:hover {
-  transform: translateY(-50%) scale(1.06);
-  background: rgba(146, 118, 62, 0.96);
-}
-
-.projecte-feature__nav svg {
-  width: 22px;
-  height: 22px;
-  stroke: currentColor;
-  stroke-width: 2.1;
-  fill: none;
-}
-
-.projecte-feature__nav--prev {
-  left: 28px;
-}
-
-.projecte-feature__nav--next {
-  right: 28px;
 }
 
 .projecte-feature__note {
@@ -5231,20 +5164,16 @@ body.home .home-section-description {
   }
 
   .projecte-page__hero {
-    min-height: 420px;
+    min-height: var(--section-banner-min-height-mobile);
   }
 
   .projecte-page__hero-image {
-    min-height: 420px;
+    min-height: var(--section-banner-min-height-mobile);
   }
 
   .projecte-page__grid {
     margin-top: 56px;
     grid-template-columns: minmax(0, 1fr);
-  }
-
-  .projecte-page__panel--image {
-    min-height: 420px;
   }
 
   .projecte-page__caption-card {
@@ -5271,10 +5200,6 @@ body.home .home-section-description {
     padding: 56px 22px;
   }
 
-  .projecte-feature__nav {
-    display: none;
-  }
-
   .projecte-feature__text--narrow {
     padding: 56px 22px;
   }
@@ -5290,8 +5215,7 @@ body.home .home-section-description {
 
 @media (max-width: 640px) {
   .projecte-page__hero-overlay {
-    inset: auto 0 28px;
-    padding: 0 20px;
+    padding: 28px 20px;
   }
 
   .projecte-page__hero-kicker {
@@ -5306,14 +5230,6 @@ body.home .home-section-description {
 
   .projecte-page__panel--text {
     padding: 34px 22px;
-  }
-
-  .projecte-feature__title {
-    font-size: clamp(1.9rem, 9vw, 3rem);
-  }
-
-  .projecte-feature__copy {
-    font-size: 1rem;
   }
 }
 
@@ -5880,11 +5796,21 @@ body.home .home-section-description {
   text-align: left;
 }
 
+.gastronomic-recipes-card .professionals-inspiration-card__label {
+  font-size: 15px;
+}
+
+.gastronomic-recipes-card .professionals-inspiration-card__ingredients {
+  font-family: "Gotham-Medium", "Gotham Medium", sans-serif;
+  font-size: 17px;
+  line-height: 1.35;
+}
+
 .gastronomic-recipes-card .professionals-inspiration-card__title {
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  min-height: 2.2em;
+  min-height: 3.3em;
   line-height: 1.1;
 }
 
@@ -5917,8 +5843,74 @@ body.home .home-section-description {
   display: none;
 }
 
+.gastronomic-recipes-card__media {
+  position: relative;
+  overflow: hidden;
+}
+
+.gastronomic-recipes-card__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(120, 97, 54, 0.28);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.gastronomic-recipes-card--link:hover .gastronomic-recipes-card__media::after,
+.gastronomic-recipes-card--link:focus-visible .gastronomic-recipes-card__media::after {
+  opacity: 1;
+}
+
+.gastronomic-recipes-card__arrow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  display: grid;
+  width: 72px;
+  height: 72px;
+  place-items: center;
+  border-radius: 50%;
+  background: #827043;
+  color: #f6f0e4;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.85);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.gastronomic-recipes-card__arrow svg {
+  width: 32px;
+  height: 32px;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.25;
+  fill: none;
+}
+
+.gastronomic-recipes-card--link:hover .gastronomic-recipes-card__arrow,
+.gastronomic-recipes-card--link:focus-visible .gastronomic-recipes-card__arrow {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
 .gastronomic-recipes-results {
   padding-top: 48px;
+}
+
+.gastronomic-recipes-results__back-wrap {
+  width: min(1040px, calc(100% - 40px));
+  margin: 0 auto 24px;
+}
+
+.gastronomic-recipes-results__grid {
+  gap: 4px;
 }
 
 .gastronomic-recipes-results__empty {
@@ -5979,7 +5971,8 @@ body.home .home-section-description {
 
 .gastronomic-page-restaurant-card__text {
   margin: 16px 0 0;
-  font-family: "Gotham-Medium", "Gotham Medium", sans-serif;
+  font-family: var(--font-button);
+  font-weight: 400;
   font-size: 15px;
   line-height: 1.35;
   color: #7b6b43;
@@ -7098,7 +7091,7 @@ body.home .actualitat-content-centered.block-content-style .home-section-descrip
   align-items: stretch;
   padding: 34px;
   border: 1px solid rgba(129, 102, 61, 0.15);
-  background: rgba(254, 253, 249, 0.68);
+  background: var(--color-beige);
   box-shadow: 0 22px 50px rgba(129, 102, 61, 0.08);
 }
 
@@ -7462,7 +7455,7 @@ body.home .actualitat-content-centered.block-content-style .home-section-descrip
   min-width: 260px;
   padding: 14px 30px;
   border-radius: 999px;
-  background: #a88e59;
+  background: var(--header-bg);
   color: #f5f0e8;
   font-family: var(--font-main);
   font-size: 14px;
@@ -7473,7 +7466,7 @@ body.home .actualitat-content-centered.block-content-style .home-section-descrip
 }
 
 .where-sales-cta__button:hover {
-  background: #92794a;
+  background: #665a38;
 }
 
 @media screen and (max-width: 900px) {
@@ -8285,11 +8278,11 @@ body.page-professionals .professionals-value-feature__cta {
 }
 
 [data-recipe-filter-form] .shop-page-search {
-  background: #7b6b43;
+  background: #9a8453;
 }
 
 [data-recipe-filter-form] .shop-page-search:hover {
-  background: #5e5233;
+  background: #8b7445;
 }
 
 [data-recipe-filter-form] .shop-page-search-wrap {
@@ -8303,7 +8296,7 @@ body.page-professionals .professionals-value-feature__cta {
   min-width: 220px;
   border: 0;
   border-radius: 999px;
-  background: #7b6b43;
+  background: #9a8453;
   color: #f5f0e8;
   font-family: var(--font-main);
   font-size: 13px;
@@ -12545,16 +12538,24 @@ body.internal.page-gastronomic-recipes {
 .recipe-detail__pagination-link {
   color: #8b7445;
   text-decoration: none;
-  font-size: 12px;
+  font-size: 15px;
+  font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
+}
+
+.recipe-detail__header {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(280px, 0.9fr);
+  gap: 56px;
+  margin-top: 28px;
 }
 
 .recipe-detail__grid {
   display: grid;
   grid-template-columns: minmax(0, 1.55fr) minmax(280px, 0.9fr);
   gap: 56px;
-  margin-top: 28px;
+  margin-top: 44px;
 }
 
 .recipe-detail__image {
@@ -12566,6 +12567,7 @@ body.internal.page-gastronomic-recipes {
 
 .recipe-detail__intro {
   margin-top: 28px;
+  font-family: var(--font-main);
   font-size: 15px;
   line-height: 1.7;
 }
@@ -12583,7 +12585,7 @@ body.internal.page-gastronomic-recipes {
 }
 
 .recipe-detail__step-title {
-  font-size: clamp(28px, 2.6vw, 38px);
+  font-size: clamp(20px, 2.15vw, 30px);
 }
 
 .recipe-detail__step-text,
@@ -12592,6 +12594,7 @@ body.internal.page-gastronomic-recipes {
 .recipe-detail__ingredients,
 .recipe-detail__secret-quote {
   margin: 0;
+  font-family: var(--font-main);
   line-height: 1.7;
 }
 
@@ -12605,8 +12608,10 @@ body.internal.page-gastronomic-recipes {
 }
 
 .recipe-detail__title {
-  font-size: clamp(32px, 3.8vw, 54px);
-  line-height: 0.98;
+  font-family: "PP Neue World", serif;
+  font-size: 30px;
+  line-height: 1.04;
+  color: #7b6b43;
 }
 
 .recipe-detail__author {
@@ -12616,26 +12621,28 @@ body.internal.page-gastronomic-recipes {
 
 .recipe-detail__description {
   margin-top: 18px;
-  font-size: 18px;
+  font-size: 17px;
+  line-height: 1.35;
 }
 
 .recipe-detail__meta {
   display: flex;
   justify-content: center;
-  gap: 18px;
+  gap: 25px;
   align-items: center;
   margin: 22px 0 0;
+  color: #7f6f4b;
 }
 
 .recipe-detail__meta-item {
   display: inline-flex;
-  align-items: center;
-  gap: 8px;
+  align-items: flex-start;
+  gap: 4px;
 }
 
 .recipe-detail__meta-item svg {
-  width: 16px;
-  height: 16px;
+  width: 30px;
+  height: 30px;
   stroke: currentColor;
   stroke-width: 1.8;
   fill: none;
@@ -12660,16 +12667,13 @@ body.internal.page-gastronomic-recipes {
 .recipe-detail__aside-title {
   margin: 0 0 20px;
   color: #8b7445;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 1.4px;
-  text-transform: uppercase;
   text-align: center;
 }
 
 .recipe-detail__ingredients {
   padding: 0;
   list-style: none;
+  font-size: 15px;
   text-align: center;
 }
 
@@ -12678,9 +12682,8 @@ body.internal.page-gastronomic-recipes {
 }
 
 .recipe-detail__secret-quote {
-  font-size: 24px;
+  font-size: 15px;
   font-style: italic;
-  line-height: 1.5;
 }
 
 .recipe-detail__pagination {
@@ -12689,7 +12692,6 @@ body.internal.page-gastronomic-recipes {
   gap: 20px;
   margin-top: 80px;
   padding-top: 28px;
-  border-top: 1px solid rgba(139, 116, 69, 0.35);
 }
 
 .recipe-detail__pagination-link--disabled {
@@ -12735,14 +12737,16 @@ body.internal.page-gastronomic-recipes {
 }
 
 .recipe-detail__related-products-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 28px;
   margin-top: 38px;
 }
 
 .recipe-detail__related-product-card {
   display: block;
+  flex: 0 1 240px;
   color: inherit;
   text-decoration: none;
   text-align: center;
@@ -12774,6 +12778,7 @@ body.internal.page-gastronomic-recipes {
 }
 
 @media screen and (max-width: 900px) {
+  .recipe-detail__header,
   .recipe-detail__grid {
     grid-template-columns: 1fr;
     gap: 42px;
@@ -12788,10 +12793,6 @@ body.internal.page-gastronomic-recipes {
 
   .recipe-detail__meta {
     justify-content: flex-start;
-  }
-
-  .recipe-detail__related-products-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .recipe-detail__related-products-header,
@@ -12818,8 +12819,12 @@ body.internal.page-gastronomic-recipes {
   }
 
   .recipe-detail__related-products-grid {
-    grid-template-columns: 1fr;
     gap: 24px;
+  }
+
+  .recipe-detail__related-product-card {
+    flex: 0 1 100%;
+    max-width: 280px;
   }
 }
 
@@ -12830,9 +12835,19 @@ body.internal.page-gastronomic-recipes {
   }
 }
 
+@media screen and (max-width: 768px) {
+  .gastronomic-recipes-results__grid {
+    gap: 4px;
+  }
+}
+
 @media screen and (max-width: 560px) {
   .gastronomic-recipes-section .professionals-inspiration-recipes__grid {
     grid-auto-columns: 100%;
+    gap: 4px;
+  }
+
+  .gastronomic-recipes-results__grid {
     gap: 4px;
   }
 
@@ -12916,8 +12931,7 @@ body.internal.page-gastronomic-recipes {
 .shop-page-hero__title,
 .shop-cart-hero__title,
 .contact-page-split__title,
-.where-page__title,
-.recipe-detail__title {
+.where-page__title {
   font-size: var(--type-page-title-size);
 }
 
@@ -12951,12 +12965,21 @@ body.internal.page-gastronomic-recipes {
 .shop-page-hero__text,
 .shop-cart-hero__text,
 .contact-page-split__text,
-.recipe-detail__description,
 .product-detail__tagline,
 .actualitat-post__subtitle,
 .fusta-projects__text {
   font-size: var(--type-page-copy-size);
   line-height: var(--type-page-copy-line-height);
+}
+
+/* This hero runs a smaller, tighter type scale than the other page heroes. */
+.projecte-page__hero-title {
+  font-size: clamp(1.6rem, 2.8vw, 2.3rem);
+}
+
+.projecte-page__hero-copy {
+  font-size: clamp(0.85rem, 1.1vw, 1rem);
+  line-height: 1.45;
 }
 
 body.has-mobile-menu-open {
