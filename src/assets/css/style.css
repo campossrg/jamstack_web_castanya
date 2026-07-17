@@ -1985,8 +1985,9 @@ body.page-blog .content-wrap {
   gap: 48px;
   max-width: 520px;
   margin: 0 auto;
-  color: #5f5239;
-  font-size: 12px;
+  color: #7b6b43;
+  font-family: var(--font-main);
+  font-size: 15px;
   line-height: 1.35;
 }
 
@@ -1996,7 +1997,6 @@ body.page-blog .content-wrap {
 
 .actualitat-post__meta strong {
   display: block;
-  color: #4f442f;
   font-weight: 800;
 }
 
@@ -2029,6 +2029,7 @@ body.page-blog .content-wrap {
 
 .actualitat-post__content {
   color: #7b6b43;
+  font-family: var(--font-main);
   font-size: 15px;
   line-height: 1.7;
 }
@@ -5416,7 +5417,7 @@ body.home .home-section-description {
 }
 
 .gastronomic-page-ambassador__title {
-  margin: 0;
+  margin: 0 0 4px;
   font-family: var(--font-secondary);
   font-size: clamp(34px, 3.6vw, 50px);
   font-weight: 400;
@@ -5425,10 +5426,9 @@ body.home .home-section-description {
 }
 
 .gastronomic-page-ambassador__quote {
-  margin: 18px 0 0;
+  margin: 0;
   font-family: "Gotham-Medium", "Gotham Medium", sans-serif;
   font-size: 17px;
-  font-weight: 700;
   line-height: 1.2;
 }
 
@@ -5573,12 +5573,9 @@ body.home .home-section-description {
   gap: 0;
 }
 
-.gastronomic-nutrition-panel {
-  min-height: 620px;
-}
-
 .gastronomic-nutrition-panel--image {
   position: relative;
+  aspect-ratio: 1;
   background: #ddd6c5;
 }
 
@@ -5590,7 +5587,6 @@ body.home .home-section-description {
   display: block;
   width: 100%;
   height: 100%;
-  min-height: 620px;
   object-fit: cover;
 }
 
@@ -5646,6 +5642,22 @@ body.home .home-section-description {
 .gastronomic-nutrition-chart__inner {
   max-width: 1160px;
   margin: 0 auto;
+}
+
+.gastronomic-nutrition-chart__header {
+  max-width: 720px;
+  margin: 0 auto 32px;
+  text-align: center;
+}
+
+.gastronomic-nutrition-chart__title {
+  margin: 0 0 10px;
+  color: #8b7445;
+}
+
+.gastronomic-nutrition-chart__subtitle {
+  margin: 0;
+  color: #7b6b43;
 }
 
 .gastronomic-nutrition-chart__image {
@@ -5733,21 +5745,25 @@ body.home .home-section-description {
 
 .gastronomic-sensory__title {
   margin: 0;
-  font-size: clamp(26px, 2.3vw, 34px);
-  font-family: var(--font-main);
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: 1.3px;
+  font-family: "Copperplate Gothic Castanya", "Copperplate Gothic", serif;
+  font-size: clamp(25px, 2.35vw, 34px);
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.08;
+  letter-spacing: 1.05px;
   text-transform: uppercase;
-  color: #8b7445;
+  color: #7b6b43;
 }
 
 .gastronomic-sensory__intro {
   max-width: 720px;
   margin: 18px auto 34px;
   font-family: var(--font-main);
-  font-size: clamp(16px, 1.35vw, 20px);
-  line-height: 1.45;
+  font-size: 18px;
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.4;
+  letter-spacing: 0;
   color: #7b6b43;
 }
 
@@ -7920,7 +7936,8 @@ body.home .actualitat-content-centered.block-content-style .home-section-descrip
   overflow: hidden;
 }
 
-body.page-gastronomic-nutrition .professionals-value-feature__cta {
+body.page-gastronomic-nutrition .professionals-value-feature__cta,
+body.page-professionals .professionals-value-feature__cta {
   margin-top: 0;
   min-height: var(--section-banner-min-height);
 }
@@ -9173,7 +9190,7 @@ body.page-gastronomic-nutrition .professionals-value-feature__cta {
 }
 
 .product-detail__related-name {
-  margin: 18px 0 8px;
+  margin: 18px 0 4px;
   color: #8b7445;
   font-family: Georgia, "Times New Roman", serif;
   font-size: 28px;
@@ -10566,7 +10583,8 @@ body.page-gastronomic-nutrition .professionals-value-feature__cta {
     margin-top: 58px;
   }
 
-  body.page-gastronomic-nutrition .professionals-value-feature__cta {
+  body.page-gastronomic-nutrition .professionals-value-feature__cta,
+  body.page-professionals .professionals-value-feature__cta {
     margin-top: 0;
     min-height: var(--section-banner-min-height-mobile);
   }
@@ -12684,7 +12702,8 @@ body.internal.page-gastronomic-recipes {
     margin-top: 46px;
   }
 
-  body.page-gastronomic-nutrition .professionals-value-feature__cta {
+  body.page-gastronomic-nutrition .professionals-value-feature__cta,
+  body.page-professionals .professionals-value-feature__cta {
     margin-top: 0;
   }
 
@@ -12944,7 +12963,7 @@ body.has-mobile-menu-open {
 a[class*="btn"],
 a[class*="button"],
 a[class*="cta"],
-button:not(.nav-link-button):not(.header-menu-toggle):not(.nav-arrow-inline),
+button:not(.nav-link-button):not(.header-menu-toggle):not(.nav-arrow-inline):not(.footer-legal-button),
 input[type="button"],
 input[type="submit"],
 input[type="reset"] {
@@ -13018,7 +13037,7 @@ a[class*="btn"],
 a[class*="button"]:not(.header-contact-button):not(.header-icon-button),
 a[class$="__button"],
 a[class*="cta"],
-button:not([aria-label]),
+button:not([aria-label]):not(.footer-legal-button),
 input[type="button"],
 input[type="submit"],
 input[type="reset"],
