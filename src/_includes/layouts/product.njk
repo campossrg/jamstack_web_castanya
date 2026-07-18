@@ -1,5 +1,6 @@
 ---
 layout: base
+name: product-detail
 footerVariant: projecte-newsletter
 ---
 
@@ -14,7 +15,10 @@ footerVariant: projecte-newsletter
 
 <section class="product-detail">
   <div class="product-detail__inner">
-    <a href="/shop/products/" class="product-detail__back">&larr; TORNAR</a>
+    <a href="/shop/products/" class="product-detail__back">
+      <img src="/assets/images/icon-arrow-left.svg" alt="" class="product-detail__back-arrow" aria-hidden="true" />
+      TORNAR
+    </a>
 
     <div class="product-detail__grid">
       <div class="product-detail__media">
@@ -37,14 +41,35 @@ footerVariant: projecte-newsletter
         {% endif %}
       </div>
 
-      <aside class="product-detail__aside">
+      <aside class="product-detail__aside{% if asideClass %} {{ asideClass }}{% endif %}">
         <p class="product-detail__brand">CASTANYA DE<br />VILADRAU TORRADA</p>
-        <h1 class="product-detail__title">{{ title }}</h1>
-        <p class="product-detail__tagline">{{ tagline }}</p>
+        <h1 class="product-detail__title{% if titleClass %} {{ titleClass }}{% endif %}">{{ title }}</h1>
+        <p class="product-detail__tagline{% if taglineClass %} {{ taglineClass }}{% endif %}">{{ tagline }}</p>
 
         <div class="product-detail__purchase">
-          <label class="product-detail__format-label" for="product-format">{{ formatLabel }}</label>
-          <select id="product-format" class="product-detail__format-select">
+          <details class="product-detail__format-menu" data-product-format-menu>
+            <summary class="product-detail__format-select">
+              <span data-product-format-summary-label>{{ formatLabel }}</span>
+              <img class="product-detail__format-arrow" src="/assets/images/recipe-filter-arrow.svg" alt="" aria-hidden="true" />
+            </summary>
+            <div class="product-detail__format-menu__list">
+              {% for option in formats %}
+                {% set optionLabel = option.label if option.label else option %}
+                {% set optionPrice = option.price if option.price else price %}
+                {% set optionSku = option.sku if option.sku else sku %}
+                <button
+                  type="button"
+                  class="product-detail__format-menu__item"
+                  data-product-format-option
+                  data-variant-label="{{ optionLabel }}"
+                  data-price="{{ optionPrice }}"
+                  data-sku="{{ optionSku }}"
+                >{{ optionLabel }}</button>
+              {% endfor %}
+            </div>
+          </details>
+
+          <select id="product-format" hidden aria-hidden="true" tabindex="-1">
             {% for option in formats %}
               {% set optionLabel = option.label if option.label else option %}
               {% set optionPrice = option.price if option.price else price %}
@@ -71,13 +96,18 @@ footerVariant: projecte-newsletter
         </div>
 
         <div class="product-detail__info-list">
-          <p class="product-detail__shipping">{{ shippingNote }}</p>
-
-          {% if highlights and highlights.length %}
-            {% for item in highlights %}
-              <p class="product-detail__info-item">{{ item.text }}</p>
-            {% endfor %}
-          {% endif %}
+          <div class="product-detail__trust-item">
+            <img src="/assets/images/icon-delivery.svg" alt="" class="product-detail__trust-icon" aria-hidden="true" />
+            <p class="product-detail__trust-text">Normalment arriba en 24/48 hores</p>
+          </div>
+          <div class="product-detail__trust-item">
+            <img src="/assets/images/icon-thumbsup.svg" alt="" class="product-detail__trust-icon" aria-hidden="true" />
+            <p class="product-detail__trust-text">Enviaments gratuits des de 60€</p>
+          </div>
+          <div class="product-detail__trust-item">
+            <img src="/assets/images/icon-shield.svg" alt="" class="product-detail__trust-icon" aria-hidden="true" />
+            <p class="product-detail__trust-text">Pagament segur</p>
+          </div>
         </div>
 
         <div class="product-detail__ingredients">
@@ -100,14 +130,20 @@ footerVariant: projecte-newsletter
 
     <div class="product-detail__content-grid">
       <div class="product-detail__content">
-        <h2 class="product-detail__content-title">{{ detailLabel }}</h2>
+        <h2 class="product-detail__content-title product-detail__showcase-heading">{{ detailLabel }}</h2>
         <div class="product-detail__body">{{ content | safe }}</div>
       </div>
     </div>
 
     <div class="product-detail__pager">
-      <a href="/shop/products/" class="product-detail__pager-link">&larr; ANTERIOR PRODUCTE</a>
-      <a href="/shop/products/" class="product-detail__pager-link">SEGUENT PRODUCTE &rarr;</a>
+      <a href="/shop/products/" class="product-detail__pager-link">
+        <img src="/assets/images/icon-arrow-left.svg" alt="" class="product-detail__pager-arrow" aria-hidden="true" />
+        ANTERIOR PRODUCTE
+      </a>
+      <a href="/shop/products/" class="product-detail__pager-link">
+        SEGUENT PRODUCTE
+        <img src="/assets/images/icon-arrow-right.svg" alt="" class="product-detail__pager-arrow" aria-hidden="true" />
+      </a>
     </div>
   </div>
 </section>
@@ -171,9 +207,9 @@ footerVariant: projecte-newsletter
                 alt="{{ product.data.title }}"
                 class="product-detail__related-image"
               />
-              <h3 class="product-detail__related-name">{{ product.data.title }}</h3>
+              <h3 class="product-detail__related-name product-detail__showcase-heading">{{ product.data.title }}</h3>
               <p class="product-detail__related-meta">{{ product.data.availability }}</p>
-              <p class="product-detail__related-price">{{ product.data.price }}</p>
+              <p class="product-detail__related-price">{{ product.data.priceLabel or product.data.price }}</p>
             </a>
           {% endif %}
         {% endfor %}
@@ -186,7 +222,7 @@ footerVariant: projecte-newsletter
                 alt="{{ product.title }}"
                 class="product-detail__related-image"
               />
-              <h3 class="product-detail__related-name">{{ product.title }}</h3>
+              <h3 class="product-detail__related-name product-detail__showcase-heading">{{ product.title }}</h3>
               <p class="product-detail__related-meta">{{ product.availability }}</p>
               <p class="product-detail__related-price">{{ product.price }}</p>
             </a>

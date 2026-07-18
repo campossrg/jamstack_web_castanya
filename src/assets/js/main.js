@@ -302,6 +302,95 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  const setupShopFilterMenus = () => {
+    const menus = Array.from(
+      document.querySelectorAll("[data-shop-filter-menu]"),
+    );
+
+    if (!menus.length) {
+      return;
+    }
+
+    menus.forEach((menu) => {
+      menu.addEventListener("toggle", () => {
+        if (menu.open) {
+          menus.forEach((other) => {
+            if (other !== menu) {
+              other.removeAttribute("open");
+            }
+          });
+        }
+      });
+    });
+
+    document.addEventListener("click", (event) => {
+      menus.forEach((menu) => {
+        if (menu.open && !menu.contains(event.target)) {
+          menu.removeAttribute("open");
+        }
+      });
+    });
+  };
+
+  const setupProductFormatMenu = () => {
+    const menus = Array.from(
+      document.querySelectorAll("[data-product-format-menu]"),
+    );
+
+    if (!menus.length) {
+      return;
+    }
+
+    menus.forEach((menu) => {
+      const select = menu
+        .closest(".product-detail__purchase")
+        ?.querySelector("#product-format");
+      const summaryLabel = menu.querySelector(
+        "[data-product-format-summary-label]",
+      );
+      const options = Array.from(
+        menu.querySelectorAll("[data-product-format-option]"),
+      );
+
+      options.forEach((option) => {
+        option.addEventListener("click", () => {
+          const label = option.dataset.variantLabel || option.textContent.trim();
+
+          if (select) {
+            select.value = label;
+            select.dispatchEvent(new Event("change", { bubbles: true }));
+          }
+
+          if (summaryLabel) {
+            summaryLabel.textContent = label;
+          }
+
+          options.forEach((other) => other.removeAttribute("aria-current"));
+          option.setAttribute("aria-current", "true");
+          menu.removeAttribute("open");
+        });
+      });
+
+      menu.addEventListener("toggle", () => {
+        if (menu.open) {
+          menus.forEach((other) => {
+            if (other !== menu) {
+              other.removeAttribute("open");
+            }
+          });
+        }
+      });
+    });
+
+    document.addEventListener("click", (event) => {
+      menus.forEach((menu) => {
+        if (menu.open && !menu.contains(event.target)) {
+          menu.removeAttribute("open");
+        }
+      });
+    });
+  };
+
   const setupNewsFiltering = () => {
     const filterBar = document.querySelector("[data-news-filter-bar]");
     const grid = document.querySelector("[data-news-grid]");
@@ -930,6 +1019,8 @@ document.addEventListener("DOMContentLoaded", () => {
     ".fusta-projects__card",
   );
   setupShopCatalogFiltering();
+  setupShopFilterMenus();
+  setupProductFormatMenu();
   setupNewsFiltering();
   setupNewsFilterMenus();
   setupRecipeResultsFilter();
