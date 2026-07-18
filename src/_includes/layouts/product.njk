@@ -7,6 +7,11 @@ footerVariant: projecte-newsletter
 {% set currentUrl = page.url %}
 {% set relatedCollection = collections.products | default([]) | reverse %}
 {% set relatedFallback = relatedProducts.list | default([]) %}
+{% set productsList = collections.products | default([]) %}
+{% set totalProducts = productsList.length %}
+{% set currentIndex = productsList | indexOfUrl(currentUrl) %}
+{% set prevProduct = productsList[(currentIndex - 1 + totalProducts) % totalProducts] if totalProducts and currentIndex > -1 else null %}
+{% set nextProduct = productsList[(currentIndex + 1) % totalProducts] if totalProducts and currentIndex > -1 else null %}
 {% set defaultFormat = formats[0] if formats and formats.length else null %}
 {% set defaultVariantLabel = defaultFormat.label if defaultFormat and defaultFormat.label else (defaultFormat if defaultFormat else '') %}
 {% set defaultPrice = defaultFormat.price if defaultFormat and defaultFormat.price else price %}
@@ -136,14 +141,18 @@ footerVariant: projecte-newsletter
     </div>
 
     <div class="product-detail__pager">
-      <a href="/shop/products/" class="product-detail__pager-link">
-        <img src="/assets/images/icon-arrow-left.svg" alt="" class="product-detail__pager-arrow" aria-hidden="true" />
-        ANTERIOR PRODUCTE
-      </a>
-      <a href="/shop/products/" class="product-detail__pager-link">
-        SEGUENT PRODUCTE
-        <img src="/assets/images/icon-arrow-right.svg" alt="" class="product-detail__pager-arrow" aria-hidden="true" />
-      </a>
+      {% if prevProduct %}
+        <a href="{{ prevProduct.url }}" class="product-detail__pager-link">
+          <img src="/assets/images/icon-arrow-left.svg" alt="" class="product-detail__pager-arrow" aria-hidden="true" />
+          ANTERIOR PRODUCTE
+        </a>
+      {% endif %}
+      {% if nextProduct %}
+        <a href="{{ nextProduct.url }}" class="product-detail__pager-link">
+          SEGUENT PRODUCTE
+          <img src="/assets/images/icon-arrow-right.svg" alt="" class="product-detail__pager-arrow" aria-hidden="true" />
+        </a>
+      {% endif %}
     </div>
   </div>
 </section>

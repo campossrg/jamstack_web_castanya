@@ -24,6 +24,10 @@ module.exports = function (eleventyConfig) {
     }
   });
 
+  eleventyConfig.addFilter("indexOfUrl", (list = [], url) => {
+    return list.findIndex((item) => item.url === url);
+  });
+
   eleventyConfig.addFilter("stripHtml", (content = "") => {
     return String(content)
       .replace(/<[^>]*>/g, " ")
