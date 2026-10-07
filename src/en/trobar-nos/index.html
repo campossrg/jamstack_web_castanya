@@ -86,17 +86,11 @@ lang: en
 
       <article class="where-card">
         <div class="where-card__media">
-          <div
-            class="where-card__coming-soon where-card__coming-soon--media"
-            role="img"
-            aria-label="Castanya de Viladrau's Barcelona shop, coming soon"
-          >
-            <p class="where-card__coming-soon-kicker">In Barcelona</p>
-            <p class="where-card__coming-soon-title">Coming soon</p>
-            <p class="where-card__coming-soon-text">
-              Our shop will be arriving very soon.
-            </p>
-          </div>
+          <img
+            src="/assets/images/gallery/botiga/botiga_barcelona_interior.jpg"
+            alt="Inside Castanya de Viladrau's Barcelona shop"
+            class="where-card__image"
+          />
         </div>
 
         <div class="where-card__content">
@@ -110,7 +104,12 @@ lang: en
             </p>
           </div>
 
-          <div class="where-card__details where-card__details--two-up">
+          <div class="where-card__details">
+            <div class="where-card__block where-card__block--address">
+              <p>Carrer de l'Encarnació, 159,</p>
+              <p>08025 Barcelona</p>
+            </div>
+
             <div class="where-card__block">
               <h3 class="where-card__block-title">What you'll find</h3>
               <p>All products</p>
@@ -124,13 +123,24 @@ lang: en
             </div>
           </div>
 
-          <div class="where-card__map-frame where-card__map-frame--coming-soon">
-            <div class="where-card__coming-soon where-card__coming-soon--status">
-              <p class="where-card__coming-soon-kicker">New opening</p>
-              <p class="where-card__coming-soon-title">Coming soon</p>
-              <p class="where-card__coming-soon-text">
-                We'll be sharing all the details soon.
+          <div class="where-card__map-frame">
+            <div
+              class="where-card__map-consent"
+              data-map-embed
+              data-map-title="Castanya de Viladrau in Barcelona"
+              data-map-src="https://www.google.com/maps?q=Carrer%20de%20l%27Encarnaci%C3%B3%2C%20159%2C%2008025%20Barcelona&z=16&output=embed"
+            >
+              <p class="where-card__map-label">Map protected by consent</p>
+              <p class="where-card__map-text">
+                To load this Google map you need to accept cookies and third-party requests.
               </p>
+              <button
+                type="button"
+                class="where-card__map-button"
+                data-map-action="accept"
+              >
+                Accept and view map
+              </button>
             </div>
           </div>
         </div>
