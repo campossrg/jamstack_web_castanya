@@ -20,7 +20,7 @@ ingredientsLabel: INGREDIENTS
 ingredients: Castanya fresca del Montseny
 image: /assets/images/Castanay fresca Gran.jpeg
 description: 'Castanya fresca del Montseny, mida gran'
-imageAlt: Botifarra de Castanya
+imageAlt: Castanya gran
 gallery: []
 formatLabel: 500gr
 shippingNote: Enviaments a tota la península en 24/48 hores.
