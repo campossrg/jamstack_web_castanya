@@ -2,6 +2,7 @@
 layout: product
 title: Castanya fresca gran
 tagline: Castanya fresca
+outOfStock: false
 categories:
   - castanyes
 consumptionMoments:
@@ -18,10 +19,10 @@ availability: Disponible a la botiga online
 ingredientsLabel: INGREDIENTS
 ingredients: Castanya fresca del Montseny
 image: /assets/images/Castanay fresca Gran.jpeg
-description: Botifarra de Castanya
+description: 'Castanya fresca del Montseny, mida gran'
 imageAlt: Botifarra de Castanya
 gallery: []
-formatLabel: Selecciona format
+formatLabel: 500gr
 shippingNote: Enviaments a tota la península en 24/48 hores.
 detailLabel: DESCRIPCIÓ
 ctaLabel: AFEGIR A LA CISTELLA
@@ -29,4 +30,4 @@ ctaHref: /shop/cart/
 featured: false
 ---
 
-Botifarra de Castanya, feta amb carn de porc rustic,i castanya torrada.
+Castanya fresca del Montseny (tamany gran).
