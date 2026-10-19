@@ -1,0 +1,34 @@
+---
+layout: product
+title: Castanya fresca  petita
+tagline: Castanya fresca
+outOfStock: false
+categories:
+  - castanyes
+consumptionMoments:
+  - picar-compartir
+  - cuinar
+dietTags:
+  - sense-gluten
+homepageTags: []
+price: 3.5
+priceLabel: '3,50€'
+sku: CASTG
+currency: EUR
+availability: Disponible a la botiga online
+ingredientsLabel: INGREDIENTS
+ingredients: Castanya fresca del Montseny
+image: /assets/images/Castanay fresca Gran.jpeg
+description: 'Castanya fresca del Montseny, mida petita'
+imageAlt: Botifarra de Castanya
+seoTitle: Castanya fresca
+gallery: []
+formatLabel: 500gr
+shippingNote: Enviaments a tota la península en 24/48 hores.
+detailLabel: DESCRIPCIÓ
+ctaLabel: AFEGIR A LA CISTELLA
+ctaHref: /shop/cart/
+featured: false
+---
+
+Castanya fresca del Montseny (tamany petit) malles de 500gr
