@@ -20,7 +20,7 @@ ingredientsLabel: INGREDIENTS
 ingredients: Castanya fresca del Montseny
 image: /assets/images/Castanay fresca Gran.jpeg
 description: 'Castanya fresca del Montseny, mida petita'
-imageAlt: Botifarra de Castanya
+imageAlt: Castanya fresca
 seoTitle: Castanya fresca
 gallery: []
 formatLabel: 500gr
