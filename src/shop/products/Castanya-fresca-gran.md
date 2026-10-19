@@ -30,4 +30,4 @@ ctaHref: /shop/cart/
 featured: false
 ---
 
-Castanya fresca del Montseny (tamany gran).
+Castanya fresca del Montseny (tamany gran) malles de 500gr
