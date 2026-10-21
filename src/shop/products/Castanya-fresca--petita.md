@@ -13,7 +13,7 @@ dietTags:
 homepageTags: []
 price: 3.5
 priceLabel: '3,50€'
-sku: CASTG
+sku: CASTP
 currency: EUR
 availability: Disponible a la botiga online
 ingredientsLabel: INGREDIENTS
@@ -24,6 +24,10 @@ imageAlt: Castanya fresca
 seoTitle: Castanya fresca
 gallery: []
 formatLabel: 500gr
+formats:
+  - label: Malla de 500 g
+    sku: CASTP
+    price: 3.5
 shippingNote: Enviaments a tota la península en 24/48 hores.
 detailLabel: DESCRIPCIÓ
 ctaLabel: AFEGIR A LA CISTELLA

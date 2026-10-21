@@ -1,6 +1,21 @@
 {
   "list": [
     {
+      "slug": "Botifarra-de-Castanya",
+      "name": "Botifarra de Castanya",
+      "currency": "EUR",
+      "image": "/assets/images/Botifarra%20de%20castanya.jpeg",
+      "outOfStock": false,
+      "variants": [
+        {
+          "sku": "Bucas",
+          "label": "Unitat",
+          "price": 6.7,
+          "outOfStock": false
+        }
+      ]
+    },
+    {
       "slug": "castanya-al-brandi-extra",
       "name": "Castanya al brandi extra",
       "currency": "EUR",
@@ -26,6 +41,36 @@
           "sku": "ca010",
           "label": "Pot de 350 g",
           "price": 7.6,
+          "outOfStock": false
+        }
+      ]
+    },
+    {
+      "slug": "Castanya-fresca--petita",
+      "name": "Castanya fresca  petita",
+      "currency": "EUR",
+      "image": "/assets/images/Castanay fresca Gran.jpeg",
+      "outOfStock": false,
+      "variants": [
+        {
+          "sku": "CASTP",
+          "label": "Malla de 500 g",
+          "price": 3.5,
+          "outOfStock": false
+        }
+      ]
+    },
+    {
+      "slug": "Castanya-fresca-gran",
+      "name": "Castanya fresca gran",
+      "currency": "EUR",
+      "image": "/assets/images/Castanay fresca Gran.jpeg",
+      "outOfStock": false,
+      "variants": [
+        {
+          "sku": "CASTG",
+          "label": "Malla de 500 g",
+          "price": 4.5,
           "outOfStock": false
         }
       ]

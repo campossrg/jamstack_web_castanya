@@ -20,6 +20,10 @@ description: Botifarra de Castanya
 imageAlt: Botifarra de Castanya
 gallery: []
 formatLabel: Selecciona format
+formats:
+  - label: Unitat
+    sku: Bucas
+    price: 6.7
 shippingNote: Enviaments a tota la península en 24/48 hores.
 detailLabel: DESCRIPCIÓ
 ctaLabel: AFEGIR A LA CISTELLA

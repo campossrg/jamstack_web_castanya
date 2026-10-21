@@ -253,6 +253,8 @@ export default defineConfig({
             type: "number",
             name: "price",
             label: "Price",
+            description:
+              "Display only. Orders use the price of each entry in 'Format options' below.",
             required: true,
           },
           {
@@ -264,6 +266,8 @@ export default defineConfig({
             type: "string",
             name: "sku",
             label: "Default SKU",
+            description:
+              "Display only. Orders use the SKU of each entry in 'Format options' below, so fill that in too.",
           },
           {
             type: "string",
@@ -334,7 +338,9 @@ export default defineConfig({
           {
             type: "object",
             name: "formats",
-            label: "Format options",
+            label: "Format options (REQUIRED to sell the product)",
+            description:
+              "Each format is one thing the customer can buy (e.g. 'Pot de 300 g'). The shop and checkout take the SKU and price from here, NOT from the Price / Default SKU fields above. A product without a valid format cannot be ordered. Every SKU must be unique across the whole shop.",
             list: true,
             required: true,
             ui: {
@@ -348,25 +354,61 @@ export default defineConfig({
                   "New format",
                 ),
               }),
+              validate: (value: any[] | undefined) => {
+                if (!Array.isArray(value) || value.length === 0) {
+                  return "Add at least one format with a label, a unique SKU and a price. Without it the product cannot be ordered.";
+                }
+                const skus = value.map((entry) =>
+                  String(entry?.sku ?? "").trim().toLowerCase(),
+                );
+                if (new Set(skus).size !== skus.length) {
+                  return "Two formats of this product share the same SKU. Each format needs its own unique SKU.";
+                }
+              },
             },
             fields: [
               {
                 type: "string",
                 name: "label",
                 label: "Label",
+                description: "What the customer sees in the selector, e.g. 'Malla de 500 g'.",
                 required: true,
               },
               {
                 type: "string",
                 name: "sku",
                 label: "SKU",
+                description:
+                  "Unique product code, never reused by another product or format. Do not change it once the product is live: carts holding the old SKU will fail at checkout.",
                 required: true,
+                ui: {
+                  validate: (value: string | undefined) => {
+                    const sku = String(value ?? "").trim();
+                    if (!sku) {
+                      return "SKU is required.";
+                    }
+                    if (/^sku-\d+$/i.test(sku)) {
+                      return "Replace the placeholder SKU with the real, unique product code.";
+                    }
+                    if (/\s/.test(sku)) {
+                      return "SKU cannot contain spaces.";
+                    }
+                  },
+                },
               },
               {
                 type: "number",
                 name: "price",
                 label: "Price",
+                description: "Price in EUR for this format (VAT included).",
                 required: true,
+                ui: {
+                  validate: (value: number | undefined) => {
+                    if (!(Number(value) > 0)) {
+                      return "Price must be greater than 0.";
+                    }
+                  },
+                },
               },
               {
                 type: "boolean",

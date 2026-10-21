@@ -65,6 +65,8 @@ function generate() {
 
   const entries = fs.readdirSync(productsDir, { withFileTypes: true });
   const products = [];
+  const problems = [];
+  const skuOwners = new Map();
 
   for (const entry of entries) {
     if (!entry.isFile() || !entry.name.endsWith('.md')) {
@@ -87,11 +89,32 @@ function generate() {
     }
 
     if (!product.name || !product.variants.length) {
-      console.warn(`Skipping ${entry.name}: missing title or formats`);
+      // A page without a valid format still renders an add-to-cart button, but
+      // create-order rejects it as "Unknown SKU", so fail loudly instead.
+      problems.push(
+        `${entry.name}: missing title or a valid entry in "formats" (label, sku and price), so it cannot be ordered`,
+      );
       continue;
     }
 
+    product.variants.forEach((variant) => {
+      const owner = skuOwners.get(variant.sku);
+      if (owner) {
+        problems.push(
+          `${entry.name}: SKU "${variant.sku}" is already used by ${owner}`,
+        );
+      } else {
+        skuOwners.set(variant.sku, entry.name);
+      }
+    });
+
     products.push(product);
+  }
+
+  if (problems.length) {
+    throw new Error(
+      `Invalid product catalog:\n - ${problems.join('\n - ')}`,
+    );
   }
 
   products.sort((a, b) => a.slug.localeCompare(b.slug));
