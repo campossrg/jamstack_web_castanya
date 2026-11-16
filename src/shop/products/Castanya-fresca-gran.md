@@ -2,7 +2,7 @@
 layout: product
 title: Castanya fresca gran
 tagline: Castanya fresca
-outOfStock: false
+outOfStock: true
 categories:
   - castanyes
 consumptionMoments:
