@@ -19,6 +19,7 @@ ingredients: 'Gartnatxa '
 image: /assets/images/products/pending-product-image.svg
 description: Garnatxa
 imageAlt: Garnatxa
+seoTitle: Garn01
 gallery: []
 formatLabel: Selecciona format
 formats:
