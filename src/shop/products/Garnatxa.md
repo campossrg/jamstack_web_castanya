@@ -27,7 +27,7 @@ formats:
     price: 9
 shippingNote: Enviaments a tota la península en 24/48 hores.
 highlights:
-  - text: 'Format disponible: Ampolla de 33 cl · 0,6% vol.'
+  - text: 'Format disponible: Ampolla de 75 cl · 16% vol.'
   - text: 'Ingredients destacats: Castanya del Montseny, llevat, llúpols ecològics i maltes d’ordi.'
   - text: Ideal per regalar o maridar en moments especials.
 detailLabel: DESCRIPCIÓ
