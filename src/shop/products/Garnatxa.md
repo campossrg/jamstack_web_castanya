@@ -16,7 +16,7 @@ currency: EUR
 availability: Disponible a la botiga online
 ingredientsLabel: INGREDIENTS
 ingredients: 'Gartnatxa '
-image: /assets/images/products/pending-product-image.svg
+image: /assets/images/products/Garnatxa.jpeg
 description: Garnatxa
 imageAlt: Garnatxa
 seoTitle: Garn01
