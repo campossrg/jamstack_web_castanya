@@ -3,7 +3,7 @@ permalink: /shop/products/castanya-torrada/
 layout: product
 title: Castanya torrada
 tagline: Castanya de Viladrau transformada amb cura artesanal.
-outOfStock: true
+outOfStock: false
 categories:
   - castanyes
   - productes-estrella
