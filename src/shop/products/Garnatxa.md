@@ -36,4 +36,4 @@ ctaHref: /shop/cart/
 featured: false
 ---
 
-Cervesa d’alta fermentació. Sense pasteuritzar. Pot fer sediments per la presència de llevat. Cervesa refermentada en ampolla. Sense alcohol.
+Garnatxa
