@@ -28,11 +28,9 @@ formats:
 shippingNote: Enviaments a tota la península en 24/48 hores.
 highlights:
   - text: 'Format disponible: Ampolla de 75 cl · 16% vol.'
-  - text: 'Ingredients destacats: Castanya del Montseny, llevat, llúpols ecològics i maltes d’ordi.'
-  - text: Ideal per regalar o maridar en moments especials.
 detailLabel: DESCRIPCIÓ
 detailNotes:
-  - text: Cervesa d’alta fermentació. Sense pasteuritzar. Pot fer sediments per la presència de llevat. Cervesa refermentada en ampolla. Sense alcohol
+  - text: Garnatxa
 ctaLabel: AFEGIR A LA CISTELLA
 ctaHref: /shop/cart/
 featured: false
