@@ -20,7 +20,7 @@ currency: EUR
 availability: Disponible a la botiga online
 ingredientsLabel: INGREDIENTS
 ingredients: Mel.
-image: /assets/images/products/Castanya de Viladrau (41).jpeg
+image: /assets/images/products/castanya-de-viladrau-41.jpeg
 description: Mel de color clar. Tonificant i estimulant natural per a tot l’aparell digestiu.
 imageAlt: Imatge pendent per a Mel de romaní
 gallery: []

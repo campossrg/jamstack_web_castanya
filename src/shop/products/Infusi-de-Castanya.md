@@ -17,11 +17,11 @@ currency: EUR
 availability: Disponible a la botiga online
 ingredientsLabel: INGREDIENTS
 ingredients: 'Castanyes, mel decastanyer, aigua, llimona, menta, romaní, farigola, espígol, mariallüisam rosella i goma de garrofi'
-image: /assets/images/infusió de castanya.jpeg
+image: /assets/images/infusio-de-castanya.jpeg
 description: 'La nostra infusió de castanya combina la dolçor de la castanya i la mel de castanyer amb notes de romaní, farigola i un toc fresc de llimona. '
 imageAlt: Infusió de Castanya
 gallery:
-  - image: /assets/images/infusi%C3%B3%20de%20castanya.jpeg
+  - image: /assets/images/infusio-de-castanya.jpeg
 formatLabel: Selecciona format
 formats:
   - label: Pot 290gr

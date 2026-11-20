@@ -16,7 +16,7 @@ currency: EUR
 availability: Disponible a la botiga online
 ingredientsLabel: INGREDIENTS
 ingredients: 'Castanya confitada, Banyada amb xocolata negra'
-image: /assets/images/Roquets de Castanya.jpeg
+image: /assets/images/roquets-de-castanya.jpeg
 description: Castanya confitada banyada amb xocolata negra
 imageAlt: Roquets de castanya
 seoTitle: Castanya confitada banyada amb castanya

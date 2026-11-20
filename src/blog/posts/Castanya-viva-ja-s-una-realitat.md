@@ -4,7 +4,7 @@ description: 'Obrim les portes de Castanya Viva: una porta del Montseny a Barcel
 date: 2026-09-26T00:00:00.000Z
 displayDate: 26 SET 2026
 readingTimeValue: 2 minuts
-image: /assets/images/Castanya Viva (2).png
+image: /assets/images/blog/castanya-viva.png
 imageAlt: Castanya Viva
 seoTitle: Castanya Viva
 seoDescription: Botiga Castanya Barcelona

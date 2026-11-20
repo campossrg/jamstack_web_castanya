@@ -87,7 +87,12 @@ export default defineConfig({
             name: "readingTimeValue",
             label: "Reading Time Value",
           },
-          { type: "image", name: "image", label: "Featured Image" },
+          {
+            type: "image",
+            name: "image",
+            label: "Featured Image",
+            uploadDir: () => "blog",
+          },
           { type: "string", name: "imageAlt", label: "Image Alt Text" },
           { type: "string", name: "seoTitle", label: "SEO Title" },
           {
@@ -96,7 +101,12 @@ export default defineConfig({
             label: "SEO Description",
             ui: { component: "textarea" },
           },
-          { type: "image", name: "seoImage", label: "SEO Image" },
+          {
+            type: "image",
+            name: "seoImage",
+            label: "SEO Image",
+            uploadDir: () => "blog",
+          },
           { type: "string", name: "tags", label: "Tags", list: true },
           { type: "boolean", name: "featured", label: "Featured Post" },
           {
@@ -298,6 +308,7 @@ export default defineConfig({
             name: "image",
             label: "Main image",
             required: true,
+            uploadDir: () => "products",
           },
           {
             type: "string",
@@ -314,7 +325,12 @@ export default defineConfig({
             label: "SEO Description",
             ui: { component: "textarea" },
           },
-          { type: "image", name: "seoImage", label: "SEO Image" },
+          {
+            type: "image",
+            name: "seoImage",
+            label: "SEO Image",
+            uploadDir: () => "products",
+          },
           {
             type: "object",
             name: "gallery",
@@ -326,7 +342,13 @@ export default defineConfig({
               }),
             },
             fields: [
-              { type: "image", name: "image", label: "Image", required: true },
+              {
+                type: "image",
+                name: "image",
+                label: "Image",
+                required: true,
+                uploadDir: () => "products",
+              },
             ],
           },
           {

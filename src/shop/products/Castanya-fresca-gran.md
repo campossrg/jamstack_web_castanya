@@ -18,7 +18,7 @@ currency: EUR
 availability: Disponible a la botiga online
 ingredientsLabel: INGREDIENTS
 ingredients: Castanya fresca del Montseny
-image: /assets/images/Castanay fresca Gran.jpeg
+image: /assets/images/castanya-fresca-gran.jpeg
 description: 'Castanya fresca del Montseny, mida gran'
 imageAlt: Castanya gran
 gallery: []

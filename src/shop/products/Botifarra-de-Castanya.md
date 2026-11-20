@@ -15,7 +15,7 @@ currency: EUR
 availability: Disponible a la botiga online
 ingredientsLabel: INGREDIENTS
 ingredients: 'Carn de porc, castanyes, sal , pebre'
-image: /assets/images/Botifarra%20de%20castanya.jpeg
+image: /assets/images/botifarra-de-castanya.jpeg
 description: Botifarra de Castanya
 imageAlt: Botifarra de Castanya
 gallery: []

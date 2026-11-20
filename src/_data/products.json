@@ -4,7 +4,7 @@
       "slug": "Botifarra-de-Castanya",
       "name": "Botifarra de Castanya",
       "currency": "EUR",
-      "image": "/assets/images/Botifarra%20de%20castanya.jpeg",
+      "image": "/assets/images/botifarra-de-castanya.jpeg",
       "outOfStock": false,
       "variants": [
         {
@@ -49,14 +49,14 @@
       "slug": "Castanya-fresca--petita",
       "name": "Castanya fresca  petita",
       "currency": "EUR",
-      "image": "/assets/images/Castanay fresca Gran.jpeg",
-      "outOfStock": false,
+      "image": "/assets/images/castanya-fresca-gran.jpeg",
+      "outOfStock": true,
       "variants": [
         {
           "sku": "CASTP",
           "label": "Malla de 500 g",
-          "price": 3.5,
-          "outOfStock": false
+          "price": 4.5,
+          "outOfStock": true
         }
       ]
     },
@@ -64,14 +64,14 @@
       "slug": "Castanya-fresca-gran",
       "name": "Castanya fresca gran",
       "currency": "EUR",
-      "image": "/assets/images/Castanay fresca Gran.jpeg",
-      "outOfStock": false,
+      "image": "/assets/images/castanya-fresca-gran.jpeg",
+      "outOfStock": true,
       "variants": [
         {
           "sku": "CASTG",
           "label": "Malla de 500 g",
           "price": 4.5,
-          "outOfStock": false
+          "outOfStock": true
         }
       ]
     },
@@ -131,13 +131,13 @@
       "name": "Cervesa de castanya sense alcohol",
       "currency": "EUR",
       "image": "/assets/images/products/cervesa-de-castanya-sense-alcohol.png",
-      "outOfStock": false,
+      "outOfStock": true,
       "variants": [
         {
           "sku": "ce014",
           "label": "Ampolla de 33 cl · 0,6% vol.",
           "price": 4.1,
-          "outOfStock": false
+          "outOfStock": true
         }
       ]
     },
@@ -146,13 +146,13 @@
       "name": "Cervesa Torrent “Sureda”",
       "currency": "EUR",
       "image": "/assets/images/products/cervesa-torrent-sureda.png",
-      "outOfStock": false,
+      "outOfStock": true,
       "variants": [
         {
           "sku": "ce010",
           "label": "Cervesa Torrent “Sureda”",
           "price": 16.5,
-          "outOfStock": false
+          "outOfStock": true
         }
       ]
     },
@@ -254,6 +254,36 @@
           "sku": "fq010",
           "label": "Formatge sencer",
           "price": 20.5,
+          "outOfStock": false
+        }
+      ]
+    },
+    {
+      "slug": "Garnatxa",
+      "name": "Garnatxa",
+      "currency": "EUR",
+      "image": "/assets/images/products/garnatxa.jpeg",
+      "outOfStock": false,
+      "variants": [
+        {
+          "sku": "Garn01",
+          "label": "Ampolla de 750cl · 16% vol.",
+          "price": 9,
+          "outOfStock": false
+        }
+      ]
+    },
+    {
+      "slug": "Infusi-de-Castanya",
+      "name": "Infusió de Castanya",
+      "currency": "EUR",
+      "image": "/assets/images/infusio-de-castanya.jpeg",
+      "outOfStock": false,
+      "variants": [
+        {
+          "sku": "Infcast",
+          "label": "Pot 290gr",
+          "price": 7.3,
           "outOfStock": false
         }
       ]
@@ -460,7 +490,7 @@
       "slug": "mel-de-romani",
       "name": "Mel de romaní",
       "currency": "EUR",
-      "image": "/assets/images/products/Castanya de Viladrau (41).jpeg",
+      "image": "/assets/images/products/castanya-de-viladrau-41.jpeg",
       "outOfStock": false,
       "variants": [
         {
@@ -548,6 +578,21 @@
           "sku": "ol010",
           "label": "Ampolla de 100 ml",
           "price": 7,
+          "outOfStock": false
+        }
+      ]
+    },
+    {
+      "slug": "Roquets-de-Castanya",
+      "name": "Roquets de Castanya",
+      "currency": "EUR",
+      "image": "/assets/images/roquets-de-castanya.jpeg",
+      "outOfStock": false,
+      "variants": [
+        {
+          "sku": "Roqcast",
+          "label": "Unitat",
+          "price": 15,
           "outOfStock": false
         }
       ]
