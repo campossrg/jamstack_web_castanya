@@ -2,7 +2,7 @@
 layout: product
 title: Castanya fresca  petita
 tagline: Castanya fresca
-outOfStock: false
+outOfStock: true
 categories:
   - castanyes
 consumptionMoments:
@@ -11,8 +11,8 @@ consumptionMoments:
 dietTags:
   - sense-gluten
 homepageTags: []
-price: 3.5
-priceLabel: '3,50€'
+price: 4.5
+priceLabel: '4,50€'
 sku: CASTP
 currency: EUR
 availability: Disponible a la botiga online
@@ -27,7 +27,7 @@ formatLabel: 500gr
 formats:
   - label: Malla de 500 g
     sku: CASTP
-    price: 3.5
+    price: 4.5
 shippingNote: Enviaments a tota la península en 24/48 hores.
 detailLabel: DESCRIPCIÓ
 ctaLabel: AFEGIR A LA CISTELLA

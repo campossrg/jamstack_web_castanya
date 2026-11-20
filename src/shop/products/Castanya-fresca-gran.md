@@ -2,7 +2,7 @@
 layout: product
 title: Castanya fresca gran
 tagline: Castanya fresca
-outOfStock: false
+outOfStock: true
 categories:
   - castanyes
 consumptionMoments:
@@ -11,8 +11,8 @@ consumptionMoments:
 dietTags:
   - sense-gluten
 homepageTags: []
-price: 4.5
-priceLabel: '4,50€'
+price: 5.5
+priceLabel: '5,50€'
 sku: CASTG
 currency: EUR
 availability: Disponible a la botiga online
