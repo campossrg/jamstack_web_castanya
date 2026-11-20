@@ -62,9 +62,27 @@
     </details>
 
     <a href="{% if lang == 'es' %}/es/gastronomic/receptes{% elif lang == 'en' %}/en/gastronomic/receptes{% else %}/gastronomic/receptes{% endif %}" class="shop-page-filter">{{ i18n[lang].shopFilterTrees }}</a>
-    <a href="{% if lang == 'es' %}/es/shop/products/catalog/{% elif lang == 'en' %}/en/shop/products/catalog/{% else %}/shop/products/catalog/{% endif %}" class="shop-page-search">
-      {{ i18n[lang].shopFilterSearch }}
-      <span aria-hidden="true">&rsaquo;</span>
-    </a>
+    <div class="shop-page-search-wrap" data-recipe-search data-search-empty="{{ i18n[lang].shopSearchEmpty }}">
+      <button type="button" class="shop-page-search" data-recipe-search-toggle>
+        {{ i18n[lang].shopFilterSearch }}
+        <span aria-hidden="true">&rsaquo;</span>
+      </button>
+      <input
+        type="search"
+        class="shop-page-search-input"
+        name="q"
+        placeholder="{{ i18n[lang].shopSearchPlaceholder }}"
+        autocomplete="off"
+        data-recipe-search-input
+        hidden
+      />
+      <div class="shop-page-search-results" data-recipe-search-results hidden></div>
+    </div>
   </div>
 </nav>
+{% set searchProducts = collections.products | filterByLang(lang) %}
+<script type="application/json" data-recipe-search-data>[
+  {% for product in searchProducts %}
+  {"title": {{ product.data.title | dump | safe }}, "url": {{ product.url | dump | safe }}}{% if not loop.last %},{% endif %}
+  {% endfor %}
+]</script>

@@ -96,6 +96,8 @@ module.exports = {
     shopFilterDiet: "Dietes i intoleràncies",
     shopFilterTrees: "Arbres",
     shopFilterSearch: "Busca producte",
+    shopSearchPlaceholder: "Cerca un producte...",
+    shopSearchEmpty: "No hem trobat cap producte.",
 
     // recipe-filters.njk
     recipeFilterDifficulty: "Nivell de dificultat",
@@ -287,6 +289,8 @@ module.exports = {
     shopFilterDiet: "Dietas e intolerancias",
     shopFilterTrees: "Árboles",
     shopFilterSearch: "Buscar producto",
+    shopSearchPlaceholder: "Busca un producto...",
+    shopSearchEmpty: "No hemos encontrado ningún producto.",
 
     // recipe-filters.njk
     recipeFilterDifficulty: "Nivel de dificultad",
@@ -478,6 +482,8 @@ module.exports = {
     shopFilterDiet: "Diets and intolerances",
     shopFilterTrees: "Trees",
     shopFilterSearch: "Search product",
+    shopSearchPlaceholder: "Search for a product...",
+    shopSearchEmpty: "No products found.",
 
     // recipe-filters.njk
     recipeFilterDifficulty: "Difficulty level",

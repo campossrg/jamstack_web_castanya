@@ -1313,6 +1313,9 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    const emptyMessage =
+      wrap.dataset.searchEmpty || "No hem trobat cap recepta.";
+
     let recipes = [];
     try {
       recipes = dataScript ? JSON.parse(dataScript.textContent || "[]") : [];
@@ -1345,7 +1348,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (!matches.length) {
         results.innerHTML =
-          '<p class="shop-page-search-results__empty">No hem trobat cap recepta.</p>';
+          `<p class="shop-page-search-results__empty">${escapeHtml(emptyMessage)}</p>`;
         results.hidden = false;
         return;
       }
