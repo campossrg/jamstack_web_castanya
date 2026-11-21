@@ -9028,6 +9028,23 @@ body.page-professionals .professionals-value-feature__cta {
 
 .shop-page-seasonal__image {
   object-fit: cover;
+  /* Square product photo in a wide banner: keep the chocolates and box visible */
+  object-position: 50% 78%;
+}
+
+@media (min-width: 761px) {
+  .shop-page-seasonal__image {
+    /* Push the subject to the right, away from the text column */
+    width: 62%;
+    left: auto;
+    right: 0;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 18%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 18%);
+  }
+
+  .shop-page-seasonal {
+    background: #e9ac6f;
+  }
 }
 
 .shop-page-seasonal__overlay {
