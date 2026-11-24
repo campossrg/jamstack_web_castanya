@@ -25,7 +25,7 @@ bookingHighlights:
   - IDEAL FOR SMALL GROUPS AND PRIVATE VISITS
 personsMin: 2
 personsMax: 8
-duration: 1 hour with tasting
+duration: 1.5 hours with tasting
 priceFrom: 15€
 priceNote: Depending on format and group size
 difficulty: Easy level

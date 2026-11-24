@@ -25,7 +25,7 @@ bookingHighlights:
   - FLEXIBLE CANCELLATION POLICY UP TO 48H BEFORE THE VISIT
 personsMin: 2
 personsMax: 8
-duration: 1 hour with tasting
+duration: 3.5 hours approx. with tasting
 priceFrom: 35€
 priceNote: Depending on the number of people
 difficulty: Easy level

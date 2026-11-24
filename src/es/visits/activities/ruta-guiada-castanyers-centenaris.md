@@ -25,7 +25,7 @@ bookingHighlights:
   - POLÍTICA DE CANCELACIÓN FLEXIBLE HASTA 48H ANTES DE LA VISITA
 personsMin: 2
 personsMax: 8
-duration: 1 hora con degustación
+duration: 2 horas aprox. con degustación
 priceFrom: 18€
 priceNote: según número de personas
 difficulty: Nivel fácil

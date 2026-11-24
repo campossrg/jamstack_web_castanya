@@ -25,7 +25,7 @@ bookingHighlights:
   - IDEAL PARA GRUPOS PEQUEÑOS Y VISITAS PRIVADAS
 personsMin: 2
 personsMax: 8
-duration: 1 hora con degustación
+duration: 1,5 horas con degustación
 priceFrom: 18€
 priceNote: según formato y tamaño del grupo
 difficulty: Nivel fácil
