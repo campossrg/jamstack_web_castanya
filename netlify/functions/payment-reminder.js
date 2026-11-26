@@ -59,8 +59,17 @@ async function updateOrder(orderId, payload) {
   }
 }
 
+const SUPPORTED_LANGS = ['ca', 'es', 'en'];
+
+function getOrderLang(order) {
+  return SUPPORTED_LANGS.includes(order.language) ? order.language : 'ca';
+}
+
 function buildResumeUrl(order) {
-  return `${SITE_URL}/shop/cart/?resume=${encodeURIComponent(order.public_order_code)}`;
+  // Catalan lives at the site root; Spanish and English under /es and /en.
+  const lang = getOrderLang(order);
+  const prefix = lang === 'ca' ? '' : `/${lang}`;
+  return `${SITE_URL}${prefix}/shop/cart/?resume=${encodeURIComponent(order.public_order_code)}`;
 }
 
 async function sendReminders(now) {
@@ -77,6 +86,7 @@ async function sendReminders(now) {
         type: 'payment-reminder',
         to: order.customer_email,
         data: {
+          lang: getOrderLang(order),
           orderCode: order.public_order_code,
           totalAmount: order.total_amount,
           resumeUrl: buildResumeUrl(order),

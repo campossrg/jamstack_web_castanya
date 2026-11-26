@@ -144,6 +144,8 @@ async function sendOrderEmails(order) {
   const billingAddress = order.billing_address_json || {};
   const emailData = {
     orderId: order.public_order_code,
+    lang: ['ca', 'es', 'en'].includes(order.language) ? order.language : 'ca',
+    hasInvoice: false,
     items: orderItems.map((item) => ({
       name: item.product_name,
       variantLabel: item.variant_label,
@@ -176,24 +178,38 @@ async function sendOrderEmails(order) {
         : null,
   };
 
-  await sendEmail({
-    type: 'order-confirmation',
-    to: order.customer_email,
-    data: emailData,
+  // The provider keeps the original (Spanish) invoice; the customer gets a
+  // copy translated to the language the order was placed in.
+  const providerInvoice = await buildInvoiceAttachment(order, emailData, billingAddress);
+  const customerInvoice = await buildInvoiceAttachment(order, emailData, billingAddress, {
+    lang: emailData.lang,
   });
+  emailData.hasInvoice = Boolean(customerInvoice);
 
-  const invoiceAttachment = await buildInvoiceAttachment(order, emailData, billingAddress);
+  // Send both emails independently so a failure on one does not block the other.
+  const results = await Promise.allSettled([
+    sendEmail({
+      type: 'order-confirmation',
+      to: order.customer_email,
+      data: emailData,
+      attachments: customerInvoice ? [customerInvoice] : undefined,
+    }),
+    sendEmail({
+      type: 'order-notification',
+      data: emailData,
+      attachments: providerInvoice ? [providerInvoice] : undefined,
+    }),
+  ]);
 
-  await sendEmail({
-    type: 'order-notification',
-    data: emailData,
-    attachments: invoiceAttachment ? [invoiceAttachment] : undefined,
-  });
+  const failure = results.find((result) => result.status === 'rejected');
+  if (failure) {
+    throw failure.reason;
+  }
 
   return { skipped: false };
 }
 
-async function buildInvoiceAttachment(order, emailData, billingAddress) {
+async function buildInvoiceAttachment(order, emailData, billingAddress, { lang } = {}) {
   const hasBillingDetails = Boolean(
     billingAddress.company_name || billingAddress.address_line_1,
   );
@@ -232,11 +248,12 @@ async function buildInvoiceAttachment(order, emailData, billingAddress) {
         amount: Number(order.shipping_amount || 0),
         vatRate: 0.21,
       },
+      lang,
     });
 
     return {
       content: pdfBuffer.toString('base64'),
-      name: `Factura-${order.public_order_code}.pdf`,
+      name: `${lang === 'en' ? 'Invoice' : 'Factura'}-${order.public_order_code}.pdf`,
     };
   } catch (pdfError) {
     console.error(

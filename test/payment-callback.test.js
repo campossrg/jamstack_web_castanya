@@ -464,7 +464,23 @@ test('payment-callback handler sends customer and provider emails when Brevo is 
       providerEmailPayload.htmlContent,
       /<strong>Botiga:<\/strong> Viladrau/i,
     );
-    assert.equal(customerEmailPayload.attachment, undefined);
+    assert.equal(customerEmailPayload.attachment.length, 1);
+    assert.equal(
+      customerEmailPayload.attachment[0].name,
+      'Factura-CV-PAID-EMAILS.pdf',
+    );
+    assert.match(
+      Buffer.from(customerEmailPayload.attachment[0].content, 'base64')
+        .subarray(0, 5)
+        .toString('utf8'),
+      /%PDF-/,
+    );
+    // Customer copy is translated (order without language falls back to
+    // Catalan); the provider copy keeps the original Spanish text.
+    assert.notEqual(
+      customerEmailPayload.attachment[0].content,
+      providerEmailPayload.attachment[0].content,
+    );
     assert.equal(providerEmailPayload.attachment.length, 1);
     assert.equal(
       providerEmailPayload.attachment[0].name,

@@ -30,21 +30,98 @@ const LINE_GRAY = rgb(0.82, 0.82, 0.82);
 const TEXT_DARK = rgb(0.15, 0.15, 0.15);
 const TEXT_MUTED = rgb(0.4, 0.4, 0.4);
 
-const COLUMNS = [
-  { key: "concepto", label: "CONCEPTO", width: 140 },
-  { key: "descripcion", label: "DESCRIPCIÓN", width: 110 },
-  { key: "precio", label: "PRECIO", width: 55, align: "right" },
-  { key: "unidades", label: "UNIDADES", width: 50, align: "right" },
-  { key: "subtotal", label: "SUBTOTAL", width: 55, align: "right" },
-  { key: "iva", label: "IVA", width: 30, align: "right" },
-  { key: "total", label: "TOTAL", width: 55, align: "right" },
+const COLUMN_LAYOUT = [
+  { key: "concepto", width: 140 },
+  { key: "descripcion", width: 110 },
+  { key: "precio", width: 55, align: "right" },
+  { key: "unidades", width: 50, align: "right" },
+  { key: "subtotal", width: 55, align: "right" },
+  { key: "iva", width: 30, align: "right" },
+  { key: "total", width: 55, align: "right" },
 ];
 
-let colX = MARGIN;
-COLUMNS.forEach((col) => {
-  col.x = colX;
-  colX += col.width;
-});
+// "provider" keeps the exact text of the invoice copy sent to Castanya
+// (Spanish, with the original Catalan shipping label); ca/es/en are the
+// customer-facing versions picked from the order language.
+const PDF_STRINGS = {
+  provider: {
+    columns: ["CONCEPTO", "DESCRIPCIÓN", "PRECIO", "UNIDADES", "SUBTOTAL", "IVA", "TOTAL"],
+    client: "Cliente",
+    invoice: "FACTURA",
+    date: "Fecha",
+    vatId: "NIF/VAT",
+    shipping: "Despeses d'enviament",
+    taxBase: "BASE IMPONIBLE",
+    vat: "IVA",
+    total: "TOTAL",
+    termsTitle: "Términos y condiciones:",
+    terms: (legalName) =>
+      "En cumplimiento de lo que dispone el Reglamento General de Proteccion de Datos 2016/679, " +
+      `${legalName} le informa que sus datos personales seran tratados e incorporados en ` +
+      "nuestros sistemas informaticos, de los cuales es titular esta empresa.",
+    decimal: ",",
+  },
+  ca: {
+    columns: ["CONCEPTE", "DESCRIPCIÓ", "PREU", "UNITATS", "SUBTOTAL", "IVA", "TOTAL"],
+    client: "Client",
+    invoice: "FACTURA",
+    date: "Data",
+    vatId: "NIF/VAT",
+    shipping: "Despeses d'enviament",
+    taxBase: "BASE IMPOSABLE",
+    vat: "IVA",
+    total: "TOTAL",
+    termsTitle: "Termes i condicions:",
+    terms: (legalName) =>
+      "En compliment del que disposa el Reglament General de Protecció de Dades 2016/679, " +
+      `${legalName} l'informa que les seves dades personals seran tractades i incorporades als ` +
+      "nostres sistemes informàtics, dels quals és titular aquesta empresa.",
+    decimal: ",",
+  },
+  es: {
+    columns: ["CONCEPTO", "DESCRIPCIÓN", "PRECIO", "UNIDADES", "SUBTOTAL", "IVA", "TOTAL"],
+    client: "Cliente",
+    invoice: "FACTURA",
+    date: "Fecha",
+    vatId: "NIF/VAT",
+    shipping: "Gastos de envío",
+    taxBase: "BASE IMPONIBLE",
+    vat: "IVA",
+    total: "TOTAL",
+    termsTitle: "Términos y condiciones:",
+    terms: (legalName) =>
+      "En cumplimiento de lo que dispone el Reglamento General de Protección de Datos 2016/679, " +
+      `${legalName} le informa que sus datos personales serán tratados e incorporados en ` +
+      "nuestros sistemas informáticos, de los cuales es titular esta empresa.",
+    decimal: ",",
+  },
+  en: {
+    columns: ["ITEM", "DESCRIPTION", "PRICE", "QTY", "SUBTOTAL", "VAT", "TOTAL"],
+    client: "Customer",
+    invoice: "INVOICE",
+    date: "Date",
+    vatId: "VAT/Tax ID",
+    shipping: "Shipping costs",
+    taxBase: "TAXABLE BASE",
+    vat: "VAT",
+    total: "TOTAL",
+    termsTitle: "Terms and conditions:",
+    terms: (legalName) =>
+      "In compliance with the General Data Protection Regulation 2016/679, " +
+      `${legalName} informs you that your personal data will be processed and incorporated into ` +
+      "our computer systems, of which this company is the owner.",
+    decimal: ".",
+  },
+};
+
+function buildColumns(strings) {
+  let x = MARGIN;
+  return COLUMN_LAYOUT.map((col, index) => {
+    const column = { ...col, label: strings.columns[index], x };
+    x += col.width;
+    return column;
+  });
+}
 
 function sanitizeText(value) {
   return String(value || "")
@@ -54,8 +131,8 @@ function sanitizeText(value) {
     .replace(/…/g, "...");
 }
 
-function eur(value) {
-  return `${Number(value).toFixed(2).replace(".", ",")}€`;
+function eur(value, decimal = ",") {
+  return `${Number(value).toFixed(2).replace(".", decimal)}€`;
 }
 
 function formatDate(date) {
@@ -88,7 +165,10 @@ function wrapText(text, font, size, maxWidth) {
   return lines.length ? lines : [""];
 }
 
-async function buildOrderInvoicePdf({ code, date, client, items, shipping }) {
+async function buildOrderInvoicePdf({ code, date, client, items, shipping, lang = "provider" }) {
+  const strings = PDF_STRINGS[lang] || PDF_STRINGS.provider;
+  const COLUMNS = buildColumns(strings);
+  const money = (value) => eur(value, strings.decimal);
   const pdfDoc = await PDFDocument.create();
   let page = pdfDoc.addPage([PAGE_WIDTH, PAGE_HEIGHT]);
 
@@ -148,12 +228,12 @@ async function buildOrderInvoicePdf({ code, date, client, items, shipping }) {
   y -= Math.max(logoDims.height, 6 * 13) + 26;
 
   page.drawRectangle({ x: MARGIN, y: y - 20, width: CONTENT_WIDTH, height: 22, color: GRAY });
-  drawText("Cliente", MARGIN + CONTENT_WIDTH / 2, y - 14, { font: fontBold, size: 10, align: "center" });
+  drawText(strings.client, MARGIN + CONTENT_WIDTH / 2, y - 14, { font: fontBold, size: 10, align: "center" });
   y -= 34;
 
   const clientLines = [
     client.company,
-    client.vat ? `NIF/VAT: ${client.vat}` : null,
+    client.vat ? `${strings.vatId}: ${client.vat}` : null,
     !client.company || client.name !== client.company ? client.name : null,
     client.address,
     [client.postalCode, client.city].filter(Boolean).join(" "),
@@ -169,9 +249,9 @@ async function buildOrderInvoicePdf({ code, date, client, items, shipping }) {
 
   y -= 14;
 
-  drawText(`FACTURA #${code}`, MARGIN, y, { font: fontBold, size: 12 });
+  drawText(`${strings.invoice} #${code}`, MARGIN, y, { font: fontBold, size: 12 });
   y -= 16;
-  drawText(`Fecha ${formatDate(date)}`, MARGIN, y, { size: 9, color: TEXT_MUTED });
+  drawText(`${strings.date} ${formatDate(date)}`, MARGIN, y, { size: 9, color: TEXT_MUTED });
   y -= 28;
 
   ensureSpace(BOTTOM_SAFE_Y + 40);
@@ -187,7 +267,7 @@ async function buildOrderInvoicePdf({ code, date, client, items, shipping }) {
 
   if (shipping && shipping.amount > 0) {
     lineItems.push({
-      name: "Despeses d'enviament",
+      name: strings.shipping,
       variantLabel: "",
       quantity: 1,
       lineTotal: shipping.amount,
@@ -216,11 +296,11 @@ async function buildOrderInvoicePdf({ code, date, client, items, shipping }) {
     const rowValues = {
       concepto: sanitizeText(item.name || "").toUpperCase(),
       descripcion: item.variantLabel || "",
-      precio: eur(unitNet),
+      precio: money(unitNet),
       unidades: String(item.quantity || 1),
-      subtotal: eur(net),
+      subtotal: money(net),
       iva: `${Math.round(rate * 100)}%`,
-      total: eur(gross),
+      total: money(gross),
     };
 
     const wrappedByColumn = COLUMNS.map((col) =>
@@ -252,13 +332,13 @@ async function buildOrderInvoicePdf({ code, date, client, items, shipping }) {
 
   y -= 16;
 
-  const totalsRows = [["BASE IMPONIBLE", eur(baseImponibleTotal)]];
+  const totalsRows = [[strings.taxBase, money(baseImponibleTotal)]];
   Array.from(rateGroups.keys())
     .sort((a, b) => b - a)
     .forEach((rate) => {
-      totalsRows.push([`IVA ${Math.round(rate * 100)}%`, eur(rateGroups.get(rate).iva)]);
+      totalsRows.push([`${strings.vat} ${Math.round(rate * 100)}%`, money(rateGroups.get(rate).iva)]);
     });
-  totalsRows.push(["TOTAL", eur(grandTotal)]);
+  totalsRows.push([strings.total, money(grandTotal)]);
 
   const totalsBoxWidth = 220;
   const totalsBoxX = MARGIN + CONTENT_WIDTH - totalsBoxWidth;
@@ -292,13 +372,10 @@ async function buildOrderInvoicePdf({ code, date, client, items, shipping }) {
   y -= totalsRows.length * totalsRowHeight + 26;
 
   ensureSpace(BOTTOM_SAFE_Y);
-  drawText("Términos y condiciones:", MARGIN, y, { font: fontBold, size: 9 });
+  drawText(strings.termsTitle, MARGIN, y, { font: fontBold, size: 9 });
   y -= 13;
 
-  const termsText =
-    "En cumplimiento de lo que dispone el Reglamento General de Proteccion de Datos 2016/679, " +
-    `${COMPANY.legalName} le informa que sus datos personales seran tratados e incorporados en ` +
-    "nuestros sistemas informaticos, de los cuales es titular esta empresa.";
+  const termsText = strings.terms(COMPANY.legalName);
 
   wrapText(termsText, fontRegular, 8, CONTENT_WIDTH).forEach((line) => {
     ensureSpace(BOTTOM_SAFE_Y - 20);

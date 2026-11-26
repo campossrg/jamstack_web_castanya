@@ -3528,7 +3528,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 sku: item.sku,
                 quantity: item.quantity,
               })),
-              customer: payload,
+              customer: { ...payload, lang: pageLang },
             });
             saveCheckoutSession({
               orderId: order.id,

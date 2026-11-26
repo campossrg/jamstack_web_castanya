@@ -65,7 +65,60 @@ function withEmailContent(emailConfig) {
   };
 }
 
+const ORDER_CONFIRMATION_STRINGS = {
+  ca: {
+    subject: (id) => `Confirmació de la comanda #${id}`,
+    title: "Gràcies per la teva comanda",
+    received: (id) => `Hem rebut correctament la comanda <strong>#${id}</strong>.`,
+    detailsTitle: "Detalls de la comanda",
+    total: "Total",
+    pickupTitle: "Recollida de la comanda",
+    pickupText: (store) =>
+      `Has indicat que vindràs a recollir la comanda a la botiga de <strong>${store}</strong>.`,
+    shippingTitle: "Dades d'enviament",
+    billingTitle: "Dades de facturació",
+    vatLabel: "NIF/VAT",
+    invoiceAttached: "Trobaràs la factura de la comanda adjunta en aquest correu (PDF).",
+    updates: "T'enviarem noves actualitzacions quan la comanda avanci.",
+  },
+  es: {
+    subject: (id) => `Confirmación de pedido #${id}`,
+    title: "Gracias por tu pedido",
+    received: (id) => `Hemos recibido correctamente el pedido <strong>#${id}</strong>.`,
+    detailsTitle: "Detalles del pedido",
+    total: "Total",
+    pickupTitle: "Recogida del pedido",
+    pickupText: (store) =>
+      `Has indicado que vendrás a recoger el pedido a la tienda de <strong>${store}</strong>.`,
+    shippingTitle: "Datos de envío",
+    billingTitle: "Datos de facturación",
+    vatLabel: "NIF/VAT",
+    invoiceAttached: "Encontrarás la factura del pedido adjunta en este correo (PDF).",
+    updates: "Te enviaremos nuevas actualizaciones cuando el pedido avance.",
+  },
+  en: {
+    subject: (id) => `Order confirmation #${id}`,
+    title: "Thank you for your order",
+    received: (id) => `We have successfully received your order <strong>#${id}</strong>.`,
+    detailsTitle: "Order details",
+    total: "Total",
+    pickupTitle: "Order pickup",
+    pickupText: (store) =>
+      `You have chosen to pick up your order at the <strong>${store}</strong> shop.`,
+    shippingTitle: "Shipping details",
+    billingTitle: "Billing details",
+    vatLabel: "VAT/Tax ID",
+    invoiceAttached: "You will find the invoice for your order attached to this email (PDF).",
+    updates: "We will send you further updates as your order progresses.",
+  },
+};
+
+function getOrderConfirmationStrings(lang) {
+  return ORDER_CONFIRMATION_STRINGS[lang] || ORDER_CONFIRMATION_STRINGS.ca;
+}
+
 function buildOrderConfirmationEmail({ to, data }) {
+  const t = getOrderConfirmationStrings(data.lang);
   const orderTotal = data.items.reduce((sum, item) => sum + item.lineTotal, 0);
   const isPickup = data.customer.fulfillmentMethod === "pickup";
   const itemsList = data.items
@@ -77,10 +130,10 @@ function buildOrderConfirmationEmail({ to, data }) {
 
   const billingBlock = data.billing
     ? `
-      <h3>Dades de facturació</h3>
+      <h3>${t.billingTitle}</h3>
       <p>
         ${data.billing.company ? `${escapeHtml(data.billing.company)}<br>` : ""}
-        ${data.billing.vat ? `NIF/VAT: ${escapeHtml(data.billing.vat)}<br>` : ""}
+        ${data.billing.vat ? `${t.vatLabel}: ${escapeHtml(data.billing.vat)}<br>` : ""}
         ${data.billing.address ? `${escapeHtml(data.billing.address)}<br>` : ""}
         ${data.billing.city || data.billing.postalCode ? `${escapeHtml(data.billing.city || "")}${data.billing.city && data.billing.postalCode ? ", " : ""}${escapeHtml(data.billing.postalCode || "")}<br>` : ""}
         ${data.billing.country ? `${escapeHtml(data.billing.country)}` : ""}
@@ -89,13 +142,10 @@ function buildOrderConfirmationEmail({ to, data }) {
 
   const fulfillmentBlock = isPickup
     ? `
-      <h3>Recollida de la comanda</h3>
-      <p>
-        Has indicat que vindras a recollir la comanda a la botiga de
-        <strong>${escapeHtml(data.customer.pickupStore)}</strong>.
-      </p>`
+      <h3>${t.pickupTitle}</h3>
+      <p>${t.pickupText(escapeHtml(data.customer.pickupStore))}</p>`
     : `
-      <h3>Dades d'enviament</h3>
+      <h3>${t.shippingTitle}</h3>
       <p>
         ${escapeHtml(data.customer.name)}<br>
         ${escapeHtml(data.customer.address)}<br>
@@ -106,20 +156,21 @@ function buildOrderConfirmationEmail({ to, data }) {
   return {
     to: [{ email: to }],
     sender: getSender(),
-    subject: `Confirmacion de pedido #${data.orderId}`,
+    subject: t.subject(data.orderId),
     htmlContent: `
-      <h2>Gracies per la teva comanda</h2>
-      <p>Hem rebut correctament la comanda <strong>#${escapeHtml(data.orderId)}</strong>.</p>
+      <h2>${t.title}</h2>
+      <p>${t.received(escapeHtml(data.orderId))}</p>
 
-      <h3>Detalls de la comanda</h3>
+      <h3>${t.detailsTitle}</h3>
       <ul>${itemsList}</ul>
 
-      <p><strong>Total: € ${orderTotal.toFixed(2)}</strong></p>
+      <p><strong>${t.total}: € ${orderTotal.toFixed(2)}</strong></p>
 
       ${fulfillmentBlock}
       ${billingBlock}
 
-      <p>T'enviarem noves actualitzacions quan la comanda avanci.</p>
+      ${data.hasInvoice ? `<p>${t.invoiceAttached}</p>` : ""}
+      <p>${t.updates}</p>
     `,
   };
 }
@@ -188,26 +239,55 @@ function buildOrderNotificationEmail({ data }) {
   };
 }
 
+const PAYMENT_REMINDER_STRINGS = {
+  ca: {
+    subject: (code) => `La teva comanda ${code} està pendent de pagament`,
+    title: "La teva comanda encara no s'ha pagat",
+    intro: (code, amount) =>
+      `Hem vist que la comanda <strong>${code}</strong> (€ ${amount}) es va quedar pendent de pagament.`,
+    resume: "Pots acabar-la ara mateix fent clic aquí:",
+    resumeLink: "Completar el pagament",
+    cancel:
+      "Si no vols continuar amb la comanda, no cal que facis res: la cancel·larem automàticament passats uns dies.",
+  },
+  es: {
+    subject: (code) => `Tu pedido ${code} está pendiente de pago`,
+    title: "Tu pedido todavía no se ha pagado",
+    intro: (code, amount) =>
+      `Hemos visto que el pedido <strong>${code}</strong> (€ ${amount}) se quedó pendiente de pago.`,
+    resume: "Puedes terminarlo ahora mismo haciendo clic aquí:",
+    resumeLink: "Completar el pago",
+    cancel:
+      "Si no quieres continuar con el pedido, no hace falta que hagas nada: lo cancelaremos automáticamente pasados unos días.",
+  },
+  en: {
+    subject: (code) => `Your order ${code} is awaiting payment`,
+    title: "Your order has not been paid yet",
+    intro: (code, amount) =>
+      `We noticed that order <strong>${code}</strong> (€ ${amount}) was left pending payment.`,
+    resume: "You can complete it right now by clicking here:",
+    resumeLink: "Complete payment",
+    cancel:
+      "If you do not want to continue with the order, you do not need to do anything: we will cancel it automatically after a few days.",
+  },
+};
+
 function buildPaymentReminderEmail({ to, data }) {
+  const t = PAYMENT_REMINDER_STRINGS[data.lang] || PAYMENT_REMINDER_STRINGS.ca;
+  const amount = Number(data.totalAmount || 0).toFixed(2);
+
   return {
     to: [{ email: to }],
     sender: getSender(),
-    subject: `La teva comanda ${data.orderCode} esta pendent de pagament`,
+    subject: t.subject(data.orderCode),
     htmlContent: `
-      <h2>La teva comanda encara no s'ha pagat</h2>
+      <h2>${t.title}</h2>
+      <p>${t.intro(escapeHtml(data.orderCode), amount)}</p>
       <p>
-        Hem vist que la comanda <strong>${escapeHtml(data.orderCode)}</strong>
-        (€ ${Number(data.totalAmount || 0).toFixed(2)}) es va quedar pendent
-        de pagament.
+        ${t.resume}
+        <a href="${escapeHtml(data.resumeUrl)}">${t.resumeLink}</a>.
       </p>
-      <p>
-        Pots acabar-la ara mateix fent clic aqui:
-        <a href="${escapeHtml(data.resumeUrl)}">Completar el pagament</a>.
-      </p>
-      <p>
-        Si no vols continuar amb la comanda, no cal que facis res: la
-        cancel·larem automaticament passats uns dies.
-      </p>
+      <p>${t.cancel}</p>
     `,
   };
 }

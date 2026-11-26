@@ -160,6 +160,9 @@ function validateCustomer(customer) {
     billingCity: normalizeText(payload.billingCity),
     billingPostalCode: normalizeText(payload.billingPostalCode),
     billingCountry: normalizeText(payload.billingCountry),
+    language: ["ca", "es", "en"].includes(normalizeText(payload.lang))
+      ? normalizeText(payload.lang)
+      : "ca",
   };
 }
 
@@ -318,6 +321,7 @@ exports.handler = async (event) => {
           : null,
       notes: validatedCustomer.notes || null,
       payment_provider: "redsys",
+      language: validatedCustomer.language,
     };
 
     const insertedOrders = await insertSupabaseRow("orders", orderPayload, {

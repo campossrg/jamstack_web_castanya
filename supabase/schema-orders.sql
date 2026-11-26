@@ -71,6 +71,9 @@ alter table public.order_items
 alter table public.orders
   add column if not exists payment_reminder_sent_at timestamptz;
 
+alter table public.orders
+  add column if not exists language text not null default 'ca';
+
 create index if not exists orders_created_at_idx on public.orders (created_at desc);
 create index if not exists orders_payment_status_idx on public.orders (payment_status);
 create index if not exists orders_fulfillment_status_idx on public.orders (fulfillment_status);
